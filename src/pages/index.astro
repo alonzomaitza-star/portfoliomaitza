@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import "../styles/global.css";
-
+import ImgSlider from '../assets/SlideImages/elemento 3d.jpg';
+import ImgSlider2 from '../assets/SlideImages/Florero.jpg';
+import ImgSlider3 from '../assets/SlideImages/shellby.png';
 ---
 <style>
 /* Estructura header responsiva */
@@ -118,9 +120,9 @@ scrollbar-width: thin;
 		<header>
   <div class="container-slider">
     <div class="slider">
-      <img src="/src/assets/SlideImages/elemento 3d.jpg" alt="Slider 1">
-      <img src="/src/assets/SlideImages/Florero.jpg" alt="Slider 2">
-      <img src="/src/assets/SlideImages/shellby.png" alt="Slider 3">
+      <img src={ImgSlider.src} alt='Slider 1' />
+      <img src={ImgSlider2.src} alt='Slider 2' />
+      <img src={ImgSlider3.src} alt='Slider 3' />
     </div>
   </div>
   <div class="header-title ">
