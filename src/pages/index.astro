@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import "../styles/global.css";
+
+---
+<style>
+/* Estructura header responsiva */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+@media (min-width: 601px) {
+  header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.header-title h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+.header-title p {
+  font-size: 1.2rem;
+  color: #ffd600;
+  margin: 0.5rem 0 0 0;
+  text-align: center;
+}
+
+/* Slider estilos previos */
+.slider {
+  aspect-ratio: 10 / 16;
+  width: 100%;
+  max-height: 100%;
+  position: relative;
+  display: flex;
+  overflow: scroll;
+  scroll-snap-type: x mandatory;
+  margin-top: -119px;
+  scroll-behavior: smooth;
+  overflow-y: hidden;
+scrollbar-width: thin;
+}
+.slider img {
+  width: 100%;
+  left: 0;
+  position: sticky;
+  object-fit: cover;
+  /* border-radius: 5px; */
+  scroll-snap-align: center;
+  max-height: 10-fit-content;
+}
+@media (min-width: 601px) {
+  .slider {
+    width: 400px;
+    margin-top: 0;
+    border-radius: 5px;
+  }
+}
+@media (max-width: 600px) {
+  .slider {
+    width: 100%;
+  }
+  .header-title {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+
+/* Modal flotante inferior */
+.modal-bottom {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  background: rgba(30,30,30,0.98);
+  color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  padding: 1.25rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 9999;
+  border: 2px solid #ffd600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: modalAppear 0.7s cubic-bezier(.42,0,.58,1);
+}
+@keyframes modalAppear {
+  from { opacity: 0; bottom: 0; }
+  to { opacity: 1; bottom: 32px; }
+}
+</style>
+
+<Layout>
+	<main>
+		<header>
+  <div class="container-slider">
+    <div class="slider">
+      <img src="/src/assets/SlideImages/elemento 3d.jpg" alt="Slider 1">
+      <img src="/src/assets/SlideImages/Florero.jpg" alt="Slider 2">
+      <img src="/src/assets/SlideImages/shellby.png" alt="Slider 3">
+    </div>
+  </div>
+  <div class="header-title ">
+    <h1 >Insano Network</h1>
+    <p>Diseña, Desarrolla y Vende tus Ideas.</p>
+    <p>Para clientes: PARA ELIOT</p>
+  </div>
+</header>
+
+
+
+
+
+
+		
+		
+		<!-- <section style="text-align: center; margin-top: 3rem;">
+			<h1 class="text-4xl font-bold color-white">Página en construcción 🚧</h1>
+			<p class="color-white">Estamos trabajando para traerte el mejor contenido muy pronto.</p>
+			<p class="color-white">Para mayor información, comunícate a:<br>
+				<a href="mailto:dev@insanonetwork.com" style="color: #ffd600; font-weight: bold;">dev@insanonetwork.com</a>facility de Pinterest en contacto con nosotros
+			</p>
+		</section>
+	
+		<section class="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div class="bg-white rounded-lg shadow-lg p-4">
+				<h2 class="text-2xl font-bold">Desarrollo web</h2>
+				<p class="text-gray-600">Desarrollamos aplicaciones web escalables y seguras.</p>
+			</div>
+			<div class="bg-white rounded-lg shadow-lg p-4">
+				<h2 class="text-2xl font-bold">Dise o gr fico</h2>
+				<p class="text-gray-600">Creamos dise os elegantes y funcionales para tu marca.</p>
+			</div>
+			<div class="bg-white rounded-lg shadow-lg p-4">
+				<h2 class="text-2xl font-bold">Marketing digital</h2>
+				<p class="text-gray-600">Ayudamos a tu marca a crecer en la web.</p>
+			</div>
+		</section> -->
+		
+	
+	  <div class="modal-bottom">
+    Página en construcción 🚧
+  </div>
+</main>
+</Layout>

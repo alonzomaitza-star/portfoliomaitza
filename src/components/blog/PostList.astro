@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {posts.map((post) => (
+    <article class="rounded-lg border border-gray-200 p-6 shadow-sm transition-all hover:shadow-md">
+      <a href={`/blog/${post.slug}`} class="block">
+        {post.data.image && (
+          <img 
+            src={post.data.image} 
+            alt={post.data.title}
+            class="mb-4 h-48 w-full rounded-lg object-cover"
+            loading="lazy"
+          />
+        )}
+        <h2 class="mb-2 text-xl font-bold text-gray-900">
+          {post.data.title}
+        </h2>
+        <p class="mb-4 text-gray-600">
+          {post.data.description}
+        </p>
+        <div class="flex items-center text-sm text-gray-500">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {new Date(post.data.pubDate).toLocaleDateString('es-ES', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          <span class="mx-2">•</span>
+          <span>{post.data.readingTime} min de lectura</span>
+        </div>
+      </a>
+    </article>
+  ))}
+</div>
