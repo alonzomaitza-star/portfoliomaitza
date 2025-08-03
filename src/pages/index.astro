@@ -1,9 +1,99 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import "../styles/global.css";
+import Card from "../components/Card.astro";
+import CardShop from "../components/CardShop.astro";
 import ImgSlider from '../assets/SlideImages/elemento 3d.jpg';
 import ImgSlider2 from '../assets/SlideImages/Florero.jpg';
 import ImgSlider3 from '../assets/SlideImages/shellby.png';
+import SliderImg from '../components/SliderImg.astro';
+
+// Objetos de ejemplo para mostrar productos en la tienda
+const tarjetasRecienAgregados = [
+  { id: 1, titulo: "Producto Nuevo 1", descripcion: "Descripción del producto nuevo 1.", imagen: ImgSlider.src, precio: 199 },
+  { id: 2, titulo: "Producto Nuevo 2", descripcion: "Descripción del producto nuevo 2.", imagen: ImgSlider2.src, precio: 249 },
+];
+
+const tarjetasTemporada = [
+  { id: 3, titulo: "Producto Temporada 1", descripcion: "Descripción producto temporada 1.", imagen: ImgSlider3.src, precio: 299 },
+  { id: 4, titulo: "Producto Temporada 2", descripcion: "Descripción producto temporada 2.", imagen: ImgSlider.src, precio: 349 },
+];
+
+const tarjetasMasVendidos = [
+  { id: 5, titulo: "Producto Más Vendido 1", descripcion: "Top ventas 1.", imagen: ImgSlider2.src, precio: 399 },
+  { id: 6, titulo: "Producto Más Vendido 2", descripcion: "Top ventas 2.", imagen: ImgSlider3.src, precio: 449 },
+];
+
+const tarjetasKitConDescuento = [
+  { id: 7, titulo: "Kit Descuento 1", descripcion: "Kit especial con descuento.", imagen: ImgSlider.src, precio: 499 },
+  { id: 8, titulo: "Kit Descuento 2", descripcion: "Kit ahorro.", imagen: ImgSlider2.src, precio: 549 },
+];
+
+
+const tarjetas = [
+  {
+    titulo: 'Diseña',
+    descripcion: 'Dibujamos, modelamos, imprimimos, vectorizamos y mas; por ti.',
+    imagen: ImgSlider.src,
+    icon: '🎨',
+    bg: 'bg-yellow-500',
+    border: 'border-gray-300',
+    text: '#000',
+    iconColor: '#FFD600'
+  },
+  {
+    titulo: 'Desarrolla',
+    descripcion: 'Avanza con la tecnologia de vanguardia, redes, automatizaciones, software, implementaciones, etc.',
+    imagen: ImgSlider2.src,
+    icon: '💻',
+    bg: 'bg-green-500',
+    border: 'border-gray-300',
+    text: '#fff',
+    iconColor: '#16A34A'
+  },
+  {
+    titulo: 'Ventas y E-commerce',
+    descripcion: 'Accede a herramientas de e-commerce y empeza a vender tus productos y/o servicios.',
+    imagen: ImgSlider3.src,
+    icon: '🛒',
+    bg: 'bg-red-500',
+    border: 'border-gray-300',
+    text: '#fff',
+    iconColor: '#EF4444'
+  },
+  {
+    titulo: 'Contable',
+    descripcion: 'Con nuestros socios, regularizate, planifica y ponte al dia mediante nuestros servicios contables.',
+    imagen: ImgSlider.src,
+    icon: '🎨',
+    bg: 'bg-yellow-500',
+    border: 'border-gray-300',
+    text: '#000',
+    iconColor: '#FFD600'
+  },
+  {
+    titulo: 'Marketing',
+    descripcion: 'Te acompañamos en tu plan de ventas, y te hacemos crecer, mas ventas y mas clientes.',
+    imagen: ImgSlider2.src,
+    icon: '💻',
+    bg: 'bg-green-500',
+    border: 'border-gray-300',
+    text: '#fff',
+    iconColor: '#16A34A'
+  },
+  {
+    titulo: 'Aprende y Capacita a tu equipo',
+    descripcion: 'Consulta con nosotros para desarrollar competencias, habilidades, especializarte; a ti o a tu equipo con nuestros cursos y planes hechos a medida. ',
+    imagen: ImgSlider2.src,
+    icon: '💻',
+    bg: 'bg-green-500',
+    border: 'border-gray-300',
+    text: '#fff',
+    iconColor: '#16A34A'
+  }
+];
+
+
 ---
 <style>
 /* Estructura header responsiva */
@@ -118,26 +208,108 @@ scrollbar-width: thin;
 <Layout>
 	<main>
 		<header>
-  <div class="container-slider">
-    <div class="slider">
-      <img src={ImgSlider.src} alt='Slider 1' />
-      <img src={ImgSlider2.src} alt='Slider 2' />
-      <img src={ImgSlider3.src} alt='Slider 3' />
-    </div>
-  </div>
-  <div class="header-title ">
-    <h1 >Insano Network</h1>
-    <p>Diseña, Desarrolla y Vende tus Ideas.</p>
-    <p>Para clientes: PARA ELIOT</p>
-  </div>
-</header>
+      <div class="container-slider">
+        <!-- <div class="slider">
+          <img src={ImgSlider.src} alt='Slider 1' />
+          <img src={ImgSlider2.src} alt='Slider 2' />
+          <img src={ImgSlider3.src} alt='Slider 3' />
+        </div> -->
+        <SliderImg imagenes={[ImgSlider, ImgSlider2, ImgSlider3]} />
+      </div>
+      <div class="header-title text-right">
+        <h1 >Insano Network</h1>
+        <h2  class="text-white font-bold">Diseña, Desarrolla y Vende tus Ideas.</h2>
+        <p>Tu mejor opcion de incio a fin.</p>
+      </div>
+    </header>
 
 
 
 
+    <section>
+      
+      <div class="container mx-auto p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+          {tarjetas.map((tarjeta, i) => (
+            <Card 
+              jsonData={tarjeta}
+              bgColor={tarjeta.bg}
+              borderColor={tarjeta.border}
+              textColor={tarjeta.text}
+              iconColor={tarjeta.iconColor}
+              key={i}
+            />
+          ))}
+        </div>
+      </div>
 
 
-		
+
+    </section>
+
+
+
+      <section class="bg-gray-100 py-8">
+        <div class="container mx-auto p-4">
+          <h2 class="text-3xl font-bold mb-4">Tienda en línea</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <div>
+              <h3 class="text-2xl font-bold">Recien agregados</h3>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                {tarjetasRecienAgregados.map((tarjeta, i) => (
+  <CardShop producto={tarjeta} key={i} />
+))} 
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold">Productos de temporada</h3>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                {tarjetasTemporada.map((tarjeta, i) => (
+  <CardShop producto={tarjeta} key={i} />
+))} 
+              </ul>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+            <div>
+              <h3 class="text-2xl font-bold">Mas vendidos</h3>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                {tarjetasMasVendidos.map((tarjeta, i) => (
+  <CardShop producto={tarjeta} key={i} />
+))} 
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold">Kit con descuento</h3>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                {tarjetasKitConDescuento.map((tarjeta, i) => (
+  <CardShop producto={tarjeta} key={i} />
+))} 
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+		<section class="bg-gray-100 py-8">
+			<h2 class="text-3xl font-bold text-center">Nuestras ultimas interacciones en redes</h2>
+			<div class="container mx-auto p-4">
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+					{[1,2,3,4,5,6].map((i) => (
+						<div class="bg-white p-4 rounded-md" key={i}>
+							<img src={`https://picsum.photos/seed/${i}/200/300`} alt={`Imagen ${i}`} />
+							<p class="text-center mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, voluptatum.</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+
+
+
 		
 		<!-- <section style="text-align: center; margin-top: 3rem;">
 			<h1 class="text-4xl font-bold color-white">Página en construcción 🚧</h1>

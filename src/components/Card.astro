@@ -1,0 +1,16 @@
+---
+// Props: jsonData (objeto con titulo, descripcion, imagen), y colores (texto, borde, fondo, icono)
+const { jsonData, textColor, borderColor, bgColor, iconColor } = Astro.props;
+---
+<div class={`card rounded-md border-2 p-4 ${bgColor} ${borderColor}`} style={`color: ${textColor};`}>
+  <div class="flex flex-col items-center">
+    {jsonData.icon && (
+      <span class="icon mb-2" style={`color: ${iconColor}; font-size: 2rem;`}>
+        {jsonData.icon}
+      </span>
+    )}
+    <h2 class="card-title text-lg font-bold mb-2">{jsonData.titulo}</h2>
+    <img src={jsonData.imagen} alt={jsonData.titulo} class="max-h-48 w-auto rounded-md mb-2" />
+    <p class="text-base text-center">{jsonData.descripcion}</p>
+  </div>
+</div>
