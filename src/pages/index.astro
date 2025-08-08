@@ -43,7 +43,7 @@ const tarjetas = [
   },
   {
     titulo: 'Desarrolla',
-    descripcion: 'Avanza con la tecnologia de vanguardia, redes, automatizaciones, software, implementaciones, etc.',
+    descripcion: 'Accede y avanza con nuestras plataformas, herramientas, redes, automatizaciones, software, implementaciones, etc.',
     imagen: ImgSlider2.src,
     icon: '💻',
     bg: 'bg-green-500',
@@ -293,20 +293,86 @@ scrollbar-width: thin;
 
 
 
-		<section class="bg-gray-100 py-8">
-			<h2 class="text-3xl font-bold text-center">Nuestras ultimas interacciones en redes</h2>
+		<section class="py-8">
+			<h2 class="text-3xl font-bold text-center">Contáctanos</h2>
 			<div class="container mx-auto p-4">
-				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-					{[1,2,3,4,5,6].map((i) => (
-						<div class="bg-white p-4 rounded-md" key={i}>
-							<img src={`https://picsum.photos/seed/${i}/200/300`} alt={`Imagen ${i}`} />
-							<p class="text-center mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, voluptatum.</p>
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+					<div class="bg-white p-4 rounded-md">
+						<h3 class="text-2xl font-bold">Nuestra carta de presentación</h3>
+						<p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, voluptatum.</p>
+					</div>
+					<form class="bg-white p-4 rounded-md">
+						<h3 class="text-2xl font-bold">Formulario de contacto</h3>
+						<div class="mt-2">
+							<label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+							<input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
 						</div>
-					))}
+						<div class="mt-2">
+							<label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+							<input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+						</div>
+						<div class="mt-2">
+							<label for="message" class="block text-sm font-medium text-gray-700">Mensaje</label>
+							<textarea name="message" id="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+						</div>
+						<div class="mt-2">
+							<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Enviar</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</section>
 
+
+    <section class="py-8">
+      <div class="container mx-auto p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <div class="bg-white p-4 rounded-md">
+            <h3 class="text-2xl font-bold">Ultimo video de YouTube</h3>
+            <div class="mt-2">
+              <iframe width="100%" height="300" src="https://www.youtube.com/embed/4Ojg5y6Oq3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+
+
+          <div class="bg-white p-4 rounded-md">
+            <h3 class="text-2xl font-bold">Chat en vivo de Twitch</h3>
+            <div class="mt-2">
+              <iframe src="https://twitch.tv/embeds/chat?id=insanocodes" height="300" width="100%" frameborder="0" scrolling="no"></iframe>
+              <div class="mt-2 bg-gray-50 p-2 rounded-md">
+                <div class="flex items-center">
+                  <span class="text-xs text-gray-600">insanocodes: </span>
+                  <span class="ml-2 text-sm">¿Quieres que haga un live de desarrollo?</span>
+                </div>
+                <div class="flex items-center mt-1">
+                  <span class="text-xs text-gray-600">insanocodes: </span>
+                  <span class="ml-2 text-sm">¿Quieres que haga un live de desarrollo?</span>
+                </div>
+                <div class="flex items-center mt-1">
+                  <span class="text-xs text-gray-600">insanocodes: </span>
+                  <span class="ml-2 text-sm">¿Quieres que haga un live de desarrollo?</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="bg-white p-4 rounded-md">
+            <h3 class="text-2xl font-bold">Últimos 2 posts de Instagram</h3>
+            <div class="mt-2">
+              <a href="https://www.instagram.com/p/CiY5p0hLk7C/">
+                <img src="https://images.unsplash.com/photo-1629469464544-5c1e0f9b0cfb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80" class="w-full h-64 object-cover" />
+              </a>
+              <a href="https://www.instagram.com/p/CiWVn5ILBvM/">
+                <img src="https://images.unsplash.com/photo-1629469464544-5c1e0f9b0cfb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80" class="w-full h-64 object-cover" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
 
 
 
