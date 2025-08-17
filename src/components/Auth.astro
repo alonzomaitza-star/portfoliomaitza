@@ -1,0 +1,68 @@
+---
+// src/components/Auth.astro
+
+// Leemos las cookies del lado del servidor para saber si el usuario está logueado.
+const accessToken = Astro.cookies.get('sb-access-token');
+const isLoggedIn = accessToken ? true : false;
+---
+
+<div class="auth-container">
+  {isLoggedIn ? (
+    <a href="/api/auth/signout" class="auth-link logout">Cerrar Sesión</a>
+  ) : (
+    <button id="google-login" class="auth-link login">Login con Google</button>
+  )}
+</div>
+
+<script>
+  import { supabase } from '../lib/supabase';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginButton = document.getElementById('google-login');
+
+    if (loginButton) {
+      loginButton.addEventListener('click', async () => {
+        const { error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            // Esta URL debe coincidir con una de las "Redirect URLs" en tu configuración de Supabase.
+            redirectTo: `${window.location.origin}/dashboard`,
+          },
+        });
+
+        if (error) {
+          console.error('Error al iniciar sesión con Google:', error.message);
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .auth-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .login {
+    background-color: #4285F4;
+    color: white;
+  }
+
+  .login:hover {
+    background-color: #357ae8;
+  }
+
+  .logout {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .logout:hover {
+    background-color: #d32f2f;
+  }
+</style>

@@ -7,7 +7,10 @@ import ImgSlider from '../assets/SlideImages/elemento 3d.jpg';
 import ImgSlider2 from '../assets/SlideImages/Florero.jpg';
 import ImgSlider3 from '../assets/SlideImages/shellby.png';
 import SliderImg from '../components/SliderImg.astro';
+import { supabase } from '../lib/supabase';
+import Auth from '../components/Auth.astro';
 
+export const prerender = false;
 // Objetos de ejemplo para mostrar productos en la tienda
 const tarjetasRecienAgregados = [
   { id: 1, titulo: "Producto Nuevo 1", descripcion: "Descripción del producto nuevo 1.", imagen: ImgSlider.src, precio: 199 },
@@ -63,7 +66,7 @@ const tarjetas = [
   },
   {
     titulo: 'Contable',
-    descripcion: 'Con nuestros socios, regularizate, planifica y ponte al dia mediante nuestros servicios contables.',
+    descripcion: 'Planifica y ponte al dia mediante nuestros servicios contables y nuestros socios contables.',
     imagen: ImgSlider.src,
     icon: '🎨',
     bg: 'bg-yellow-500',
@@ -206,6 +209,7 @@ scrollbar-width: thin;
 </style>
 
 <Layout>
+
 	<main>
 		<header>
       <div class="container-slider">
@@ -220,6 +224,7 @@ scrollbar-width: thin;
         <h1 >Insano Network</h1>
         <h2  class="text-white font-bold">Diseña, Desarrolla y Vende tus Ideas.</h2>
         <p>Tu mejor opcion de incio a fin.</p>
+        <Auth />
       </div>
     </header>
 
@@ -257,16 +262,16 @@ scrollbar-width: thin;
               <h3 class="text-2xl font-bold">Recien agregados</h3>
               <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
                 {tarjetasRecienAgregados.map((tarjeta, i) => (
-  <CardShop producto={tarjeta} key={i} />
-))} 
+                  <CardShop producto={tarjeta} key={i} />
+                ))} 
               </ul>
             </div>
             <div>
               <h3 class="text-2xl font-bold">Productos de temporada</h3>
               <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
                 {tarjetasTemporada.map((tarjeta, i) => (
-  <CardShop producto={tarjeta} key={i} />
-))} 
+                  <CardShop producto={tarjeta} key={i} />
+                ))} 
               </ul>
             </div>
           </div>
@@ -275,16 +280,16 @@ scrollbar-width: thin;
               <h3 class="text-2xl font-bold">Mas vendidos</h3>
               <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
                 {tarjetasMasVendidos.map((tarjeta, i) => (
-  <CardShop producto={tarjeta} key={i} />
-))} 
+                  <CardShop producto={tarjeta} key={i} />
+                ))} 
               </ul>
             </div>
             <div>
               <h3 class="text-2xl font-bold">Kit con descuento</h3>
               <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
                 {tarjetasKitConDescuento.map((tarjeta, i) => (
-  <CardShop producto={tarjeta} key={i} />
-))} 
+                  <CardShop producto={tarjeta} key={i} />
+                ))} 
               </ul>
             </div>
           </div>
