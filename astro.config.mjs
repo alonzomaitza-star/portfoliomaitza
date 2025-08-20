@@ -4,6 +4,7 @@ import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import netlify from '@astrojs/netlify';
 import { SITE_URL } from './src/consts';
 
 // https://astro.build/config
@@ -28,8 +29,6 @@ export default defineConfig({
     },
   },
   // Configuración de compilación
-  output: 'static',
-  build: {
-    format: 'file',
-  },
+  output: 'server',
+  adapter: netlify(),
 });
