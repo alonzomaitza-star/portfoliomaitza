@@ -6,7 +6,7 @@
  * gestionar carritos, procesar pedidos y más.
  */
 
-import { createClient } from '@medusajs/medusa-js'
+import Medusa from "@medusajs/medusa-js";
 
 // URL del backend de Medusa (ajustar según el entorno)
 const MEDUSA_BACKEND_URL = import.meta.env.PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000'
