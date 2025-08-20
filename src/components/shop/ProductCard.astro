@@ -1,0 +1,141 @@
+---
+/**
+ * Componente de tarjeta de producto para la tienda online
+ * 
+ * Este componente muestra la información básica de un producto en formato de tarjeta,
+ * incluyendo imagen, título, precio y un botón para añadir al carrito.
+ */
+
+// Propiedades del componente
+interface Props {
+  product: {
+    id: string;
+    title: string;
+    handle: string;
+    thumbnail?: string;
+    variants?: any[];
+    description?: string;
+  };
+  className?: string;
+}
+
+const { product, className = '' } = Astro.props;
+
+// Obtener la primera variante y su precio (si existen)
+const firstVariant = product.variants && product.variants.length > 0 ? product.variants[0] : null;
+const price = firstVariant?.prices?.length > 0 ? firstVariant.prices[0].amount / 100 : null;
+
+// URL de la imagen por defecto si no hay thumbnail
+const imageUrl = product.thumbnail || '/img/shop/product-placeholder.png';
+
+// URL de la página de detalle del producto
+const productUrl = `/shop/products/${product.handle}`;
+---
+
+<div class={`product-card bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1 ${className}`}>
+  <a href={productUrl} class="block">
+    <div class="product-image relative pb-[75%] overflow-hidden bg-gray-100">
+      <img 
+        src={imageUrl} 
+        alt={product.title}
+        class="absolute inset-0 w-full h-full object-cover object-center"
+        loading="lazy"
+      />
+    </div>
+  </a>
+  
+  <div class="p-4">
+    <a href={productUrl} class="block">
+      <h3 class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors line-clamp-2 mb-2">
+        {product.title}
+      </h3>
+    </a>
+    
+    {product.description && (
+      <p class="text-gray-600 text-sm line-clamp-2 mb-3">
+        {product.description}
+      </p>
+    )}
+    
+    <div class="flex justify-between items-center">
+      {price !== null ? (
+        <span class="text-lg font-bold text-gray-900">
+          ${price.toFixed(2)}
+        </span>
+      ) : (
+        <span class="text-sm text-gray-500">Precio no disponible</span>
+      )}
+      
+      {firstVariant && (
+        <button 
+          class="add-to-cart-btn bg-blue-600 text-white py-1.5 px-3 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
+          data-product-id={product.id}
+          data-variant-id={firstVariant.id}
+        >
+          Añadir
+        </button>
+      )}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Inicializar los botones de añadir al carrito
+  function initAddToCartButtons() {
+    const buttons = document.querySelectorAll('.add-to-cart-btn');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const btn = e.currentTarget as HTMLButtonElement;
+        
+        // Obtener IDs del producto y variante
+        const productId = btn.dataset.productId;
+        const variantId = btn.dataset.variantId;
+        
+        if (!productId || !variantId) {
+          console.error('Falta ID de producto o variante');
+          return;
+        }
+        
+        // Cambiar estado del botón
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Añadiendo...';
+        
+        try {
+          // Importar dinámicamente las funciones de Medusa
+          const { addToCart } = await import('../../lib/medusa');
+          
+          // Añadir al carrito
+          await addToCart(variantId, 1);
+          
+          // Actualizar estado del botón
+          btn.textContent = '✓ Añadido';
+          
+          // Notificar al usuario (puedes reemplazar esto con una notificación más elegante)
+          // Por ejemplo, un toast o una actualización del mini-carrito
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }, 2000);
+          
+        } catch (error) {
+          console.error('Error al añadir al carrito:', error);
+          btn.textContent = 'Error';
+          
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }, 2000);
+        }
+      });
+    });
+  }
+  
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', initAddToCartButtons);
+  
+  // También inicializar cuando el contenido se actualice dinámicamente (para SPA)
+  document.addEventListener('astro:page-load', initAddToCartButtons);
+</script>

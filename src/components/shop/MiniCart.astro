@@ -1,0 +1,394 @@
+---
+/**
+ * Componente de mini carrito para la tienda online
+ * 
+ * Este componente muestra un resumen del carrito de compra en forma de desplegable,
+ * permitiendo al usuario ver los productos añadidos, modificar cantidades y
+ * acceder a la página completa del carrito.
+ */
+
+// Propiedades del componente
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<div class={`mini-cart-container relative ${className}`}>
+  <!-- Botón del carrito -->
+  <button 
+    class="mini-cart-button flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors"
+    aria-label="Ver carrito"
+    aria-expanded="false"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+    </svg>
+    <span class="cart-count text-sm font-semibold bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center">0</span>
+  </button>
+  
+  <!-- Contenido del mini carrito (oculto por defecto) -->
+  <div class="mini-cart-content hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-50 overflow-hidden">
+    <div class="p-4 border-b border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">Tu Carrito</h3>
+    </div>
+    
+    <!-- Contenedor de items del carrito -->
+    <div class="cart-items-container max-h-80 overflow-y-auto p-4">
+      <!-- Estado de carga -->
+      <div class="cart-loading hidden text-center py-8">
+        <svg class="animate-spin h-8 w-8 text-blue-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <p class="text-gray-600 mt-2">Cargando carrito...</p>
+      </div>
+      
+      <!-- Estado vacío -->
+      <div class="cart-empty text-center py-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <p class="text-gray-600">Tu carrito está vacío</p>
+        <a href="/shop" class="text-blue-600 hover:text-blue-800 text-sm font-medium mt-2 inline-block">Continuar comprando</a>
+      </div>
+      
+      <!-- Lista de items (se llenará dinámicamente) -->
+      <div class="cart-items hidden"></div>
+    </div>
+    
+    <!-- Resumen y botones -->
+    <div class="cart-summary hidden p-4 bg-gray-50 border-t border-gray-200">
+      <div class="flex justify-between mb-4">
+        <span class="font-medium text-gray-700">Subtotal:</span>
+        <span class="cart-subtotal font-semibold text-gray-900">$0.00</span>
+      </div>
+      
+      <div class="flex flex-col space-y-2">
+        <a 
+          href="/shop/cart" 
+          class="bg-blue-600 text-white text-center py-2 px-4 rounded-md hover:bg-blue-700 transition-colors font-medium"
+        >
+          Ver Carrito
+        </a>
+        <a 
+          href="/shop/checkout" 
+          class="bg-green-600 text-white text-center py-2 px-4 rounded-md hover:bg-green-700 transition-colors font-medium"
+        >
+          Finalizar Compra
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Clase para gestionar el mini carrito
+  class MiniCart {
+    button: HTMLElement | null;
+    content: HTMLElement | null;
+    itemsContainer: HTMLElement | null;
+    loadingElement: HTMLElement | null;
+    emptyElement: HTMLElement | null;
+    itemsElement: HTMLElement | null;
+    summaryElement: HTMLElement | null;
+    subtotalElement: HTMLElement | null;
+    countElement: HTMLElement | null;
+    isOpen: boolean = false;
+    isLoading: boolean = false;
+    
+    constructor() {
+      // Seleccionar elementos del DOM
+      this.button = document.querySelector('.mini-cart-button');
+      this.content = document.querySelector('.mini-cart-content');
+      this.itemsContainer = document.querySelector('.cart-items-container');
+      this.loadingElement = document.querySelector('.cart-loading');
+      this.emptyElement = document.querySelector('.cart-empty');
+      this.itemsElement = document.querySelector('.cart-items');
+      this.summaryElement = document.querySelector('.cart-summary');
+      this.subtotalElement = document.querySelector('.cart-subtotal');
+      this.countElement = document.querySelector('.cart-count');
+      
+      this.init();
+    }
+    
+    init() {
+      // Añadir event listeners
+      if (this.button) {
+        this.button.addEventListener('click', () => this.toggleCart());
+      }
+      
+      // Cerrar al hacer clic fuera
+      document.addEventListener('click', (e) => {
+        if (this.isOpen && this.content && this.button && 
+            !this.content.contains(e.target as Node) && 
+            !this.button.contains(e.target as Node)) {
+          this.closeCart();
+        }
+      });
+      
+      // Actualizar carrito al cargar la página
+      this.updateCart();
+      
+      // Escuchar eventos de actualización del carrito
+      document.addEventListener('product-added-to-cart', () => this.updateCart());
+      document.addEventListener('cart-updated', () => this.updateCart());
+    }
+    
+    toggleCart() {
+      if (this.isOpen) {
+        this.closeCart();
+      } else {
+        this.openCart();
+      }
+    }
+    
+    openCart() {
+      if (this.content && this.button) {
+        this.content.classList.remove('hidden');
+        this.button.setAttribute('aria-expanded', 'true');
+        this.isOpen = true;
+        this.updateCart(); // Actualizar al abrir
+      }
+    }
+    
+    closeCart() {
+      if (this.content && this.button) {
+        this.content.classList.add('hidden');
+        this.button.setAttribute('aria-expanded', 'false');
+        this.isOpen = false;
+      }
+    }
+    
+    setLoading(loading: boolean) {
+      this.isLoading = loading;
+      
+      if (this.loadingElement) {
+        if (loading) {
+          this.loadingElement.classList.remove('hidden');
+        } else {
+          this.loadingElement.classList.add('hidden');
+        }
+      }
+    }
+    
+    async updateCart() {
+      try {
+        this.setLoading(true);
+        
+        // En una implementación real, obtendríamos el carrito de Medusa
+        // Por ahora, simulamos con localStorage para desarrollo
+        const cartData = this.getCartFromLocalStorage();
+        
+        // Actualizar contador
+        this.updateCartCount(cartData.items.length);
+        
+        // Mostrar items o mensaje de vacío
+        if (cartData.items.length === 0) {
+          this.showEmptyCart();
+        } else {
+          this.renderCartItems(cartData);
+        }
+      } catch (error) {
+        console.error('Error al actualizar carrito:', error);
+        this.showEmptyCart();
+      } finally {
+        this.setLoading(false);
+      }
+    }
+    
+    updateCartCount(count: number) {
+      if (this.countElement) {
+        this.countElement.textContent = count.toString();
+      }
+    }
+    
+    showEmptyCart() {
+      if (this.emptyElement && this.itemsElement && this.summaryElement) {
+        this.emptyElement.classList.remove('hidden');
+        this.itemsElement.classList.add('hidden');
+        this.summaryElement.classList.add('hidden');
+      }
+    }
+    
+    renderCartItems(cartData: any) {
+      if (this.itemsElement && this.emptyElement && this.summaryElement && this.subtotalElement) {
+        // Mostrar contenedor de items y ocultar mensaje de vacío
+        this.itemsElement.classList.remove('hidden');
+        this.emptyElement.classList.add('hidden');
+        this.summaryElement.classList.remove('hidden');
+        
+        // Limpiar contenedor
+        this.itemsElement.innerHTML = '';
+        
+        // Renderizar cada item
+        cartData.items.forEach((item: any) => {
+          const itemElement = this.createCartItemElement(item);
+          this.itemsElement?.appendChild(itemElement);
+        });
+        
+        // Actualizar subtotal
+        this.subtotalElement.textContent = `$${cartData.subtotal.toFixed(2)}`;
+      }
+    }
+    
+    createCartItemElement(item: any) {
+      const itemElement = document.createElement('div');
+      itemElement.className = 'cart-item flex items-center py-3 border-b border-gray-100 last:border-0';
+      
+      itemElement.innerHTML = `
+        <div class="w-16 h-16 flex-shrink-0 bg-gray-100 rounded overflow-hidden mr-4">
+          <img src="${item.thumbnail || '/img/shop/product-placeholder.png'}" alt="${item.title}" class="w-full h-full object-cover">
+        </div>
+        <div class="flex-grow min-w-0">
+          <h4 class="text-sm font-medium text-gray-900 truncate">${item.title}</h4>
+          <div class="flex items-center mt-1">
+            <span class="text-xs text-gray-500">Cant: ${item.quantity}</span>
+            <span class="mx-2 text-gray-300">|</span>
+            <span class="text-sm font-medium text-gray-900">$${(item.price * item.quantity).toFixed(2)}</span>
+          </div>
+        </div>
+        <button class="remove-item ml-2 text-gray-400 hover:text-red-500" data-item-id="${item.id}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      `;
+      
+      // Añadir event listener para eliminar
+      const removeButton = itemElement.querySelector('.remove-item');
+      if (removeButton) {
+        removeButton.addEventListener('click', () => {
+          this.removeItem(item.id);
+        });
+      }
+      
+      return itemElement;
+    }
+    
+    async removeItem(itemId: string) {
+      try {
+        // En una implementación real, llamaríamos a la API de Medusa
+        // Por ahora, simulamos con localStorage
+        const cartData = this.getCartFromLocalStorage();
+        
+        // Filtrar el item a eliminar
+        cartData.items = cartData.items.filter((item: any) => item.id !== itemId);
+        
+        // Recalcular subtotal
+        cartData.subtotal = cartData.items.reduce(
+          (total: number, item: any) => total + (item.price * item.quantity), 
+          0
+        );
+        
+        // Guardar en localStorage
+        localStorage.setItem('demo_cart', JSON.stringify(cartData));
+        
+        // Actualizar UI
+        this.updateCart();
+        
+        // Disparar evento de actualización
+        document.dispatchEvent(new CustomEvent('cart-updated'));
+      } catch (error) {
+        console.error('Error al eliminar item:', error);
+      }
+    }
+    
+    // Método para simular carrito en desarrollo
+    getCartFromLocalStorage() {
+      try {
+        const cartData = localStorage.getItem('demo_cart');
+        if (cartData) {
+          return JSON.parse(cartData);
+        }
+      } catch (e) {
+        console.error('Error al leer carrito de localStorage:', e);
+      }
+      
+      // Carrito por defecto vacío
+      return {
+        items: [],
+        subtotal: 0
+      };
+    }
+  }
+  
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new MiniCart();
+  });
+  
+  // También inicializar cuando el contenido se actualice dinámicamente (para SPA)
+  document.addEventListener('astro:page-load', () => {
+    new MiniCart();
+  });
+  
+  // Función para añadir un producto al carrito (para desarrollo)
+  // En producción, esto se haría a través de la API de Medusa
+  window.addProductToCart = function(product: any, quantity = 1) {
+    try {
+      // Obtener carrito actual
+      let cartData;
+      try {
+        const existingCart = localStorage.getItem('demo_cart');
+        cartData = existingCart ? JSON.parse(existingCart) : { items: [], subtotal: 0 };
+      } catch (e) {
+        cartData = { items: [], subtotal: 0 };
+      }
+      
+      // Verificar si el producto ya está en el carrito
+      const existingItemIndex = cartData.items.findIndex((item: any) => item.id === product.id);
+      
+      if (existingItemIndex >= 0) {
+        // Actualizar cantidad
+        cartData.items[existingItemIndex].quantity += quantity;
+      } else {
+        // Añadir nuevo item
+        cartData.items.push({
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          quantity: quantity,
+          thumbnail: product.thumbnail
+        });
+      }
+      
+      // Recalcular subtotal
+      cartData.subtotal = cartData.items.reduce(
+        (total: number, item: any) => total + (item.price * item.quantity), 
+        0
+      );
+      
+      // Guardar en localStorage
+      localStorage.setItem('demo_cart', JSON.stringify(cartData));
+      
+      // Disparar evento
+      document.dispatchEvent(new CustomEvent('product-added-to-cart'));
+      
+      return true;
+    } catch (error) {
+      console.error('Error al añadir producto al carrito:', error);
+      return false;
+    }
+  };
+</script>
+
+<style>
+  /* Animación para el mini carrito */
+  .mini-cart-content {
+    transform-origin: top right;
+    animation: cartAppear 0.2s ease-out;
+  }
+  
+  @keyframes cartAppear {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
