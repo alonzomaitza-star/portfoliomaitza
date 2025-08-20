@@ -9,7 +9,7 @@ import Logo from '../assets/Logo.png';
       <nav class="main-nav" aria-label="Navegación principal">
         <div class="nav-content">
           <a href="/" class="logo-area" aria-label="Inicio">
-            <img src={Logo.src} alt="Insano Network Logo" class="logo" style="width: 125px; height: auto;" />
+            <img src={Logo.src} alt="Insano Network Logo" class="logo" />
             <span class="sr-only">Insano Network</span>
           </a>
           <ul class="nav-links">
@@ -55,8 +55,21 @@ import Logo from '../assets/Logo.png';
             <li><a href="#" class="tienda-link" aria-label="Tienda"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a></li>
           </ul>
           <div class="nav-actions" aria-label="Acciones de usuario">
-            <a href="/register" class="register" role="button">Register</a>
-            <a href="/login" class="login" role="button">Log in</a>
+            <div class="desktop-auth-buttons">
+              <a href="/register" class="register" role="button">Register</a>
+              <a href="/login" class="login" role="button">Log in</a>
+            </div>
+            <div class="mobile-auth-button">
+              <button id="user-menu-button" class="user-button" aria-haspopup="menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </button>
+              <div id="user-menu-dropdown" class="user-menu-dropdown">
+                <div class="user-menu-options">
+                  <a href="/login" class="user-menu-option">Log in</a>
+                  <a href="/register" class="user-menu-option">Register</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -144,14 +157,90 @@ import Logo from '../assets/Logo.png';
 }
 .nav-actions {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+}
+
+.desktop-auth-buttons {
+  display: flex;
+}
+
+.mobile-auth-button {
+  display: none;
+  position: relative;
+}
+
+.user-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #232728;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-button:hover {
+  background: #ffd600;
+  color: #163233;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.user-menu-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: rgba(22, 50, 51, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  padding: 0.5rem 0;
+  z-index: 500;
+  color: #fff;
+  width: max-content;
+  font-family: 'Atkinson', sans-serif;
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.user-menu-dropdown.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.user-menu-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-menu-option {
+  padding: 0.8rem 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.user-menu-option:hover {
+  background: rgba(255, 214, 0, 0.2);
+  color: #ffd600;
 }
 .register {
   background: #fff;
   color: #163233;
   border: none;
   border-radius: 8px 0 0 8px;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 0.5rem;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s;
@@ -165,7 +254,7 @@ import Logo from '../assets/Logo.png';
   color: #b0bfc0;
   border: none;
   border-radius: 0 8px 8px 0;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 0.5rem;
   cursor: pointer;
   transition: background 0.2s;
   text-decoration: none;
@@ -240,10 +329,11 @@ import Logo from '../assets/Logo.png';
     align-items: center;
     justify-content: center;
   }
-  .register, .login {
-    padding: 0.3rem 0.5rem;
-    font-size: 0.8rem;
-    border-radius: 6px;
+  .desktop-auth-buttons {
+    display: none;
+  }
+  .mobile-auth-button {
+    display: block;
   }
   .nav-actions {
     flex-direction: row;
@@ -261,7 +351,6 @@ import Logo from '../assets/Logo.png';
     justify-content: center;
     align-items: center;
     top: 5px;
-    
   }
   .wrapper-vertical {
     justify-content: center;
@@ -357,16 +446,18 @@ import Logo from '../assets/Logo.png';
   position: relative;
 }
 .navbarmain-dialog {
-  padding: 3rem;
+  padding: 2rem;
   position: absolute;
-  top: 100%;
-  left: -15px;
-  min-width: 180px;
-  background: rgba(22, 50, 51, 0.98);
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.18);
-  padding: 0.5rem 0;
+  left: -200px;
+  min-width: 700px;
+  max-width: 90vw;
+  background: rgba(22, 50, 51, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  padding: 0.8rem 0;
   z-index: 400;
   color: #fff;
   font-family: 'Atkinson', sans-serif;
@@ -378,7 +469,7 @@ import Logo from '../assets/Logo.png';
 }
 .navbarmain-dialog-list li a {
   display: block;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem;
   color: #fff;
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
@@ -388,65 +479,93 @@ import Logo from '../assets/Logo.png';
   color: #163233;
 }
 .navbarmain-dialog-section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
+  position: relative;
 }
 .navbarmain-dialog-section:last-child {
   margin-bottom: 0;
 }
 .navbarmain-dialog-section h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
+  margin: 0 0 0.8rem 1.2rem;
+  font-size: 1.1rem;
   color: #ffd600;
   font-weight: bold;
+  position: relative;
+  display: inline-block;
 }
+.navbarmain-dialog-section h4::after {
+   content: '';
+   position: absolute;
+   bottom: -4px;
+   left: 0;
+   width: 40px;
+   height: 2px;
+   background-color: #ffd600;
+   border-radius: 1px;
+ }
 .navbarmain-card-list {
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
-  padding: 1rem;
+  padding: 1.2rem;
+  justify-content: center;
 }
 .navbarmain-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   color: #232728;
-  border-radius: 10px;
-  border: 1.5px solid #232728;
+  border-radius: 7px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
   padding: 1rem 1.25rem;
   font-size: 0.95rem;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15);
   min-width: 180px;
   text-align: left;
   margin-bottom: 0.5rem;
-  transition: background 0.2s, color 0.2s, border 0.2s;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   text-decoration: none;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 .navbarmain-card:hover {
-  background: #232728;
+  background: rgba(35, 39, 40, 0.9);
   color: #fff;
-  border: 1.5px solid #fff;
+  border: 1.5px solid rgba(255, 214, 0, 0.5);
   cursor: pointer;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px 0 rgba(0,0,0,0.25);
 }
 .navbarmain-card-tipo {
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #232728;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 .navbarmain-card-nombre {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 600;
+  margin: 2px 0;
 }
 .navbarmain-card-giro {
   font-size: 0.9rem;
   color: #444c4d;
+  opacity: 0.9;
+}
+
+.navbarmain-card:hover .navbarmain-card-tipo,
+.navbarmain-card:hover .navbarmain-card-nombre,
+.navbarmain-card:hover .navbarmain-card-giro {
+  color: #fff;
 }
 
 /* Responsive para el dialog de proyectos */
 @media (max-width: 767px) {
   .navbarmain-dialog {
-    left: -50px;
-    min-width: 280px;
+    left: -100px;
+    min-width: 400px;
     max-width: 90vw;
   }
   .navbarmain-card-list {
@@ -458,6 +577,7 @@ import Logo from '../assets/Logo.png';
     min-width: auto;
     width: 100%;
   }
+
 }
 
 </style>
@@ -502,4 +622,34 @@ if (proyectosLink && proyectosDialog) {
     }
   });
 }
-</script> 
+
+// Manejo del menú de usuario
+const userButton = document.getElementById('user-menu-button');
+const userDropdown = document.getElementById('user-menu-dropdown');
+
+if (userButton && userDropdown) {
+  userButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExpanded = userButton.getAttribute('aria-expanded') === 'true';
+    
+    if (isExpanded) {
+      userDropdown.classList.remove('active');
+      userButton.setAttribute('aria-expanded', 'false');
+    } else {
+      userDropdown.classList.add('active');
+      userButton.setAttribute('aria-expanded', 'true');
+    }
+  });
+  
+  // Cerrar el menú al hacer clic fuera de él
+  document.addEventListener('click', (e) => {
+    if (userDropdown.classList.contains('active') && 
+        !userDropdown.contains(e.target) && 
+        e.target !== userButton && 
+        !userButton.contains(e.target)) {
+      userDropdown.classList.remove('active');
+      userButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+</script>
