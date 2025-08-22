@@ -15,37 +15,29 @@ import Logo from '../assets/Logo.png';
           <ul class="nav-links">
             <li><a href="/" class="inicio-link">Inicio</a></li>
             <li>
-              <a href="#" id="navbarmain-proyectos-link" aria-haspopup="listbox" aria-expanded="false">Proyectos</a>
-              <dialog id="navbarmain-proyectos-dialog" class="navbarmain-dialog" tabindex="-1">
+              <a href="#" id="navbarmain-servicios-link" aria-haspopup="listbox" aria-expanded="false">Servicios <span class="sr-only">Abrir menú</span></a>
+
+              <dialog id="navbarmain-servicios-dialog" class="navbarmain-dialog" tabindex="-1">
                 <div class="navbarmain-dialog-section">
-                  <h4>Insano</h4>
+                  <h4>Nuestros Servicios</h4>
                   <div class="navbarmain-card-list">
-                    <div class="navbarmain-card">
-                      <div class="navbarmain-card-tipo">Landing Page</div>
-                      <div class="navbarmain-card-nombre">Insano</div>
-                      <div class="navbarmain-card-giro">Agencia Creativa</div>
-                    </div>
-                    <div class="navbarmain-card">
-                      <div class="navbarmain-card-tipo">Landing Page</div>
-                      <div class="navbarmain-card-nombre">Proyecto 2</div>
-                      <div class="navbarmain-card-giro">Desarrollo Web</div>
-                    </div>
-                    <div class="navbarmain-card">
-                      <div class="navbarmain-card-tipo">Landing Page</div>
-                      <div class="navbarmain-card-nombre">Proyecto 3</div>
-                      <div class="navbarmain-card-giro">Servicios Digitales</div>
-                    </div>
+                    <a class="navbarmain-card" href="#">
+                      <div class="navbarmain-card-nombre">Diseño</div>
+                    </a>
+                    <a class="navbarmain-card" href="#">
+                      <div class="navbarmain-card-nombre">Desarrollo</div>
+                    </a>
+                    <a class="navbarmain-card" href="#">
+                      <div class="navbarmain-card-nombre">Marketing</div>
+                    </a>
+                    <a class="navbarmain-card" href="/contable">
+                      <div class="navbarmain-card-nombre">Contable</div>
+                    </a>
                   </div>
                 </div>
                 <div class="navbarmain-dialog-section">
-                  <h4>Para clientes</h4>
-                  <div class="navbarmain-card-list">
-                    <a class="navbarmain-card" href="https://arocodisic.com.mx" target="_blank" rel="noopener noreferrer">
-                      <div class="navbarmain-card-tipo">Web Corporativa</div>
-                      <div class="navbarmain-card-nombre">Arcodisic</div>
-                      <div class="navbarmain-card-giro">Fabricación de arcotechos</div>
-                    </a>
-                  </div>
+                  <h4>Otro Bloque</h4>
+                  <p>Contenido del nuevo bloque.</p>
                 </div>
               </dialog>
             </li>
@@ -582,43 +574,43 @@ import Logo from '../assets/Logo.png';
 
 </style>
 <script>
-const proyectosLink = document.getElementById('navbarmain-proyectos-link');
-const proyectosDialog = document.getElementById('navbarmain-proyectos-dialog');
+const serviciosLink = document.getElementById('navbarmain-servicios-link');
+const serviciosDialog = document.getElementById('navbarmain-servicios-dialog');
 
-if (proyectosLink && proyectosDialog) {
-  const dialog = proyectosDialog;
+if (serviciosLink && serviciosDialog) {
+  const dialog = serviciosDialog;
   // @ts-ignore
   const dialogEl = dialog as HTMLDialogElement;
   // Abrir el dialog al hacer click o hover
-  proyectosLink.addEventListener('mouseenter', () => {
+  serviciosLink.addEventListener('mouseenter', () => {
     dialogEl.show();
-    proyectosLink.setAttribute('aria-expanded', 'true');
+    serviciosLink.setAttribute('aria-expanded', 'true');
   });
-  proyectosLink.addEventListener('mouseleave', () => {
+  serviciosLink.addEventListener('mouseleave', () => {
     setTimeout(() => {
       if (!dialogEl.matches(':hover')) {
         dialogEl.close();
-        proyectosLink.setAttribute('aria-expanded', 'false');
+        serviciosLink.setAttribute('aria-expanded', 'false');
       }
     }, 100);
   });
   dialogEl.addEventListener('mouseleave', () => {
     dialogEl.close();
-    proyectosLink.setAttribute('aria-expanded', 'false');
+    serviciosLink.setAttribute('aria-expanded', 'false');
   });
   dialogEl.addEventListener('mouseenter', () => {
     dialogEl.show();
-    proyectosLink.setAttribute('aria-expanded', 'true');
+    serviciosLink.setAttribute('aria-expanded', 'true');
   });
   // También abrir/cerrar con click
-  proyectosLink.addEventListener('click', (e) => {
+  serviciosLink.addEventListener('click', (e) => {
     e.preventDefault();
     if (dialogEl.open) {
       dialogEl.close();
-      proyectosLink.setAttribute('aria-expanded', 'false');
+      serviciosLink.setAttribute('aria-expanded', 'false');
     } else {
       dialogEl.show();
-      proyectosLink.setAttribute('aria-expanded', 'true');
+      serviciosLink.setAttribute('aria-expanded', 'true');
     }
   });
 }
