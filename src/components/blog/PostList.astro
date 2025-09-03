@@ -8,7 +8,7 @@ export interface Props {
 const { posts } = Astro.props;
 ---
 
-<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+<div class="  grid gap-8 md:grid-cols-2 lg:grid-cols-3 text-gray-200">
   {posts.map((post) => (
     <article class="rounded-lg border border-gray-200 p-6 shadow-sm transition-all hover:shadow-md">
       <a href={`/blog/${post.slug}`} class="block">
@@ -20,13 +20,13 @@ const { posts } = Astro.props;
             loading="lazy"
           />
         )}
-        <h2 class="mb-2 text-xl font-bold text-gray-900">
+        <h2 class="mb-2 text-xl font-bold text-gray-100">
           {post.data.title}
         </h2>
-        <p class="mb-4 text-gray-600">
+        <p class="mb-4 text-gray-300">
           {post.data.description}
         </p>
-        <div class="flex items-center text-sm text-gray-500">
+        <div class="flex items-center text-sm text-gray-300">
           <time datetime={post.data.pubDate.toISOString()}>
             {new Date(post.data.pubDate).toLocaleDateString('es-ES', {
               year: 'numeric',
