@@ -1,0 +1,105 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+---
+
+<Layout
+  title="Insano Network | Conectando Talento, Impulsando Ideas"
+  description="Somos un ecosistema digital que conecta clientes y socios para desarrollar proyectos innovadores. Premiamos el emprendimiento y creemos en el poder del open source."
+>
+  <main class="space-y-16 md:space-y-24 py-16 md:py-24">
+    <!-- Hero Section -->
+    <section class="text-center">
+      <h1
+        class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        Conectando Talento. <span
+          class="block md:inline text-blue-600 dark:text-blue-400"
+          >Impulsando Ideas.</span
+        >
+      </h1>
+      <p
+        class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-300"
+      >
+        Insano Network es el ecosistema donde convergen la innovación y la
+        colaboración. Más que una cartera de clientes, somos el puente que une
+        tus proyectos con las personas correctas.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a
+          href="#contacto"
+          class="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300"
+        >
+          Únete a la Red
+        </a>
+        <a
+          href="#nuestra-filosofia"
+          class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+        >
+          Conoce Más
+        </a>
+      </div>
+    </section>
+
+    <!-- Nuestra Filosofía Section -->
+    <section id="nuestra-filosofia" class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+          Nuestra Filosofía de Red
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          Creemos en un modelo de crecimiento basado en la sinergia y el apoyo
+          mutuo.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Card
+          title="Conexiones Cliente a Cliente (C2C)"
+          body="Facilitamos un entorno donde nuestros clientes pueden convertirse en socios, compartiendo soluciones y oportunidades para resolver desafíos comunes."
+        />
+        <Card
+          title="Alianzas Socio a Socio (B2B)"
+          body="Construimos una red sólida de profesionales y empresas que colaboran en proyectos de mayor escala, combinando habilidades para lograr resultados extraordinarios."
+        />
+        <Card
+          title="Emprendimiento y Open Source"
+          body="Apoyamos a los nuevos emprendedores y primamos el uso de tecnologías de código abierto como pilar para un desarrollo transparente, flexible y comunitario."
+        />
+      </div>
+    </section>
+
+    <!-- De la Idea al Proyecto Section -->
+    <section class="bg-gray-100 dark:bg-gray-800 py-16 md:py-24">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+          De la Idea al Proyecto
+        </h2>
+        <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+          En Insano Network, no solo escuchamos ideas, las impulsamos. Nuestro
+          enfoque está en el desarrollo tangible de proyectos, ofreciendo los
+          recursos y las conexiones necesarias para transformar un concepto en
+          una realidad exitosa.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+        ¿Tienes un proyecto en mente?
+      </h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        Seas un emprendedor, un profesional o una empresa consolidada, hay un
+        lugar para ti en nuestra red. Hablemos.
+      </p>
+      <div class="mt-8">
+        <a
+          href="mailto:contacto@insanonetwork.com"
+          class="bg-blue-600 text-white font-semibold py-4 px-8 text-lg rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300"
+        >
+          Contáctanos
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
