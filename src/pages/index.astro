@@ -5,6 +5,7 @@ import Card from "../components/Card.astro";
 import CardShop from "../components/CardShop.astro";
 import CardServiceNeo from "../components/CardServiceNeo.astro";
 import CardServiceMinimal from "../components/CardServiceMinimal.astro";
+import SeccionNuestrosServicios from "../components/home/SeccionNuestrosServicios.astro";
 import ImgSlider from '../assets/SlideImages/elemento 3d.jpg';
 import ImgSlider2 from '../assets/SlideImages/Florero.jpg';
 import ImgSlider3 from '../assets/SlideImages/shellby.png';
@@ -239,103 +240,52 @@ footer {
 
 
 
+<!-- Seccion de Nuestros Servicios -->
+    <SeccionNuestrosServicios tarjetas={tarjetas} />
 
-    <section class="py-12 ">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center text-gray-100">Nuestros Servicios</h2>
-        <p class="text-center text-gray-200 max-w-3xl mx-auto mb-10">Ofrecemos soluciones integrales para tu negocio, desde el diseño hasta la implementación y comercialización.</p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {tarjetas.slice(0, 3).map((tarjeta, i) => (
-            <CardServiceMinimal servicio={{
-              icono: `/img/iconos/${i === 0 ? 'web' : i === 1 ? 'app' : 'shop'}.svg`,
-              titulo: tarjeta.titulo,
-              descripcion: tarjeta.descripcion,
-              caracteristicas: [
-                i === 0 ? 'Diseño personalizado' : i === 1 ? 'Desarrollo a medida' : 'Plataforma e-commerce',
-                i === 0 ? 'Optimización SEO' : i === 1 ? 'Soporte técnico' : 'Gestión de inventario',
-                i === 0 ? 'Responsive design' : i === 1 ? 'Actualizaciones' : 'Pasarela de pagos'
-              ],
-              precio: i === 0 ? '299' : i === 1 ? '499' : '399',
-              periodo: 'mes'
-            }} />
-          ))}
+
+
+    <section class="py-12 bg-gradient-to-r from-yellow-400/70 via-pink-500/40 to-cyan-400/40">
+      <div class="container mx-auto p-4 text-white">
+        <h2 class="text-4xl font-bold mb-4">Tienda en línea</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          <div>
+            <h3 class="text-xl font-bold">Recien agregados</h3>
+            <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
+              {tarjetasRecienAgregados.map((tarjeta, i) => (
+                <CardShop producto={tarjeta} key={i} />
+              ))} 
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold">Productos de temporada</h3>
+            <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
+              {tarjetasTemporada.map((tarjeta, i) => (
+                <CardShop producto={tarjeta} key={i} />
+              ))} 
+            </ul>
+          </div>
         </div>
-        
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {tarjetas.slice(3, 5).map((tarjeta, i) => (
-            <CardServiceNeo servicio={{
-              icono: `/img/iconos/${i === 0 ? 'finance' : 'marketing'}.svg`,
-              titulo: tarjeta.titulo,
-              descripcion: tarjeta.descripcion,
-              caracteristicas: [
-                i === 0 ? 'Asesoría contable' : 'Estrategias de marketing',
-                i === 0 ? 'Planificación fiscal' : 'Campañas publicitarias',
-                i === 0 ? 'Gestión financiera' : 'Análisis de mercado'
-              ],
-              precio: i === 0 ? '349' : '449',
-              periodo: 'mes'
-            }} />
-          ))}
-        </div>
-        
-        <div class="mt-12">
-          {tarjetas.slice(5, 6).map((tarjeta) => (
-            <CardShop producto={{
-              imagen: tarjeta.imagen,
-              titulo: tarjeta.titulo,
-              descripcion: tarjeta.descripcion,
-              precio: '199',
-              etiqueta: 'Destacado'
-            }} />
-          ))}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+          <div>
+            <h3 class="text-2xl font-bold">Mas vendidos</h3>
+            <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
+              {tarjetasMasVendidos.map((tarjeta, i) => (
+                <CardShop producto={tarjeta} key={i} />
+              ))} 
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold">Kit con descuento</h3>
+            <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
+              {tarjetasKitConDescuento.map((tarjeta, i) => (
+                <CardShop producto={tarjeta} key={i} />
+              ))} 
+            </ul>
+          </div>
         </div>
       </div>
     </section>
-
-
-
-      <section class="bg-gradient-to-r from-yellow-400 via-red-500 through-pink-500 to-cyan-400 py-8">
-        <div class="container mx-auto p-4">
-          <h2 class="text-3xl font-bold mb-4">Tienda en línea</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
-            <div>
-              <h3 class="text-2xl font-bold">Recien agregados</h3>
-              <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
-                {tarjetasRecienAgregados.map((tarjeta, i) => (
-                  <CardShop producto={tarjeta} key={i} />
-                ))} 
-              </ul>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold">Productos de temporada</h3>
-              <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
-                {tarjetasTemporada.map((tarjeta, i) => (
-                  <CardShop producto={tarjeta} key={i} />
-                ))} 
-              </ul>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
-            <div>
-              <h3 class="text-2xl font-bold">Mas vendidos</h3>
-              <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
-                {tarjetasMasVendidos.map((tarjeta, i) => (
-                  <CardShop producto={tarjeta} key={i} />
-                ))} 
-              </ul>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold">Kit con descuento</h3>
-              <ul class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4">
-                {tarjetasKitConDescuento.map((tarjeta, i) => (
-                  <CardShop producto={tarjeta} key={i} />
-                ))} 
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
 
 
 

@@ -1,0 +1,13 @@
+---
+// Reusable design card with gray image placeholder
+interface Props {
+  titulo: string;
+  descripcion: string;
+}
+const { titulo, descripcion } = Astro.props as Props;
+---
+<div class="bg-white rounded-xl p-6 shadow border border-gray-200 flex flex-col">
+  <div class="w-full aspect-video bg-gray-200 rounded-lg mb-4 border border-gray-300"></div>
+  <h3 class="text-xl font-bold">{titulo}</h3>
+  <p class="text-gray-700 mt-2">{descripcion}</p>
+</div>

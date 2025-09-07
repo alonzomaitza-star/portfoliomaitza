@@ -4,7 +4,7 @@ const { servicio } = Astro.props;
 ---
 
 <!-- Tarjeta con diseño minimalista moderno -->
-<li class="relative overflow-hidden bg-[#F5F5DC] border-l-4 border-blue-500 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 group">
+<li class="relative overflow-hidden bg-white border-l-4 border-blue-500 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 group">
   <!-- Contenido de la tarjeta -->
   <div class="p-5 sm:p-6">
     <!-- Encabezado con icono y título -->
@@ -45,14 +45,20 @@ const { servicio } = Astro.props;
     <div class="flex items-center justify-between mt-auto pt-4">
       {servicio.precio && (
         <div>
-          <span class="text-blue-600 font-bold text-lg">${servicio.precio}</span>
+          <span class="text-blue-600 font-bold text-lg">{servicio.desde ? 'Desde ' : ''}${servicio.precio}</span>
           {servicio.periodo && <span class="text-gray-500 text-sm">/{servicio.periodo}</span>}
         </div>
       )}
       
-      <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-        Más info
-      </button>
+      {servicio.link ? (
+        <a href={servicio.link} class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          {servicio.boton ? servicio.boton : 'Más info'}
+        </a>
+      ) : (
+        <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          {servicio.boton ? servicio.boton : 'Más info'}
+        </button>
+      )}
     </div>
   </div>
   

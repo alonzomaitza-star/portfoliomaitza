@@ -1,0 +1,19 @@
+---
+import FigmaEmbedCard from "../common/FigmaEmbedCard.astro";
+
+interface Props {
+  urls: string[];
+}
+const { urls } = Astro.props as Props;
+---
+<section class="py-12 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center">Diseño de Interfaz (Figma)</h2>
+    <p class="text-base md:text-lg text-gray-200 text-center mt-2 max-w-3xl mx-auto">Preparamos ejemplos y componentes reutilizables. Pulsa "Ver" en cada tarjeta para cargar el visor de Figma.</p>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {urls.map((u, i) => (
+        <FigmaEmbedCard url={u} titulo={`Demo ${i + 1}`} descripcion="Vista previa de Figma" />
+      ))}
+    </div>
+  </div>
+</section>
