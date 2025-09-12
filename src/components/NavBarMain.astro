@@ -21,7 +21,7 @@ import Logo from '../assets/Logo.png';
                 <div class="navbarmain-dialog-section">
                   <h4>Nuestros Servicios</h4>
                   <div class="navbarmain-card-list">
-                    <a class="navbarmain-card" href="#">
+                    <a class="navbarmain-card" href="/diseno">
                       <div class="navbarmain-card-nombre">Diseño</div>
                     </a>
                     <a class="navbarmain-card" href="#">
@@ -33,6 +33,12 @@ import Logo from '../assets/Logo.png';
                     <a class="navbarmain-card" href="/contable">
                       <div class="navbarmain-card-nombre">Contable</div>
                     </a>
+                    <a class="navbarmain-card" href="/cursos">
+                      <div class="navbarmain-card-nombre">Cursos</div>
+                    </a>
+                    <a class="navbarmain-card" href="/capacitacion">
+                      <div class="navbarmain-card-nombre">Capacitación</div>
+                    </a>
                   </div>
                 </div>
                 <div class="navbarmain-dialog-section">
@@ -41,7 +47,7 @@ import Logo from '../assets/Logo.png';
                 </div>
               </dialog>
             </li>
-            <li><a href="#">Conócenos</a></li>
+            <li><a href="/nosotros">Conócenos</a></li>
             <li><a href="#" class="herramientas-link">Herramientas</a></li>
             <li><a href="/blog">Blog</a></li>
             <li><a href="#" class="tienda-link" aria-label="Tienda"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a></li>
@@ -113,7 +119,7 @@ import Logo from '../assets/Logo.png';
   text-decoration: none;
 }
 .logo {
-  width: 120px;
+  width: 50px;
   height: auto;
   margin-right: 0;
 }
@@ -267,8 +273,7 @@ import Logo from '../assets/Logo.png';
     padding: 0.3rem 1rem;
   }
   .logo {
-    width: 110px;
-    min-width: 90px;
+    width: 50px;
   }
   .nav-links {
     gap: 1.2rem;
@@ -295,13 +300,13 @@ import Logo from '../assets/Logo.png';
     border-radius: 10px;
   }
   .nav-content {
+    margin-left: 0.5rem;
     padding: 0.4rem 0.5rem;
     align-items: center;
     border-radius: 15px;
   }
   .logo {
-    width: 80px;
-    min-width: 60px;
+    width: 30px;
   }
   .nav-links {
     gap: 0.6rem;
@@ -443,13 +448,10 @@ import Logo from '../assets/Logo.png';
   left: -200px;
   min-width: 700px;
   max-width: 90vw;
-  background: rgba(22, 50, 51, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
-  padding: 0.8rem 0;
+  background: rgba(22, 50, 51, 0.801);
+  backdrop-filter: blur(140px);
+  -webkit-backdrop-filter: blur(140px);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
   z-index: 400;
   color: #fff;
   font-family: 'Atkinson', sans-serif;
@@ -540,6 +542,7 @@ import Logo from '../assets/Logo.png';
   font-size: 1.1rem;
   font-weight: 600;
   margin: 2px 0;
+  color: #232728;
 }
 .navbarmain-card-giro {
   font-size: 0.9rem;
@@ -572,6 +575,14 @@ import Logo from '../assets/Logo.png';
 
 }
 
+/* #navbarmain-servicios-dialog {
+  background: rgba(22, 50, 51, 0.945);
+  backdrop-filter: blur(120px);
+  -webkit-backdrop-filter: blur(120px);
+}
+.navbarmain-dialog-section h4::after {
+  background-color: #ffd600;
+} */
 </style>
 <script>
 const serviciosLink = document.getElementById('navbarmain-servicios-link');

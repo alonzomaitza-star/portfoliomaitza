@@ -1,0 +1,58 @@
+---
+// Tarjeta doble: Cursos + Capacitaciones, con leyenda de Asesoramiento empresarial
+interface Props {
+  titulo?: string;
+  boton?: string;
+}
+const { titulo = 'Aprende y Capacita a tu equipo', boton = 'Inicia gratis' } = Astro.props as Props;
+---
+<div class="relative overflow-hidden bg-white border-l-4 border-indigo-500 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300">
+  <!-- Encabezado -->
+  <div class="px-6 pt-6">
+    <h3 class="text-2xl font-extrabold text-gray-900">{titulo}</h3>
+    <p class="text-sm text-gray-600">Impulsa el aprendizaje continuo y eleva el desempeño de tu organización.</p>
+  </div>
+
+  <!-- Cuerpo dividido en 2 columnas -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-0 mt-4">
+    <!-- Columna Cursos -->
+    <div class="p-6 border-t md:border-t-0 md:border-r border-gray-200">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold">C</div>
+        <h4 class="text-xl font-bold text-gray-900">Cursos online</h4>
+      </div>
+      <ul class="space-y-2 text-gray-700 text-sm">
+        <li class="flex items-start"><span class="text-indigo-500 mr-2">•</span> Rutas por niveles y roles</li>
+        <li class="flex items-start"><span class="text-indigo-500 mr-2">•</span> Contenido práctico y evaluaciones</li>
+        <li class="flex items-start"><span class="text-indigo-500 mr-2">•</span> Certificados de finalización</li>
+      </ul>
+      <div class="mt-4">
+        <button class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors">{boton}</button>
+      </div>
+    </div>
+
+    <!-- Columna Capacitaciones -->
+    <div class="p-6 border-t md:border-t-0 border-gray-200">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold">K</div>
+        <h4 class="text-xl font-bold text-gray-900">Capacitaciones</h4>
+      </div>
+      <ul class="space-y-2 text-gray-700 text-sm">
+        <li class="flex items-start"><span class="text-emerald-500 mr-2">•</span> Planes a medida para equipos</li>
+        <li class="flex items-start"><span class="text-emerald-500 mr-2">•</span> Talleres y bootcamps intensivos</li>
+        <li class="flex items-start"><span class="text-emerald-500 mr-2">•</span> Evaluación de habilidades y seguimiento</li>
+      </ul>
+      <div class="mt-4">
+        <button class="px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition-colors">{boton}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leyenda inferior -->
+  <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
+    <div class="text-sm text-gray-700 font-medium">
+      Asesoramiento empresarial
+    </div>
+    <div class="text-xs text-gray-500">Diagnóstico • Plan de acción • Acompañamiento</div>
+  </div>
+</div>

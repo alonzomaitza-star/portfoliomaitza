@@ -1,16 +1,38 @@
 ---
 // Props: jsonData (objeto con titulo, descripcion, imagen), y colores (texto, borde, fondo, icono)
-const { jsonData, textColor, borderColor, bgColor, iconColor } = Astro.props;
+const { jsonData = {}, textColor, borderColor, bgColor, iconColor } = Astro.props;
+
+// Precompute icon rendering info to avoid using comparison operators inside JSX
+const rawIcon = jsonData?.icon;
+let iconType = 'default'; // 'url' | 'text' | 'default'
+let iconUrl = '';
+let iconText = '';
+if (typeof rawIcon === 'string') {
+  const isUrl = rawIcon.startsWith('/') || rawIcon.startsWith('http://') || rawIcon.startsWith('https://');
+  if (isUrl) {
+    iconType = 'url';
+    iconUrl = rawIcon;
+  } else if (rawIcon.length <= 3) {
+    iconType = 'text';
+    iconText = rawIcon;
+  }
+}
 ---
 <div class={`card rounded-md border-2 p-4 ${bgColor} ${borderColor}`} style={`color: ${textColor};`}>
   <div class="flex flex-col items-center">
-    {jsonData.icon && (
-      <span class="icon mb-2" style={`color: ${iconColor}; font-size: 2rem;`}>
-        {jsonData.icon}
-      </span>
+    <span class="icon mb-2 flex items-center justify-center" style={`color: ${iconColor}; font-size: 2rem;`}>
+      {iconType === 'url' && <img src={iconUrl} alt="icono" class="h-8 w-8" />}
+      {iconType === 'text' && <span aria-hidden="true">{iconText}</span>}
+      {iconType === 'default' && (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32" aria-hidden="true">
+          <path d="M12 2l2.9 5.88 6.5.95-4.7 4.58 1.1 6.43L12 17.77 6.2 19.84l1.1-6.43-4.7-4.58 6.5-.95L12 2z"/>
+        </svg>
+      )}
+    </span>
+    <h2 class="card-title text-lg font-bold mb-2">{jsonData?.titulo ?? ''}</h2>
+    {jsonData?.imagen && (
+      <img src={jsonData.imagen} alt={jsonData?.titulo ?? 'imagen'} class="max-h-48 w-auto rounded-md mb-2" />
     )}
-    <h2 class="card-title text-lg font-bold mb-2">{jsonData.titulo}</h2>
-    <img src={jsonData.imagen} alt={jsonData.titulo} class="max-h-48 w-auto rounded-md mb-2" />
-    <p class="text-base text-center">{jsonData.descripcion}</p>
+    <p class="text-base text-center">{jsonData?.descripcion ?? ''}</p>
   </div>
 </div>
