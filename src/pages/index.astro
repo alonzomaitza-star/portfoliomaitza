@@ -12,6 +12,7 @@ import ImgSlider3 from '../assets/SlideImages/shellby.png';
 import SliderImg from '../components/SliderImg.astro';
 import { supabase } from '../lib/supabase';
 import Auth from '../components/Auth.astro';
+import SafeEmbed from '../components/SafeEmbed.astro';
 
 export const prerender = false;
 // Objetos de ejemplo para mostrar productos en la tienda
@@ -333,7 +334,11 @@ footer {
                 Último video
               </h3>
               <div class="rounded-lg overflow-hidden shadow-lg">
-                <iframe width="100%" height="250" src="https://www.youtube.com/embed/4Ojg5y6Oq3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg"></iframe>
+                <SafeEmbed 
+                  type="youtube" 
+                  videoId="4Ojg5y6Oq3Y" 
+                  title="Último video de Insano Network"
+                />
               </div>
             </div>
 
@@ -404,7 +409,11 @@ footer {
                 Stream en vivo
               </h3>
               <div class="rounded-lg overflow-hidden shadow-lg">
-                <iframe src="https://player.twitch.tv/?channel=insanocodes&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" height="250" width="100%" class="rounded-lg"></iframe>
+                <SafeEmbed 
+                  type="twitch" 
+                  channel="insanocodes" 
+                  title="Stream en vivo de Insano Codes"
+                />
               </div>
             </div>
 
@@ -414,7 +423,13 @@ footer {
                 Chat en vivo
               </h3>
               <div class="bg-gray-800 rounded-lg p-2 max-h-[250px] overflow-y-auto">
-                <iframe src="https://twitch.tv/embeds/chat?id=insanocodes" height="150" width="100%" frameborder="0" scrolling="no" class="rounded-lg mb-2"></iframe>
+                <!-- Chat de Twitch reemplazado por contenido estático para evitar errores en Brave -->
+                <div class="bg-gray-700 p-3 rounded-lg mb-2 text-center">
+                  <p class="text-gray-300 text-sm">💬 Chat en vivo disponible en Twitch</p>
+                  <a href="https://www.twitch.tv/insanocodes" target="_blank" rel="noopener" class="text-purple-400 hover:text-purple-300 text-sm underline">
+                    Ver en Twitch →
+                  </a>
+                </div>
                 <div class="bg-gray-700 p-2 rounded-md">
                   <div class="flex items-center">
                     <span class="text-xs text-purple-300 font-bold">insanocodes: </span>

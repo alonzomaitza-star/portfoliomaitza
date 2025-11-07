@@ -1,0 +1,30 @@
+# robots.txt para Insano Network
+# Permitir acceso a todos los bots de búsqueda
+
+User-agent: *
+Allow: /
+
+# Bloquear acceso a directorios administrativos y privados
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /_astro/
+
+# Permitir acceso a recursos estáticos importantes
+Allow: /assets/
+Allow: /images/
+Allow: /favicon.svg
+
+# Sitemap
+Sitemap: https://tudominio.com/sitemap-index.xml
+
+# Crawl-delay para bots específicos (opcional)
+# User-agent: Googlebot
+# Crawl-delay: 0
+
+# Bloquear bots maliciosos conocidos
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

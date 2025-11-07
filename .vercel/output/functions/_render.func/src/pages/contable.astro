@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CardServiceNeo from '../components/CardServiceNeo.astro';
+
+const serviciosContables = [
+  {
+    icono: '/img/iconos/declaracion.svg',
+    titulo: 'Declaración de Impuestos',
+    descripcion: 'Preparamos y presentamos tus declaraciones de impuestos, asegurando el cumplimiento normativo y optimizando tu carga fiscal.',
+    caracteristicas: [
+      'Declaraciones mensuales y anuales',
+      'Personas físicas y morales',
+      'Cálculo y revisión de impuestos',
+      'Asesoría en deducciones'
+    ],
+    precio: '120',
+    periodo: 'declaración'
+  },
+  {
+    icono: '/img/iconos/contabilidad.svg',
+    titulo: 'Contabilidad General',
+    descripcion: 'Llevamos un registro preciso y actualizado de tus operaciones financieras para una toma de decisiones informada.',
+    caracteristicas: [
+      'Registro de pólizas contables',
+      'Conciliaciones bancarias',
+      'Elaboración de estados financieros',
+      'Depuración de cuentas'
+    ],
+    precio: '180',
+    periodo: 'mes'
+  },
+  {
+    icono: '/img/iconos/asesoria.svg',
+    titulo: 'Asesoría Fiscal y Financiera',
+    descripcion: 'Te brindamos orientación experta para optimizar tus recursos, reducir riesgos y mejorar la rentabilidad de tu negocio.',
+    caracteristicas: [
+      'Planificación fiscal estratégica',
+      'Análisis de estados financieros',
+      'Consultoría en inversiones',
+      'Optimización de costos'
+    ],
+    precio: '250',
+    periodo: 'consulta'
+  },
+  {
+    icono: '/img/iconos/auditoria.svg',
+    titulo: 'Auditorías y Dictámenes',
+    descripcion: 'Realizamos auditorías exhaustivas para verificar la razonabilidad de la información financiera y emitir dictámenes confiables.',
+    caracteristicas: [
+      'Auditorías financieras y fiscales',
+      'Dictámenes para efectos del IMSS e INFONAVIT',
+      'Revisión de control interno',
+      'Informes detallados'
+    ],
+    precio: '500',
+    periodo: 'auditoría'
+  }
+];
+---
+
+<Layout title="Servicios Contables - E&V Contadores">
+  <main class="container mx-auto px-4 py-12">
+    <header class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Soluciones Contables a tu Medida</h1>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">En <span class="font-semibold">E&V Contadores Públicos Independientes</span>, nos dedicamos a brindar servicios contables y fiscales de la más alta calidad, con un enfoque personalizado para cada uno de nuestros clientes.</p>
+    </header>
+    
+    <section>
+      <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Nuestros Servicios</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {serviciosContables.map(servicio => (
+          <CardServiceNeo servicio={servicio} />
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-20 bg-gray-50 p-8 rounded-xl">
+      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">¿Por Qué Elegirnos?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Experiencia y Profesionalismo</h3>
+          <p class="text-gray-600">Contamos con un equipo de contadores públicos con amplia experiencia en diversos sectores.</p>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Atención Personalizada</h3>
+          <p class="text-gray-600">Nos adaptamos a las necesidades específicas de tu negocio para ofrecerte soluciones a la medida.</p>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Compromiso y Confianza</h3>
+          <p class="text-gray-600">Construimos relaciones a largo plazo basadas en la transparencia y la confianza mutua.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>

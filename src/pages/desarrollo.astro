@@ -1,13 +1,310 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import "../styles/global.css";
+import CardShop from "../components/CardShop.astro";
+import SEO from "../components/SEO.astro";
+
+import ImgSlider from '../assets/SlideImages/elemento 3d.jpg';
+import ImgSlider2 from '../assets/SlideImages/Florero.jpg';
+import ImgSlider3 from '../assets/SlideImages/shellby.png';
+
+const tiendaDesarrollo = [
+  { id: 1, titulo: "Landing Page Profesional", descripcion: "Sitio web de una página optimizado para conversión", imagen: ImgSlider2.src, precio: 299, etiqueta: "Popular" },
+  { id: 2, titulo: "Web App Personalizada", descripcion: "Aplicación web a medida con backend y frontend", imagen: ImgSlider.src, precio: 999, etiqueta: "Premium" },
+  { id: 3, titulo: "API REST + Documentación", descripcion: "Desarrollo de API escalable con docs completas", imagen: ImgSlider3.src, precio: 499, etiqueta: "Backend" }
+];
 ---
-<Layout>
+
+<Layout
+  title="Desarrollo Web y Software a Medida"
+  description="Servicios de desarrollo web, aplicaciones personalizadas, APIs, integraciones y soporte técnico. Tecnologías modernas: React, Node.js, Astro, Python y más."
+  keywords="desarrollo web, desarrollo software, programación, aplicaciones web, API REST, React, Node.js, Astro, Python"
+>
+  <SEO 
+    schemaType="Service"
+    serviceName="Desarrollo Web y Software"
+    serviceDescription="Desarrollo de aplicaciones web, software a medida, APIs y soluciones tecnológicas personalizadas"
+  />
+
   <main>
-    <section class="py-16">
+    <!-- Hero / Filosofía de desarrollo -->
+    <section class="py-14">
       <div class="container mx-auto px-4">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-white">Desarrollo</h1>
-        <p class="text-gray-300 mt-2 max-w-2xl">Página en construcción. Próximamente: soluciones de desarrollo web y software a medida, integraciones y soporte técnico.</p>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white text-center">Desarrollo: transformando ideas en código funcional</h1>
+        <p class="text-base md:text-lg text-gray-200 text-center mt-2 max-w-3xl mx-auto">
+          El desarrollo es el motor que da vida a los proyectos digitales. Desde sitios web responsivos hasta aplicaciones empresariales complejas, 
+          construimos soluciones robustas, escalables y mantenibles con las mejores prácticas de la industria.
+        </p>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white/90 rounded-xl p-6 shadow border border-gray-200">
+            <h2 class="text-xl font-bold">Planificar</h2>
+            <p class="text-gray-700 mt-2">Analizamos requisitos, definimos arquitectura y establecemos tecnologías óptimas para tu proyecto.</p>
+          </div>
+          <div class="bg-white/90 rounded-xl p-6 shadow border border-gray-200">
+            <h2 class="text-xl font-bold">Desarrollar</h2>
+            <p class="text-gray-700 mt-2">Escribimos código limpio, testeado y documentado siguiendo estándares de calidad profesionales.</p>
+          </div>
+          <div class="bg-white/90 rounded-xl p-6 shadow border border-gray-200">
+            <h2 class="text-xl font-bold">Desplegar</h2>
+            <p class="text-gray-700 mt-2">Implementamos CI/CD, monitoreo y mantenimiento continuo para garantizar rendimiento óptimo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Desarrollo Web -->
+    <section class="py-12 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-4">Desarrollo Web Moderno</h2>
+        <p class="text-base md:text-lg text-gray-200 text-center max-w-3xl mx-auto mb-8">
+          Creamos sitios web y aplicaciones con tecnologías de vanguardia: React, Astro, Next.js, Vue, Svelte y más.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 border border-blue-500/30">
+            <div class="text-4xl mb-3">🌐</div>
+            <h3 class="text-xl font-bold text-white mb-2">Landing Pages</h3>
+            <p class="text-gray-300 text-sm">Páginas de aterrizaje optimizadas para conversión, velocidad y SEO. Diseño responsive y animaciones fluidas.</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
+            <div class="text-4xl mb-3">⚡</div>
+            <h3 class="text-xl font-bold text-white mb-2">Single Page Apps (SPA)</h3>
+            <p class="text-gray-300 text-sm">Aplicaciones web interactivas con React, Vue o Svelte. Experiencia de usuario fluida y dinámica.</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 border border-pink-500/30">
+            <div class="text-4xl mb-3">🚀</div>
+            <h3 class="text-xl font-bold text-white mb-2">Progressive Web Apps (PWA)</h3>
+            <p class="text-gray-300 text-sm">Apps web que funcionan offline, con notificaciones push y experiencia similar a apps nativas.</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 border border-green-500/30">
+            <div class="text-4xl mb-3">📱</div>
+            <h3 class="text-xl font-bold text-white mb-2">Sitios Corporativos</h3>
+            <p class="text-gray-300 text-sm">Presencia web profesional para empresas. CMS integrado, multiidioma y panel de administración.</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 border border-yellow-500/30">
+            <div class="text-4xl mb-3">📊</div>
+            <h3 class="text-xl font-bold text-white mb-2">Dashboards & Paneles</h3>
+            <p class="text-gray-300 text-sm">Interfaces de administración con visualización de datos, gráficos interactivos y reportes en tiempo real.</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 border border-red-500/30">
+            <div class="text-4xl mb-3">🎓</div>
+            <h3 class="text-xl font-bold text-white mb-2">Plataformas Educativas</h3>
+            <p class="text-gray-300 text-sm">LMS personalizados, cursos online, gestión de estudiantes y contenido multimedia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Backend & APIs -->
+    <section class="py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-4">Backend & APIs Robustas</h2>
+        <p class="text-base md:text-lg text-gray-200 text-center max-w-3xl mx-auto mb-8">
+          Desarrollamos la lógica de negocio, bases de datos y APIs que alimentan tus aplicaciones.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white/90 rounded-xl p-6 shadow">
+            <h3 class="text-2xl font-bold mb-3 flex items-center">
+              <span class="text-3xl mr-3">🔌</span>
+              APIs RESTful
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>✓ Diseño de endpoints escalables</li>
+              <li>✓ Autenticación JWT y OAuth</li>
+              <li>✓ Documentación automática (Swagger/OpenAPI)</li>
+              <li>✓ Versionado y rate limiting</li>
+              <li>✓ Testing y validación de datos</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/90 rounded-xl p-6 shadow">
+            <h3 class="text-2xl font-bold mb-3 flex items-center">
+              <span class="text-3xl mr-3">🗄️</span>
+              Bases de Datos
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>✓ SQL: PostgreSQL, MySQL, SQLite</li>
+              <li>✓ NoSQL: MongoDB, Firebase, Supabase</li>
+              <li>✓ Modelado y optimización de queries</li>
+              <li>✓ Migraciones y backups automáticos</li>
+              <li>✓ Replicación y alta disponibilidad</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/90 rounded-xl p-6 shadow">
+            <h3 class="text-2xl font-bold mb-3 flex items-center">
+              <span class="text-3xl mr-3">⚙️</span>
+              Microservicios
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>✓ Arquitectura distribuida y escalable</li>
+              <li>✓ Contenedores Docker y Kubernetes</li>
+              <li>✓ Message queues (RabbitMQ, Redis)</li>
+              <li>✓ Service mesh y API Gateway</li>
+              <li>✓ Monitoreo y logging centralizado</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/90 rounded-xl p-6 shadow">
+            <h3 class="text-2xl font-bold mb-3 flex items-center">
+              <span class="text-3xl mr-3">🔐</span>
+              Seguridad
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>✓ Encriptación de datos sensibles</li>
+              <li>✓ Protección contra OWASP Top 10</li>
+              <li>✓ Auditorías de seguridad</li>
+              <li>✓ Certificados SSL/TLS</li>
+              <li>✓ Cumplimiento GDPR y normativas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integraciones -->
+    <section class="py-12 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-4">Integraciones y Automatizaciones</h2>
+        <p class="text-base md:text-lg text-gray-200 text-center max-w-3xl mx-auto mb-8">
+          Conectamos tus sistemas con servicios externos y automatizamos procesos para aumentar la eficiencia.
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 text-center border border-cyan-500/30">
+            <div class="text-3xl mb-2">💳</div>
+            <p class="text-white font-semibold">Pasarelas de Pago</p>
+            <p class="text-gray-400 text-xs mt-1">Stripe, PayPal, MercadoPago</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 text-center border border-blue-500/30">
+            <div class="text-3xl mb-2">📧</div>
+            <p class="text-white font-semibold">Email Marketing</p>
+            <p class="text-gray-400 text-xs mt-1">SendGrid, Mailchimp, Resend</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 text-center border border-indigo-500/30">
+            <div class="text-3xl mb-2">☁️</div>
+            <p class="text-white font-semibold">Cloud Services</p>
+            <p class="text-gray-400 text-xs mt-1">AWS, Google Cloud, Azure</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 text-center border border-purple-500/30">
+            <div class="text-3xl mb-2">🤖</div>
+            <p class="text-white font-semibold">IA & ML</p>
+            <p class="text-gray-400 text-xs mt-1">OpenAI, Anthropic, TensorFlow</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 text-center border border-pink-500/30">
+            <div class="text-3xl mb-2">📱</div>
+            <p class="text-white font-semibold">Redes Sociales</p>
+            <p class="text-gray-400 text-xs mt-1">Meta, Twitter, LinkedIn APIs</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 text-center border border-red-500/30">
+            <div class="text-3xl mb-2">📊</div>
+            <p class="text-white font-semibold">Analytics</p>
+            <p class="text-gray-400 text-xs mt-1">Google Analytics, Mixpanel</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 text-center border border-orange-500/30">
+            <div class="text-3xl mb-2">🔔</div>
+            <p class="text-white font-semibold">Notificaciones</p>
+            <p class="text-gray-400 text-xs mt-1">Push, SMS, WhatsApp</p>
+          </div>
+
+          <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 text-center border border-yellow-500/30">
+            <div class="text-3xl mb-2">🔄</div>
+            <p class="text-white font-semibold">Webhooks</p>
+            <p class="text-gray-400 text-xs mt-1">Eventos en tiempo real</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack Tecnológico -->
+    <section class="py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-8">Nuestro Stack Tecnológico</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white/90 rounded-xl p-6 shadow">
+            <h3 class="text-xl font-bold mb-4 text-blue-600">Frontend</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">React</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Astro</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Next.js</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Vue.js</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Svelte</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">TypeScript</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="bg-white/90 rounded-xl p-6 shadow">
+            <h3 class="text-xl font-bold mb-4 text-green-600">Backend</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">Node.js</span>
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">Python</span>
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">Express</span>
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">FastAPI</span>
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">Django</span>
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">NestJS</span>
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">GraphQL</span>
+            </div>
+          </div>
+
+          <div class="bg-white/90 rounded-xl p-6 shadow">
+            <h3 class="text-xl font-bold mb-4 text-purple-600">DevOps & Cloud</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold">Docker</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold">GitHub Actions</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold">Vercel</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold">Netlify</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold">AWS</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold">Supabase</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold">Firebase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tienda (front-end) -->
+    <section class="py-12 bg-gradient-to-r from-yellow-400/20 via-orange-500/20 to-red-400/20">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center">Paquetes de Desarrollo</h2>
+        <p class="text-base md:text-lg text-gray-200 text-center mt-2 max-w-3xl mx-auto">Servicios, paquetes y soluciones listas para implementar.</p>
+        <ul class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+          {tiendaDesarrollo.map((p, i) => (
+            <CardShop producto={p} key={i} />
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">¿Listo para desarrollar tu proyecto?</h2>
+        <p class="text-lg text-gray-200 max-w-2xl mx-auto mb-8">
+          Cuéntanos tu idea y te ayudaremos a convertirla en una solución digital robusta y escalable.
+        </p>
+        <a 
+          href="#contacto" 
+          class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition-colors duration-300"
+        >
+          Solicitar Cotización
+        </a>
       </div>
     </section>
   </main>
 </Layout>
+

@@ -15,7 +15,7 @@ const MEDUSA_BACKEND_URL = import.meta.env.PUBLIC_MEDUSA_BACKEND_URL || 'http://
  * Cliente principal de Medusa
  * Se utiliza para todas las operaciones relacionadas con la tienda
  */
-export const medusaClient = createClient({
+export const medusaClient = new Medusa({
   baseUrl: MEDUSA_BACKEND_URL,
   maxRetries: 3
 })
