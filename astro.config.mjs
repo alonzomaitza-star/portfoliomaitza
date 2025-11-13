@@ -4,7 +4,7 @@ import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel/serverless';
+import netlify from '@astrojs/netlify';
 import { SITE_URL } from './src/consts';
 
 // https://astro.build/config
@@ -28,11 +28,7 @@ export default defineConfig({
       wrap: true,
     },
   },
-  // Configuración de compilación para Vercel
+  // Configuración de compilación para Netlify
   output: 'server',
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true
-    }
-  }),
+  adapter: netlify(),
 });
