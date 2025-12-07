@@ -1,6 +1,56 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import TeamCard from "../components/TeamCard.astro";
+
+// Aqui necesitamos un lista de objetos que vamos a pintar en la parte abajo.
+const equipo = [
+  // {
+  //   nombre: "Ferch",
+  //   apellido: "Developer",
+  //   username: "ferchdev",
+  //   redes: {
+  //     instagram: "https://instagram.com/ferchdev",
+  //     facebook: "https://facebook.com/ferchdev",
+  //     whatsapp: "+1234567890",
+  //     web: "/portafolio/ferch"
+  //   }
+  // },
+  // {
+  //   nombre: "Ana",
+  //   apellido: "Designer", 
+  //   username: "anadesign",
+  //   redes: {
+  //     instagram: "https://instagram.com/anadesign",
+  //     facebook: "https://facebook.com/anadesign",
+  //     whatsapp: "+0987654321",
+  //     web: "/portafolio/ana"
+  //   }
+  // },
+  // {
+  //   nombre: "Carlos",
+  //   apellido: "Manager",
+  //   username: "carlosmgmt",
+  //   redes: {
+  //     instagram: "https://instagram.com/carlosmgmt",
+  //     facebook: "https://facebook.com/carlosmgmt", 
+  //     whatsapp: "+1122334455",
+  //     web: "/portafolio/carlos"
+  //   }
+  // },
+  {
+    nombre: "Fernando J",
+    apellido: "Mtz",
+    username: "MrDUFYGY",
+    redes: {
+      instagram: "https://instagram.com/mrdufygy",
+      facebook: "https://facebook.com/mrdufygy",
+      whatsapp: "+52123456789",
+      web: "/portafolio/mrdufygy"
+    }
+  }
+];
+
 ---
 
 <Layout
@@ -84,6 +134,35 @@ import Card from "../components/Card.astro";
         </p>
       </div>
     </section>
+
+
+<!-- Nuestro Equipo Section -->
+    <section class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+          Nuestro Equipo
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          Conoce a los talentos que forman parte de Insano Network
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {equipo.map((miembro) => (
+          <TeamCard miembro={miembro} />
+        ))}
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Contacto Section -->
     <section id="contacto" class="container mx-auto px-6 text-center">

@@ -242,7 +242,7 @@ footer {
       <div class="header-title text-right">
         <h1 >Insano Network</h1>
         <h2  class="text-white font-bold">Diseña, Desarrolla y Vende tus Ideas.</h2>
-        <p>Tu mejor opcion de incio a fin. Dejanos tu contacto, o delecciona un dia.</p>
+        <p>Tu mejor opcion de incio a fin. Dejanos tu contacto, o selecciona un dia.</p>
         <Auth />
       </div>
     </header>
@@ -297,6 +297,7 @@ footer {
     </section>
 
 
+    <!-- Sección de Contactanos -->  
 
 		<section class="py-8">
 			<h3 class="text-white text-3xl font-bold text-center">Contáctanos</h2>
@@ -307,24 +308,24 @@ footer {
 						<h3 class="text-2xl font-bold">Nuestra carta de presentación</h3>
 						<p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, voluptatum.</p>
 					</div>
-					<form class="bg-white p-4 rounded-md">
-						<h3 class="text-2xl font-bold">Formulario de contacto</h3>
-						<div class="mt-2">
-							<label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
-							<input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-						</div>
-						<div class="mt-2">
-							<label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-							<input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-						</div>
-						<div class="mt-2">
-							<label for="message" class="block text-sm font-medium text-gray-700">Mensaje</label>
-							<textarea name="message" id="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-						</div>
-						<div class="mt-2">
-							<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Enviar</button>
-						</div>
-					</form>
+					<form name="contact" method="POST" netlify data-netlify="true" class="bg-white p-4 rounded-md">
+					<h3 class="text-2xl font-bold">Formulario de contacto</h3>
+					<div class="mt-2">
+						<label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+						<input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+					</div>
+					<div class="mt-2">
+						<label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+						<input type="email" name="email" id="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+					</div>
+					<div class="mt-2">
+						<label for="message" class="block text-sm font-medium text-gray-700">Mensaje</label>
+						<textarea name="message" id="message" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+					</div>
+					<div class="mt-2">
+						<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Enviar</button>
+					</div>
+				</form>
 				</div>
 			</div>
 		</section>
