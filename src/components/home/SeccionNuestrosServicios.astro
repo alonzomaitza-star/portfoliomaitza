@@ -15,12 +15,17 @@ interface Props {
 
 const { tarjetas } = Astro.props as Props;
 ---
-<section class="py-12 ">
+
+<section class="py-12">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8 text-center text-gray-100">Nuestros Servicios</h2>
-    <p class="text-center text-gray-200 max-w-3xl mx-auto mb-10">Ofrecemos soluciones integrales para tu negocio, desde el diseño hasta la implementación y comercialización.</p>
-    
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <h2 class="text-3xl font-bold mb-1 text-center text-gray-100">
+      ¿No sabes por donde empezar o quieres aprender?
+    </h2>
+    <p class="text-center text-2xl text-gray-200 max-w-3xl mx-auto mb-5">
+      Les enseñamos.
+    </p>
+
+    <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {tarjetas.slice(0, 3).map((tarjeta, i) => (
         <CardServiceMinimal servicio={{
           icono: `/img/iconos/${i === 0 ? 'web' : i === 1 ? 'app' : 'shop'}.svg`,
@@ -58,13 +63,14 @@ const { tarjetas } = Astro.props as Props;
           link: i === 0 ? '/contable' : '/marketing'
         }} />
       ))}
-    </div>
-    
+    </div> -->
+
     <!-- Tarjeta doble: Aprende y Capacita a tu equipo -->
     <div class="mt-12 grid grid-cols-1">
-      <CardDobleCapacitacion titulo="Aprende y Capacita a tu equipo" boton="Inicia gratis" />
+      <CardDobleCapacitacion
+        titulo="Aprende y Capacita a tu equipo"
+        boton="Inicia gratis"
+      />
     </div>
-    
-    
   </div>
 </section>
