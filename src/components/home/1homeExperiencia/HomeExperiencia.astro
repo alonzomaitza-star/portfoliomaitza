@@ -1,533 +1,562 @@
 ---
+interface ExperienceCard {
+  id: string;
+  title: string;
+  description: string;
+  color: "purple" | "blue" | "emerald" | "orange" | "teal";
+  iconPath: string;
+  services?: string[];
+  storeProducts?: string[];
+}
 
+const EXPERIENCE_CARDS: ExperienceCard[] = [
+  {
+      id: "emprender",
+      title: "¿Emprender?",
+      description: "Te guiamos desde la idea hasta la realidad. Estructura, marca y camino claro para tu nuevo negocio.",
+      color: "purple", // Reusing purple or picking a new one? User didn't specify. Let's use 'teal' or 'orange' or maybe reuse 'purple' as it fits 'inspiration'. Or add a new color 'pink'? Let's reuse 'purple' for now or mix. Actually 'Diseño' is purple. Let's make Emprender 'indigo' or similar if supported, otherwise reuse 'orange' (warmth). Wait 'Vender' was orange. Let's use 'blue' variant or 'teal'. Actually let's use 'purple' as designs often overlap. Or better, update color map? Let's use 'orange' for that "spark" of entrepreneurship. But 'comprar-vender' is emerald. 'Contabilidad' is 'teal'. 'Desarrollo' is 'blue'. 'Diseño' is 'purple'.
+      // Creating a new color 'pink' or 'indigo' might be best. Let's double check COLOR_MAP. It supports: purple, blue, emerald, orange, teal.
+      // reusing 'orange' for Emprender seems appropriate for innovation/energy.
+      iconPath: "M13 10V3L4 14h7v7l9-11h-7z", // Lightning bolt
+      services: [
+          "Ideación y Estructura",
+          "Identidad de Marca",
+          "Modelo de Negocio",
+          "Asesoría Inicial"
+      ],
+      storeProducts: [
+          "Paquetes de Emprendedor"
+      ]
+  },
+  {
+    id: "diseno",
+    title: "¿Diseño?",
+    description:
+      "Creamos identidades visuales únicas y experiencias memorables.",
+    color: "purple",
+    iconPath:
+      "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01",
+    services: [
+      "Diseños y Logos",
+      "Prototipado UI",
+      "Dirección de marca",
+      "Diseño 3D",
+      "Diseño imprenta",
+      "Corte láser",
+      "Vectorización",
+    ],
+    storeProducts: [
+      "Tazas (personalizadas/mayoreo)",
+      "Logos pre-diseñados",
+      "Vectores para playeras",
+      "Lonas",
+    ],
+  },
+  {
+    id: "desarrollo",
+    title: "¿Desarrollo?",
+    description:
+      "Soluciones tecnológicas a medida y aplicaciones web modernas.",
+    color: "blue",
+    iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
+    services: [
+        "Páginas y Sitios Web",
+        "Apps Móviles Multiplataforma",
+        "Software y APIs",
+    ],
+    storeProducts: [
+        "Landing Page",
+        "Blogs",
+        "SEO",
+        "Consultoría",
+    ],
+  },
+  {
+    id: "contabilidad",
+    title: "Contabilidad",
+    description:
+      "Arregla tu contabilidad en México. Servicios fiscales expertos.",
+    color: "teal",
+    iconPath:
+      "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
+    services: [
+        "Paquete Emprendedor",
+        "Contabilidad PYME",
+        "Contabilidad Empresarial",
+        "Paquete Corporativo",
+        "Servicios Express"
+    ],
+    storeProducts: [
+        "Kit Emprendedor Completo",
+        "Paquete PYME Anual",
+        "Migración Digital",
+        "Sistema de Facturación SAT",
+        "Portal Contable Web",
+    ]
+  },
+  {
+    id: "comprar-vender",
+    title: "¿Quieres vender o comprar?",
+    description: "Entendemos que eres un cliente que necesitas llevar tu marca al siguiente nivel, algún evento corporativo, o simplemente un regalo de navidad, por ello, te ayudamos a tener ese producto estrella para tu idea.",
+    color: "emerald",
+    iconPath:
+      "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z",
+    storeProducts: [
+        "Prod. Personalizados (Mayoreo/Menudeo)",
+        "Tazas, Playeras, Lonas",
+        "Sellos y Bolsas",
+        "Frasadas Personalizadas",
+        "Impresiones DTF / Sublimación",
+        "DFTV"
+    ]
+  },
+];
+
+const COLOR_MAP = {
+  purple: {
+    borderHover: "hover:border-purple-500/50",
+    shadowHover: "hover:shadow-purple-500/10",
+    bgGradient: "from-purple-600/10",
+    iconBg: "bg-purple-500/20",
+    iconText: "text-purple-400",
+    iconGroupHoverText: "group-hover:text-purple-300",
+    iconGroupHoverBg: "group-hover:bg-purple-500/30",
+  },
+  blue: {
+    borderHover: "hover:border-blue-500/50",
+    shadowHover: "hover:shadow-blue-500/10",
+    bgGradient: "from-blue-600/10",
+    iconBg: "bg-blue-500/20",
+    iconText: "text-blue-400",
+    iconGroupHoverText: "group-hover:text-blue-300",
+    iconGroupHoverBg: "group-hover:bg-blue-500/30",
+  },
+  emerald: {
+    borderHover: "hover:border-emerald-500/50",
+    shadowHover: "hover:shadow-emerald-500/10",
+    bgGradient: "from-emerald-600/10",
+    iconBg: "bg-emerald-500/20",
+    iconText: "text-emerald-400",
+    iconGroupHoverText: "group-hover:text-emerald-300",
+    iconGroupHoverBg: "group-hover:bg-emerald-500/30",
+  },
+  orange: {
+    borderHover: "hover:border-orange-500/50",
+    shadowHover: "hover:shadow-orange-500/10",
+    bgGradient: "from-orange-600/10",
+    iconBg: "bg-orange-500/20",
+    iconText: "text-orange-400",
+    iconGroupHoverText: "group-hover:text-orange-300",
+    iconGroupHoverBg: "group-hover:bg-orange-500/30",
+  },
+  teal: {
+    borderHover: "hover:border-teal-500/50",
+    shadowHover: "hover:shadow-teal-500/10",
+    bgGradient: "from-teal-600/10",
+    iconBg: "bg-teal-500/20",
+    iconText: "text-teal-400",
+    iconGroupHoverText: "group-hover:text-teal-300",
+    iconGroupHoverBg: "group-hover:bg-teal-500/30",
+  },
+};
 ---
 
 <section
-    class="h-full py-16 md:py-24 bg-gradient-to-b from-slate-900/10 to-slate-950/10 text-white overflow-hidden relative"
+  class="h-full py-16 md:py-24 bg-gradient-to-b from-slate-900/10 to-slate-950/10 text-white overflow-hidden relative"
 >
-    <!-- Decoration background elements -->
+  <!-- Decoration background elements -->
+  <div
+    class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0"
+  >
     <div
-        class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0"
+      class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[100px]"
     >
-        <div
-            class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[100px]"
-        >
-        </div>
-        <div
-            class="absolute top-[40%] -right-[10%] w-[40%] h-[60%] bg-blue-600/10 rounded-full blur-[100px]"
-        >
-        </div>
+    </div>
+    <div
+      class="absolute top-[40%] -right-[10%] w-[40%] h-[60%] bg-blue-600/10 rounded-full blur-[100px]"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Header Question -->
+    <div class="text-center mb-12 md:mb-16">
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
+      >
+        ¿En qué te ayudamos hoy?
+      </h2>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+        Selecciona una opción para comenzar tu experiencia personalizada.
+      </p>
     </div>
 
-    <div class="container mx-auto px-4 relative z-10">
-        <!-- Header Question -->
-        <div class="text-center mb-12 md:mb-16">
-            <h2
-                class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
-            >
-                ¿En qué te ayudamos hoy?
-            </h2>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-                Selecciona una opción para comenzar tu experiencia
-                personalizada.
-            </p>
-        </div>
-
-        <!-- Cards Gallery -->
-        <div
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 mb-20"
-        >
-            <!-- Card 1: Diseño -->
+    <!-- Cards Gallery -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 mb-20"
+    >
+      {
+        EXPERIENCE_CARDS.map((card) => {
+          const colors = COLOR_MAP[card.color];
+          return (
             <div
-                class="group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 hover:border-purple-500/50 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 hover:-translate-y-1"
+              class:list={[
+                "group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col h-full",
+                colors.borderHover,
+                colors.shadowHover,
+              ]}
             >
+              <div
+                class:list={[
+                  "absolute inset-0 bg-gradient-to-br to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none",
+                  colors.bgGradient,
+                ]}
+              />
+              <div class="relative z-10 flex flex-col h-full">
+                <!-- Icon -->
                 <div
-                    class="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"
+                  class:list={[
+                    "w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors flex-shrink-0",
+                    colors.iconBg,
+                    colors.iconText,
+                    colors.iconGroupHoverText,
+                    colors.iconGroupHoverBg,
+                  ]}
                 >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d={card.iconPath}
+                    />
+                  </svg>
                 </div>
-                <div class="relative z-10">
-                    <div
-                        class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 text-purple-400 group-hover:text-purple-300 group-hover:bg-purple-500/30 transition-colors"
-                    >
-                        <!-- Icon placeholder: Design -->
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="w-6 h-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-                            ></path>
+
+                <!-- Content -->
+                <h3 class="text-2xl font-bold mb-3">{card.title}</h3>
+                <p class="text-base text-slate-400 mb-6 flex-grow">
+                  {card.description}
+                </p>
+
+                <!-- Services List (Optional) -->
+                {card.services && card.services.length > 0 && (
+                  <div class="mb-5">
+                    <p class="text-sm font-semibold uppercase text-slate-500 mb-3 tracking-wider">
+                      Servicios
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                       {card.services.slice(0, 4).map(service => (
+                           <span class="text-xs bg-slate-700/50 px-2.5 py-1.5 rounded text-slate-300 border border-slate-600/50">
+                               {service}
+                           </span>
+                       ))}
+                       {card.services.length > 4 && (
+                           <span class="text-xs text-slate-500 px-2 py-1">...</span>
+                       )}
+                    </div>
+                  </div>
+                )}
+
+                <!-- Store Products (Tienda) Section -->
+                {card.storeProducts && card.storeProducts.length > 0 && (
+                  <div class="mt-auto pt-5 border-t border-slate-700/50 mb-4">
+                    <div class="flex items-center gap-2 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
+                           <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 001-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
                         </svg>
+                        <span class="text-base font-semibold text-slate-400">Tienda</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">¿Diseño?</h3>
-                    <p class="text-sm text-slate-400">
-                        Creamos identidades visuales únicas y experiencias
-                        memorables.
-                    </p>
-                </div>
+                    <ul class="grid grid-cols-2 gap-x-2 gap-y-1.5">
+                      {card.storeProducts.slice(0, 6).map((product) => (
+                        <li class="text-sm text-slate-500 flex items-start gap-2 leading-tight">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mt-1.5 flex-shrink-0"></span>
+                            <span>{product}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div class="text-xs text-slate-500 mt-3 italic flex items-center gap-1 opacity-70">
+                        <span>+ Cursos y servicios...</span>
+                    </div>
+                  </div>
+                )}
+                
+                <!-- Chat Action Button -->
+                <a href="#chat-assistant" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                    <span>Iniciar consulta</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+              </div>
             </div>
-
-            <!-- Card 2: Desarrollo -->
-            <div
-                class="group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 hover:border-blue-500/50 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1"
-            >
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"
-                >
-                </div>
-                <div class="relative z-10">
-                    <div
-                        class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 text-blue-400 group-hover:text-blue-300 group-hover:bg-blue-500/30 transition-colors"
-                    >
-                        <!-- Icon placeholder: Code -->
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="w-6 h-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                            ></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">¿Desarrollo?</h3>
-                    <p class="text-sm text-slate-400">
-                        Soluciones tecnológicas a medida y aplicaciones web
-                        modernas.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Card 3: Comprar -->
-            <div
-                class="group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 hover:border-emerald-500/50 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1"
-            >
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"
-                >
-                </div>
-                <div class="relative z-10">
-                    <div
-                        class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4 text-emerald-400 group-hover:text-emerald-300 group-hover:bg-emerald-500/30 transition-colors"
-                    >
-                        <!-- Icon placeholder: Shopping Cart -->
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="w-6 h-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                            ></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">¿Quieres comprar?</h3>
-                    <p class="text-sm text-slate-400">
-                        Explora productos o compra al mayoreo directamente.
-                    </p>
-                    <div class="mt-4 flex flex-col gap-2 opacity-80 text-xs">
-                        <span class="flex items-center gap-2"
-                            ><div
-                                class="w-1.5 h-1.5 rounded-full bg-emerald-400"
-                            >
-                            </div>Productos</span
-                        >
-                        <span class="flex items-center gap-2"
-                            ><div
-                                class="w-1.5 h-1.5 rounded-full bg-emerald-400"
-                            >
-                            </div>Mayoreo</span
-                        >
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4: Vender -->
-            <div
-                class="group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 hover:border-orange-500/50 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10 hover:-translate-y-1"
-            >
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-orange-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"
-                >
-                </div>
-                <div class="relative z-10">
-                    <div
-                        class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4 text-orange-400 group-hover:text-orange-300 group-hover:bg-orange-500/30 transition-colors"
-                    >
-                        <!-- Icon placeholder: Store -->
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="w-6 h-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">¿Quieres vender?</h3>
-                    <p class="text-sm text-slate-400">
-                        Monta tu tienda, crea tu marca o usa nuestra plataforma.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Card 5: Contabilidad -->
-            <div
-                class="group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 hover:border-teal-500/50 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/10 hover:-translate-y-1"
-            >
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-teal-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"
-                >
-                </div>
-                <div class="relative z-10">
-                    <div
-                        class="w-12 h-12 bg-teal-500/20 rounded-lg flex items-center justify-center mb-4 text-teal-400 group-hover:text-teal-300 group-hover:bg-teal-500/30 transition-colors"
-                    >
-                        <!-- Icon placeholder: Calculator/Finance -->
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="w-6 h-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                            ></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Contabilidad</h3>
-                    <p class="text-sm text-slate-400">
-                        Arregla tu contabilidad en México. Servicios fiscales
-                        expertos.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section: Aprende y Capacita -->
-        <div class="mb-20">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-                    ¿No sabes por donde empezar o quieres aprender?
-                </h2>
-                <p class="text-xl text-slate-300">Les enseñamos.</p>
-            </div>
-
-            <div class="max-w-5xl mx-auto">
-                <div
-                    class="relative overflow-hidden bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-3xl shadow-2xl"
-                >
-                    <!-- Background Gradients -->
-                    <div
-                        class="absolute top-0 right-0 w-[300px] h-[300px] bg-indigo-600/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"
-                    >
-                    </div>
-                    <div
-                        class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-emerald-600/10 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none"
-                    >
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 relative z-10">
-                        <!-- Columna Cursos -->
-                        <div class="p-8 md:border-r border-slate-700/50">
-                            <div class="flex items-center gap-4 mb-6">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-xl border border-indigo-500/30"
-                                >
-                                    C
-                                </div>
-                                <div>
-                                    <h4 class="text-2xl font-bold text-white">
-                                        Cursos online
-                                    </h4>
-                                    <p class="text-sm text-slate-400">
-                                        Para ti y tu equipo
-                                    </p>
-                                </div>
-                            </div>
-                            <ul class="space-y-4 text-slate-300 mb-8">
-                                <li class="flex items-start gap-3">
-                                    <span class="text-indigo-400 mt-1">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="w-5 h-5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            ><path
-                                                fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path></svg
-                                        >
-                                    </span>
-                                    <span
-                                        >Rutas de aprendizaje por niveles y
-                                        roles</span
-                                    >
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-indigo-400 mt-1">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="w-5 h-5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            ><path
-                                                fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path></svg
-                                        >
-                                    </span>
-                                    <span
-                                        >Contenido práctico y evaluaciones
-                                        reales</span
-                                    >
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-indigo-400 mt-1">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="w-5 h-5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            ><path
-                                                fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path></svg
-                                        >
-                                    </span>
-                                    <span>Certificados de finalización</span>
-                                </li>
-                            </ul>
-                            <button
-                                class="w-full sm:w-auto px-6 py-3 text-sm font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-500 transition-all hover:shadow-[0_0_20px_rgba(79,70,229,0.3)]"
-                            >
-                                Inicia gratis
-                            </button>
-                        </div>
-
-                        <!-- Columna Capacitaciones -->
-                        <div class="p-8">
-                            <div class="flex items-center gap-4 mb-6">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-xl border border-emerald-500/30"
-                                >
-                                    K
-                                </div>
-                                <div>
-                                    <h4 class="text-2xl font-bold text-white">
-                                        Capacitaciones
-                                    </h4>
-                                    <p class="text-sm text-slate-400">
-                                        Entrenamiento corporativo
-                                    </p>
-                                </div>
-                            </div>
-                            <ul class="space-y-4 text-slate-300 mb-8">
-                                <li class="flex items-start gap-3">
-                                    <span class="text-emerald-400 mt-1">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="w-5 h-5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            ><path
-                                                fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path></svg
-                                        >
-                                    </span>
-                                    <span
-                                        >Planes a medida para tu organización</span
-                                    >
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-emerald-400 mt-1">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="w-5 h-5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            ><path
-                                                fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path></svg
-                                        >
-                                    </span>
-                                    <span>Talleres y bootcamps intensivos</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-emerald-400 mt-1">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="w-5 h-5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            ><path
-                                                fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path></svg
-                                        >
-                                    </span>
-                                    <span>Evaluación de habilidades</span>
-                                </li>
-                            </ul>
-                            <button
-                                class="w-full sm:w-auto px-6 py-3 text-sm font-semibold text-white bg-emerald-600 rounded-xl hover:bg-emerald-500 transition-all hover:shadow-[0_0_20px_rgba(5,150,105,0.3)]"
-                            >
-                                Inicia gratis
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Leyenda inferior -->
-                    <div
-                        class="px-8 py-4 bg-slate-900/50 border-t border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-2"
-                    >
-                        <div
-                            class="text-sm text-slate-300 font-medium flex items-center gap-2"
-                        >
-                            <span class="w-2 h-2 rounded-full bg-blue-400"
-                            ></span>
-                            Asesoramiento empresarial
-                        </div>
-                        <div class="text-xs text-slate-500">
-                            Diagnóstico • Plan de acción • Acompañamiento
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI Chat Placeholder -->
-        <div class="max-w-3xl mx-auto h-[90%]">
-            <div
-                class="bg-slate-900/80 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md"
-            >
-                <!-- Chat Header -->
-                <div
-                    class="bg-slate-800/50 px-6 py-4 border-b border-slate-700 flex items-center justify-between"
-                >
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center"
-                        >
-                            <!-- AI Icon -->
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="w-5 h-5 text-white"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-white text-sm">
-                                Insano Assistant
-                            </h4>
-                            <p
-                                class="text-xs text-green-400 flex items-center gap-1"
-                            >
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-green-400"
-                                ></span> Online
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Chat Body (Mock) -->
-                <div class="p-6 h-[250px] overflow-y-auto flex flex-col gap-4">
-                    <!-- Message from AI -->
-                    <div class="flex gap-3">
-                        <div
-                            class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex-shrink-0 flex items-center justify-center mt-1"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="w-4 h-4 text-white"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"
-                                ></path>
-                                <path
-                                    d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <div
-                            class="bg-slate-800 rounded-2xl p-4 rounded-tl-none max-w-[80%] border border-slate-700"
-                        >
-                            <p class="text-slate-300 text-sm">
-                                ¡Hola! Soy tu asistente virtual. Cuéntame un
-                                poco más sobre lo que necesitas hoy. ¿Es para ti
-                                o para tu empresa?
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Simulated User Input Area -->
-                    <div class="mt-auto"></div>
-                </div>
-
-                <!-- Chat Input Area -->
-                <div class="p-4 bg-slate-800/30 border-t border-slate-700">
-                    <div class="relative">
-                        <input
-                            type="text"
-                            placeholder="Escribe tu mensaje aquí..."
-                            class="w-full bg-slate-900 border border-slate-600/50 rounded-full py-3 px-5 text-slate-300 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-600"
-                            disabled
-                        />
-                        <button
-                            class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center text-white transition-colors"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="w-4 h-4"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
-                                ></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <p class="text-center text-xs text-slate-600 mt-2">
-                        AI Chat Integration (Coming Soon)
-                    </p>
-                </div>
-            </div>
-        </div>
+          );
+        })
+      }
     </div>
+
+    <!-- Section: Aprende y Capacita - Kept Static for now as it is a specific layout -->
+    <div class="mb-20">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+          ¿No sabes por donde empezar o quieres aprender?
+        </h2>
+        <p class="text-xl text-slate-300">Les enseñamos.</p>
+      </div>
+
+      <div class="w-full">
+        <div
+          class="relative overflow-hidden bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-3xl shadow-2xl"
+        >
+          <!-- Background Gradients -->
+          <div
+            class="absolute top-0 right-0 w-[50%] h-[50%] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"
+          >
+          </div>
+          <div
+            class="absolute bottom-0 left-0 w-[50%] h-[50%] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"
+          >
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 relative z-10">
+            <!-- Columna Cursos (Twitch) -->
+            <div class="p-6 md:p-10 lg:border-r border-slate-700/50 flex flex-col">
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="w-12 h-12 rounded-xl bg-[#9146FF]/20 flex items-center justify-center text-[#9146FF] font-bold text-xl border border-[#9146FF]/30"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h2.998L22.285 11.571V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+                </div>
+                <div>
+                  <h4 class="text-2xl font-bold text-white">
+                    Cursos & Comunidad
+                  </h4>
+                  <p class="text-sm text-slate-400">
+                    Únete a nuestra comunidad en Twitch
+                  </p>
+                </div>
+              </div>
+
+              <!-- Twitch Preview -->
+              <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden mb-6 border border-slate-700 shadow-lg group">
+                <iframe
+                  src="https://player.twitch.tv/?video=2643470685&parent=localhost&parent=127.0.0.1&parent=insano.network&muted=false&autoplay=false"
+                  height="100%"
+                  width="100%"
+                  allowfullscreen
+                  class="absolute inset-0 w-full h-full"
+                ></iframe>
+              </div>
+
+              <ul class="space-y-4 text-slate-300 mb-8 mt-auto">
+                <li class="flex items-start gap-3">
+                  <span class="text-[#9146FF] mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  </span>
+                  <span>Cursos gratis en Twitch</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-[#9146FF] mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  </span>
+                  <span>Cursos personalizados</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-[#9146FF] mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  </span>
+                  <span>Certificados de finalización</span>
+                </li>
+              </ul>
+              <a
+                href="#seccionTwitch"
+                class="w-full sm:w-auto px-6 py-3 text-center text-sm font-semibold text-white bg-[#9146FF] rounded-xl hover:bg-[#772ce8] transition-all hover:shadow-[0_0_20px_rgba(145,70,255,0.3)]"
+              >
+                Ver Canal
+              </a>
+            </div>
+
+            <!-- Columna Capacitaciones (YouTube) -->
+            <div class="p-6 md:p-10 flex flex-col">
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center text-red-500 font-bold text-xl border border-red-500/30"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                </div>
+                <div>
+                  <h4 class="text-2xl font-bold text-white">
+                    Capacitaciones
+                  </h4>
+                  <p class="text-sm text-slate-400">
+                    Entrenamiento para empresas
+                  </p>
+                </div>
+              </div>
+
+               <!-- Youtube Preview -->
+               <div class="relative w-full aspect-video bg-black/40 rounded-xl overflow-hidden mb-6 border border-slate-700 shadow-lg group">
+                <!-- Placeholder for Excel Video -->
+                <div class="absolute inset-0 bg-slate-800 flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-900 via-slate-900 to-slate-900"></div>
+                     <span class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center pl-1 shadow-[0_0_30px_rgba(220,38,38,0.4)] relative z-10 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                    <div class="absolute bottom-4 left-4 right-4 z-10">
+                        <span class="bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded uppercase font-bold tracking-wider mb-1 inline-block">Demo</span>
+                        <p class="text-white font-semibold text-sm leading-tight">Capacitación Express: Excel para Negocios (3 min)</p>
+                    </div>
+                </div>
+             </div>
+
+              <ul class="space-y-4 text-slate-300 mb-8 mt-auto">
+                <li class="flex items-start gap-3">
+                  <span class="text-red-500 mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  </span>
+                  <span>Planeación de proyectos</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-red-500 mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  </span>
+                  <span>Desarrollo y Diseño de Marca</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-red-500 mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  </span>
+                  <span>Informática (Excel, Word, etc.)</span>
+                </li>
+              </ul>
+              <a
+                href="#seccionYoutube"
+                class="w-full sm:w-auto px-6 py-3 text-center text-sm font-semibold text-white bg-red-600 rounded-xl hover:bg-red-500 transition-all hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"
+              >
+                Ver Videos
+              </a>
+            </div>
+          </div>
+          
+           <!-- Leyenda inferior -->
+          <div
+            class="px-8 py-4 bg-slate-900/50 border-t border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-2"
+          >
+            <div
+              class="text-sm text-slate-300 font-medium flex items-center gap-2"
+            >
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              Asesoramiento empresarial
+            </div>
+            <div class="text-xs text-slate-500">
+              Diagnóstico • Plan de acción • Acompañamiento
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Chat Placeholder -->
+    <div id="chat-assistant" class="max-w-3xl mx-auto h-[90%] scroll-mt-24">
+      <div
+        class="bg-slate-900/80 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md"
+      >
+        <!-- Chat Header -->
+        <div
+          class="bg-slate-800/50 px-6 py-4 border-b border-slate-700 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center"
+            >
+              <!-- AI Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-white"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-white text-sm">Insano Assistant</h4>
+              <p class="text-xs text-green-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Online
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Body (Mock) -->
+        <div class="p-6 h-[250px] overflow-y-auto flex flex-col gap-4">
+          <!-- Message from AI -->
+          <div class="flex gap-3">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex-shrink-0 flex items-center justify-center mt-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4 text-white"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+              </svg>
+            </div>
+            <div
+              class="bg-slate-800 rounded-2xl p-4 rounded-tl-none max-w-[80%] border border-slate-700"
+            >
+              <p class="text-slate-300 text-sm">
+                ¡Hola! Soy tu asistente virtual. Cuéntame un poco más sobre lo
+                que necesitas hoy. ¿Es para ti o para tu empresa?
+              </p>
+            </div>
+          </div>
+
+          <!-- Simulated User Input Area -->
+          <div class="mt-auto"></div>
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="p-4 bg-slate-800/30 border-t border-slate-700">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Escribe tu mensaje aquí..."
+              class="w-full bg-slate-900 border border-slate-600/50 rounded-full py-3 px-5 text-slate-300 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-600"
+              disabled
+            />
+            <button
+              class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center text-white transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <p class="text-center text-xs text-slate-600 mt-2">
+            AI Chat Integration (Coming Soon)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
