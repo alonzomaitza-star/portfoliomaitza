@@ -346,12 +346,25 @@ const COLOR_MAP = {
               <!-- Twitch Preview -->
               <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden mb-6 border border-slate-700 shadow-lg group">
                 <iframe
-                  src="https://player.twitch.tv/?video=2643470685&parent=localhost&parent=127.0.0.1&parent=insano.network&muted=false&autoplay=false"
+                  id="twitch-embed-player"
                   height="100%"
                   width="100%"
                   allowfullscreen
                   class="absolute inset-0 w-full h-full"
                 ></iframe>
+                <script is:inline>
+                    (function() {
+                        const iframe = document.getElementById('twitch-embed-player');
+                        if (iframe) {
+                            const hostname = window.location.hostname;
+                            // Ensure we cover common development variants if hostname is 'localhost' (Twitch sometimes is picky)
+                            // but usually passing the exact hostname works.
+                            // We can also pass multiple parents if needed, but current hostname is the critical one.
+                            const videoId = "2643470685";
+                            iframe.src = `https://player.twitch.tv/?video=${videoId}&parent=${hostname}&parent=localhost&parent=127.0.0.1&parent=insano.network&parent=insanonetwork.com&muted=false&autoplay=false`;
+                        }
+                    })();
+                </script>
               </div>
 
               <ul class="space-y-4 text-slate-300 mb-8 mt-auto">

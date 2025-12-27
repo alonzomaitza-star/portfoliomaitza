@@ -1,0 +1,198 @@
+---
+import SafeEmbed from "../../../SafeEmbed.astro";
+---
+
+<section id="seccionTwitch" class="py-8 scroll-mt-24">
+    <div class="container mx-auto p-4 max-w-7xl">
+        <h3 class="text-3xl font-bold text-center mb-6 text-white">En Vivo</h3>
+
+        <!-- Tab Controls - Managed via lightweight script -->
+        <div class="flex justify-center mb-4 gap-4">
+            <button
+                id="tab-btn-kick"
+                class="px-6 py-2 rounded-full font-bold transition-all duration-300 flex items-center gap-2 tab-active bg-[#53FC18] text-black shadow-[0_0_15px_rgba(83,252,24,0.4)]"
+                onclick="switchTab('kick')"
+            >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <!-- Kick Icon (approximate simplified) -->
+                    <path
+                        d="M3 3h4v18H3V3zm15 0h-4v7l-4-4H6.5l5 5-5 5H10l4-4v7h4V3z"
+                    ></path>
+                </svg>
+                Kick
+            </button>
+            <button
+                id="tab-btn-twitch"
+                class="px-6 py-2 rounded-full font-bold transition-all duration-300 flex items-center gap-2 bg-gray-800 text-gray-400 hover:text-white"
+                onclick="switchTab('twitch')"
+            >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h2.998L22.285 11.571V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"
+                    ></path>
+                </svg>
+                Twitch
+            </button>
+        </div>
+
+        <!-- Main Container -->
+        <div
+            class="bg-gradient-to-r from-gray-800 to-gray-900 p-1 rounded-lg shadow-xl transition-colors duration-500"
+            id="stream-border"
+        >
+            <div
+                class="grid grid-cols-1 lg:grid-cols-4 gap-0 bg-gray-950 rounded-lg overflow-hidden"
+            >
+                <!-- Stream Column (3/4 width on desktop) -->
+                <div class="p-0 lg:col-span-3 aspect-video bg-black relative">
+                    <!-- Kick Player -->
+                    <div
+                        id="player-kick"
+                        class="absolute inset-0 w-full h-full"
+                    >
+                        <iframe
+                            src="https://player.kick.com/insanocodes"
+                            height="100%"
+                            width="100%"
+                            allowfullscreen="true"
+                            class="w-full h-full"></iframe>
+                    </div>
+
+                    <!-- Twitch Player (Hidden by default) -->
+                    <div
+                        id="player-twitch"
+                        class="absolute inset-0 w-full h-full hidden"
+                    >
+                        <!-- Using SafeEmbed or manual iframe logic similar to previous refactor -->
+                        <!-- Re-implementing the dynamic logic here for robustness -->
+                        <iframe
+                            id="twitch-embed-frame"
+                            height="100%"
+                            width="100%"
+                            allowfullscreen
+                            class="w-full h-full"></iframe>
+                    </div>
+                </div>
+
+                <!-- Chat Column (1/4 width on desktop) -->
+                <div
+                    class="border-l border-gray-800 lg:col-span-1 bg-gray-900 flex flex-col h-[500px] lg:h-auto"
+                >
+                    <div
+                        class="p-3 bg-gray-800 border-b border-gray-700 flex justify-between items-center"
+                    >
+                        <h3
+                            class="font-bold text-white flex items-center gap-2"
+                            id="chat-title"
+                        >
+                            Chat en vivo
+                        </h3>
+                        <span
+                            class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"
+                            title="Live"></span>
+                    </div>
+
+                    <div class="flex-grow bg-gray-900 relative">
+                        <!-- Universal Chat Placeholder / Embed -->
+                        <!-- User mentioned a future multi-chat url. For now, specific chat placeholders -->
+
+                        <div
+                            class="absolute inset-0 flex items-center justify-center p-6 text-center"
+                        >
+                            <div>
+                                <p class="text-gray-400 mb-4 text-sm">
+                                    El chat se cargará según la plataforma
+                                    seleccionada.
+                                </p>
+                                <p class="text-xs text-gray-600">
+                                    Multi-chat integration coming soon.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- We could put iframes for chat here if permitted by CORS, often blocked. 
+                      User asked for "multichat por lo que no es importante" for now. 
+                      Keeping it as a styled placeholder as per instructions "de momento deja el espacio". -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    function switchTab(platform) {
+        const btnKick = document.getElementById("tab-btn-kick");
+        const btnTwitch = document.getElementById("tab-btn-twitch");
+        const playerKick = document.getElementById("player-kick");
+        const playerTwitch = document.getElementById("player-twitch");
+        const border = document.getElementById("stream-border");
+        const chatTitle = document.getElementById("chat-title");
+
+        // Setup Twitch iframe if not already set (lazy load)
+        const twitchIframe = document.getElementById("twitch-embed-frame");
+        if (platform === "twitch" && twitchIframe && !twitchIframe.src) {
+            const hostname = window.location.hostname;
+            // Logic to determine parenting
+            let parentParams = `&parent=${hostname}`;
+            if (hostname !== "localhost" && hostname !== "127.0.0.1") {
+                parentParams += `&parent=localhost&parent=127.0.0.1`;
+            }
+            parentParams += `&parent=insano.network&parent=insanonetwork.com`;
+
+            twitchIframe.src = `https://player.twitch.tv/?video=2643470685${parentParams}&muted=false&autoplay=false`;
+        }
+
+        if (platform === "kick") {
+            // UI Updates
+            btnKick.classList.add(
+                "bg-[#53FC18]",
+                "text-black",
+                "shadow-[0_0_15px_rgba(83,252,24,0.4)]",
+                "tab-active",
+            );
+            btnKick.classList.remove("bg-gray-800", "text-gray-400");
+
+            btnTwitch.classList.remove(
+                "bg-[#9146FF]",
+                "text-white",
+                "shadow-[0_0_15px_rgba(145,70,255,0.4)]",
+                "tab-active",
+            );
+            btnTwitch.classList.add("bg-gray-800", "text-gray-400");
+
+            // Toggle Players
+            playerKick.classList.remove("hidden");
+            playerTwitch.classList.add("hidden");
+
+            // Styling
+            border.classList.remove("from-purple-600", "to-purple-900");
+            border.classList.add("from-green-600", "to-gray-900"); // Kick colors
+        } else {
+            // Twitch selected
+            btnTwitch.classList.add(
+                "bg-[#9146FF]",
+                "text-white",
+                "shadow-[0_0_15px_rgba(145,70,255,0.4)]",
+                "tab-active",
+            );
+            btnTwitch.classList.remove("bg-gray-800", "text-gray-400");
+
+            btnKick.classList.remove(
+                "bg-[#53FC18]",
+                "text-black",
+                "shadow-[0_0_15px_rgba(83,252,24,0.4)]",
+                "tab-active",
+            );
+            btnKick.classList.add("bg-gray-800", "text-gray-400");
+
+            // Toggle Players
+            playerTwitch.classList.remove("hidden");
+            playerKick.classList.add("hidden");
+
+            // Styling
+            border.classList.remove("from-green-600", "to-gray-900");
+            border.classList.add("from-purple-600", "to-purple-900");
+        }
+    }
+</script>
