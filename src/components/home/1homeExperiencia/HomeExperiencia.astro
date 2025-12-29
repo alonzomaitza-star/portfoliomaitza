@@ -114,49 +114,49 @@ const EXPERIENCE_CARDS: ExperienceCard[] = [
 
 const COLOR_MAP = {
   purple: {
-    borderHover: "hover:border-purple-500/50",
-    shadowHover: "hover:shadow-purple-500/10",
+    borderHover: "md:hover:border-purple-500/50",
+    shadowHover: "md:hover:shadow-purple-500/10",
     bgGradient: "from-purple-600/10",
     iconBg: "bg-purple-500/20",
     iconText: "text-purple-400",
-    iconGroupHoverText: "group-hover:text-purple-300",
-    iconGroupHoverBg: "group-hover:bg-purple-500/30",
+    iconGroupHoverText: "md:group-hover:text-purple-300",
+    iconGroupHoverBg: "md:group-hover:bg-purple-500/30",
   },
   blue: {
-    borderHover: "hover:border-blue-500/50",
-    shadowHover: "hover:shadow-blue-500/10",
+    borderHover: "md:hover:border-blue-500/50",
+    shadowHover: "md:hover:shadow-blue-500/10",
     bgGradient: "from-blue-600/10",
     iconBg: "bg-blue-500/20",
     iconText: "text-blue-400",
-    iconGroupHoverText: "group-hover:text-blue-300",
-    iconGroupHoverBg: "group-hover:bg-blue-500/30",
+    iconGroupHoverText: "md:group-hover:text-blue-300",
+    iconGroupHoverBg: "md:group-hover:bg-blue-500/30",
   },
   emerald: {
-    borderHover: "hover:border-emerald-500/50",
-    shadowHover: "hover:shadow-emerald-500/10",
+    borderHover: "md:hover:border-emerald-500/50",
+    shadowHover: "md:hover:shadow-emerald-500/10",
     bgGradient: "from-emerald-600/10",
     iconBg: "bg-emerald-500/20",
     iconText: "text-emerald-400",
-    iconGroupHoverText: "group-hover:text-emerald-300",
-    iconGroupHoverBg: "group-hover:bg-emerald-500/30",
+    iconGroupHoverText: "md:group-hover:text-emerald-300",
+    iconGroupHoverBg: "md:group-hover:bg-emerald-500/30",
   },
   orange: {
-    borderHover: "hover:border-orange-500/50",
-    shadowHover: "hover:shadow-orange-500/10",
+    borderHover: "md:hover:border-orange-500/50",
+    shadowHover: "md:hover:shadow-orange-500/10",
     bgGradient: "from-orange-600/10",
     iconBg: "bg-orange-500/20",
     iconText: "text-orange-400",
-    iconGroupHoverText: "group-hover:text-orange-300",
-    iconGroupHoverBg: "group-hover:bg-orange-500/30",
+    iconGroupHoverText: "md:group-hover:text-orange-300",
+    iconGroupHoverBg: "md:group-hover:bg-orange-500/30",
   },
   teal: {
-    borderHover: "hover:border-teal-500/50",
-    shadowHover: "hover:shadow-teal-500/10",
+    borderHover: "md:hover:border-teal-500/50",
+    shadowHover: "md:hover:shadow-teal-500/10",
     bgGradient: "from-teal-600/10",
     iconBg: "bg-teal-500/20",
     iconText: "text-teal-400",
-    iconGroupHoverText: "group-hover:text-teal-300",
-    iconGroupHoverBg: "group-hover:bg-teal-500/30",
+    iconGroupHoverText: "md:group-hover:text-teal-300",
+    iconGroupHoverBg: "md:group-hover:bg-teal-500/30",
   },
 };
 ---
@@ -200,100 +200,115 @@ const COLOR_MAP = {
           const colors = COLOR_MAP[card.color];
           return (
             <div
+              data-card-id={card.id}
               class:list={[
-                "group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col h-full",
+                "experience-card group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-lg flex flex-col h-full cursor-pointer md:cursor-default",
                 colors.borderHover,
                 colors.shadowHover,
               ]}
             >
               <div
                 class:list={[
-                  "absolute inset-0 bg-gradient-to-br to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none",
+                  "absolute inset-0 bg-gradient-to-br to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none",
                   colors.bgGradient,
                 ]}
               />
               <div class="relative z-10 flex flex-col h-full">
-                <!-- Icon -->
-                <div
-                  class:list={[
-                    "w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors flex-shrink-0",
-                    colors.iconBg,
-                    colors.iconText,
-                    colors.iconGroupHoverText,
-                    colors.iconGroupHoverBg,
-                  ]}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d={card.iconPath}
-                    />
-                  </svg>
+                <!-- Header (Icon + Title + toggle indicator) -->
+                <div class="flex items-start justify-between">
+                    <div
+                      class:list={[
+                        "w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors flex-shrink-0",
+                        colors.iconBg,
+                        colors.iconText,
+                        colors.iconGroupHoverText,
+                        colors.iconGroupHoverBg,
+                      ]}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d={card.iconPath}
+                        />
+                      </svg>
+                    </div>
+                    
+                    <!-- Mobile Chevron -->
+                    <div class="md:hidden text-slate-500 transition-transform duration-300 chevron-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
                 </div>
 
-                <!-- Content -->
-                <h3 class="text-2xl font-bold mb-3">{card.title}</h3>
-                <p class="text-base text-slate-400 mb-6 flex-grow">
-                  {card.description}
-                </p>
+                <!-- Title (Always visible) -->
+                <h3 class="text-2xl font-bold mb-3 select-none">{card.title}</h3>
 
-                <!-- Services List (Optional) -->
-                {card.services && card.services.length > 0 && (
-                  <div class="mb-5">
-                    <p class="text-sm font-semibold uppercase text-slate-500 mb-3 tracking-wider">
-                      Servicios
+                <!-- Content Body (Collapsible on mobile) -->
+                <div class="card-content flex-col flex-grow">
+                    <!-- Content -->
+                    <p class="text-base text-slate-400 mb-6 flex-grow">
+                      {card.description}
                     </p>
-                    <div class="flex flex-wrap gap-2">
-                       {card.services.slice(0, 4).map(service => (
-                           <span class="text-xs bg-slate-700/50 px-2.5 py-1.5 rounded text-slate-300 border border-slate-600/50">
-                               {service}
-                           </span>
-                       ))}
-                       {card.services.length > 4 && (
-                           <span class="text-xs text-slate-500 px-2 py-1">...</span>
-                       )}
-                    </div>
-                  </div>
-                )}
 
-                <!-- Store Products (Tienda) Section -->
-                {card.storeProducts && card.storeProducts.length > 0 && (
-                  <div class="mt-auto pt-5 border-t border-slate-700/50 mb-4">
-                    <div class="flex items-center gap-2 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
-                           <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 001-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+                    <!-- Services List (Optional) -->
+                    {card.services && card.services.length > 0 && (
+                      <div class="mb-5">
+                        <p class="text-sm font-semibold uppercase text-slate-500 mb-3 tracking-wider">
+                          Servicios
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                           {card.services.slice(0, 4).map(service => (
+                               <span class="text-xs bg-slate-700/50 px-2.5 py-1.5 rounded text-slate-300 border border-slate-600/50">
+                                   {service}
+                               </span>
+                           ))}
+                           {card.services.length > 4 && (
+                               <span class="text-xs text-slate-500 px-2 py-1">...</span>
+                           )}
+                        </div>
+                      </div>
+                    )}
+
+                    <!-- Store Products (Tienda) Section -->
+                    {card.storeProducts && card.storeProducts.length > 0 && (
+                      <div class="mt-auto pt-5 border-t border-slate-700/50 mb-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
+                               <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 001-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-base font-semibold text-slate-400">Tienda</span>
+                        </div>
+                        <ul class="grid grid-cols-2 gap-x-2 gap-y-1.5">
+                          {card.storeProducts.slice(0, 6).map((product) => (
+                            <li class="text-sm text-slate-500 flex items-start gap-2 leading-tight">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mt-1.5 flex-shrink-0"></span>
+                                <span>{product}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div class="text-xs text-slate-500 mt-3 italic flex items-center gap-1 opacity-70">
+                            <span>+ Cursos y servicios...</span>
+                        </div>
+                      </div>
+                    )}
+                    
+                    <!-- Chat Action Button -->
+                    <a href="#chat-assistant" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                        <span>Iniciar consulta</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                         </svg>
-                        <span class="text-base font-semibold text-slate-400">Tienda</span>
-                    </div>
-                    <ul class="grid grid-cols-2 gap-x-2 gap-y-1.5">
-                      {card.storeProducts.slice(0, 6).map((product) => (
-                        <li class="text-sm text-slate-500 flex items-start gap-2 leading-tight">
-                            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mt-1.5 flex-shrink-0"></span>
-                            <span>{product}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div class="text-xs text-slate-500 mt-3 italic flex items-center gap-1 opacity-70">
-                        <span>+ Cursos y servicios...</span>
-                    </div>
-                  </div>
-                )}
-                
-                <!-- Chat Action Button -->
-                <a href="#chat-assistant" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                    <span>Iniciar consulta</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                    </svg>
-                </a>
+                    </a>
+                </div>
               </div>
             </div>
           );
@@ -573,3 +588,71 @@ const COLOR_MAP = {
     </div>
   </div>
 </section>
+
+<style>
+  /* Mobile Expandable Cards Styles */
+  
+  /* Prevent browser scroll anchoring */
+  .experience-card {
+    overflow-anchor: none;
+  }
+
+  /* Default: collapsed on mobile */
+  @media (max-width: 767px) {
+    .card-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease-out, opacity 0.25s ease-out;
+      display: flex;
+    }
+    
+    .experience-card.expanded .card-content {
+      max-height: 800px; /* Large enough to fit content */
+      opacity: 1;
+      transition: max-height 0.4s ease-in, opacity 0.3s ease-in 0.1s;
+    }
+    
+    .experience-card.expanded .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    .chevron-icon {
+      transition: transform 0.3s ease;
+    }
+  }
+
+  /* Desktop: always visible */
+  @media (min-width: 768px) {
+    .card-content {
+      display: flex;
+      max-height: none;
+      opacity: 1;
+      overflow: visible;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+     initCards();
+  });
+  // Initialize on first load as well
+  initCards();
+
+  function initCards() {
+    const cards = document.querySelectorAll('.experience-card');
+    cards.forEach(card => {
+        card.onclick = (e) => {
+            // Only apply toggle on mobile/tablet (below md breakpoint)
+            if (window.innerWidth >= 768) return; 
+            
+            // Prevent toggle if clicking on a link or button inside the expanded content
+            if (e.target.closest('a') || e.target.closest('button')) return;
+
+            // Toggle the expanded state
+            card.classList.toggle('expanded');
+        };
+    });
+  }
+</script>
