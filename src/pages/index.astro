@@ -12,6 +12,8 @@ import SafeEmbed from "../components/SafeEmbed.astro";
 import HomeExperiencia from "../components/home/1homeExperiencia/HomeExperiencia.astro";
 import VideoMedia from "../components/home/VideoMedia/VideoMedia.astro";
 import SocialMedia from "../components/home/SocialMedia/SocialMedia.astro";
+import ScrollPrompt from "../components/ScrollPrompt.astro";
+import FirebaseAuth from "../components/FirebaseAuth.astro";
 
 export const prerender = false;
 // Objetos de ejemplo para mostrar productos en la tienda
@@ -287,17 +289,6 @@ const tarjetas = [
         </div> -->
         <SliderImg imagenes={[ImgSlider, ImgSlider2, ImgSlider3]} />
       </div>
-      <div class="header-title text-right">
-        <h1>Insano Network</h1>
-        <h2 class="text-white font-bold">
-          Diseña, Desarrolla y Vende tus Ideas.
-        </h2>
-        <p>
-          Tu mejor opcion de incio a fin. Dejanos tu contacto, o selecciona un
-          dia.
-        </p>
-        <Auth />
-      </div>
     </header>
 
     <!-- Seccion de Experiencia de Usuario -->
@@ -470,6 +461,82 @@ const tarjetas = [
 			</div>
 		</section> -->
 
-    <div class="modal-bottom">Página en construcción 🚧</div>
+    <!-- Header Title Section - Giant & Fixed -->
+    <div
+      id="hero-title"
+      class="fixed bottom-0 left-0 w-full p-8 md:p-16 z-40 text-right pointer-events-none transition-opacity duration-500"
+    >
+      <h1
+        class="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-tight uppercase tracking-tighter drop-shadow-lg"
+      >
+        Insano<br />Network
+      </h1>
+      <h2
+        class="text-2xl md:text-4xl text-[#ffd600] font-bold mt-4 max-w-4xl ml-auto drop-shadow-md"
+      >
+        Diseña, Desarrolla y Vende tus Ideas.
+      </h2>
+      <div class="mt-8 pointer-events-auto">
+        <FirebaseAuth />
+      </div>
+    </div>
+
+    <script is:inline>
+      function handleHeroScrollInline() {
+        const heroTitle = document.getElementById("hero-title");
+        // Debug indicator
+        let debugEl = document.getElementById("scroll-debug");
+        if (!debugEl) {
+          debugEl = document.createElement("div");
+          debugEl.id = "scroll-debug";
+          debugEl.style.position = "fixed";
+          debugEl.style.top = "10px";
+          debugEl.style.left = "10px";
+          debugEl.style.padding = "5px";
+          debugEl.style.background = "rgba(0,0,0,0.5)";
+          debugEl.style.color = "white";
+          debugEl.style.zIndex = "9999";
+          debugEl.style.fontSize = "12px";
+          document.body.appendChild(debugEl);
+        }
+
+        const scrollPosition =
+          window.scrollY ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop ||
+          0;
+
+        if (debugEl)
+          debugEl.textContent = `Scroll: ${Math.round(scrollPosition)}px`;
+
+        if (!heroTitle) return;
+
+        const windowHeight = window.innerHeight;
+        // Fade out quickly - completely gone by 30% of viewport height scroll
+        const fadeThreshold = windowHeight * 0.3;
+        const opacity = Math.max(0, 1 - scrollPosition / fadeThreshold);
+
+        heroTitle.style.opacity = opacity.toString();
+
+        if (opacity <= 0.05) {
+          heroTitle.style.visibility = "hidden";
+        } else {
+          heroTitle.style.visibility = "visible";
+        }
+      }
+
+      window.addEventListener("scroll", handleHeroScrollInline);
+      window.addEventListener("resize", handleHeroScrollInline);
+      window.addEventListener("DOMContentLoaded", handleHeroScrollInline);
+
+      // Also interval check for safety in case of layout shifts
+      setInterval(handleHeroScrollInline, 500);
+
+      // Immediate check
+      handleHeroScrollInline();
+    </script>
   </main>
+
+  <!-- <div class="modal-bottom">Página en construcción 🚧</div> -->
+  <ScrollPrompt />
 </Layout>
