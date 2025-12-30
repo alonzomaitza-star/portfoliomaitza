@@ -1,0 +1,115 @@
+---
+const updates = [
+    {
+        id: 1,
+        text: "¡Nuevo lanzamiento de software! 🚀 Hemos mejorado el rendimiento un 300%.",
+        date: "2h",
+        likes: 45,
+        retweets: 12,
+    },
+    {
+        id: 2,
+        text: "¿Sabías que la optimización web es clave para el SEO? Lee nuestro último hilo. 🧵👇",
+        date: "5h",
+        likes: 89,
+        retweets: 34,
+    },
+    {
+        id: 3,
+        text: "Gran sesión de coding hoy con el equipo. Se vienen cosas grandes para Insano Network. 🔥",
+        date: "1d",
+        likes: 120,
+        retweets: 15,
+    },
+];
+---
+
+<div
+    class="bg-gradient-to-br from-gray-700 to-black p-1 rounded-2xl shadow-xl h-full"
+>
+    <div class="bg-gray-900 rounded-xl p-6 h-full flex flex-col">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-12 h-12 bg-black border border-gray-700 rounded-full flex items-center justify-center text-white flex-shrink-0"
+                >
+                    <!-- X Logo -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
+                        ><path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                        ></path></svg
+                    >
+                </div>
+                <div>
+                    <h3 class="font-bold text-white text-lg">Insano Network</h3>
+                    <span class="text-xs text-gray-400">@InsanoNet</span>
+                </div>
+            </div>
+            <a
+                href="https://twitter.com/InsanoNet"
+                target="_blank"
+                class="text-gray-400 hover:text-white transition-colors"
+            >
+                <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    ></path></svg
+                >
+            </a>
+        </div>
+
+        <!-- Timeline -->
+        <div class="flex-grow space-y-4 mb-4">
+            {
+                updates.map((tweet) => (
+                    <div class="border-b border-gray-800 pb-4 last:border-0 last:pb-0">
+                        <p class="text-gray-300 text-sm mb-2">{tweet.text}</p>
+                        <div class="flex items-center gap-6 text-xs text-gray-500">
+                            <span>{tweet.date}</span>
+                            <span class="flex items-center gap-1 hover:text-green-500 transition-colors cursor-pointer">
+                                <svg
+                                    class="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                    />
+                                </svg>
+                                {tweet.retweets}
+                            </span>
+                            <span class="flex items-center gap-1 hover:text-pink-500 transition-colors cursor-pointer">
+                                <svg
+                                    class="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                    />
+                                </svg>
+                                {tweet.likes}
+                            </span>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>

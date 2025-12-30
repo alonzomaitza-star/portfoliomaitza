@@ -1,0 +1,4 @@
+## Iniciación
+
+- [x] BITACORA DE INICIO ASI COMO DE TODOS LOS ARCHIVOS
+- [ ] 

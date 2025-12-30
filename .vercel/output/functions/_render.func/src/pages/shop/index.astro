@@ -1,0 +1,236 @@
+---
+/**
+ * Página principal de la tienda online
+ * 
+ * Esta página muestra productos destacados, categorías populares
+ * y promociones actuales de la tienda.
+ */
+
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/shop/ProductCard.astro';
+import { getFeaturedProducts, getCollections } from '../../lib/medusa';
+
+// Obtener productos destacados
+let featuredProducts = [];
+let collections = [];
+let error = null;
+
+try {
+  // En un entorno de desarrollo, podemos usar datos de ejemplo
+  // En producción, estos datos vendrían de Medusa.js
+  if (import.meta.env.DEV) {
+    // Datos de ejemplo para desarrollo
+    featuredProducts = [
+      {
+        id: 'prod_01',
+        title: 'Servicio de Desarrollo Web',
+        handle: 'servicio-desarrollo-web',
+        thumbnail: '/img/shop/web-development.jpg',
+        description: 'Desarrollo de sitios web profesionales con las últimas tecnologías',
+        variants: [
+          {
+            id: 'variant_01',
+            prices: [{ amount: 149900 }] // $1,499.00
+          }
+        ]
+      },
+      {
+        id: 'prod_02',
+        title: 'Consultoría de Marketing Digital',
+        handle: 'consultoria-marketing-digital',
+        thumbnail: '/img/shop/digital-marketing.jpg',
+        description: 'Estrategias personalizadas para mejorar tu presencia online',
+        variants: [
+          {
+            id: 'variant_02',
+            prices: [{ amount: 99900 }] // $999.00
+          }
+        ]
+      },
+      {
+        id: 'prod_03',
+        title: 'Diseño de Identidad Corporativa',
+        handle: 'diseno-identidad-corporativa',
+        thumbnail: '/img/shop/brand-identity.jpg',
+        description: 'Creación de logos, paletas de colores y guías de estilo para tu marca',
+        variants: [
+          {
+            id: 'variant_03',
+            prices: [{ amount: 79900 }] // $799.00
+          }
+        ]
+      },
+      {
+        id: 'prod_04',
+        title: 'Optimización SEO',
+        handle: 'optimizacion-seo',
+        thumbnail: '/img/shop/seo-optimization.jpg',
+        description: 'Mejora el posicionamiento de tu sitio en los motores de búsqueda',
+        variants: [
+          {
+            id: 'variant_04',
+            prices: [{ amount: 59900 }] // $599.00
+          }
+        ]
+      }
+    ];
+    
+    collections = [
+      {
+        id: 'col_01',
+        title: 'Desarrollo Web',
+        handle: 'desarrollo-web'
+      },
+      {
+        id: 'col_02',
+        title: 'Marketing Digital',
+        handle: 'marketing-digital'
+      },
+      {
+        id: 'col_03',
+        title: 'Diseño Gráfico',
+        handle: 'diseno-grafico'
+      },
+      {
+        id: 'col_04',
+        title: 'Consultoría',
+        handle: 'consultoria'
+      }
+    ];
+  } else {
+    // En producción, obtener datos reales de Medusa
+    featuredProducts = await getFeaturedProducts(4);
+    collections = await getCollections();
+  }
+} catch (e) {
+  console.error('Error al cargar datos de la tienda:', e);
+  error = e.message;
+}
+
+// Metadatos de la página
+const title = 'Tienda Online | Insano';
+const description = 'Descubre nuestros servicios profesionales y productos digitales de alta calidad.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Servicios Profesionales para tu Negocio</h1>
+        <p class="text-xl mb-8">Soluciones digitales de calidad para impulsar tu presencia online</p>
+        <a 
+          href="#featured-products" 
+          class="inline-block bg-white text-blue-600 font-semibold py-3 px-8 rounded-lg hover:bg-blue-50 transition-colors"
+        >
+          Ver Servicios
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Products Section -->
+  <section id="featured-products" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Servicios Destacados</h2>
+      
+      {error ? (
+        <div class="text-center text-red-600 p-4 bg-red-50 rounded-lg max-w-lg mx-auto">
+          <p>Error al cargar los productos: {error}</p>
+          <p class="mt-2 text-sm">Por favor, intenta recargar la página o contacta con soporte si el problema persiste.</p>
+        </div>
+      ) : featuredProducts.length === 0 ? (
+        <div class="text-center text-gray-600 p-4">
+          <p>No hay productos destacados disponibles en este momento.</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {featuredProducts.map(product => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      )}
+      
+      <div class="text-center mt-12">
+        <a 
+          href="/shop/products" 
+          class="inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Ver Todos los Servicios
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Categories Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Categorías</h2>
+      
+      {collections.length === 0 ? (
+        <div class="text-center text-gray-600 p-4">
+          <p>No hay categorías disponibles en este momento.</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {collections.map(collection => (
+            <a 
+              href={`/shop/collections/${collection.handle}`}
+              class="block group"
+            >
+              <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow p-6 text-center">
+                <h3 class="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  {collection.title}
+                </h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-16 bg-gray-900 text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">¿Necesitas un servicio personalizado?</h2>
+        <p class="text-xl mb-8">Contáctanos para discutir tus necesidades específicas y obtener una cotización a medida.</p>
+        <a 
+          href="/contacto" 
+          class="inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 transition-colors"
+        >
+          Solicitar Cotización
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Mini Cart Script -->
+  <script>
+    // Este script se encargará de inicializar el mini-carrito
+    // y mantenerlo actualizado cuando se añadan productos
+    
+    async function updateMiniCart() {
+      try {
+        // En una implementación real, obtendríamos el carrito actual
+        // y actualizaríamos la UI en consecuencia
+        console.log('Actualizando mini-carrito...');
+        
+        // Ejemplo de cómo se podría implementar:
+        // const { getOrCreateCart } = await import('../../lib/medusa');
+        // const cart = await getOrCreateCart();
+        // const itemCount = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+        // document.querySelector('.cart-count').textContent = itemCount.toString();
+      } catch (error) {
+        console.error('Error al actualizar mini-carrito:', error);
+      }
+    }
+    
+    // Inicializar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', updateMiniCart);
+    
+    // También actualizar cuando se añada un producto al carrito
+    document.addEventListener('product-added-to-cart', updateMiniCart);
+  </script>
+</Layout>

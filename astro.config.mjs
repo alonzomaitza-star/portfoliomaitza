@@ -28,7 +28,7 @@ export default defineConfig({
       wrap: true,
     },
   },
-  // Configuración de compilación
+  // Configuración de compilación para Netlify
   output: 'server',
   adapter: netlify(),
 });

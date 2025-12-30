@@ -7,6 +7,7 @@ import SeccionTresD from "../components/diseno/pageLanding/SeccionTresD.astro";
 import SeccionDosD from "../components/diseno/pageLanding/SeccionDosD.astro";
 import SeccionDisenoWeb from "../components/diseno/pageLanding/SeccionDisenoWeb.astro";
 import SeccionFigmaUI from "../components/diseno/pageLanding/SeccionFigmaUI.astro";
+import SeccionPricing from "../components/diseno/pageLanding/SeccionPricing.astro";
 
 import ImgSlider from '../assets/SlideImages/elemento 3d.jpg';
 import ImgSlider2 from '../assets/SlideImages/Florero.jpg';
@@ -18,6 +19,9 @@ const tiendaDiseno = [
   { id: 3, titulo: "UI Starter (Figma)", descripcion: "Diseño de 5 pantallas clave para tu app o web", imagen: ImgSlider3.src, precio: 199, etiqueta: "UI" }
 ];
 ---
+
+
+
 
 
 <Layout>
@@ -54,6 +58,9 @@ const tiendaDiseno = [
     <SeccionDosD />
 
     <SeccionDisenoWeb />
+
+    <!-- Sección de Pricing -->
+    <SeccionPricing />
 
     <!-- Intermedio: Diseño de Interfaz (Figma) -->
     <SeccionFigmaUI urls={[
