@@ -484,32 +484,13 @@ const tarjetas = [
     <script is:inline>
       function handleHeroScrollInline() {
         const heroTitle = document.getElementById("hero-title");
-        // Debug indicator
-        let debugEl = document.getElementById("scroll-debug");
-        if (!debugEl) {
-          debugEl = document.createElement("div");
-          debugEl.id = "scroll-debug";
-          debugEl.style.position = "fixed";
-          debugEl.style.top = "10px";
-          debugEl.style.left = "10px";
-          debugEl.style.padding = "5px";
-          debugEl.style.background = "rgba(0,0,0,0.5)";
-          debugEl.style.color = "white";
-          debugEl.style.zIndex = "9999";
-          debugEl.style.fontSize = "12px";
-          document.body.appendChild(debugEl);
-        }
+        if (!heroTitle) return;
 
         const scrollPosition =
           window.scrollY ||
           document.documentElement.scrollTop ||
           document.body.scrollTop ||
           0;
-
-        if (debugEl)
-          debugEl.textContent = `Scroll: ${Math.round(scrollPosition)}px`;
-
-        if (!heroTitle) return;
 
         const windowHeight = window.innerHeight;
         // Fade out quickly - completely gone by 30% of viewport height scroll
