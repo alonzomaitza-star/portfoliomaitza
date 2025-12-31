@@ -10,7 +10,6 @@ import HomeExperiencia from "../components/home/1homeExperiencia/HomeExperiencia
 import VideoMedia from "../components/home/VideoMedia/VideoMedia.astro";
 import SocialMedia from "../components/home/SocialMedia/SocialMedia.astro";
 import ScrollPrompt from "../components/ScrollPrompt.astro";
-import FirebaseAuth from "../components/FirebaseAuth.astro";
 
 export const prerender = false;
 // Objetos de ejemplo para mostrar productos en la tienda
@@ -277,13 +276,8 @@ const tarjetas = [
 <Layout>
   <main>
     <header>
-      <div class="container-slider">
-        <!-- <div class="slider">
-          <img src={ImgSlider.src} alt='Slider 1' />
-          <img src={ImgSlider2.src} alt='Slider 2' />
-          <img src={ImgSlider3.src} alt='Slider 3' />
-        </div> -->
-        <SliderImg imagenes={[ImgSlider, ImgSlider2, ImgSlider3]} />
+      <div class="container-slider lg:scale-200">
+        <SliderImg imagenes={[ImgSlider, ImgSlider2]} />
       </div>
     </header>
 
@@ -460,7 +454,7 @@ const tarjetas = [
     <!-- Header Title Section - Giant & Fixed -->
     <div
       id="hero-title"
-      class="fixed bottom-0 left-0 w-full p-8 md:p-16 z-40 text-right pointer-events-none transition-opacity duration-500"
+      class="bg-black/40 backdrop-blur-sm border-b border-white/20 shadow-2xl fixed bottom-0 left-0 w-full p-2 md:p-6 z-40 text-right pointer-events-none transition-opacity duration-500"
     >
       <h1
         class="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-tight uppercase tracking-tighter drop-shadow-lg"
@@ -472,9 +466,6 @@ const tarjetas = [
       >
         Diseña, Desarrolla y Vende tus Ideas.
       </h2>
-      <div class="mt-8 pointer-events-auto">
-        <FirebaseAuth />
-      </div>
     </div>
 
     <script is:inline>
@@ -490,7 +481,7 @@ const tarjetas = [
 
         const windowHeight = window.innerHeight;
         // Fade out quickly - completely gone by 30% of viewport height scroll
-        const fadeThreshold = windowHeight * 0.3;
+        const fadeThreshold = windowHeight * 0.45;
         const opacity = Math.max(0, 1 - scrollPosition / fadeThreshold);
 
         heroTitle.style.opacity = opacity.toString();
