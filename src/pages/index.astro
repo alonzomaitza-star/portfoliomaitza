@@ -9,6 +9,8 @@ import SliderImg from "../components/SliderImg.astro";
 import HomeExperiencia from "../components/home/1homeExperiencia/HomeExperiencia.astro";
 import VideoMedia from "../components/home/VideoMedia/VideoMedia.astro";
 import SocialMedia from "../components/home/SocialMedia/SocialMedia.astro";
+import ConnectWithUs from "../components/home/ConnectWithUs.astro";
+import ShopPreview from "../components/home/ShopPreview.astro";
 import ScrollPrompt from "../components/ScrollPrompt.astro";
 
 export const prerender = false;
@@ -284,143 +286,16 @@ const tarjetas = [
     <!-- Seccion de Experiencia de Usuario -->
     <HomeExperiencia />
 
-    <section
-      class="py-12 bg-gradient-to-r from-yellow-400/70 via-pink-500/40 to-cyan-400/40"
-    >
-      <div class="container mx-auto p-4 text-white">
-        <h2 class="text-4xl font-bold mb-4">Tienda en línea</h2>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4"
-        >
-          <div>
-            <h3 class="text-xl font-bold">Recien agregados</h3>
-            <ul
-              class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4"
-            >
-              {
-                tarjetasRecienAgregados.map((tarjeta, i) => (
-                  <CardShop producto={tarjeta} key={i} />
-                ))
-              }
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold">Productos de temporada</h3>
-            <ul
-              class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4"
-            >
-              {
-                tarjetasTemporada.map((tarjeta, i) => (
-                  <CardShop producto={tarjeta} key={i} />
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4"
-        >
-          <div>
-            <h3 class="text-2xl font-bold">Mas vendidos</h3>
-            <ul
-              class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4"
-            >
-              {
-                tarjetasMasVendidos.map((tarjeta, i) => (
-                  <CardShop producto={tarjeta} key={i} />
-                ))
-              }
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold">Kit con descuento</h3>
-            <ul
-              class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-4"
-            >
-              {
-                tarjetasKitConDescuento.map((tarjeta, i) => (
-                  <CardShop producto={tarjeta} key={i} />
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Sección de Tienda -->
+    <ShopPreview
+      recienAgregados={tarjetasRecienAgregados}
+      temporada={tarjetasTemporada}
+      masVendidos={tarjetasMasVendidos}
+      kitDescuento={tarjetasKitConDescuento}
+    />
 
-    <!-- Sección de Contactanos -->
-
-    <section class="py-8">
-      <h3 class="text-white text-3xl font-bold text-center">Contáctanos</h3>
-
-      <div class="container mx-auto p-4">
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4"
-        >
-          <div class="bg-white p-4 rounded-md">
-            <h3 class="text-2xl font-bold">Nuestra carta de presentación</h3>
-            <p class="mt-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil,
-              voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Nihil, voluptatum.
-            </p>
-          </div>
-          <form
-            name="contact"
-            method="POST"
-            netlify
-            data-netlify="true"
-            class="bg-white p-4 rounded-md"
-          >
-            <h3 class="text-2xl font-bold">Formulario de contacto</h3>
-            <div class="mt-2">
-              <label for="name" class="block text-sm font-medium text-gray-700"
-                >Nombre</label
-              >
-              <input
-                type="text"
-                name="name"
-                id="name"
-                required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              />
-            </div>
-            <div class="mt-2">
-              <label for="email" class="block text-sm font-medium text-gray-700"
-                >Correo electrónico</label
-              >
-              <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              />
-            </div>
-            <div class="mt-2">
-              <label
-                for="message"
-                class="block text-sm font-medium text-gray-700">Mensaje</label
-              >
-              <textarea
-                name="message"
-                id="message"
-                rows="4"
-                required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              ></textarea>
-            </div>
-            <div class="mt-2">
-              <button
-                type="submit"
-                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >Enviar</button
-              >
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
+    <!-- Sección Conecta con Nosotros -->
+    <ConnectWithUs />
 
     <!-- Video Media Section (Streams & Playlists) -->
     <VideoMedia />
@@ -428,28 +303,6 @@ const tarjetas = [
     <!-- Social Media Section -->
     <SocialMedia />
 
-    <!-- <section style="text-align: center; margin-top: 3rem;">
-			<h1 class="text-4xl font-bold color-white">Página en construcción 🚧</h1>
-			<p class="color-white">Estamos trabajando para traerte el mejor contenido muy pronto.</p>
-			<p class="color-white">Para mayor información, comunícate a:<br>
-				<a href="mailto:dev@insanonetwork.com" style="color: #ffd600; font-weight: bold;">dev@insanonetwork.com</a>facility de Pinterest en contacto con nosotros
-			</p>
-		</section>
-	
-		<section class="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-			<div class="bg-white rounded-lg shadow-lg p-4">
-				<h2 class="text-2xl font-bold">Desarrollo web</h2>
-				<p class="text-gray-600">Desarrollamos aplicaciones web escalables y seguras.</p>
-			</div>
-			<div class="bg-white rounded-lg shadow-lg p-4">
-				<h2 class="text-2xl font-bold">Dise o gr fico</h2>
-				<p class="text-gray-600">Creamos dise os elegantes y funcionales para tu marca.</p>
-			</div>
-			<div class="bg-white rounded-lg shadow-lg p-4">
-				<h2 class="text-2xl font-bold">Marketing digital</h2>
-				<p class="text-gray-600">Ayudamos a tu marca a crecer en la web.</p>
-			</div>
-		</section> -->
 
     <!-- Header Title Section - Giant & Fixed -->
     <div

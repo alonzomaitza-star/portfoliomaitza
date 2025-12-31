@@ -1,0 +1,343 @@
+---
+// ConnectWithUs.astro - Panel de navegación con redes sociales y enlaces rápidos
+---
+
+<style>
+    .connect-section {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 214, 0, 0.1) 0%,
+            rgba(99, 102, 241, 0.1) 100%
+        );
+        padding: 4rem 1rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .connect-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-align: center;
+        color: white;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .connect-subtitle {
+        text-align: center;
+        color: #ffd600;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        font-weight: 500;
+    }
+
+    .connect-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .connect-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2rem;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .connect-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            45deg,
+            transparent,
+            rgba(255, 214, 0, 0.1),
+            transparent
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s;
+    }
+
+    .connect-card:hover::before {
+        transform: translateX(100%);
+    }
+
+    .connect-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        border-color: #ffd600;
+        box-shadow: 0 20px 40px rgba(255, 214, 0, 0.3);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        filter: drop-shadow(0 0 10px currentColor);
+        transition: transform 0.3s;
+    }
+
+    .connect-card:hover .card-icon {
+        transform: scale(1.2) rotate(5deg);
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin: 0;
+    }
+
+    .card-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .card-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        transition: all 0.3s;
+        font-weight: 500;
+        position: relative;
+        z-index: 1;
+    }
+
+    .card-link:hover {
+        background: rgba(255, 214, 0, 0.2);
+        color: white;
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(255, 214, 0, 0.3);
+    }
+
+    .link-icon {
+        font-size: 1.3rem;
+        transition: transform 0.3s;
+    }
+
+    .card-link:hover .link-icon {
+        transform: scale(1.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .connect-title {
+            font-size: 2rem;
+        }
+
+        .connect-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+
+    /* Animación de entrada */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .connect-card {
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .connect-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    .connect-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .connect-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    .connect-card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+</style>
+
+<section class="connect-section">
+    <h2 class="connect-title">Conecta con Nosotros</h2>
+    <p class="connect-subtitle">
+        Síguenos en nuestras redes y explora todo lo que tenemos para ti
+    </p>
+
+    <div class="connect-grid">
+        <!-- Redes Sociales Card -->
+        <div class="connect-card">
+            <div class="card-header">
+                <span class="card-icon" style="color: #ffd600;">🌐</span>
+                <h3 class="card-title">Redes Sociales</h3>
+            </div>
+            <div class="card-links">
+                <a
+                    href="https://www.facebook.com/insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #1877F2;">📘</span>
+                    <span>Facebook</span>
+                </a>
+                <a
+                    href="https://www.instagram.com/insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #E4405F;">📷</span>
+                    <span>Instagram</span>
+                </a>
+                <a
+                    href="https://www.tiktok.com/@insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #000000;">🎵</span>
+                    <span>TikTok</span>
+                </a>
+                <a
+                    href="https://twitter.com/insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #1DA1F2;">🐦</span>
+                    <span>Twitter / X</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contenido y Streams Card -->
+        <div class="connect-card">
+            <div class="card-header">
+                <span class="card-icon" style="color: #FF0000;">🎬</span>
+                <h3 class="card-title">Contenido</h3>
+            </div>
+            <div class="card-links">
+                <a
+                    href="https://www.youtube.com/@insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #FF0000;">▶️</span>
+                    <span>YouTube</span>
+                </a>
+                <a
+                    href="https://www.twitch.tv/insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #9146FF;">📡</span>
+                    <span>Twitch Stream</span>
+                </a>
+                <a
+                    href="https://kick.com/insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #53FC18;">🎮</span>
+                    <span>Kick</span>
+                </a>
+                <a href="#videos" class="card-link">
+                    <span class="link-icon" style="color: #ffd600;">📺</span>
+                    <span>Ver Playlists</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Navegación Rápida Card -->
+        <div class="connect-card">
+            <div class="card-header">
+                <span class="card-icon" style="color: #10B981;">🚀</span>
+                <h3 class="card-title">Navegación</h3>
+            </div>
+            <div class="card-links">
+                <a href="/tienda" class="card-link">
+                    <span class="link-icon" style="color: #ffd600;">🛍️</span>
+                    <span>Tienda</span>
+                </a>
+                <a href="/diseno" class="card-link">
+                    <span class="link-icon" style="color: #F59E0B;">🎨</span>
+                    <span>Diseño</span>
+                </a>
+                <a href="/desarrollo" class="card-link">
+                    <span class="link-icon" style="color: #3B82F6;">💻</span>
+                    <span>Desarrollo</span>
+                </a>
+                <a href="/blog" class="card-link">
+                    <span class="link-icon" style="color: #EC4899;">📝</span>
+                    <span>Blog</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Comunidad Card -->
+        <div class="connect-card">
+            <div class="card-header">
+                <span class="card-icon" style="color: #8B5CF6;">💬</span>
+                <h3 class="card-title">Comunidad</h3>
+            </div>
+            <div class="card-links">
+                <a
+                    href="https://discord.gg/insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #5865F2;">💬</span>
+                    <span>Discord</span>
+                </a>
+                <a
+                    href="https://github.com/insanonetwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-link"
+                >
+                    <span class="link-icon" style="color: #ffffff;">⚡</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:dev@insanonetwork.com" class="card-link">
+                    <span class="link-icon" style="color: #ffd600;">📧</span>
+                    <span>Contacto</span>
+                </a>
+                <a href="/equipo" class="card-link">
+                    <span class="link-icon" style="color: #10B981;">👥</span>
+                    <span>Nuestro Equipo</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

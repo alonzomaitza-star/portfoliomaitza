@@ -1,0 +1,260 @@
+---
+/**
+ * ShopPreview Component
+ * Vista previa de la tienda para la página principal
+ * Muestra productos organizados en categorías
+ */
+
+import CardShop from "../CardShop.astro";
+
+interface Product {
+    id: number | string;
+    titulo: string;
+    descripcion: string;
+    imagen: string;
+    precio: number;
+    etiqueta?: string;
+}
+
+interface Props {
+    recienAgregados?: Product[];
+    temporada?: Product[];
+    masVendidos?: Product[];
+    kitDescuento?: Product[];
+}
+
+const {
+    recienAgregados = [],
+    temporada = [],
+    masVendidos = [],
+    kitDescuento = [],
+} = Astro.props;
+
+const hayProductos =
+    recienAgregados.length > 0 ||
+    temporada.length > 0 ||
+    masVendidos.length > 0 ||
+    kitDescuento.length > 0;
+---
+
+<style>
+    .shop-section {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 214, 0, 0.7) 0%,
+            rgba(236, 72, 153, 0.4) 35%,
+            rgba(34, 211, 238, 0.4) 100%
+        );
+        padding: 3rem 1rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .shop-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        color: white;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .shop-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .category-section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 1.5rem;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .category-section:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 214, 0, 0.6);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .cta-section {
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #ffd600 0%, #f59e0b 100%);
+        color: #1f2937;
+        font-weight: 700;
+        font-size: 1.2rem;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 214, 0, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(255, 214, 0, 0.6);
+        background: linear-gradient(135deg, #f59e0b 0%, #ffd600 100%);
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+        .shop-title {
+            font-size: 2rem;
+        }
+
+        .shop-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .products-grid {
+            gap: 0.75rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+        }
+    }
+
+    /* Animación de entrada */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .category-section {
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .category-section:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    .category-section:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .category-section:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    .category-section:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+</style>
+
+<section class="shop-section">
+    <div class="container mx-auto">
+        <h2 class="shop-title">Tienda en línea</h2>
+
+        {
+            !hayProductos ? (
+                <div class="empty-state">
+                    <p>Próximamente: Productos y servicios increíbles</p>
+                    <p class="text-sm mt-2 opacity-80">
+                        Estamos preparando algo especial para ti
+                    </p>
+                </div>
+            ) : (
+                <>
+                    <div class="shop-grid">
+                        {recienAgregados.length > 0 && (
+                            <div class="category-section">
+                                <h3 class="category-title">Recién Agregados</h3>
+                                <ul class="products-grid">
+                                    {recienAgregados.map((producto) => (
+                                        <CardShop producto={producto} />
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {temporada.length > 0 && (
+                            <div class="category-section">
+                                <h3 class="category-title">
+                                    Productos de Temporada
+                                </h3>
+                                <ul class="products-grid">
+                                    {temporada.map((producto) => (
+                                        <CardShop producto={producto} />
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {masVendidos.length > 0 && (
+                            <div class="category-section">
+                                <h3 class="category-title">Más Vendidos</h3>
+                                <ul class="products-grid">
+                                    {masVendidos.map((producto) => (
+                                        <CardShop producto={producto} />
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {kitDescuento.length > 0 && (
+                            <div class="category-section">
+                                <h3 class="category-title">
+                                    Kit con Descuento
+                                </h3>
+                                <ul class="products-grid">
+                                    {kitDescuento.map((producto) => (
+                                        <CardShop producto={producto} />
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+
+                    <div class="cta-section">
+                        <a href="/shop" class="cta-button">
+                            Ver toda la tienda
+                        </a>
+                    </div>
+                </>
+            )
+        }
+    </div>
+</section>

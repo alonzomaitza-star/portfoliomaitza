@@ -23,10 +23,8 @@ const EXPERIENCE_CARDS: ExperienceCard[] = [
       id: "emprender",
       title: "¿Emprender?",
       description: "Te guiamos desde la idea hasta la realidad. Estructura, marca y camino claro para tu nuevo negocio.",
-      color: "purple", // Reusing purple or picking a new one? User didn't specify. Let's use 'teal' or 'orange' or maybe reuse 'purple' as it fits 'inspiration'. Or add a new color 'pink'? Let's reuse 'purple' for now or mix. Actually 'Diseño' is purple. Let's make Emprender 'indigo' or similar if supported, otherwise reuse 'orange' (warmth). Wait 'Vender' was orange. Let's use 'blue' variant or 'teal'. Actually let's use 'purple' as designs often overlap. Or better, update color map? Let's use 'orange' for that "spark" of entrepreneurship. But 'comprar-vender' is emerald. 'Contabilidad' is 'teal'. 'Desarrollo' is 'blue'. 'Diseño' is 'purple'.
-      // Creating a new color 'pink' or 'indigo' might be best. Let's double check COLOR_MAP. It supports: purple, blue, emerald, orange, teal.
-      // reusing 'orange' for Emprender seems appropriate for innovation/energy.
-      iconPath: "M13 10V3L4 14h7v7l9-11h-7z", // Lightning bolt
+      color: "orange",
+      iconPath: "M13 10V3L4 14h7v7l9-11h-7z",
       services: [
           "Ideación y Estructura",
           "Identidad de Marca",
@@ -100,7 +98,7 @@ const EXPERIENCE_CARDS: ExperienceCard[] = [
         "Paquete PYME Anual",
         "Migración Digital",
         "Sistema de Facturación SAT",
-        "Portal Contable Web",
+        "Portal Contable Web"
     ]
   },
   {
@@ -117,6 +115,48 @@ const EXPERIENCE_CARDS: ExperienceCard[] = [
         "Frasadas Personalizadas",
         "Impresiones DTF / Sublimación",
         "DFTV"
+    ]
+  },
+  {
+    id: "cursos",
+    title: "¿Cursos y Certificaciones?",
+    description: "Prepárate con profesionales certificados. TOEFL, Excel, Python, Power BI y más. Conecta con expertos y obtén valor curricular.",
+    color: "orange",
+    iconPath: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+    services: [
+        "TOEFL Preparation",
+        "Excel Básico/Avanzado",
+        "Excel con Python y Power BI",
+        "Certificaciones Microsoft",
+        "Inglés Conversacional"
+    ],
+    storeProducts: [
+        "Curso TOEFL Intensivo",
+        "Excel para Negocios",
+        "Python para Data Analysis",
+        "Power BI Dashboard",
+        "Certificación Microsoft Office"
+    ]
+  },
+  {
+    id: "capacitacion",
+    title: "¿Capacitación de Equipos?",
+    description: "Capacita a tu equipo o grupo escolar. Desarrollo de software, informática básica, habilidades blandas y más. Programas a medida.",
+    color: "blue",
+    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    services: [
+        "Capacitación Empresarial",
+        "Desarrollo de Equipos",
+        "Informática Corporativa",
+        "Habilidades Blandas",
+        "Programas a Medida"
+    ],
+    storeProducts: [
+        "Capacitación Python Empresarial",
+        "Excel para Equipos",
+        "Desarrollo Web Corporativo",
+        "Soft Skills para Teams",
+        "Programas Híbridos"
     ]
   },
 ];
@@ -310,13 +350,63 @@ const COLOR_MAP = {
                       </div>
                     )}
                     
-                    <!-- Chat Action Button -->
-                    <a href="#chat-assistant" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                        <span>Iniciar consulta</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
+                    <!-- Category-specific Action Button -->
+                    {card.id === 'diseno' && (
+                        <a href="/diseno" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                            <span>Mira nuestra galería y proyectos</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    )}
+                    {card.id === 'desarrollo' && (
+                        <a href="/desarrollo" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                            <span>Stack tech, herramientas open source</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    )}
+                    {card.id === 'contabilidad' && (
+                        <a href="/contable" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                            <span>Servicios fiscales y contables</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    )}
+                    {card.id === 'comprar-vender' && (
+                        <a href="/ecommerce" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                            <span>Tienda y productos personalizados</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    )}
+                    {card.id === 'emprender' && (
+                        <a href="/marketing" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                            <span>Marketing y estrategia de negocio</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    )}
+                    {card.id === 'cursos' && (
+                        <a href="/cursos" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                            <span>Certificaciones y cursos profesionales</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    )}
+                    {card.id === 'capacitacion' && (
+                        <a href="/capacitacion" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                            <span>Capacitación empresarial y de equipos</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    )}
                 </div>
               </div>
             </div>
