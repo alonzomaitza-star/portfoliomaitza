@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ComponentShowcase from '../components/ComponentShowcase.astro';
+---
+
+<Layout title="Component Examples">
+  <main>
+    <h1>Component Examples</h1>
+    <p>This page showcases different components for visualization and improvement.</p>
+
+    <ComponentShowcase />
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+</style>
