@@ -1,0 +1,241 @@
+---
+// Componente de ChatBot Flotante
+---
+
+<!-- ChatBot Flotante -->
+<div class="chatbot-container fixed bottom-6 left-6 z-50">
+  <!-- Botón Flotante (Círculo de Conversación) -->
+  <button 
+    id="chatbot-toggle"
+    class="chatbot-toggle w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+    aria-label="Abrir chat"
+    aria-expanded="false"
+  >
+    <!-- Icono de Chat -->
+    <svg 
+      class="w-6 h-6 transition-transform duration-300 group-hover:rotate-12" 
+      fill="none" 
+      stroke="currentColor" 
+      viewBox="0 0 24 24"
+    >
+      <path 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        stroke-width="2" 
+        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+      />
+    </svg>
+    
+    <!-- Indicador de Notificación -->
+    <span class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+  </button>
+
+  <!-- Dialog Modal del Chat -->
+  <dialog 
+    id="chatbot-dialog"
+    class="chatbot-dialog fixed bottom-24 left-6 w-80 h-96 md:w-96 md:h-[500px] bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-2xl shadow-2xl p-0 opacity-0 scale-95 transition-all duration-300 z-40"
+  >
+    <!-- Header del Chat -->
+    <div class="bg-slate-800/80 px-4 py-3 border-b border-slate-700 rounded-t-2xl flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white text-sm">Insano Assistant</h4>
+          <p class="text-xs text-green-400 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Online
+          </p>
+        </div>
+      </div>
+      
+      <!-- Botón Cerrar -->
+      <button 
+        id="chatbot-close"
+        class="w-6 h-6 rounded-full hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+        aria-label="Cerrar chat"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body del Chat -->
+    <div class="flex-1 p-4 h-[320px] md:h-[400px] overflow-y-auto">
+      <!-- Mensaje de Bienvenida -->
+      <div class="flex gap-3 mb-4">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex-shrink-0 flex items-center justify-center">
+          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+          </svg>
+        </div>
+        <div class="bg-slate-800 rounded-2xl p-3 rounded-tl-none max-w-[80%] border border-slate-700">
+          <p class="text-slate-300 text-sm">
+            ¡Hola! Soy tu asistente virtual de Insano Network. ¿En qué puedo ayudarte hoy?
+          </p>
+        </div>
+      </div>
+
+      <!-- Opciones Rápidas -->
+      <div class="space-y-2 mb-4">
+        <button class="w-full text-left px-3 py-2 bg-slate-800/50 hover:bg-slate-800 rounded-lg text-slate-300 hover:text-white text-sm transition-colors border border-slate-700/50 hover:border-slate-600">
+          🎨 Ver servicios de diseño
+        </button>
+        <button class="w-full text-left px-3 py-2 bg-slate-800/50 hover:bg-slate-800 rounded-lg text-slate-300 hover:text-white text-sm transition-colors border border-slate-700/50 hover:border-slate-600">
+          💻 Conocer cursos disponibles
+        </button>
+        <button class="w-full text-left px-3 py-2 bg-slate-800/50 hover:bg-slate-800 rounded-lg text-slate-300 hover:text-white text-sm transition-colors border border-slate-700/50 hover:border-slate-600">
+          🏢 Capacitación empresarial
+        </button>
+        <button class="w-full text-left px-3 py-2 bg-slate-800/50 hover:bg-slate-800 rounded-lg text-slate-300 hover:text-white text-sm transition-colors border border-slate-700/50 hover:border-slate-600">
+          📞 Hablar con un asesor
+        </button>
+      </div>
+
+      <!-- Espacio para mensajes futuros -->
+      <div id="chat-messages" class="space-y-3">
+        <!-- Los mensajes se agregarán aquí dinámicamente -->
+      </div>
+    </div>
+
+    <!-- Input del Chat -->
+    <div class="p-3 border-t border-slate-700 bg-slate-800/50 rounded-b-2xl">
+      <div class="relative">
+        <input 
+          type="text" 
+          id="chat-input"
+          placeholder="Escribe tu mensaje..." 
+          class="w-full bg-slate-900 border border-slate-600/50 rounded-full py-2 px-4 text-slate-300 text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-600"
+          disabled
+        />
+        <button 
+          id="chat-send"
+          class="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center text-white transition-colors disabled:opacity-50"
+          disabled
+        >
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+          </svg>
+        </button>
+      </div>
+      <p class="text-center text-xs text-slate-600 mt-2">
+        IA Chat Integration (Coming Soon)
+      </p>
+    </div>
+  </dialog>
+</div>
+
+<style>
+  /* Estilos para el ChatBot Flotante */
+  .chatbot-dialog[open] {
+    opacity: 1;
+    scale: 1;
+  }
+  
+  /* Responsive para móvil */
+  @media (max-width: 767px) {
+    .chatbot-dialog {
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+      width: auto !important;
+      height: 70vh !important;
+      max-height: 600px;
+    }
+  }
+  
+  /* Animaciones */
+  .chatbot-toggle:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  
+  /* Efecto de pulsación en el indicador */
+  @keyframes pulse-dot {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  .chatbot-toggle .animate-pulse {
+    animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>
+
+<script>
+  // Funcionalidad del ChatBot
+  document.addEventListener('astro:page-load', () => {
+    initChatBot();
+  });
+  
+  // Inicializar en el primer load
+  initChatBot();
+  
+  function initChatBot() {
+    const toggleBtn = document.getElementById('chatbot-toggle');
+    const closeBtn = document.getElementById('chatbot-close');
+    const dialog = document.getElementById('chatbot-dialog');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('chat-send');
+    
+    if (!toggleBtn || !closeBtn || !dialog) return;
+    
+    // Toggle del chat
+    toggleBtn.addEventListener('click', () => {
+      if (dialog.open) {
+        dialog.close();
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        dialog.showModal();
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        // Enfocar el input cuando se abre
+        setTimeout(() => {
+          chatInput?.focus();
+        }, 100);
+      }
+    });
+    
+    // Cerrar chat
+    closeBtn.addEventListener('click', () => {
+      dialog.close();
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    });
+    
+    // Cerrar al hacer click fuera (solo en desktop)
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog && window.innerWidth > 767) {
+        dialog.close();
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    
+    // Manejo de input (desactivado por ahora)
+    const handleInput = () => {
+      // Futura implementación de envío de mensajes
+      console.log('Chat message:', chatInput.value);
+    };
+    
+    chatInput?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        handleInput();
+      }
+    });
+    
+    sendBtn?.addEventListener('click', handleInput);
+    
+    // Opciones rápidas
+    const quickButtons = dialog.querySelectorAll('button:not(#chatbot-close):not(#chat-send)');
+    quickButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Futura implementación de navegación basada en las opciones
+        console.log('Quick option selected:', btn.textContent);
+      });
+    });
+  }
+</script>

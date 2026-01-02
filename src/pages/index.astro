@@ -1,16 +1,18 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
+import { getTarjetas } from '../lib/tarjetas';
 import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Hero from "../components/home/Hero.astro";
+import HomeExperiencia from "../components/home/1homeExperiencia/HomeExperiencia.astro";
+import ShopPreview from "../components/home/ShopPreview.astro";
+import NavigationHub from "../components/home/NavigationHub.astro";
+import ChatBot from "../components/home/ChatBot.astro";
 import CardShop from "../components/CardShop.astro";
 import ImgSlider from "../assets/SlideImages/Insano Network-Slider 1.jpg";
 import ImgSlider2 from "../assets/SlideImages/Insano Network-Slider 2.jpg";
 import ImgSlider3 from "../assets/SlideImages/Insano Network-Slider 3.png";
 import SliderImg from "../components/SliderImg.astro";
-import HomeExperiencia from "../components/home/1homeExperiencia/HomeExperiencia.astro";
-import VideoMedia from "../components/home/VideoMedia/VideoMedia.astro";
-import SocialMedia from "../components/home/SocialMedia/SocialMedia.astro";
-import ConnectWithUs from "../components/home/ConnectWithUs.astro";
-import ShopPreview from "../components/home/ShopPreview.astro";
 import ScrollPrompt from "../components/ScrollPrompt.astro";
 
 export const prerender = false;
@@ -294,14 +296,8 @@ const tarjetas = [
       kitDescuento={tarjetasKitConDescuento}
     />
 
-    <!-- Sección Conecta con Nosotros -->
-    <ConnectWithUs />
-
-    <!-- Video Media Section (Streams & Playlists) -->
-    <VideoMedia />
-
-    <!-- Social Media Section -->
-    <SocialMedia />
+    <!-- Navigation Hub Section (Conecta + VideoMedia + Social) -->
+    <NavigationHub />
 
 
     <!-- Header Title Section - Giant & Fixed -->
@@ -360,4 +356,5 @@ const tarjetas = [
 
   <!-- <div class="modal-bottom">Página en construcción 🚧</div> -->
   <ScrollPrompt />
+  <ChatBot />
 </Layout>
