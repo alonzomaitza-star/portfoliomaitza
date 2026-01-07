@@ -1,0 +1,56 @@
+---
+import ScrollPrompt from "./ScrollPrompt.astro";
+---
+    <div
+      id="hero-title"
+      class="bg-black/40 backdrop-blur-sm border-b border-white/20 shadow-2xl fixed bottom-0 left-0 w-full p-2 md:p-6 z-45 text-right pointer-events-none transition-opacity duration-500"
+    >
+      <h1
+        class="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-tight uppercase tracking-tighter drop-shadow-lg"
+        >
+        Insano<br />Network
+      </h1>
+      <h2
+        class="text-2xl md:text-4xl text-[#ffd600] font-bold mt-4 max-w-4xl ml-auto drop-shadow-md"
+      >
+        Diseña, Desarrolla y Vende tus Ideas.
+      </h2>
+      <ScrollPrompt />
+      
+    </div>
+    <script is:inline>
+        function handleHeroScrollInline() {
+        const heroTitle = document.getElementById("hero-title");
+        if (!heroTitle) return;
+        
+        const scrollPosition =
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+        
+        const windowHeight = window.innerHeight;
+        // Fade out quickly - completely gone by 30% of viewport height scroll
+        const fadeThreshold = windowHeight * 0.45;
+        const opacity = Math.max(0, 1 - scrollPosition / fadeThreshold);
+        
+        heroTitle.style.opacity = opacity.toString();
+        
+        if (opacity <= 0.05) {
+            heroTitle.style.visibility = "hidden";
+        } else {
+            heroTitle.style.visibility = "visible";
+        }
+        }
+        
+        window.addEventListener("scroll", handleHeroScrollInline);
+        window.addEventListener("resize", handleHeroScrollInline);
+        window.addEventListener("DOMContentLoaded", handleHeroScrollInline);
+        
+        // Also interval check for safety in case of layout shifts
+        setInterval(handleHeroScrollInline, 500);
+        
+        // Immediate check
+        handleHeroScrollInline();
+    </script>
+

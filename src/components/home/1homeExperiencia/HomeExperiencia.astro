@@ -415,301 +415,131 @@ const COLOR_MAP = {
       }
     </div>
 
-    <!-- Section: Aprende y Capacita - Kept Static for now as it is a specific layout -->
+    <!-- Streaming Unificado Panel (Twitch & Kick) -->
     <div class="mb-20">
       <div class="text-center mb-10">
         <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-          ¿No sabes por donde empezar o quieres aprender?
+          Streaming en Vivo
         </h2>
-        <p class="text-xl text-slate-300">Les enseñamos.</p>
+        <p class="text-xl text-slate-300">Conéctate con nosotros en tiempo real</p>
       </div>
 
-      <div class="w-full">
-        <div
-          class="relative overflow-hidden bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-3xl shadow-2xl"
-        >
+      <div class="w-full max-w-6xl mx-auto">
+        <div class="relative overflow-hidden bg-slate-800/50 backdrop-blur-md border border-slate-700 rounded-3xl shadow-2xl">
           <!-- Background Gradients -->
-          <div
-            class="absolute top-0 right-0 w-[50%] h-[50%] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"
-          >
-          </div>
-          <div
-            class="absolute bottom-0 left-0 w-[50%] h-[50%] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"
-          >
-          </div>
+          <div class="absolute top-0 right-0 w-[50%] h-[50%] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+          <div class="absolute bottom-0 left-0 w-[50%] h-[50%] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 relative z-10">
-            <!-- Columna Cursos (Twitch) -->
-            <div class="p-6 md:p-10 lg:border-r border-slate-700/50 flex flex-col">
-              <div class="flex items-center gap-4 mb-6">
-                <div
-                  class="w-12 h-12 rounded-xl bg-[#9146FF]/20 flex items-center justify-center text-[#9146FF] font-bold text-xl border border-[#9146FF]/30"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h2.998L22.285 11.571V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
-                </div>
-                <div>
-                  <h4 class="text-2xl font-bold text-white">
-                    Cursos & Comunidad
-                  </h4>
-                  <p class="text-sm text-slate-400">
-                    Únete a nuestra comunidad en Twitch
-                  </p>
-                </div>
-              </div>
+          <div class="relative z-10 p-6 md:p-8">
+            <!-- Platform Selector Tabs -->
+            <div class="flex flex-wrap gap-2 mb-6 justify-center">
+              <button 
+                id="twitch-tab" 
+                class="platform-tab active px-4 py-2 bg-[#9146FF] text-white rounded-lg font-semibold transition-all hover:shadow-[0_0_20px_rgba(145,70,255,0.3)]"
+                onclick="showPlatform('twitch')"
+              >
+                <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h2.998L22.285 11.571V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+                </svg>
+                Twitch
+              </button>
+              
+              <button 
+                id="kick-tab" 
+                class="platform-tab px-4 py-2 bg-slate-700 text-white rounded-lg font-semibold transition-all hover:bg-[#53FC18]"
+                onclick="showPlatform('kick')"
+              >
+                <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 2.52-1.12 4.88-2.91 6.31-1.48 1.18-3.3 1.73-5.16 1.63-2.14-.16-4.11-1.04-5.62-2.39-1.51-1.36-2.5-3.35-2.61-5.38-.17-3.13 1.41-6.19 3.96-8.08.31-.23.63-.44.97-.61.64-.32 1.35-.55 2.07-.63v4.08c-.75.14-1.48.51-2.03 1.05-.63.63-.94 1.54-.86 2.45.1 1.02.66 1.95 1.5 2.55.77.55 1.77.78 2.72.63.92-.15 1.75-.63 2.3-1.37.56-.75.86-1.67.86-2.61V.02z"/>
+                </svg>
+                Kick
+              </button>
+            </div>
 
-              <!-- Twitch Preview -->
-              <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden mb-6 border border-slate-700 shadow-lg group">
-                <!-- Live indicator badge -->
-                {twitchData.isLive && (
-                  <div class="absolute top-3 left-3 z-20 flex items-center gap-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md">
-                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                    EN VIVO
+            <!-- Streaming Content Area -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Main Stream Display -->
+              <div class="lg:col-span-2">
+                <div class="relative aspect-video bg-black rounded-xl overflow-hidden border border-slate-700">
+                  <!-- Twitch Stream -->
+                  <div id="twitch-content" class="stream-content">
+                    <iframe
+                      height="100%"
+                      width="100%"
+                      allowfullscreen
+                      class="absolute inset-0 w-full h-full"
+                      src="https://player.twitch.tv/?channel=insanonetwork&parent=localhost&parent=127.0.0.1&parent=insano.network&parent=insanonetwork.com&muted=false&autoplay=true"
+                    ></iframe>
                   </div>
-                )}
-                
-                <iframe
-                  id="twitch-embed-player"
-                  height="100%"
-                  width="100%"
-                  allowfullscreen
-                  class="absolute inset-0 w-full h-full"
-                ></iframe>
-                <script is:inline define:vars={{ isLive: twitchData.isLive, channelName: twitchData.channelName, videoId: twitchData.latestVideoId }}>
-                    (function() {
-                        const iframe = document.getElementById('twitch-embed-player');
-                        if (iframe) {
-                            const hostname = window.location.hostname;
-                            const parents = `parent=${hostname}&parent=localhost&parent=127.0.0.1&parent=insano.network&parent=insanonetwork.com`;
-                            
-                            if (isLive) {
-                                // Show live stream
-                                iframe.src = `https://player.twitch.tv/?channel=${channelName}&${parents}&muted=false&autoplay=true`;
-                            } else {
-                                // Show latest VOD
-                                iframe.src = `https://player.twitch.tv/?video=${videoId}&${parents}&muted=false&autoplay=false`;
-                            }
-                        }
-                    })();
-                </script>
+                  
+                  <!-- Kick Stream -->
+                  <div id="kick-content" class="stream-content hidden">
+                    <iframe
+                      height="100%"
+                      width="100%"
+                      allowfullscreen
+                      class="absolute inset-0 w-full h-full"
+                      src="https://player.kick.com/insanonetwork?muted=false&autoplay=true"
+                    ></iframe>
+                  </div>
+                </div>
               </div>
 
-              <ul class="space-y-4 text-slate-300 mb-8 mt-auto">
-                <li class="flex items-start gap-3">
-                  <span class="text-[#9146FF] mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                  </span>
-                  <span>Cursos gratis en Twitch</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-[#9146FF] mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                  </span>
-                  <span>Cursos personalizados</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-[#9146FF] mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                  </span>
-                  <span>Certificados de finalización</span>
-                </li>
-              </ul>
-              <a
-                href="#seccionTwitch"
-                class="w-full sm:w-auto px-6 py-3 text-center text-sm font-semibold text-white bg-[#9146FF] rounded-xl hover:bg-[#772ce8] transition-all hover:shadow-[0_0_20px_rgba(145,70,255,0.3)]"
-              >
-                Ver Canal
-              </a>
-            </div>
-
-            <!-- Columna Capacitaciones (YouTube) -->
-            <div class="p-6 md:p-10 flex flex-col">
-              <div class="flex items-center gap-4 mb-6">
-                <div
-                  class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center text-red-500 font-bold text-xl border border-red-500/30"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-                </div>
-                <div class="flex-grow">
-                  <h4 class="text-2xl font-bold text-white">
-                    Capacitaciones
-                  </h4>
-                  <p class="text-sm text-slate-400">
-                    Entrenamiento para empresas
-                  </p>
-                </div>
-                
-                <!-- Live on YouTube Badge -->
-                {youtubeData.isLive && (
-                  <a 
-                    href={`https://www.youtube.com/watch?v=${youtubeData.liveVideoId}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-all hover:scale-105 shadow-lg hover:shadow-red-500/50"
-                  >
-                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                    LIVE EN YT
-                  </a>
-                )}
-              </div>
-
-               <!-- Youtube Preview -->
-               <div class="relative w-full aspect-video bg-black/40 rounded-xl overflow-hidden mb-6 border border-slate-700 shadow-lg group">
-                <!-- Placeholder for Excel Video -->
-                <div class="absolute inset-0 bg-slate-800 flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-900 via-slate-900 to-slate-900"></div>
-                     <span class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center pl-1 shadow-[0_0_30px_rgba(220,38,38,0.4)] relative z-10 group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    </span>
-                    <div class="absolute bottom-4 left-4 right-4 z-10">
-                        <span class="bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded uppercase font-bold tracking-wider mb-1 inline-block">Demo</span>
-                        <p class="text-white font-semibold text-sm leading-tight">Capacitación Express: Excel para Negocios (3 min)</p>
+              <!-- Chat & Info Panel -->
+              <div class="lg:col-span-1">
+                <div class="bg-slate-900/50 rounded-xl p-4 border border-slate-700 h-full">
+                  <h4 class="text-white font-semibold mb-4">Chat & Info</h4>
+                  
+                  <!-- Live Status -->
+                  <div class="mb-4">
+                    <div class="flex items-center gap-2 mb-2">
+                      <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                      <span class="text-green-400 text-sm font-semibold">EN VIVO</span>
                     </div>
+                    <p class="text-slate-300 text-sm">Contenido en tiempo real</p>
+                  </div>
+                  
+                  <!-- Chat Placeholder -->
+                  <div class="bg-slate-800 rounded-lg p-3 h-48 overflow-y-auto">
+                    <div class="space-y-2 text-xs">
+                      <div class="text-slate-400">
+                        <span class="text-purple-400 font-semibold">Usuario:</span> ¡Hola! ¿Qué tal el stream?
+                      </div>
+                      <div class="text-slate-400">
+                        <span class="text-blue-400 font-semibold">Visitante:</span> Muy bueno contenido 👍
+                      </div>
+                      <div class="text-slate-400">
+                        <span class="text-green-400 font-semibold">Fans:</span> Sigan a @insanonetwork!
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Platform Links -->
+                  <div class="mt-4 space-y-2">
+                    <a 
+                      href="https://www.twitch.tv/insanonetwork" 
+                      target="_blank"
+                      class="block w-full px-3 py-2 bg-[#9146FF] hover:bg-[#772ce8] text-white text-sm rounded-lg transition-colors text-center"
+                    >
+                      Ver en Twitch
+                    </a>
+                    <a 
+                      href="https://kick.com/insanonetwork" 
+                      target="_blank"
+                      class="block w-full px-3 py-2 bg-[#53FC18] hover:bg-[#45E0A0] text-white text-sm rounded-lg transition-colors text-center"
+                    >
+                      Ver en Kick
+                    </a>
+                  </div>
                 </div>
-             </div>
-
-              <ul class="space-y-4 text-slate-300 mb-8 mt-auto">
-                <li class="flex items-start gap-3">
-                  <span class="text-red-500 mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                  </span>
-                  <span>Planeación de proyectos</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-red-500 mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                  </span>
-                  <span>Desarrollo y Diseño de Marca</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-red-500 mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                  </span>
-                  <span>Informática (Excel, Word, etc.)</span>
-                </li>
-              </ul>
-              <a
-                href="#seccionYoutube"
-                class="w-full sm:w-auto px-6 py-3 text-center text-sm font-semibold text-white bg-red-600 rounded-xl hover:bg-red-500 transition-all hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"
-              >
-                Ver Videos
-              </a>
-            </div>
-          </div>
-          
-           <!-- Leyenda inferior -->
-          <div
-            class="px-8 py-4 bg-slate-900/50 border-t border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-2"
-          >
-            <div
-              class="text-sm text-slate-300 font-medium flex items-center gap-2"
-            >
-              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-              Asesoramiento empresarial
-            </div>
-            <div class="text-xs text-slate-500">
-              Diagnóstico • Plan de acción • Acompañamiento
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- AI Chat Placeholder -->
-    <div id="chat-assistant" class="max-w-3xl mx-auto h-[90%] scroll-mt-24">
-      <div
-        class="bg-slate-900/80 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md"
-      >
-        <!-- Chat Header -->
-        <div
-          class="bg-slate-800/50 px-6 py-4 border-b border-slate-700 flex items-center justify-between"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center"
-            >
-              <!-- AI Icon -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 text-white"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                  clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-semibold text-white text-sm">Insano Assistant</h4>
-              <p class="text-xs text-green-400 flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Online
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <!-- Chat Body (Mock) -->
-        <div class="p-6 h-[250px] overflow-y-auto flex flex-col gap-4">
-          <!-- Message from AI -->
-          <div class="flex gap-3">
-            <div
-              class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex-shrink-0 flex items-center justify-center mt-1"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 text-white"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-              </svg>
-            </div>
-            <div
-              class="bg-slate-800 rounded-2xl p-4 rounded-tl-none max-w-[80%] border border-slate-700"
-            >
-              <p class="text-slate-300 text-sm">
-                ¡Hola! Soy tu asistente virtual. Cuéntame un poco más sobre lo
-                que necesitas hoy. ¿Es para ti o para tu empresa?
-              </p>
-            </div>
-          </div>
-
-          <!-- Simulated User Input Area -->
-          <div class="mt-auto"></div>
-        </div>
-
-        <!-- Chat Input Area -->
-        <div class="p-4 bg-slate-800/30 border-t border-slate-700">
-          <div class="relative">
-            <input
-              type="text"
-              placeholder="Escribe tu mensaje aquí..."
-              class="w-full bg-slate-900 border border-slate-600/50 rounded-full py-3 px-5 text-slate-300 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-600"
-              disabled
-            />
-            <button
-              class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center text-white transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-          <p class="text-center text-xs text-slate-600 mt-2">
-            AI Chat Integration (Coming Soon)
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -779,4 +609,38 @@ const COLOR_MAP = {
         };
     });
   }
+
+  // Platform switching functionality (Twitch & Kick only)
+  function showPlatform(platform) {
+    // Hide all content
+    document.querySelectorAll('.stream-content').forEach(content => {
+      content.classList.add('hidden');
+    });
+    
+    // Remove active class from all tabs
+    document.querySelectorAll('.platform-tab').forEach(tab => {
+      tab.classList.remove('bg-[#9146FF]', 'bg-[#53FC18]');
+      tab.classList.add('bg-slate-700');
+    });
+    
+    // Show selected content and activate tab
+    const content = document.getElementById(`${platform}-content`);
+    const tab = document.getElementById(`${platform}-tab`);
+    
+    if (content) {
+      content.classList.remove('hidden');
+    }
+    
+    if (tab) {
+      tab.classList.remove('bg-slate-700');
+      if (platform === 'twitch') {
+        tab.classList.add('bg-[#9146FF]');
+      } else if (platform === 'kick') {
+        tab.classList.add('bg-[#53FC18]');
+      }
+    }
+  }
+  
+  // Make functions globally available
+  window.showPlatform = showPlatform;
 </script>

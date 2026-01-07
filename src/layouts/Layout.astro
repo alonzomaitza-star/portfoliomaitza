@@ -1,10 +1,10 @@
 ---
 import "../styles/global.css";
 import Nav from "../components/NavBarMain.astro";
-import bg from "../assets/BG-material.png";
 import Footer from "../components/Footer.astro";
-import { SITE_URL, SITE_TITLE } from "../consts";
-
+import { SITE_URL } from "../consts";
+import ChatBot from "../components/home/ChatBot.astro";
+import NavigationPanel from "../components/home/NavigationPanel.astro";
 // Props para SEO
 interface Props {
 	title?: string;
@@ -81,6 +81,10 @@ const fullTitle = title.includes("Insano Network")
 	</head>
 	<body>
 		<Nav />
+		<!-- ChatBot -->
+		<ChatBot />
+		<!-- Navigation Panel -->
+		<NavigationPanel />
 		<slot />
 		<Footer />
 	</body>

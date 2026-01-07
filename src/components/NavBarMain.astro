@@ -32,37 +32,73 @@ import Logo from "../assets/Logo.png";
                 <div class="navbarmain-dialog-section">
                   <h4>Nuestros Servicios</h4>
                   <div class="navbarmain-card-list">
+                    <a class="navbarmain-card" href="/emprender">
+                      <h5 class="navbarmain-card-nombre">Emprender</h5>
+                      <h6 class="navbarmain-card-descripcion">
+                        Emprende con nosotros
+                      </h6>
+                    </a>
                     <a class="navbarmain-card" href="/diseno">
-                      <div class="navbarmain-card-nombre">Diseño</div>
+                      <h5 class="navbarmain-card-nombre">Diseño</h5>
+                      <h6 class="navbarmain-card-descripcion">
+                        Diseño web y gráfico
+                      </h6>
                     </a>
                     <a class="navbarmain-card" href="/desarrollo">
-                      <div class="navbarmain-card-nombre">Desarrollo</div>
+                      <h5 class="navbarmain-card-nombre">Desarrollo</h5>
+                      <h6 class="navbarmain-card-descripcion">
+                        Desarrollo web y móvil
+                      </h6>
                     </a>
                     <a class="navbarmain-card" href="/marketing">
-                      <div class="navbarmain-card-nombre">Marketing</div>
+                      <h5 class="navbarmain-card-nombre">Marketing</h5>
+                      <h6 class="navbarmain-card-descripcion">
+                        Marketing digital y SEO
+                      </h6>
                     </a>
                     <a class="navbarmain-card" href="/contable">
-                      <div class="navbarmain-card-nombre">Contable</div>
+                      <h5 class="navbarmain-card-nombre">Contable</h5>
+                      <h6 class="navbarmain-card-descripcion">
+                        Contable digital y contable virtual
+                      </h6>
+                    </a>
+                    <a class="navbarmain-card" href="/ecommerce">
+                      <h5 class="navbarmain-card-nombre">E-commerce</h5>
+                      <h6 class="navbarmain-card-descripcion">
+                        E-commerce digital y e-commerce móvil
+                      </h6>
                     </a>
                     <a class="navbarmain-card" href="/cursos">
-                      <div class="navbarmain-card-nombre">Cursos</div>
+                      <h5 class="navbarmain-card-nombre">Cursos</h5>
+                      <h6 class="navbarmain-card-descripcion">
+                        Cursos en línea y cursos presenciales
+                      </h6>
                     </a>
                     <a class="navbarmain-card" href="/capacitacion">
-                      <div class="navbarmain-card-nombre">Capacitación</div>
+                      <h5 class="navbarmain-card-nombre">Capacitación</h5>
+                      <h6 class="navbarmain-card-descripcion">
+                        Capacitación en línea y capacitación presencial
+                      </h6>
                     </a>
                   </div>
                 </div>
-                <div class="navbarmain-dialog-section">
+                <!-- <div class="navbarmain-dialog-section">
                   <h4>Otro Bloque</h4>
                   <p>Contenido del nuevo bloque.</p>
-                </div>
+                </div> -->
               </dialog>
             </li>
             <li><a href="/nosotros">Conócenos</a></li>
+            <li><a href="/herramientas">Herramientas</a></li>
             <li><a href="/blog">Blog</a></li>
-            <li><a href="/beneficios" class="beneficios-link">Beneficios</a></li>
             <li>
-              <a href="#" class="tienda-link inline-flex items-center gap-2" aria-label="Tienda"
+              <a href="/beneficios" class="beneficios-link">Beneficios</a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="tienda-link inline-flex items-center gap-2"
+                aria-label="Tienda"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
@@ -79,8 +115,9 @@ import Logo from "../assets/Logo.png";
                     cy="21"
                     r="1"></circle><path
                     d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-                  ></path></svg>Tienda
-                  </a>
+                  ></path></svg
+                >Tienda
+              </a>
             </li>
           </ul>
           <div class="nav-actions" aria-label="Acciones de usuario">
@@ -244,6 +281,11 @@ import Logo from "../assets/Logo.png";
   <div class="nav-line nav-line-bottom"></div>
 </div>
 <style>
+  .navbarmain-card-descripcion {
+    font-size: 0.7rem;
+    margin-top: -10px;
+  }
+
   .nav-wrapper {
     width: 80vw;
     max-width: 1100px;
@@ -326,7 +368,14 @@ import Logo from "../assets/Logo.png";
     font-size: 1rem;
     transition: color 0.2s;
   }
+
   .nav-links a:hover {
+    color: #ffd600;
+  }
+  .navbarmain-card-descripcion {
+    color: #858585;
+  }
+  .navbarmain-card-descripcion:hover {
     color: #ffd600;
   }
   .nav-actions {
@@ -830,15 +879,15 @@ import Logo from "../assets/Logo.png";
     justify-content: center;
   }
   .navbarmain-card {
+    text-align: center;
     background: rgba(255, 255, 255, 0.9);
     color: #232728;
     border-radius: 7px;
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    padding: 1rem 1.25rem;
+    border: 1.5px solid rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 0.25rem;
     font-size: 0.95rem;
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15);
     min-width: 180px;
-    text-align: left;
     margin-bottom: 0.5rem;
     transition: all 0.3s ease;
     display: flex;
@@ -847,6 +896,8 @@ import Logo from "../assets/Logo.png";
     text-decoration: none;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   .navbarmain-card:hover {
     background: rgba(35, 39, 40, 0.9);

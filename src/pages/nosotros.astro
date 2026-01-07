@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 import TeamCard from "../components/TeamCard.astro";
 
 // Aqui necesitamos un lista de objetos que vamos a pintar en la parte abajo.
@@ -18,7 +17,7 @@ const equipo = [
   // },
   // {
   //   nombre: "Ana",
-  //   apellido: "Designer", 
+  //   apellido: "Designer",
   //   username: "anadesign",
   //   redes: {
   //     instagram: "https://instagram.com/anadesign",
@@ -33,7 +32,7 @@ const equipo = [
   //   username: "carlosmgmt",
   //   redes: {
   //     instagram: "https://instagram.com/carlosmgmt",
-  //     facebook: "https://facebook.com/carlosmgmt", 
+  //     facebook: "https://facebook.com/carlosmgmt",
   //     whatsapp: "+1122334455",
   //     web: "/portafolio/carlos"
   //   }
@@ -46,11 +45,10 @@ const equipo = [
       instagram: "https://instagram.com/mrdufygy",
       facebook: "https://facebook.com/mrdufygy",
       whatsapp: "+52 55 4296 5463",
-      web: "/portafolio/mrdufygy"
-    }
-  }
+      web: "/portafolio/mrdufygy",
+    },
+  },
 ];
-
 ---
 
 <Layout
@@ -96,31 +94,76 @@ const equipo = [
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div class="text-center md:text-left">
-            <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full mx-auto md:mx-0 mb-6 flex items-center justify-center">
-              <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            <div
+              class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full mx-auto md:mx-0 mb-6 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-blue-600 dark:text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4"
+            >
               Nuestra Misión
             </h2>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-              En Insano Network, nuestra misión es transformar ideas en soluciones funcionales a través de la integración de conocimientos en informática, diseño, automatización y marketing. Actuamos como el puente entre los desafíos de nuestros clientes y los especialistas más aptos para resolverlos, gestionando proyectos de forma personalizada, profesional y eficaz. Brindamos servicios y productos innovadores adaptados a las necesidades específicas de cada cliente, con un enfoque humano, responsable y orientado a resultados.
+              En Insano Network, nuestra misión es transformar ideas en
+              soluciones funcionales a través de la integración de conocimientos
+              en informática, diseño, automatización y marketing. Actuamos como
+              el puente entre los desafíos de nuestros clientes y los
+              especialistas más aptos para resolverlos, gestionando proyectos de
+              forma personalizada, profesional y eficaz. Brindamos servicios y
+              productos innovadores adaptados a las necesidades específicas de
+              cada cliente, con un enfoque humano, responsable y orientado a
+              resultados.
             </p>
           </div>
-          
+
           <div class="text-center md:text-left">
-            <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full mx-auto md:mx-0 mb-6 flex items-center justify-center">
-              <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            <div
+              class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full mx-auto md:mx-0 mb-6 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-purple-600 dark:text-purple-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                ></path>
               </svg>
             </div>
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4"
+            >
               Nuestra Visión
             </h2>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Ser la empresa matriz líder en gestión e innovación digital, conectando a clientes con especialistas de alto nivel para el desarrollo de proyectos tecnológicos personalizados, eficientes y centrados en el ser humano. Aspiramos a ser el eje que articula redes de conocimiento, creatividad y estrategia, impulsando la transformación digital de empresas pequeñas, medianas y grandes en cualquier parte del mundo.
+              Ser la empresa matriz líder en gestión e innovación digital,
+              conectando a clientes con especialistas de alto nivel para el
+              desarrollo de proyectos tecnológicos personalizados, eficientes y
+              centrados en el ser humano. Aspiramos a ser el eje que articula
+              redes de conocimiento, creatividad y estrategia, impulsando la
+              transformación digital de empresas pequeñas, medianas y grandes en
+              cualquier parte del mundo.
             </p>
           </div>
         </div>
@@ -130,72 +173,133 @@ const equipo = [
     <!-- Filosofía Empresarial Section -->
     <section id="nuestra-filosofia" class="container mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+        >
           Filosofía Empresarial
         </h2>
         <p class="mt-4 text-xl text-blue-600 dark:text-blue-400 font-semibold">
           "Usar lo que tenemos para transformar lo que hacemos."
         </p>
-        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-          En Insano Network creemos que el conocimiento no solo es poder, sino también puente. 
-          Es lo que nos permite conectar ideas con soluciones, personas con expertos, y visión con acción. 
-          Nuestra filosofía se rige por valores sólidos y principios que guían cada proyecto que emprendemos.
+        <p
+          class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto"
+        >
+          En Insano Network creemos que el conocimiento no solo es poder, sino
+          también puente. Es lo que nos permite conectar ideas con soluciones,
+          personas con expertos, y visión con acción. Nuestra filosofía se rige
+          por valores sólidos y principios que guían cada proyecto que
+          emprendemos.
         </p>
       </div>
 
       <!-- Principios Fundamentales -->
       <div class="mb-16">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
+        <h3
+          class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8"
+        >
           Principios Fundamentales
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Centralidad Humana</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Ponemos a las personas en el centro. Desde nuestro equipo hasta nuestros clientes, el enfoque humano y empático guía cada interacción y decisión.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Centralidad Humana
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Ponemos a las personas en el centro. Desde nuestro equipo hasta
+              nuestros clientes, el enfoque humano y empático guía cada
+              interacción y decisión.
+            </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Conexión Estratégica</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Más que una empresa, somos una red de talentos. Identificamos al experto ideal para cada desafío y lo conectamos con quien lo necesita.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Conexión Estratégica
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Más que una empresa, somos una red de talentos. Identificamos al
+              experto ideal para cada desafío y lo conectamos con quien lo
+              necesita.
+            </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Optimización de Recursos</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Aprovechamos lo que sabemos, tenemos y somos. No se trata de más herramientas, sino de usar mejor las existentes.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Optimización de Recursos
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Aprovechamos lo que sabemos, tenemos y somos. No se trata de más
+              herramientas, sino de usar mejor las existentes.
+            </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Aprendizaje Continuo</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Investigamos, experimentamos y nos certificamos constantemente. El conocimiento debe crecer junto con la demanda.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Aprendizaje Continuo
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Investigamos, experimentamos y nos certificamos constantemente. El
+              conocimiento debe crecer junto con la demanda.
+            </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Automatización con Sentido</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Automatizamos procesos para liberar tiempo humano, no para deshumanizar el trabajo.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Automatización con Sentido
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Automatizamos procesos para liberar tiempo humano, no para
+              deshumanizar el trabajo.
+            </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Eficiencia Personalizada</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">La productividad no es igual para todos. Adaptamos nuestras soluciones al perfil, cultura y necesidad específica del cliente.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Eficiencia Personalizada
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              La productividad no es igual para todos. Adaptamos nuestras
+              soluciones al perfil, cultura y necesidad específica del cliente.
+            </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Comunicación Transparente</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Informamos, explicamos, escuchamos. Todo flujo de trabajo parte de la confianza y la claridad.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Comunicación Transparente
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Informamos, explicamos, escuchamos. Todo flujo de trabajo parte de
+              la confianza y la claridad.
+            </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Visión Escalable</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Pensamos en hoy, construimos para el mañana. Nuestras soluciones permiten crecer y evolucionar.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Visión Escalable
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Pensamos en hoy, construimos para el mañana. Nuestras soluciones
+              permiten crecer y evolucionar.
+            </p>
           </div>
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Responsabilidad Integral</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Nos importa el impacto social, humano y digital de lo que hacemos. Actuamos con ética, sostenibilidad y cuidado.</p>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
+              Responsabilidad Integral
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Nos importa el impacto social, humano y digital de lo que hacemos.
+              Actuamos con ética, sostenibilidad y cuidado.
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Habilidades Clave del Equipo -->
       <div class="mb-16">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
+        <h3
+          class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8"
+        >
           🛠️ Habilidades Clave de Nuestro Equipo
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
-            <h4 class="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-4">👨‍💼 Project Managers (PM)</h4>
+            <h4
+              class="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-4"
+            >
+              👨‍💼 Project Managers (PM)
+            </h4>
             <ul class="space-y-2 text-gray-700 dark:text-gray-300">
               <li>• Gestión ágil de proyectos (Scrum, Kanban)</li>
               <li>• Coordinación de equipos multidisciplinarios</li>
@@ -204,9 +308,13 @@ const equipo = [
               <li>• Resolución de conflictos y toma de decisiones</li>
             </ul>
           </div>
-          
+
           <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-6">
-            <h4 class="text-xl font-semibold text-green-900 dark:text-green-100 mb-4">📱 Community Managers (CM)</h4>
+            <h4
+              class="text-xl font-semibold text-green-900 dark:text-green-100 mb-4"
+            >
+              📱 Community Managers (CM)
+            </h4>
             <ul class="space-y-2 text-gray-700 dark:text-gray-300">
               <li>• Gestión de comunidades y redes sociales</li>
               <li>• Branding digital y reputación de marca</li>
@@ -215,9 +323,13 @@ const equipo = [
               <li>• Escucha activa y atención al cliente</li>
             </ul>
           </div>
-          
+
           <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6">
-            <h4 class="text-xl font-semibold text-purple-900 dark:text-purple-100 mb-4">💻 Desarrolladores Senior</h4>
+            <h4
+              class="text-xl font-semibold text-purple-900 dark:text-purple-100 mb-4"
+            >
+              💻 Desarrolladores Senior
+            </h4>
             <ul class="space-y-2 text-gray-700 dark:text-gray-300">
               <li>• Diseño de arquitecturas escalables y seguras</li>
               <li>• Desarrollo frontend y backend con buenas prácticas</li>
@@ -226,9 +338,13 @@ const equipo = [
               <li>• Mentoreo y revisión de código en equipo</li>
             </ul>
           </div>
-          
+
           <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-6">
-            <h4 class="text-xl font-semibold text-orange-900 dark:text-orange-100 mb-4">📈 Especialistas en Marketing</h4>
+            <h4
+              class="text-xl font-semibold text-orange-900 dark:text-orange-100 mb-4"
+            >
+              📈 Especialistas en Marketing
+            </h4>
             <ul class="space-y-2 text-gray-700 dark:text-gray-300">
               <li>• Estrategia digital y funnel de conversión</li>
               <li>• SEO/SEM y posicionamiento orgánico/pago</li>
@@ -242,12 +358,18 @@ const equipo = [
 
       <!-- Servicios Especializados -->
       <div class="mb-16">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
+        <h3
+          class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8"
+        >
           Servicios Especializados
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">🎬 Producción Digital & Multimedia</h4>
+            <h4
+              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              🎬 Producción Digital & Multimedia
+            </h4>
             <ul class="space-y-2 text-gray-600 dark:text-gray-300">
               <li>• Producción audiovisual profesional</li>
               <li>• Edición y postproducción de video</li>
@@ -255,9 +377,13 @@ const equipo = [
               <li>• Tomas con drone y cámara profesional</li>
             </ul>
           </div>
-          
+
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">🌐 Diseño Digital, Web & 3D</h4>
+            <h4
+              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              🌐 Diseño Digital, Web & 3D
+            </h4>
             <ul class="space-y-2 text-gray-600 dark:text-gray-300">
               <li>• Diseño web responsivo UX/UI</li>
               <li>• Identidad visual completa</li>
@@ -265,9 +391,13 @@ const equipo = [
               <li>• Animaciones 3D y prototipado físico</li>
             </ul>
           </div>
-          
+
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">📊 Servicios Contables (México)</h4>
+            <h4
+              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              📊 Servicios Contables (México)
+            </h4>
             <ul class="space-y-2 text-gray-600 dark:text-gray-300">
               <li>• Contabilidad fiscal y financiera</li>
               <li>• Administración de nómina e IMSS</li>
@@ -282,7 +412,9 @@ const equipo = [
     <!-- Servicios Principales Section -->
     <section class="container mx-auto px-6 py-16 md:py-24">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+        >
           Nuestros Servicios
         </h2>
         <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -293,9 +425,15 @@ const equipo = [
       <!-- Servicios Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <!-- Diseño -->
-        <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-8">
-          <h3 class="text-2xl font-bold text-blue-900 dark:text-blue-100 mb-4">🧩 Diseño</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">Diseño Digital, UI/UX, Identidad y Modelado 3D</p>
+        <div
+          class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-8"
+        >
+          <h3 class="text-2xl font-bold text-blue-900 dark:text-blue-100 mb-4">
+            🧩 Diseño
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">
+            Diseño Digital, UI/UX, Identidad y Modelado 3D
+          </p>
           <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
             <li>• Branding e identidad corporativa</li>
             <li>• Manuales de marca y material gráfico</li>
@@ -308,9 +446,17 @@ const equipo = [
         </div>
 
         <!-- Desarrollo -->
-        <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-8">
-          <h3 class="text-2xl font-bold text-purple-900 dark:text-purple-100 mb-4">🛠️ Desarrollo</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">Software, Sistemas, Automatización y Capacitación</p>
+        <div
+          class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-8"
+        >
+          <h3
+            class="text-2xl font-bold text-purple-900 dark:text-purple-100 mb-4"
+          >
+            🛠️ Desarrollo
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">
+            Software, Sistemas, Automatización y Capacitación
+          </p>
           <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
             <li>• Software a medida (ERP, CRM)</li>
             <li>• Aplicaciones web y móviles</li>
@@ -323,9 +469,17 @@ const equipo = [
         </div>
 
         <!-- Marketing -->
-        <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-8">
-          <h3 class="text-2xl font-bold text-green-900 dark:text-green-100 mb-4">📈 Marketing y Automatización</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">Marketing Digital y Procesos Inteligentes</p>
+        <div
+          class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-8"
+        >
+          <h3
+            class="text-2xl font-bold text-green-900 dark:text-green-100 mb-4"
+          >
+            📈 Marketing y Automatización
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">
+            Marketing Digital y Procesos Inteligentes
+          </p>
           <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
             <li>• Estrategias de marketing digital</li>
             <li>• Embudos de conversión automatizados</li>
@@ -338,9 +492,17 @@ const equipo = [
         </div>
 
         <!-- Contabilidad -->
-        <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-8">
-          <h3 class="text-2xl font-bold text-orange-900 dark:text-orange-100 mb-4">📊 Servicios Contables</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">Contabilidad Corporativa y Fiscal (México)</p>
+        <div
+          class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-8"
+        >
+          <h3
+            class="text-2xl font-bold text-orange-900 dark:text-orange-100 mb-4"
+          >
+            📊 Servicios Contables
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">
+            Contabilidad Corporativa y Fiscal (México)
+          </p>
           <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
             <li>• Contabilidad electrónica mensual</li>
             <li>• Declaraciones fiscales mensuales/anuales</li>
@@ -353,9 +515,15 @@ const equipo = [
         </div>
 
         <!-- Capacitación -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-lg p-8">
-          <h3 class="text-2xl font-bold text-red-900 dark:text-red-100 mb-4">🧠 Capacitación y Desarrollo</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">Formación Profesional y Especialización Técnica</p>
+        <div
+          class="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-lg p-8"
+        >
+          <h3 class="text-2xl font-bold text-red-900 dark:text-red-100 mb-4">
+            🧠 Capacitación y Desarrollo
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">
+            Formación Profesional y Especialización Técnica
+          </p>
           <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
             <li>• Cursos técnicos y bootcamps</li>
             <li>• Certificaciones empresariales</li>
@@ -368,9 +536,15 @@ const equipo = [
         </div>
 
         <!-- Multimedia -->
-        <div class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 rounded-lg p-8">
-          <h3 class="text-2xl font-bold text-pink-900 dark:text-pink-100 mb-4">🎥 Producción Multimedia</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">Fotografía, Video y Contenido Visual</p>
+        <div
+          class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 rounded-lg p-8"
+        >
+          <h3 class="text-2xl font-bold text-pink-900 dark:text-pink-100 mb-4">
+            🎥 Producción Multimedia
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">
+            Fotografía, Video y Contenido Visual
+          </p>
           <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
             <li>• Grabaciones con dron</li>
             <li>• Video corporativo y promocional</li>
@@ -385,12 +559,18 @@ const equipo = [
 
       <!-- Target Estratégico -->
       <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        <h3
+          class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center"
+        >
           🎯 Nuestro Target Estratégico
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Público Objetivo Principal</h4>
+            <h4
+              class="text-lg font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              Público Objetivo Principal
+            </h4>
             <ul class="space-y-3 text-gray-700 dark:text-gray-300">
               <li class="flex items-start">
                 <span class="text-blue-600 dark:text-blue-400 mr-3">✓</span>
@@ -415,23 +595,38 @@ const equipo = [
             </ul>
           </div>
           <div>
-            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Perfil del Decisor</h4>
+            <h4
+              class="text-lg font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              Perfil del Decisor
+            </h4>
             <div class="space-y-3 text-gray-700 dark:text-gray-300">
               <div>
                 <p class="font-semibold text-gray-900 dark:text-white">Edad:</p>
                 <p>25 a 45 años</p>
               </div>
               <div>
-                <p class="font-semibold text-gray-900 dark:text-white">Profesión:</p>
-                <p>Emprendedores, directores generales, CTOs, CMOs, PMs, diseñadores líderes</p>
+                <p class="font-semibold text-gray-900 dark:text-white">
+                  Profesión:
+                </p>
+                <p>
+                  Emprendedores, directores generales, CTOs, CMOs, PMs,
+                  diseñadores líderes
+                </p>
               </div>
               <div>
-                <p class="font-semibold text-gray-900 dark:text-white">Ubicación:</p>
+                <p class="font-semibold text-gray-900 dark:text-white">
+                  Ubicación:
+                </p>
                 <p>México, escalable a LATAM y EE.UU.</p>
               </div>
               <div>
-                <p class="font-semibold text-gray-900 dark:text-white">Interés Principal:</p>
-                <p>Automatizar procesos, escalar negocio, mejorar imagen digital</p>
+                <p class="font-semibold text-gray-900 dark:text-white">
+                  Interés Principal:
+                </p>
+                <p>
+                  Automatizar procesos, escalar negocio, mejorar imagen digital
+                </p>
               </div>
             </div>
           </div>
@@ -440,10 +635,14 @@ const equipo = [
     </section>
     <section class="bg-gray-100 dark:bg-gray-800 py-16 md:py-24">
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+        >
           De la Idea al Proyecto
         </h2>
-        <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+        <p
+          class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300"
+        >
           En Insano Network, no solo escuchamos ideas, las impulsamos. Nuestro
           enfoque está en el desarrollo tangible de proyectos, ofreciendo los
           recursos y las conexiones necesarias para transformar un concepto en
@@ -452,11 +651,12 @@ const equipo = [
       </div>
     </section>
 
-
-<!-- Nuestro Equipo Section -->
+    <!-- Nuestro Equipo Section -->
     <section class="container mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+        >
           Nuestro Equipo
         </h2>
         <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
@@ -464,22 +664,9 @@ const equipo = [
         </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {equipo.map((miembro) => (
-          <TeamCard miembro={miembro} />
-        ))}
+        {equipo.map((miembro) => <TeamCard miembro={miembro} />)}
       </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Contacto Section -->
     <section id="contacto" class="container mx-auto px-6 text-center">

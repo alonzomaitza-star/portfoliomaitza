@@ -1,0 +1,50 @@
+---
+import { getKickLiveStatus } from '../../lib/kick';
+
+// Fetch data
+const kickData = await getKickLiveStatus();
+---
+
+<!-- Kick Stream Panel -->
+<div class="bg-slate-900/50 rounded-xl overflow-hidden">
+  <div class="relative aspect-video bg-black">
+    {kickData.isLive ? (
+      <iframe
+        height="100%"
+        width="100%"
+        allowfullscreen
+        class="absolute inset-0 w-full h-full"
+        src={`https://player.kick.com/${kickData.channelSlug}?muted=false&autoplay=true`}
+      ></iframe>
+    ) : (
+      <div class="absolute inset-0 bg-slate-900 flex items-center justify-center">
+        <div class="text-center">
+          <div class="w-12 h-12 bg-[#53FC18]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-[#53FC18]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L15 8l-5 5z"/>
+            </svg>
+          </div>
+          <p class="text-white text-sm font-semibold">No estamos en vivo</p>
+        </div>
+      </div>
+    )}
+  </div>
+  
+  <div class="p-3">
+    <h4 class="text-white font-semibold mb-1">Kick</h4>
+    <p class="text-slate-400 text-sm mb-2">
+      {kickData.isLive ? '🔴 En vivo ahora' : 'Últimas transmisiones'}
+    </p>
+    <a 
+      href={kickData.isLive 
+        ? `https://kick.com/${kickData.channelSlug}` 
+        : `https://kick.com/${kickData.channelSlug}/videos`
+      }
+      target="_blank"
+      rel="noopener"
+      class="inline-block px-3 py-1 bg-[#53FC18] text-white text-sm rounded-lg hover:bg-[#45E618] transition-colors"
+    >
+      {kickData.isLive ? 'Ver en Kick' : 'Ver Últimos Videos'}
+    </a>
+  </div>
+</div>

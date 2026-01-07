@@ -1,156 +1,30 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getTarjetas } from '../lib/tarjetas';
+import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
-import SEO from "../components/SEO.astro";
-import Hero from "../components/home/Hero.astro";
 import HomeExperiencia from "../components/home/1homeExperiencia/HomeExperiencia.astro";
-import ShopPreview from "../components/home/ShopPreview.astro";
-import NavigationHub from "../components/home/NavigationHub.astro";
-import ChatBot from "../components/home/ChatBot.astro";
-import CardShop from "../components/CardShop.astro";
 import ImgSlider from "../assets/SlideImages/Insano Network-Slider 1.jpg";
 import ImgSlider2 from "../assets/SlideImages/Insano Network-Slider 2.jpg";
-import ImgSlider3 from "../assets/SlideImages/Insano Network-Slider 3.png";
 import SliderImg from "../components/SliderImg.astro";
-import ScrollPrompt from "../components/ScrollPrompt.astro";
+import HeaderTitleIndex from "../components/home/HeaderTitleIndex.astro";
+import YouTubeEducation from "../components/home/YouTubeEducation.astro";
+import SocialMediaSlider from "../components/home/SocialMediaSlider.astro";
+import ShopMinimal from "../components/home/ShopMinimal.astro";
+import PortafolioCard from "../components/PortafolioCard.astro";
+import ProjectGallery from "../components/ProjectGallery.astro";
 
 export const prerender = false;
-// Objetos de ejemplo para mostrar productos en la tienda
-const tarjetasRecienAgregados = [
-  {
-    id: 1,
-    titulo: "Producto Nuevo 1",
-    descripcion: "Descripción del producto nuevo 1.",
-    imagen: ImgSlider.src,
-    precio: 199,
-  },
-  {
-    id: 2,
-    titulo: "Producto Nuevo 2",
-    descripcion: "Descripción del producto nuevo 2.",
-    imagen: ImgSlider2.src,
-    precio: 249,
-  },
-];
 
-const tarjetasTemporada = [
+const equipo = [
   {
-    id: 3,
-    titulo: "Producto Temporada 1",
-    descripcion: "Descripción producto temporada 1.",
-    imagen: ImgSlider3.src,
-    precio: 299,
-  },
-  {
-    id: 4,
-    titulo: "Producto Temporada 2",
-    descripcion: "Descripción producto temporada 2.",
-    imagen: ImgSlider.src,
-    precio: 349,
-  },
-];
-
-const tarjetasMasVendidos = [
-  {
-    id: 5,
-    titulo: "Producto Más Vendido 1",
-    descripcion: "Top ventas 1.",
-    imagen: ImgSlider2.src,
-    precio: 399,
-  },
-  {
-    id: 6,
-    titulo: "Producto Más Vendido 2",
-    descripcion: "Top ventas 2.",
-    imagen: ImgSlider3.src,
-    precio: 449,
-  },
-];
-
-const tarjetasKitConDescuento = [
-  {
-    id: 7,
-    titulo: "Kit Descuento 1",
-    descripcion: "Kit especial con descuento.",
-    imagen: ImgSlider.src,
-    precio: 499,
-  },
-  {
-    id: 8,
-    titulo: "Kit Descuento 2",
-    descripcion: "Kit ahorro.",
-    imagen: ImgSlider2.src,
-    precio: 549,
-  },
-];
-
-const tarjetas = [
-  {
-    titulo: "Diseña",
-    descripcion:
-      "Dibujamos, modelamos, imprimimos, vectorizamos y mas; por ti.",
-    imagen: ImgSlider.src,
-    icon: "🎨",
-    bg: "bg-yellow-500",
-    border: "border-gray-300",
-    text: "#000",
-    iconColor: "#FFD600",
-  },
-  {
-    titulo: "Desarrolla",
-    descripcion:
-      "Accede y avanza con nuestras plataformas, herramientas, redes, automatizaciones, software, implementaciones, etc.",
-    imagen: ImgSlider2.src,
-    icon: "💻",
-    bg: "bg-green-500",
-    border: "border-gray-300",
-    text: "#fff",
-    iconColor: "#16A34A",
-  },
-  {
-    titulo: "Ventas y E-commerce",
-    descripcion:
-      "Accede a herramientas de e-commerce y empeza a vender tus productos y/o servicios.",
-    imagen: ImgSlider3.src,
-    icon: "🛒",
-    bg: "bg-red-500",
-    border: "border-gray-300",
-    text: "#fff",
-    iconColor: "#EF4444",
-  },
-  {
-    titulo: "Contable",
-    descripcion:
-      "Planifica y ponte al dia mediante nuestros servicios contables y nuestros socios contables.",
-    imagen: ImgSlider.src,
-    icon: "🎨",
-    bg: "bg-yellow-500",
-    border: "border-gray-300",
-    text: "#000",
-    iconColor: "#FFD600",
-  },
-  {
-    titulo: "Marketing",
-    descripcion:
-      "Te acompañamos en tu plan de ventas, y te hacemos crecer, mas ventas y mas clientes.",
-    imagen: ImgSlider2.src,
-    icon: "💻",
-    bg: "bg-green-500",
-    border: "border-gray-300",
-    text: "#fff",
-    iconColor: "#16A34A",
-  },
-  {
-    titulo: "Aprende y Capacita a tu equipo",
-    descripcion:
-      "Consulta con nosotros para desarrollar competencias, habilidades, especializarte; a ti o a tu equipo con nuestros cursos y planes hechos a medida. ",
-    imagen: ImgSlider2.src,
-    icon: "💻",
-    bg: "bg-green-500",
-    border: "border-gray-300",
-    text: "#fff",
-    iconColor: "#16A34A",
+    nombre: "Fernando J",
+    apellido: "Mtz",
+    username: "MrDUFYGY",
+    redes: {
+      instagram: "https://instagram.com/mrdufygy",
+      facebook: "https://facebook.com/mrdufygy",
+      whatsapp: "+52 55 4296 5463",
+      web: "/portafolio/mrdufygy",
+    },
   },
 ];
 ---
@@ -283,78 +157,38 @@ const tarjetas = [
       <div class="container-slider lg:scale-200">
         <SliderImg imagenes={[ImgSlider, ImgSlider2]} />
       </div>
+      <!-- Header Title Section - Giant & Fixed -->
+      <HeaderTitleIndex />
     </header>
 
     <!-- Seccion de Experiencia de Usuario -->
     <HomeExperiencia />
 
-    <!-- Sección de Tienda -->
-    <ShopPreview
-      recienAgregados={tarjetasRecienAgregados}
-      temporada={tarjetasTemporada}
-      masVendidos={tarjetasMasVendidos}
-      kitDescuento={tarjetasKitConDescuento}
-    />
+    <!-- Seccion de Portafolio -->
+    <section class="py-12 px-4">
+      <div class="max-w-7xl mx-auto">
+        <h2
+          class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white"
+        >
+          Nuestro Equipo
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {equipo.map((miembro) => <PortafolioCard miembro={miembro} />)}
+        </div>
+      </div>
+    </section>
 
-    <!-- Navigation Hub Section (Conecta + VideoMedia + Social) -->
-    <NavigationHub />
+    <!-- Section Herramientas Gallery -->
+    <ProjectGallery />
 
+    <!-- Seccion de Shop Minimal -->
+    <ShopMinimal />
 
-    <!-- Header Title Section - Giant & Fixed -->
-    <div
-      id="hero-title"
-      class="bg-black/40 backdrop-blur-sm border-b border-white/20 shadow-2xl fixed bottom-0 left-0 w-full p-2 md:p-6 z-40 text-right pointer-events-none transition-opacity duration-500"
-    >
-      <h1
-        class="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-tight uppercase tracking-tighter drop-shadow-lg"
-      >
-        Insano<br />Network
-      </h1>
-      <h2
-        class="text-2xl md:text-4xl text-[#ffd600] font-bold mt-4 max-w-4xl ml-auto drop-shadow-md"
-      >
-        Diseña, Desarrolla y Vende tus Ideas.
-      </h2>
-    </div>
+    <!-- YouTube Education Section -->
+    <YouTubeEducation />
 
-    <script is:inline>
-      function handleHeroScrollInline() {
-        const heroTitle = document.getElementById("hero-title");
-        if (!heroTitle) return;
-
-        const scrollPosition =
-          window.scrollY ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop ||
-          0;
-
-        const windowHeight = window.innerHeight;
-        // Fade out quickly - completely gone by 30% of viewport height scroll
-        const fadeThreshold = windowHeight * 0.45;
-        const opacity = Math.max(0, 1 - scrollPosition / fadeThreshold);
-
-        heroTitle.style.opacity = opacity.toString();
-
-        if (opacity <= 0.05) {
-          heroTitle.style.visibility = "hidden";
-        } else {
-          heroTitle.style.visibility = "visible";
-        }
-      }
-
-      window.addEventListener("scroll", handleHeroScrollInline);
-      window.addEventListener("resize", handleHeroScrollInline);
-      window.addEventListener("DOMContentLoaded", handleHeroScrollInline);
-
-      // Also interval check for safety in case of layout shifts
-      setInterval(handleHeroScrollInline, 500);
-
-      // Immediate check
-      handleHeroScrollInline();
-    </script>
+    <!-- Social Media Slider Section -->
+    <SocialMediaSlider />
   </main>
-
-  <!-- <div class="modal-bottom">Página en construcción 🚧</div> -->
-  <ScrollPrompt />
-  <ChatBot />
+  <!-- <div class="modal-bottom">Página en construcción 🚧</div -->
 </Layout>

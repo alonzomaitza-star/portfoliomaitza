@@ -7,7 +7,7 @@ import content5 from "../../../../assets/SlideImages/elemento 3d.jpg";
 
 const posts = [
     {
-        id: 1,
+        id: "instagram-1",
         image: content2.src,
         caption:
             "Diseño 3D e impresión de alta calidad. 🎨✨ #3dprinting #design",
@@ -15,35 +15,35 @@ const posts = [
         comments: 18,
     },
     {
-        id: 2,
+        id: "instagram-2",
         image: content1.src,
         caption: "Desarrollo de nuevas funcionalidades para Dashboard. 💻🚀",
         likes: 89,
         comments: 5,
     },
     {
-        id: 3,
+        id: "instagram-3",
         image: content3.src,
         caption: "Shellby en proceso. Personajes únicos. 🐢🔥 #art #character",
         likes: 245,
         comments: 42,
     },
     {
-        id: 4,
+        id: "instagram-4",
         image: content5.src,
         caption: "Explorando nuevas formas y geometrías. 🧊",
         likes: 156,
         comments: 21,
     },
     {
-        id: 5,
+        id: "instagram-5",
         image: content4.src,
         caption: "Decoración moderna para tu espacio. 🌻",
         likes: 310,
         comments: 55,
     },
     {
-        id: 6,
+        id: "instagram-6",
         image: content2.src, // Reusing to fill grid
         caption: "Prototipado rápido en acción. ⚡",
         likes: 198,
@@ -53,9 +53,10 @@ const posts = [
 ---
 
 <div
-    class="bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-1 rounded-2xl shadow-xl h-full"
+    id="instagram-feed"
+    class="social-media__instagram-feed"
 >
-    <div class="bg-gray-900 rounded-xl p-6 h-full flex flex-col">
+    <div class="social-media__instagram-feed--container bg-gray-900 rounded-xl p-6 h-full flex flex-col">
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
             <div class="flex items-center gap-3">
@@ -97,17 +98,17 @@ const posts = [
         <div class="grid grid-cols-3 gap-2 mb-6 flex-grow">
             {
                 posts.map((post) => (
-                    <div class="relative group aspect-square rounded-lg overflow-hidden bg-gray-800 cursor-pointer">
+                    <div class="social-media__post">
                         <img
                             src={post.image}
                             alt="Instagram Post"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            class="w-full h-full object-cover transition-transform duration-500"
                         />
-                        <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity p-2 flex flex-col items-center justify-center text-white overflow-hidden">
-                            <p class="text-[10px] text-center line-clamp-2 leading-tight mb-2">
+                        <div class="social-media__post-overlay">
+                            <p class="social-media__post-caption">
                                 {post.caption}
                             </p>
-                            <div class="flex items-center gap-1 font-bold text-sm">
+                            <div class="social-media__post-stats">
                                 <svg
                                     class="w-4 h-4"
                                     fill="currentColor"
@@ -130,3 +131,35 @@ const posts = [
         </div>
     </div>
 </div>
+
+<style>
+  /* Instagram Feed Component Styles */
+  .social-media__instagram-feed {
+    @apply bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-1 rounded-2xl shadow-xl h-full;
+  }
+  
+  .social-media__instagram-feed--container {
+    /* Container styles already applied via Tailwind classes */
+  }
+  
+  /* Instagram Post Hover Effects */
+  .social-media__instagram-feed .social-media__post {
+    @apply relative group aspect-square rounded-lg overflow-hidden bg-gray-800 cursor-pointer;
+  }
+  
+  .social-media__instagram-feed .social-media__post:hover img {
+    @apply scale-110;
+  }
+  
+  .social-media__instagram-feed .social-media__post-overlay {
+    @apply absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity p-2 flex flex-col items-center justify-center text-white overflow-hidden;
+  }
+  
+  .social-media__instagram-feed .social-media__post-caption {
+    @apply text-[10px] text-center line-clamp-2 leading-tight mb-2;
+  }
+  
+  .social-media__instagram-feed .social-media__post-stats {
+    @apply flex items-center gap-1 font-bold text-sm;
+  }
+</style>
