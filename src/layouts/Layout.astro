@@ -2,7 +2,12 @@
 import "../styles/global.css";
 import Nav from "../components/NavBarMain.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_URL } from "../consts";
+import {
+	SITE_URL,
+	SITE_TITLE,
+	SITE_DESCRIPTION,
+	DEFAULT_OG_IMAGE,
+} from "../consts";
 import ChatBot from "../components/home/ChatBot.astro";
 import NavigationPanel from "../components/home/NavigationPanel.astro";
 // Props para SEO
@@ -17,10 +22,10 @@ interface Props {
 }
 
 const {
-	title = "Insano Network — Diseña, Desarrolla y Vende tus Ideas",
-	description = "Soluciones digitales integrales: diseño web, desarrollo de software, e-commerce, marketing digital y servicios contables. Tu mejor opción de inicio a fin.",
+	title = SITE_TITLE,
+	description = SITE_DESCRIPTION,
 	keywords = "diseño web, desarrollo software, e-commerce, marketing digital, servicios contables, agencia digital",
-	ogImage = `${SITE_URL}/og-default.jpg`,
+	ogImage = `${SITE_URL}${DEFAULT_OG_IMAGE}`,
 	ogType = "website",
 	canonical = Astro.url.pathname,
 	noindex = false,
