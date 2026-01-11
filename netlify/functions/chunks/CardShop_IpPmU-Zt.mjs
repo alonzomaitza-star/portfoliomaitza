@@ -1,0 +1,21 @@
+import { a as createAstro, c as createComponent, m as maybeRenderHead, b as addAttribute, r as renderTemplate } from './astro/server_D7wE4XSf.mjs';
+import 'kleur/colors';
+import 'clsx';
+
+const $$Astro = createAstro("https://InsanoNetwork.com");
+const $$CardShop = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$CardShop;
+  const { producto, titulo, descripcion, imagen, precio, etiqueta } = Astro2.props;
+  const cardTitulo = producto?.titulo || titulo;
+  const cardDescripcion = producto?.descripcion || descripcion;
+  const cardImagen = producto?.imagen || imagen;
+  const cardPrecio = producto?.precio || precio;
+  const cardEtiqueta = producto?.etiqueta || etiqueta;
+  return renderTemplate`<!-- Tarjeta con diseño glassmorphism moderno -->${maybeRenderHead()}<li class="relative overflow-hidden backdrop-blur-sm bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-3 sm:p-5 flex flex-col items-center group"> <!-- Efecto de gradiente en el fondo --> <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 opacity-70 z-0"></div> <!-- Círculos decorativos --> <div class="absolute -top-10 -right-10 w-24 h-24 bg-blue-200 rounded-full opacity-20"></div> <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-purple-200 rounded-full opacity-20"></div> <!-- Contenido de la tarjeta --> <div class="relative z-10 w-full flex flex-col items-center"> <!-- Imagen con efecto de elevación al hacer hover --> <div class="relative mb-3 sm:mb-4 overflow-hidden rounded-lg w-full flex justify-center transform group-hover:scale-105 transition-transform duration-300"> <img${addAttribute(cardImagen, "src")}${addAttribute(cardTitulo, "alt")} class="max-h-36 sm:max-h-52 w-auto object-contain"> <!-- Overlay al hacer hover --> <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> </div> <!-- Información del producto --> <h4 class="text-sm sm:text-xl font-bold mb-2 text-center text-gray-800 group-hover:text-blue-700 transition-colors duration-300"> ${cardTitulo} </h4> <p class="text-xs sm:text-sm text-center mb-3 text-gray-600 line-clamp-2 max-w-[90%]"> ${cardDescripcion} </p> <!-- Precio con estilo mejorado --> ${cardPrecio && renderTemplate`<span class="text-blue-600 font-bold mb-2 sm:mb-3 text-sm sm:text-lg bg-blue-50 px-3 py-1 rounded-full">
+$${cardPrecio} </span>`} <!-- Etiqueta con estilo mejorado --> ${cardEtiqueta && renderTemplate`<span class="text-xs sm:text-sm bg-gradient-to-r from-amber-200 to-yellow-300 text-amber-800 font-medium rounded-full px-3 py-1 mb-2 shadow-sm"> ${cardEtiqueta} </span>`} <!-- Botón de acción --> <button class="mt-1 sm:mt-2 px-4 py-1.5 sm:py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs sm:text-sm font-medium rounded-full transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
+Ver detalles
+</button> </div> </li>`;
+}, "D:/dev/Node.js/InsanoNetwork/Insano-landing/src/components/CardShop.astro", void 0);
+
+export { $$CardShop as $ };
