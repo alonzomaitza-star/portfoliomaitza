@@ -15,85 +15,170 @@ import Logo from "../assets/Logo.png";
           </a>
           <ul class="nav-links">
             <li><a href="/" class="inicio-link">Inicio</a></li>
-            <li>
+            <li class="group relative">
               <a
                 href="#"
                 id="navbarmain-servicios-link"
-                aria-haspopup="listbox"
+                class="flex items-center gap-1 transition-colors hover:text-[#ffd600]"
+                aria-haspopup="true"
                 aria-expanded="false"
                 >Servicios <span class="sr-only">Abrir menú</span></a
               >
 
-              <dialog
-                id="navbarmain-servicios-dialog"
-                class="navbarmain-dialog"
-                tabindex="-1"
+              <!-- Dropdown Menu using Tailwind -->
+              <div
+                id="navbarmain-servicios-menu"
+                class="absolute left-[-100px] z-50 hidden w-[100vw] max-w-[700px] transform rounded-[7px] bg-[#163233]/90 p-8 text-white shadow-[0_2px_16px_0_rgba(0,0,0,0.1)] backdrop-blur-[140px] hover:block group-hover:block"
               >
-                <div class="navbarmain-dialog-section">
-                  <h4>Nuestros Servicios</h4>
-                  <div class="navbarmain-card-list">
-                    <a class="navbarmain-card" href="/emprender">
-                      <h5 class="navbarmain-card-nombre">Emprender</h5>
-                      <h6 class="navbarmain-card-descripcion">
+                <div class="w-full">
+                  <h4 class="mb-6 text-xl font-bold text-white">
+                    Nuestros Servicios
+                  </h4>
+                  <div class="flex flex-wrap justify-center gap-5">
+                    <!-- Card: Emprender -->
+                    <a
+                      href="/emprender"
+                      class="group/card flex h-[100px] w-[140px] flex-col items-center justify-center gap-2 rounded-[7px] border-[1.5px] border-white/10 bg-white/5 p-4 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#ffd600]/50 hover:bg-[#232728]/90 hover:shadow-xl"
+                    >
+                      <h5
+                        class="m-0 text-[1.1rem] font-semibold text-white transition-colors group-hover/card:text-[#ffd600]"
+                      >
+                        Emprender
+                      </h5>
+                      <h6
+                        class="m-0 mt-[-2px] text-[0.7rem] text-[#b0bfc0] transition-colors group-hover/card:text-white"
+                      >
                         Emprende con nosotros
                       </h6>
                     </a>
-                    <a class="navbarmain-card" href="/diseno">
-                      <h5 class="navbarmain-card-nombre">Diseño</h5>
-                      <h6 class="navbarmain-card-descripcion">
+
+                    <!-- Card: Diseño -->
+                    <a
+                      href="/diseno"
+                      class="group/card flex h-[100px] w-[140px] flex-col items-center justify-center gap-2 rounded-[7px] border-[1.5px] border-white/10 bg-white/5 p-4 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#ffd600]/50 hover:bg-[#232728]/90 hover:shadow-xl"
+                    >
+                      <h5
+                        class="m-0 text-[1.1rem] font-semibold text-white transition-colors group-hover/card:text-[#ffd600]"
+                      >
+                        Diseño
+                      </h5>
+                      <h6
+                        class="m-0 mt-[-2px] text-[0.7rem] text-[#b0bfc0] transition-colors group-hover/card:text-white"
+                      >
                         Diseño web y gráfico
                       </h6>
                     </a>
-                    <a class="navbarmain-card" href="/desarrollo">
-                      <h5 class="navbarmain-card-nombre">Desarrollo</h5>
-                      <h6 class="navbarmain-card-descripcion">
+
+                    <!-- Card: Desarrollo -->
+                    <a
+                      href="/desarrollo"
+                      class="group/card flex h-[100px] w-[140px] flex-col items-center justify-center gap-2 rounded-[7px] border-[1.5px] border-white/10 bg-white/5 p-4 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#ffd600]/50 hover:bg-[#232728]/90 hover:shadow-xl"
+                    >
+                      <h5
+                        class="m-0 text-[1.1rem] font-semibold text-white transition-colors group-hover/card:text-[#ffd600]"
+                      >
+                        Desarrollo
+                      </h5>
+                      <h6
+                        class="m-0 mt-[-2px] text-[0.7rem] text-[#b0bfc0] transition-colors group-hover/card:text-white"
+                      >
                         Desarrollo web y móvil
                       </h6>
                     </a>
-                    <a class="navbarmain-card" href="/marketing">
-                      <h5 class="navbarmain-card-nombre">Marketing</h5>
-                      <h6 class="navbarmain-card-descripcion">
+
+                    <!-- Card: Marketing -->
+                    <a
+                      href="/marketing"
+                      class="group/card flex h-[100px] w-[140px] flex-col items-center justify-center gap-2 rounded-[7px] border-[1.5px] border-white/10 bg-white/5 p-4 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#ffd600]/50 hover:bg-[#232728]/90 hover:shadow-xl"
+                    >
+                      <h5
+                        class="m-0 text-[1.1rem] font-semibold text-white transition-colors group-hover/card:text-[#ffd600]"
+                      >
+                        Marketing
+                      </h5>
+                      <h6
+                        class="m-0 mt-[-2px] text-[0.7rem] text-[#b0bfc0] transition-colors group-hover/card:text-white"
+                      >
                         Marketing digital y SEO
                       </h6>
                     </a>
-                    <a class="navbarmain-card" href="/contable">
-                      <h5 class="navbarmain-card-nombre">Contable</h5>
-                      <h6 class="navbarmain-card-descripcion">
-                        Contable digital y contable virtual
+
+                    <!-- Card: Contable -->
+                    <a
+                      href="/contable"
+                      class="group/card flex h-[100px] w-[140px] flex-col items-center justify-center gap-2 rounded-[7px] border-[1.5px] border-white/10 bg-white/5 p-4 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#ffd600]/50 hover:bg-[#232728]/90 hover:shadow-xl"
+                    >
+                      <h5
+                        class="m-0 text-[1.1rem] font-semibold text-white transition-colors group-hover/card:text-[#ffd600]"
+                      >
+                        Contable
+                      </h5>
+                      <h6
+                        class="m-0 mt-[-2px] text-[0.7rem] text-[#b0bfc0] transition-colors group-hover/card:text-white"
+                      >
+                        Contable digital y virtual
                       </h6>
                     </a>
-                    <a class="navbarmain-card" href="/ecommerce">
-                      <h5 class="navbarmain-card-nombre">E-commerce</h5>
-                      <h6 class="navbarmain-card-descripcion">
-                        E-commerce digital y e-commerce móvil
+
+                    <!-- Card: E-commerce -->
+                    <a
+                      href="/ecommerce"
+                      class="group/card flex h-[100px] w-[140px] flex-col items-center justify-center gap-2 rounded-[7px] border-[1.5px] border-white/10 bg-white/5 p-4 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#ffd600]/50 hover:bg-[#232728]/90 hover:shadow-xl"
+                    >
+                      <h5
+                        class="m-0 text-[1.1rem] font-semibold text-white transition-colors group-hover/card:text-[#ffd600]"
+                      >
+                        E-commerce
+                      </h5>
+                      <h6
+                        class="m-0 mt-[-2px] text-[0.7rem] text-[#b0bfc0] transition-colors group-hover/card:text-white"
+                      >
+                        E-commerce digital y móvil
                       </h6>
                     </a>
-                    <a class="navbarmain-card" href="/cursos">
-                      <h5 class="navbarmain-card-nombre">Cursos</h5>
-                      <h6 class="navbarmain-card-descripcion">
-                        Cursos en línea y cursos presenciales
+
+                    <!-- Card: Cursos -->
+                    <a
+                      href="/cursos"
+                      class="group/card flex h-[100px] w-[140px] flex-col items-center justify-center gap-2 rounded-[7px] border-[1.5px] border-white/10 bg-white/5 p-4 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#ffd600]/50 hover:bg-[#232728]/90 hover:shadow-xl"
+                    >
+                      <h5
+                        class="m-0 text-[1.1rem] font-semibold text-white transition-colors group-hover/card:text-[#ffd600]"
+                      >
+                        Cursos
+                      </h5>
+                      <h6
+                        class="m-0 mt-[-2px] text-[0.7rem] text-[#b0bfc0] transition-colors group-hover/card:text-white"
+                      >
+                        Cursos online y presenciales
                       </h6>
                     </a>
-                    <a class="navbarmain-card" href="/capacitacion">
-                      <h5 class="navbarmain-card-nombre">Capacitación</h5>
-                      <h6 class="navbarmain-card-descripcion">
-                        Capacitación en línea y capacitación presencial
+
+                    <!-- Card: Capacitación -->
+                    <a
+                      href="/capacitacion"
+                      class="group/card flex h-[100px] w-[140px] flex-col items-center justify-center gap-2 rounded-[7px] border-[1.5px] border-white/10 bg-white/5 p-4 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#ffd600]/50 hover:bg-[#232728]/90 hover:shadow-xl"
+                    >
+                      <h5
+                        class="m-0 text-[1.1rem] font-semibold text-white transition-colors group-hover/card:text-[#ffd600]"
+                      >
+                        Capacitación
+                      </h5>
+                      <h6
+                        class="m-0 mt-[-2px] text-[0.7rem] text-[#b0bfc0] transition-colors group-hover/card:text-white"
+                      >
+                        Capacitación online y presencial
                       </h6>
                     </a>
                   </div>
                 </div>
-                <!-- <div class="navbarmain-dialog-section">
-                  <h4>Otro Bloque</h4>
-                  <p>Contenido del nuevo bloque.</p>
-                </div> -->
-              </dialog>
+              </div>
             </li>
             <li><a href="/nosotros">Conócenos</a></li>
+            <li><a href="/fundaciones">Fundaciones</a></li>
             <li><a href="/herramientas">Herramientas</a></li>
             <li><a href="/blog">Blog</a></li>
-            <li>
-              <a href="/beneficios" class="beneficios-link">Beneficios</a>
-            </li>
+            <li><a href="/beneficios" class="beneficios-link">Beneficios</a></li>
             <li>
               <a
                 href="#"
@@ -753,7 +838,7 @@ import Logo from "../assets/Logo.png";
     position: relative;
     left: -5%;
     border-radius: 1px;
-    z-index: 10;
+    z-index: 120;
   }
   .nav-line-top {
     margin-bottom: 0px;
@@ -811,153 +896,10 @@ import Logo from "../assets/Logo.png";
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
+  /* Nav Links styling */
   .nav-links > li {
     position: relative;
   }
-  .navbarmain-dialog {
-    padding: 2rem;
-    position: absolute;
-    left: -200px;
-    min-width: 700px;
-    max-width: 90vw;
-    background: rgba(22, 50, 51, 0.801);
-    backdrop-filter: blur(140px);
-    -webkit-backdrop-filter: blur(140px);
-    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.1);
-    z-index: 400;
-    color: #fff;
-    font-family: "Atkinson", sans-serif;
-  }
-  .navbarmain-dialog-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .navbarmain-dialog-list li a {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #fff;
-    text-decoration: none;
-    transition:
-      background 0.2s,
-      color 0.2s;
-  }
-  .navbarmain-dialog-list li a:hover {
-    background: #ffd600;
-    color: #163233;
-  }
-  .navbarmain-dialog-section {
-    margin-bottom: 1.8rem;
-    position: relative;
-  }
-  .navbarmain-dialog-section:last-child {
-    margin-bottom: 0;
-  }
-  .navbarmain-dialog-section h4 {
-    margin: 0 0 0.8rem 1.2rem;
-    font-size: 1.1rem;
-    color: #ffd600;
-    font-weight: bold;
-    position: relative;
-    display: inline-block;
-  }
-  .navbarmain-dialog-section h4::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background-color: #ffd600;
-    border-radius: 1px;
-  }
-  .navbarmain-card-list {
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    padding: 1.2rem;
-    justify-content: center;
-  }
-  .navbarmain-card {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    color: #232728;
-    border-radius: 7px;
-    border: 1.5px solid rgba(0, 0, 0, 0.2);
-    padding: 0.5rem 0.25rem;
-    font-size: 0.95rem;
-    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15);
-    min-width: 180px;
-    margin-bottom: 0.5rem;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    text-decoration: none;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  .navbarmain-card:hover {
-    background: rgba(35, 39, 40, 0.9);
-    color: #fff;
-    border: 1.5px solid rgba(255, 214, 0, 0.5);
-    cursor: pointer;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.25);
-  }
-  .navbarmain-card-tipo {
-    font-weight: bold;
-    font-size: 0.85rem;
-    color: #232728;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .navbarmain-card-nombre {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 2px 0;
-    color: #232728;
-  }
-  .navbarmain-card-giro {
-    font-size: 0.9rem;
-    color: #444c4d;
-    opacity: 0.9;
-  }
-
-  .navbarmain-card:hover .navbarmain-card-tipo,
-  .navbarmain-card:hover .navbarmain-card-nombre,
-  .navbarmain-card:hover .navbarmain-card-giro {
-    color: #fff;
-  }
-
-  /* Responsive para el dialog de proyectos */
-  @media (max-width: 767px) {
-    .navbarmain-dialog {
-      left: -100px;
-      min-width: 400px;
-      max-width: 90vw;
-    }
-    .navbarmain-card-list {
-      flex-direction: column;
-      gap: 0.5rem;
-      padding: 0.5rem;
-    }
-    .navbarmain-card {
-      min-width: auto;
-      width: 100%;
-    }
-  }
-
-  /* #navbarmain-servicios-dialog {
-  background: rgba(22, 50, 51, 0.945);
-  backdrop-filter: blur(120px);
-  -webkit-backdrop-filter: blur(120px);
-}
-.navbarmain-dialog-section h4::after {
-  background-color: #ffd600;
-} */
 </style>
 <script>
   import { auth } from "../lib/firebase";
@@ -970,43 +912,39 @@ import Logo from "../assets/Logo.png";
 
   // DOM Elements
   const serviciosLink = document.getElementById("navbarmain-servicios-link");
-  const serviciosDialog = document.getElementById(
-    "navbarmain-servicios-dialog",
-  );
+  const serviciosMenu = document.getElementById("navbarmain-servicios-menu");
 
-  // Servicios Dialog handling
-  if (serviciosLink && serviciosDialog) {
-    const dialog = serviciosDialog;
-    // @ts-ignore
-    const dialogEl = dialog as HTMLDialogElement;
-    serviciosLink.addEventListener("mouseenter", () => {
-      dialogEl.show();
-      serviciosLink.setAttribute("aria-expanded", "true");
-    });
-    serviciosLink.addEventListener("mouseleave", () => {
-      setTimeout(() => {
-        if (!dialogEl.matches(":hover")) {
-          dialogEl.close();
-          serviciosLink.setAttribute("aria-expanded", "false");
-        }
-      }, 100);
-    });
-    dialogEl.addEventListener("mouseleave", () => {
-      dialogEl.close();
-      serviciosLink.setAttribute("aria-expanded", "false");
-    });
-    dialogEl.addEventListener("mouseenter", () => {
-      dialogEl.show();
-      serviciosLink.setAttribute("aria-expanded", "true");
-    });
+  // Servicios Menu functionality
+  if (serviciosLink && serviciosMenu) {
+    // Toggle on click (for mobile or sticky open)
     serviciosLink.addEventListener("click", (e) => {
       e.preventDefault();
-      if (dialogEl.open) {
-        dialogEl.close();
+      serviciosMenu.classList.toggle("hidden");
+      const isExpanded = !serviciosMenu.classList.contains("hidden");
+      serviciosLink.setAttribute("aria-expanded", isExpanded.toString());
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", (e) => {
+      const target = e.target as Node;
+      if (
+        !serviciosMenu.classList.contains("hidden") &&
+        !serviciosMenu.contains(target) &&
+        !serviciosLink.contains(target)
+      ) {
+        serviciosMenu.classList.add("hidden");
         serviciosLink.setAttribute("aria-expanded", "false");
-      } else {
-        dialogEl.show();
-        serviciosLink.setAttribute("aria-expanded", "true");
+      }
+    });
+
+    // Sync ARIA state on hover (optional, handled by CSS mostly)
+    serviciosLink.addEventListener("mouseenter", () => {
+      serviciosLink.setAttribute("aria-expanded", "true");
+    });
+    serviciosMenu.addEventListener("mouseleave", () => {
+      // Only set false if we haven't clicked to open (checked by hidden class presence)
+      if (serviciosMenu.classList.contains("hidden")) {
+        serviciosLink.setAttribute("aria-expanded", "false");
       }
     });
   }

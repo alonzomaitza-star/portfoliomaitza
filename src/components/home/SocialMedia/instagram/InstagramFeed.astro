@@ -54,14 +54,14 @@ const posts = [
 
 <div
     id="instagram-feed"
-    class="social-media__instagram-feed"
+    class="bg-gradient-to-tr via-pink-500 to-purple-600 p-1 rounded-2xl shadow-xl h-full"
 >
-    <div class="social-media__instagram-feed--container bg-gray-900 rounded-xl p-6 h-full flex flex-col">
+    <div class="bg-gray-900 rounded-xl p-6 h-full flex flex-col">
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
             <div class="flex items-center gap-3">
                 <div
-                    class="w-12 h-12 p-[2px] rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600"
+                    class="w-12 h-12 p-[2px] rounded-full bg-gradient-to-tr via-pink-500 to-purple-600"
                 >
                     <div
                         class="w-full h-full rounded-full bg-gray-900 flex items-center justify-center"
@@ -98,17 +98,17 @@ const posts = [
         <div class="grid grid-cols-3 gap-2 mb-6 flex-grow">
             {
                 posts.map((post) => (
-                    <div class="social-media__post">
+                    <div class="relative group aspect-square rounded-lg overflow-hidden bg-gray-800 cursor-pointer">
                         <img
                             src={post.image}
                             alt="Instagram Post"
-                            class="w-full h-full object-cover transition-transform duration-500"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
-                        <div class="social-media__post-overlay">
-                            <p class="social-media__post-caption">
+                        <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity p-2 flex flex-col items-center justify-center text-white overflow-hidden">
+                            <p class="text-[10px] text-center line-clamp-2 leading-tight mb-2">
                                 {post.caption}
                             </p>
-                            <div class="social-media__post-stats">
+                            <div class="flex items-center gap-1 font-bold text-sm">
                                 <svg
                                     class="w-4 h-4"
                                     fill="currentColor"
@@ -131,35 +131,3 @@ const posts = [
         </div>
     </div>
 </div>
-
-<style>
-  /* Instagram Feed Component Styles */
-  .social-media__instagram-feed {
-    @apply bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-1 rounded-2xl shadow-xl h-full;
-  }
-  
-  .social-media__instagram-feed--container {
-    /* Container styles already applied via Tailwind classes */
-  }
-  
-  /* Instagram Post Hover Effects */
-  .social-media__instagram-feed .social-media__post {
-    @apply relative group aspect-square rounded-lg overflow-hidden bg-gray-800 cursor-pointer;
-  }
-  
-  .social-media__instagram-feed .social-media__post:hover img {
-    @apply scale-110;
-  }
-  
-  .social-media__instagram-feed .social-media__post-overlay {
-    @apply absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity p-2 flex flex-col items-center justify-center text-white overflow-hidden;
-  }
-  
-  .social-media__instagram-feed .social-media__post-caption {
-    @apply text-[10px] text-center line-clamp-2 leading-tight mb-2;
-  }
-  
-  .social-media__instagram-feed .social-media__post-stats {
-    @apply flex items-center gap-1 font-bold text-sm;
-  }
-</style>

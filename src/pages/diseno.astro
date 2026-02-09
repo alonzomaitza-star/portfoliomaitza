@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 import CardShop from "../components/CardShop.astro";
 import ImaginaloChat from "../components/diseno/pageLanding/ImaginaloChat.astro";
@@ -8,50 +8,90 @@ import SeccionDosD from "../components/diseno/pageLanding/SeccionDosD.astro";
 import SeccionDisenoWeb from "../components/diseno/pageLanding/SeccionDisenoWeb.astro";
 import SeccionFigmaUI from "../components/diseno/pageLanding/SeccionFigmaUI.astro";
 import SeccionPricing from "../components/diseno/pageLanding/SeccionPricing.astro";
+import ProjectGallery from "../components/diseno/ProjectGallery.svelte";
 
-import ImgSlider from '../assets/SlideImages/elemento 3d.jpg';
-import ImgSlider2 from '../assets/SlideImages/Florero.jpg';
-import ImgSlider3 from '../assets/SlideImages/shellby.png';
+import ImgSlider from "../assets/SlideImages/elemento 3d.jpg";
+import ImgSlider2 from "../assets/SlideImages/Florero.jpg";
+import ImgSlider3 from "../assets/SlideImages/shellby.png";
+
+
+import ImgLogoExample from "../assets/logoexample.png";
 
 const tiendaDiseno = [
-  { id: 1, titulo: "Kit Logo Express", descripcion: "Paquete de identidad básica (logo + paleta + tipografía)", imagen: ImgSlider2.src, precio: 99, etiqueta: "Popular" },
-  { id: 2, titulo: "Modelado 3D para Impresión", descripcion: "Archivo listo para imprimir (STL/OBJ)", imagen: ImgSlider.src, precio: 149, etiqueta: "3D" },
-  { id: 3, titulo: "UI Starter (Figma)", descripcion: "Diseño de 5 pantallas clave para tu app o web", imagen: ImgSlider3.src, precio: 199, etiqueta: "UI" }
+  {
+    id: 1,
+    titulo: "Kit Logo Express",
+    descripcion: "Paquete de identidad básica (logo + paleta + tipografía)",
+    imagen: ImgSlider2.src,
+    precio: 99,
+    etiqueta: "Popular",
+  },
+  {
+    id: 2,
+    titulo: "Modelado 3D para Impresión",
+    descripcion: "Archivo listo para imprimir (STL/OBJ)",
+    imagen: ImgSlider.src,
+    precio: 149,
+    etiqueta: "3D",
+  },
+  {
+    id: 3,
+    titulo: "UI Starter (Figma)",
+    descripcion: "Diseño de 5 pantallas clave para tu app o web",
+    imagen: ImgSlider3.src,
+    precio: 199,
+    etiqueta: "UI",
+  },
 ];
 ---
-
-
-
-
 
 <Layout>
   <main>
     <!-- Hero / Filosofía de diseño -->
     <section class="py-14">
       <div class="container mx-auto px-4">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-white text-center">Diseño: el primer pilar de todo proyecto</h1>
-        <p class="text-base md:text-lg text-gray-200 text-center mt-2 max-w-3xl mx-auto">Creemos en el diseño como el acto de imaginar y crear. Desde el boceto 2D hasta el modelado 3D, el diseño da forma a ideas que se vuelven productos, espacios y experiencias reales.</p>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white text-center">
+          Diseño: el primer pilar de todo proyecto
+        </h1>
+        <p
+          class="text-base md:text-lg text-gray-200 text-center mt-2 max-w-3xl mx-auto"
+        >
+          Creemos en el diseño como el acto de imaginar y crear. Desde el boceto
+          2D hasta el modelado 3D, el diseño da forma a ideas que se vuelven
+          productos, espacios y experiencias reales.
+        </p>
 
         <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-white/90 rounded-xl p-6 shadow border border-gray-200">
             <h3 class="text-xl font-bold">Pensar</h3>
-            <p class="text-gray-700 mt-2">Exploramos posibilidades, definimos objetivos y traducimos necesidades en requerimientos claros.</p>
+            <p class="text-gray-700 mt-2">
+              Exploramos posibilidades, definimos objetivos y traducimos
+              necesidades en requerimientos claros.
+            </p>
           </div>
           <div class="bg-white/90 rounded-xl p-6 shadow border border-gray-200">
             <h3 class="text-xl font-bold">Diseñar</h3>
-            <p class="text-gray-700 mt-2">Proponemos soluciones visuales y funcionales con enfoque en estética, uso y viabilidad.</p>
+            <p class="text-gray-700 mt-2">
+              Proponemos soluciones visuales y funcionales con enfoque en
+              estética, uso y viabilidad.
+            </p>
           </div>
           <div class="bg-white/90 rounded-xl p-6 shadow border border-gray-200">
             <h3 class="text-xl font-bold">Crear</h3>
-            <p class="text-gray-700 mt-2">Convertimos el diseño en entregables listos para producción, impresión o desarrollo.</p>
+            <p class="text-gray-700 mt-2">
+              Convertimos el diseño en entregables listos para producción,
+              impresión o desarrollo.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Imagínalo y créalo -->
+    <ProjectGallery client:visible />
+
+
     <ImaginaloChat />
- 
 
     <SeccionTresD />
 
@@ -63,21 +103,27 @@ const tiendaDiseno = [
     <SeccionPricing />
 
     <!-- Intermedio: Diseño de Interfaz (Figma) -->
-    <SeccionFigmaUI urls={[
-      'https://www.figma.com/design/PXIilsHFteblduktxhw7oq/Ejemplo1?m=auto&t=kDV8hGkGajF4oyiB-1',
-      'https://www.figma.com/design/PXIilsHFteblduktxhw7oq/Ejemplo1?m=auto&t=kDV8hGkGajF4oyiB-1',
-      'https://www.figma.com/design/PXIilsHFteblduktxhw7oq/Ejemplo1?m=auto&t=kDV8hGkGajF4oyiB-1'
-    ]} />
+    <SeccionFigmaUI
+      urls={[
+        "https://www.figma.com/design/PXIilsHFteblduktxhw7oq/Ejemplo1?m=auto&t=kDV8hGkGajF4oyiB-1",
+        "https://www.figma.com/design/PXIilsHFteblduktxhw7oq/Ejemplo1?m=auto&t=kDV8hGkGajF4oyiB-1",
+        "https://www.figma.com/design/PXIilsHFteblduktxhw7oq/Ejemplo1?m=auto&t=kDV8hGkGajF4oyiB-1",
+      ]}
+    />
 
     <!-- Tienda (front-end) -->
     <section class="py-12">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center">Tienda de Diseño</h2>
-        <p class="text-base md:text-lg text-gray-200 text-center mt-2 max-w-3xl mx-auto">Kits de diseño, servicios, cursos/clases y asesorías.</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center">
+          Tienda de Diseño
+        </h2>
+        <p
+          class="text-base md:text-lg text-gray-200 text-center mt-2 max-w-3xl mx-auto"
+        >
+          Kits de diseño, servicios, cursos/clases y asesorías.
+        </p>
         <ul class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-          {tiendaDiseno.map((p, i) => (
-            <CardShop producto={p} key={i} />
-          ))}
+          {tiendaDiseno.map((p, i) => <CardShop producto={p} key={i} />)}
         </ul>
       </div>
     </section>

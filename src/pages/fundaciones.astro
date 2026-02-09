@@ -1,0 +1,536 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Fundaciones | Insano Network - Apoyo a Proyectos Sociales"
+  description="Apoyamos fundaciones y proyectos sociales con consultoría gratuita, financiamiento y soluciones tecnológicas. 5 años de experiencia en TI para causas sociales."
+  keywords="fundaciones, proyectos sociales, ONG, consultoría gratuita, financiamiento, tecnología social, Insano Network"
+>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-emerald-600 via-teal-600 to-blue-600 text-white">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative container mx-auto px-6 py-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="mb-8">
+          <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold">
+            🤝 Apoyo a Proyectos con Impacto Social
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          Potenciamos <span class="block text-yellow-300">Fundaciones</span> y Proyectos Sociales
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-emerald-100 max-w-3xl mx-auto">
+          Ofrecemos consultoría gratuita y financiamiento para proyectos que generen 
+          un impacto positivo en la sociedad. Tecnología y soluciones a medida para causas que importan.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#contacto-fundaciones"
+            class="bg-white text-emerald-600 font-bold py-4 px-8 rounded-lg shadow-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+          >
+            Solicitar Apoyo
+          </a>
+          <a
+            href="#areas-apoyo"
+            class="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-emerald-600 transition-all duration-300"
+          >
+            Ver Áreas de Apoyo
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Decorative Elements -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 120L60 110C120 100 180 80 240 70C300 60 360 50 420 45C480 40 540 35 600 40C660 45 720 55 780 60C840 65 900 65 960 60C1020 55 1080 45 1140 40C1200 35 1260 30 1320 35C1380 40 1410 50 1440 60V120H0V120Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Nuestra <span class="text-emerald-600">Misión Social</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Creemos en el poder de la tecnología para transformar vidas y comunidades. 
+            Por eso, apoyamos proyectos con propósito social con nuestros mejores recursos.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+            <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <span class="text-3xl">🎯</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Impacto Real</h3>
+            <p class="text-gray-600">
+              Proyectos que generen cambios medibles y sostenibles en sus comunidades
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <span class="text-3xl">💡</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Innovación Social</h3>
+            <p class="text-gray-600">
+              Soluciones creativas y tecnológicas para problemas sociales complejos
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <span class="text-3xl">🤝</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Colaboración</h3>
+            <p class="text-gray-600">
+              Construyendo alianzas entre fundaciones, empresas y comunidad
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Areas -->
+  <section id="areas-apoyo" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Áreas de <span class="text-emerald-600">Apoyo</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Ofrecemos nuestro expertise tecnológico y consultoría en estas áreas clave
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Desarrollo Web -->
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-8">
+            <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-white text-2xl">🌐</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Desarrollo Web</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Sitios web institucionales</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Plataformas de donaciones</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Sistemas de gestión de voluntarios</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Portales de impacto social</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Software a Medida -->
+          <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-8">
+            <div class="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-white text-2xl">💻</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Software a Medida</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>CRM para donantes</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Sistemas de seguimiento de proyectos</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Apps móviles para voluntarios</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Dashboard de impacto social</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Marketing Digital -->
+          <div class="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-8">
+            <div class="w-16 h-16 bg-purple-600 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-white text-2xl">📱</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Marketing Digital</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Campañas de concienciación</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Redes sociales para causas</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Email marketing para donantes</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>SEO para visibilidad social</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Diseño Gráfico -->
+          <div class="bg-gradient-to-br from-orange-50 to-yellow-100 rounded-xl p-8">
+            <div class="w-16 h-16 bg-orange-600 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-white text-2xl">🎨</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Diseño Gráfico</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Identidad visual completa</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Material de campaña</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Infografías de impacto</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Reportes anuales visuales</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Consultoría TI -->
+          <div class="bg-gradient-to-br from-red-50 to-rose-100 rounded-xl p-8">
+            <div class="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-white text-2xl">🔧</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Consultoría TI</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Diagnóstico tecnológico</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Optimización de procesos</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Seguridad de datos</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Capacitación técnica</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Finanzas y Contabilidad -->
+          <div class="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-xl p-8">
+            <div class="w-16 h-16 bg-teal-600 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-white text-2xl">📊</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Finanzas y Contabilidad</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Asesoría fiscal gratuita</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Gestión de donaciones</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Reportes para donantes</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-2 mt-1">✓</span>
+                <span>Transparencia financiera</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Financing Section -->
+  <section class="py-20 bg-gradient-to-br from-emerald-50 to-teal-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <span class="text-emerald-600">Financiamiento</span> y Apoyo Económico
+          </h2>
+          <p class="text-xl text-gray-600">
+            Evaluamos proyectos con potencial para ofrecer financiamiento completo o parcial
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">📋 Criterios de Evaluación</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong class="text-gray-900">Impacto Social Medible:</strong>
+                  <p class="text-gray-600">Proyectos con indicadores claros de cambio social</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong class="text-gray-900">Sostenibilidad:</strong>
+                  <p class="text-gray-600">Modelos que puedan mantenerse a largo plazo</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong class="text-gray-900">Equipo Comprometido:</strong>
+                  <p class="text-gray-600">Líderes con dedicación y experiencia demostrada</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong class="text-gray-900">Innovación:</strong>
+                  <p class="text-gray-600">Enfoques creativos para problemas sociales</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">💰 Tipos de Apoyo</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong class="text-gray-900">Financiamiento Completo:</strong>
+                  <p class="text-gray-600">Para proyectos con alto impacto y viabilidad</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong class="text-gray-900">Apoyo Parcial:</strong>
+                  <p class="text-gray-600">Financiamiento para fases específicas del proyecto</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong class="text-gray-900">Consultoría Gratuita:</strong>
+                  <p class="text-gray-600">Asesoría técnica y estratégica sin costo</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong class="text-gray-900">Recursos Tecnológicos:</strong>
+                  <p class="text-gray-600">Acceso a software y herramientas gratuitas</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Nuestro <span class="text-emerald-600">Proceso</span> de Apoyo
+          </h2>
+          <p class="text-xl text-gray-600">
+            Un camino claro y transparente desde tu idea hasta la implementación
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-white text-2xl font-bold">1</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Contacto Inicial</h3>
+            <p class="text-gray-600">
+              Presenta tu proyecto y objetivos sociales
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-white text-2xl font-bold">2</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Evaluación</h3>
+            <p class="text-gray-600">
+              Analizamos viabilidad, impacto y sostenibilidad
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-white text-2xl font-bold">3</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Propuesta</h3>
+            <p class="text-gray-600">
+              Presentamos plan de apoyo y financiamiento
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-white text-2xl font-bold">4</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Implementación</h3>
+            <p class="text-gray-600">
+              Desarrollo y seguimiento del proyecto
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Historias de <span class="text-emerald-600">Éxito</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Proyectos que ya están transformando realidades con nuestro apoyo
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+              <span class="text-2xl">📚</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">EducaTech</h3>
+            <p class="text-gray-600 mb-4">
+              Plataforma educativa para comunidades rurales
+            </p>
+            <div class="text-sm text-emerald-600 font-semibold">
+              +500 estudiantes beneficiados
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+              <span class="text-2xl">🌱</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">VerdeLocal</h3>
+            <p class="text-gray-600 mb-4">
+              App para agricultores sostenibles
+            </p>
+            <div class="text-sm text-emerald-600 font-semibold">
+              +200 agricultores conectados
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+              <span class="text-2xl">❤️</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">SaludComunitaria</h3>
+            <p class="text-gray-600 mb-4">
+              Sistema de gestión para clínicas comunitarias
+            </p>
+            <div class="text-sm text-emerald-600 font-semibold">
+              +10 clínicas digitalizadas
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contacto-fundaciones" class="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          ¿Tienes un Proyecto con Impacto Social?
+        </h2>
+        <p class="text-xl mb-8 text-emerald-100">
+          Estamos listos para apoyar tu visión con consultoría gratuita y el financiamiento 
+          que necesites para hacer realidad tu proyecto.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="openContactModal('fundacion')"
+            class="bg-white text-emerald-600 font-bold py-4 px-8 rounded-lg shadow-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+          >
+            📝 Solicitar Consultoría Gratuita
+          </button>
+          <a
+            href="mailto:fundaciones@insanonetwork.com"
+            class="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-emerald-600 transition-all duration-300"
+          >
+            📧 Contactar Directamente
+          </a>
+        </div>
+        
+        <!-- Trust Indicators -->
+        <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300 mb-2">15+</div>
+            <div class="text-emerald-100">Proyectos Sociales</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300 mb-2">$2M+</div>
+            <div class="text-emerald-100">En Financiamiento</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300 mb-2">10K+</div>
+            <div class="text-emerald-100">Vidas Impactadas</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300 mb-2">100%</div>
+            <div class="text-emerald-100">Consultoría Gratuita</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Función para abrir el modal de contacto
+  function openContactModal(type) {
+    const modal = document.getElementById('contact-modal');
+    if (modal) {
+      modal.showModal();
+      // Aquí puedes pasar el tipo de contacto si es necesario
+      console.log('Opening contact modal for:', type);
+    }
+  }
+</script>

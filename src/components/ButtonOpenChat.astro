@@ -1,0 +1,46 @@
+---
+interface Props {
+  context?: string;
+  class?: string;
+  disabled?: boolean;
+}
+
+const { context = "general", class: className = "", disabled = false } = Astro.props;
+---
+
+<!-- Botón para abrir el chat con contexto específico -->
+<button
+  class={`open-chat-button px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 disabled:opacity-50 text-white rounded-lg text-sm transition-all duration-200 shadow-md hover:shadow-lg ${className}`}
+  disabled={disabled}
+  data-chat-context={context}
+>
+  Iniciar chat
+</button>
+
+<script>
+  // Hacer la función disponible globalmente
+  window.openChatWithContext = function(chatContext) {
+    console.log('Botón clickeado con contexto:', chatContext);
+    
+    // Disparar evento personalizado para abrir el chat con contexto
+    const event = new CustomEvent('openChatWithContext', {
+      detail: { context: chatContext }
+    });
+    document.dispatchEvent(event);
+    
+    console.log('Evento dispatcheado:', event);
+  };
+
+  // Agregar event listeners a todos los botones con la clase
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.open-chat-button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const context = button.getAttribute('data-chat-context');
+        if (context) {
+          window.openChatWithContext(context);
+        }
+      });
+    });
+  });
+</script>

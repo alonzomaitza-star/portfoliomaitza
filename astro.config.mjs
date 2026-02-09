@@ -20,7 +20,16 @@ export default defineConfig({
     })
   ],
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 100,
+      },
+      hmr: {
+        overlay: true,
+      },
+    },
   },
   markdown: {
     shikiConfig: {
@@ -30,5 +39,5 @@ export default defineConfig({
   },
   // Configuración de compilación para Netlify
   output: 'server',
-  adapter: netlify(),
+  adapter: process.env.NODE_ENV === 'production' ? netlify() : undefined,
 });

@@ -1,0 +1,372 @@
+<script lang="ts">
+    import { onMount, onDestroy } from "svelte";
+    import * as THREE from "three";
+    import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+    import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
+    import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+    import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+    export let modelColor: string = "#00ff00";
+    export let modelType: "cube" | "sphere" | "gltf" | "fbx" | "obj" = "cube";
+    export let textureUrl: string | null = null;
+    export let modelUrl: string | null = null; // [NEW] For external models
+
+    let container: HTMLDivElement;
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
+    let renderer: THREE.WebGLRenderer;
+    let controls: OrbitControls;
+    let mesh: THREE.Mesh | THREE.Group | THREE.Object3D | null = null; // [UPDATED]
+    let textureLoader: THREE.TextureLoader;
+    let gltfLoader: GLTFLoader;
+    let fbxLoader: FBXLoader;
+    let objLoader: OBJLoader;
+    let currentTexture: THREE.Texture | null = null;
+    let animationId: number;
+    let isLoading = false;
+    let prevModelUrl: string | null | undefined = undefined;
+    let prevModelType: string | undefined = undefined;
+
+    onMount(() => {
+        init();
+        animate();
+        window.addEventListener("resize", onWindowResize);
+    });
+
+    onDestroy(() => {
+        if (animationId) cancelAnimationFrame(animationId);
+        window.removeEventListener("resize", onWindowResize);
+        if (renderer) renderer.dispose();
+        if (mesh) {
+            if (mesh instanceof THREE.Mesh) {
+                mesh.geometry.dispose();
+                if (Array.isArray(mesh.material)) {
+                    mesh.material.forEach((m) => {
+                        if (m.map) m.map.dispose();
+                        m.dispose();
+                    });
+                } else {
+                    if (mesh.material.map) mesh.material.map.dispose();
+                    mesh.material.dispose();
+                }
+            } else if (mesh instanceof THREE.Group) {
+                mesh.traverse((child) => {
+                    if (child instanceof THREE.Mesh) {
+                        child.geometry.dispose();
+                        if (child.material) {
+                            if (Array.isArray(child.material)) {
+                                child.material.forEach((m) => m.dispose());
+                            } else {
+                                child.material.dispose();
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+    function init() {
+        if (!container) return;
+
+        // Scene
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xf3f4f6); // Light gray background
+
+        // Camera
+        const aspect = container.clientWidth / container.clientHeight;
+        camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
+        camera.position.z = 2;
+
+        // Renderer
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        // Light
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        // Helpers
+        const gridHelper = new THREE.GridHelper(10, 10);
+        scene.add(gridHelper);
+        const axesHelper = new THREE.AxesHelper(5);
+        scene.add(axesHelper);
+
+        // Controls
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.25;
+        controls.enableZoom = true;
+
+        // Initialize loaders
+        textureLoader = new THREE.TextureLoader();
+        gltfLoader = new GLTFLoader();
+        fbxLoader = new FBXLoader();
+        objLoader = new OBJLoader();
+
+        // Load model based on type
+        loadModel();
+    }
+
+    function loadModel() {
+        isLoading = true;
+
+        // Clean up previous model
+        if (mesh) {
+            scene.remove(mesh);
+            disposeModel(mesh);
+            mesh = null;
+        }
+
+        // For basic geometry types or when no model URL is provided
+        if (!modelUrl || modelType === "cube" || modelType === "sphere") {
+            loadBasicGeometry();
+            isLoading = false;
+            return;
+        }
+
+        switch (modelType) {
+            case "gltf":
+                gltfLoader.load(
+                    modelUrl,
+                    (gltf) => {
+                        mesh = gltf.scene;
+                        scene.add(mesh);
+                        centerModel();
+                        updateTexture();
+                        isLoading = false;
+                    },
+                    undefined,
+                    (error) => {
+                        console.error("Error loading GLTF model:", error);
+                        loadBasicGeometry();
+                        isLoading = false;
+                    },
+                );
+                break;
+            case "fbx":
+                fbxLoader.load(
+                    modelUrl,
+                    (fbx) => {
+                        mesh = fbx;
+                        scene.add(mesh);
+                        centerModel();
+                        updateTexture();
+                        isLoading = false;
+                    },
+                    undefined,
+                    (error) => {
+                        console.error("Error loading FBX model:", error);
+                        loadBasicGeometry();
+                        isLoading = false;
+                    },
+                );
+                break;
+            case "obj":
+                objLoader.load(
+                    modelUrl,
+                    (obj) => {
+                        mesh = obj;
+                        scene.add(mesh);
+                        centerModel();
+                        updateTexture();
+                        isLoading = false;
+                    },
+                    undefined,
+                    (error) => {
+                        console.error("Error loading OBJ model:", error);
+                        loadBasicGeometry();
+                        isLoading = false;
+                    },
+                );
+                break;
+            default:
+                loadBasicGeometry();
+                isLoading = false;
+        }
+    }
+
+    function loadBasicGeometry() {
+        let geometry;
+        if (modelType === "sphere") {
+            geometry = new THREE.SphereGeometry(0.7, 32, 32);
+        } else {
+            geometry = new THREE.BoxGeometry();
+        }
+
+        const material = new THREE.MeshStandardMaterial({
+            color: textureUrl ? 0xffffff : modelColor,
+            roughness: 0.3,
+            metalness: 0.7,
+        });
+        mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+        updateTexture();
+    }
+
+    function disposeModel(model: THREE.Mesh | THREE.Group | THREE.Object3D) {
+        if (model instanceof THREE.Mesh) {
+            model.geometry.dispose();
+            if (Array.isArray(model.material)) {
+                model.material.forEach((m) => {
+                    if (m.map) m.map.dispose();
+                    m.dispose();
+                });
+            } else {
+                if (model.material.map) model.material.map.dispose();
+                model.material.dispose();
+            }
+        } else if (model instanceof THREE.Group) {
+            model.traverse((child) => {
+                if (child instanceof THREE.Mesh) {
+                    child.geometry.dispose();
+                    if (child.material) {
+                        if (Array.isArray(child.material)) {
+                            child.material.forEach((m) => m.dispose());
+                        } else {
+                            child.material.dispose();
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function centerModel() {
+        if (!mesh) return;
+
+        const box = new THREE.Box3().setFromObject(mesh);
+        const center = box.getCenter(new THREE.Vector3());
+        mesh.position.sub(center);
+
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 2 / maxDim;
+        mesh.scale.multiplyScalar(scale);
+
+        console.log("Model Centered:", {
+            center,
+            size,
+            scale,
+            position: mesh.position,
+            scaleVec: mesh.scale,
+        });
+    }
+
+    // Reactivity: Update model when modelUrl or modelType actually changes
+    $: if (
+        scene &&
+        !isLoading &&
+        (modelUrl !== prevModelUrl || modelType !== prevModelType)
+    ) {
+        prevModelUrl = modelUrl;
+        prevModelType = modelType;
+        loadModel();
+    }
+
+    // Reactivity: Update texture when textureUrl changes
+    $: if (textureUrl !== undefined && mesh) {
+        updateTexture();
+    }
+
+    function updateTexture() {
+        if (!mesh || !textureLoader) return;
+
+        if (textureUrl) {
+            textureLoader.load(textureUrl, (texture) => {
+                if (currentTexture) currentTexture.dispose();
+                currentTexture = texture;
+
+                // Apply texture to all meshes in the model
+                if (mesh instanceof THREE.Group) {
+                    mesh.traverse((child) => {
+                        if (child instanceof THREE.Mesh) {
+                            if (Array.isArray(child.material)) {
+                                child.material.forEach((m) => {
+                                    m.map = texture;
+                                    m.color.setHex(0xffffff);
+                                    m.needsUpdate = true;
+                                });
+                            } else {
+                                child.material.map = texture;
+                                child.material.color.setHex(0xffffff);
+                                child.material.needsUpdate = true;
+                            }
+                        }
+                    });
+                } else if (mesh instanceof THREE.Mesh) {
+                    const material =
+                        mesh.material as THREE.MeshStandardMaterial;
+                    material.map = texture;
+                    material.color.setHex(0xffffff);
+                    material.needsUpdate = true;
+                }
+            });
+        } else {
+            // Remove texture if url is null
+            if (currentTexture) {
+                currentTexture.dispose();
+                currentTexture = null;
+            }
+
+            if (mesh instanceof THREE.Group) {
+                mesh.traverse((child) => {
+                    if (child instanceof THREE.Mesh) {
+                        if (Array.isArray(child.material)) {
+                            child.material.forEach((m) => {
+                                m.map = null;
+                                m.color.set(modelColor);
+                                m.needsUpdate = true;
+                            });
+                        } else {
+                            child.material.map = null;
+                            child.material.color.set(modelColor);
+                            child.material.needsUpdate = true;
+                        }
+                    }
+                });
+            } else if (mesh instanceof THREE.Mesh) {
+                const material = mesh.material as THREE.MeshStandardMaterial;
+                material.map = null;
+                material.color.set(modelColor);
+                material.needsUpdate = true;
+            }
+        }
+    }
+
+    function animate() {
+        animationId = requestAnimationFrame(animate);
+
+        if (mesh) {
+            mesh.rotation.y += 0.005; // Slower rotation
+        }
+
+        if (controls) controls.update();
+
+        if (renderer && scene && camera) {
+            renderer.render(scene, camera);
+        }
+    }
+
+    function onWindowResize() {
+        if (!container || !camera || !renderer) return;
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(width, height);
+    }
+</script>
+
+<div
+    class="w-full h-full min-h-[400px] rounded-xl overflow-hidden shadow-inner border border-gray-200"
+    bind:this={container}
+></div>

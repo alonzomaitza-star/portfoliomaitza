@@ -9,23 +9,33 @@ interface Project {
 
 const projects: Project[] = [
     {
-        title: "Arcoditechos Landing",
-        description: "Página de arcotechos enfocada en SEO y Prototipado.",
-        tags: ["SEO", "Prototipado", "Astro"],
-        url: "https://arcodisic-landing-page.netlify.app/",
+        title: "InsanoPlataform",
+        description: "Plataforma integral de herramientas digitales para tu negocio. Botones, bots, páginas web y más, conectados con CRMs potentes como Odoo. Ofrecemos soluciones opensource con personalización e integración especializada.",
+        tags: ["Plataforma", "CRM", "Bots", "Odoo", "Integración"],
+        url: "https://insanoplataform.netlify.app/",
+        repo: "https://github.com/insanonetwork/insanoplataform"
     },
     {
-        title: "Hidro Valija Electrónica",
-        description: "Página demo con interfaces complejas y flujo de usuario.",
-        tags: ["UI", "Astro", "Svelte", "React", "API", "SSR"],
-        url: "https://hidro-valija-electronica.netlify.app/",
+        title: "InsanoTools",
+        description: "Herramientas desarrolladas por nuestro equipo, disponibles como opensource. La integración y personalización de software es nuestro valor agregado. Soluciones adaptadas a tus necesidades específicas.",
+        tags: ["Herramientas", "Opensource", "Integración", "Personalización"],
+        url: "https://insanotools.netlify.app/",
+        repo: "https://github.com/insanonetwork/insanotools"
     },
     {
-        title: "Hidro Caja Herramientas",
-        description: "Herramientas para manejo de PDFs y firma digital.",
-        tags: ["Python Flask", "Cloudinary API", "UI", "PDF"],
-        url: "https://hidroxcajaherramientas.netlify.app/",
+        title: "Arcodisic Landing",
+        description: "Sitio web landing page para Arcodisic, diseñado para showcase de proyectos de arcotectos mediante fotografías, formularios de contacto y optimización SEO. Proyecto completo de presencia digital.",
+        tags: ["Landing", "SEO", "Fotografía", "Formularios", "Diseño"],
+        url: "https://690afbf9d4a4270008ce1616--arcodisic-landing.netlify.app/",
+        repo: "https://github.com/insanonetwork/arcodisic-landing"
     },
+    {
+        title: "InsanoDoc",
+        description: "Sistema de documentación centralizada para guardar y organizar toda la información de nuestros proyectos: software, componentes, herramientas open source y más. Facilita el acceso al conocimiento técnico y el seguimiento de desarrollos.",
+        tags: ["Documentación", "Opensource", "Gestión", "Software", "Componentes"],
+        url: "https://insanodoc.netlify.app/",
+        repo: "https://github.com/insanonetwork/insanodoc"
+    }
 ];
 ---
 
@@ -78,7 +88,7 @@ const projects: Project[] = [
                                     />
                                 </svg>
                             </button>
-                            {project.repo && (
+                            {/* {project.repo && (
                                 <a
                                     href={project.repo}
                                     target="_blank"
@@ -98,7 +108,7 @@ const projects: Project[] = [
                                         />
                                     </svg>
                                 </a>
-                            )}
+                            )} */}
                         </div>
                     </div>
                 ))
@@ -109,7 +119,7 @@ const projects: Project[] = [
     <!-- Draggable Modal -->
     <div
         id="project-modal"
-        class="fixed hidden z-50 pointer-events-none"
+        class="fixed hidden z-[150] pointer-events-none"
         style="top: 50px; left: 50px;"
     >
         <div
@@ -154,7 +164,7 @@ const projects: Project[] = [
             <div class="flex-1 bg-white relative">
                 <div
                     id="loader"
-                    class="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900 z-10"
+                    class="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900 z-[130]"
                 >
                     <div
                         class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"

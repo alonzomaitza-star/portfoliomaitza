@@ -1,0 +1,43 @@
+---
+interface Props {
+    type: "user" | "agent" | "system";
+    content: string;
+}
+
+const { type, content } = Astro.props;
+---
+
+<div
+    class={`flex ${type === "user" ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2 duration-300`}
+>
+    <!-- Avatar for Agent -->
+    {
+        type === "agent" && (
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex-shrink-0 flex items-center justify-center shadow-lg mt-1 mr-2">
+                <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                >
+                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                </svg>
+            </div>
+        )
+    }
+
+    <div
+        class={`
+      max-w-[85%] rounded-2xl p-3 text-sm shadow-sm
+      ${
+          type === "user"
+              ? "bg-blue-600 text-white rounded-tr-none"
+              : "bg-white/10 border border-white/5 text-slate-200 rounded-tl-none"
+      }
+    `}
+    >
+        <div
+            class="prose prose-invert prose-sm max-w-none leading-relaxed"
+            set:html={content}
+        />
+    </div>
+</div>

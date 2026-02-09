@@ -1,0 +1,232 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WorkSection from '../components/benefits/WorkSection.astro';
+import BenefitPlans from '../components/benefits/BenefitPlans.astro';
+import DiscordBenefits from '../components/benefits/DiscordBenefits.astro';
+---
+
+<Layout
+  title="Emprendimiento | Insano Network - Transforma tu Idea en Negocio"
+  description="Únete a Insano Network y transforma tu idea en un negocio exitoso. 5 años de experiencia TI conectando proyectos con profesionales. Software, diseño, desarrollo y más."
+  keywords="emprendimiento, negocios, startup, TI, software, desarrollo web, diseño, consultoría, Insano Network"
+>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative container mx-auto px-6 py-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="mb-8">
+          <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold">
+            🚀 5 Años de Experiencia TI
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          Transforma tu Idea en un
+          <span class="block text-yellow-300">Negocio Exitoso</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-indigo-100 max-w-3xl mx-auto">
+          Conectamos proyectos con profesionales o profesionales entre sí. 
+          Somos la network que facilita tus tareas con soluciones integrales de software, 
+          diseño, planificación y desarrollo.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#contacto"
+            class="bg-white text-indigo-600 font-bold py-4 px-8 rounded-lg shadow-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+          >
+            Comenzar Ahora
+          </a>
+          <a
+            href="#beneficios"
+            class="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-indigo-600 transition-all duration-300"
+          >
+            Ver Beneficios
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Decorative Elements -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 120L60 110C120 100 180 80 240 70C300 60 360 50 420 45C480 40 540 35 600 40C660 45 720 55 780 60C840 65 900 65 960 60C1020 55 1080 45 1140 40C1200 35 1260 30 1320 35C1380 40 1410 50 1440 60V120H0V120Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Problem Statement -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900">
+          ¿Por qué elegir <span class="text-indigo-600">Insano Network</span>?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Problema Común</h3>
+            <p class="text-gray-600">
+              Emprender es solitario, costoso y complicado. No sabes dónde encontrar profesionales confiables 
+              ni cómo integrar todas las piezas de tu proyecto.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Nuestra Solución</h3>
+            <p class="text-gray-600">
+              Somos un ecosistema digital que conecta talentos, facilita procesos y ofrece 
+              soluciones integrales adaptadas a tus necesidades específicas.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Resultado Garantizado</h3>
+            <p class="text-gray-600">
+              Gastes menos, vendas más, tengas todo en un solo lugar y evoluciones 
+              con flexibilidad y adaptación continua a tus necesidades.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="beneficios" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900">
+          Beneficios de Unirse a Nuestra <span class="text-indigo-600">Network</span>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-8">💰 Para tu Bolsillo</h3>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <span class="text-3xl mr-4">💸</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Gasta Menos</h4>
+                  <p class="text-gray-600">Acceso a profesionales sin los costos elevados de agencias tradicionales.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <span class="text-3xl mr-4">📈</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Vende Más</h4>
+                  <p class="text-gray-600">Herramientas y estrategias probadas para aumentar tus ventas.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <span class="text-3xl mr-4">🎯</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">ROI Rápido</h4>
+                  <p class="text-gray-600">Resultados medibles desde el primer mes de implementación.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-8">⚡ Para tu Tiempo</h3>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <span class="text-3xl mr-4">🏪</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Todo en un Lugar</h4>
+                  <p class="text-gray-600">Desde diseño hasta desarrollo, sin cambiar de proveedor.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <span class="text-3xl mr-4">🔄</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Flexibilidad Total</h4>
+                  <p class="text-gray-600">Nos adaptamos a tus necesidades y ritmo de crecimiento.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <span class="text-3xl mr-4">🚀</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Evolución Constante</h4>
+                  <p class="text-gray-600">Mejoramos continuamente basándonos en tus resultados.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <WorkSection />
+
+  <!-- Plans Section -->
+  <BenefitPlans />
+
+  <!-- Community Section -->
+  <DiscordBenefits />
+
+  <!-- CTA Section -->
+  <section id="contacto" class="py-20 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          ¿Listo para Transformar tu Idea en Realidad?
+        </h2>
+        <p class="text-xl mb-8 text-indigo-100">
+          Con 5 años de experiencia en el sector TI, tenemos el conocimiento y la red 
+          profesional para llevar tu proyecto al siguiente nivel.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="mailto:contacto@insanonetwork.com"
+            class="bg-white text-indigo-600 font-bold py-4 px-8 rounded-lg shadow-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+          >
+            📧 Contactar Asesor
+          </a>
+          <a
+            href="/nosotros"
+            class="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-indigo-600 transition-all duration-300"
+          >
+            👥 Conocer al Equipo
+          </a>
+        </div>
+        
+        <!-- Trust Indicators -->
+        <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300 mb-2">5+</div>
+            <div class="text-indigo-100">Años de Experiencia</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300 mb-2">50+</div>
+            <div class="text-indigo-100">Proyectos Completados</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300 mb-2">30+</div>
+            <div class="text-indigo-100">Profesionales en Red</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300 mb-2">98%</div>
+            <div class="text-indigo-100">Clientes Satisfechos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

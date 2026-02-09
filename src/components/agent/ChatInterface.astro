@@ -1,0 +1,433 @@
+---
+import MessageBubble from "./components/MessageBubble.astro";
+import TypingIndicator from "./components/TypingIndicator.astro";
+
+// We import the CSS/logic script client-side for interactivity
+---
+
+<!-- ChatBot Container -->
+<div id="agent-root" class="fixed bottom-6 left-6 z-[9999] font-sans">
+    <!-- Toggle Button -->
+    <button
+        id="agent-toggle"
+        class="w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group relative"
+        aria-label="Abrir Asistente"
+    >
+        <svg
+            class="w-7 h-7 transition-transform duration-300 group-hover:rotate-12"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            ></path>
+        </svg>
+        <!-- Notification Dot -->
+        <span
+            id="agent-notification"
+            class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-[#09090b] animate-pulse hidden"
+        ></span>
+    </button>
+
+    <!-- Chat Dialog Window -->
+    <div
+        id="agent-window"
+        class="fixed bottom-24 left-6 w-80 md:w-96 h-[500px] bg-[#09090b]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col opacity-0 pointer-events-none scale-95 transition-all duration-300 origin-bottom-left"
+    >
+        <!-- Header -->
+        <div
+            class="px-4 py-3 border-b border-white/10 flex items-center justify-between bg-white/5 rounded-t-2xl"
+        >
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center shadow-inner"
+                >
+                    <span class="text-xs font-bold text-white">AI</span>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-sm tracking-wide">
+                        Insano Agent
+                    </h4>
+                    <p
+                        class="text-[10px] text-green-400 flex items-center gap-1.5 font-medium uppercase tracking-wider"
+                    >
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]"
+                        ></span> Online
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center gap-1">
+                <!-- Toggle View Button (Chat <-> Contact) -->
+                <button
+                    id="agent-view-toggle"
+                    class="text-slate-400 hover:text-white transition-colors p-1"
+                    title="Alternar entre Chat y Contacto"
+                >
+                    <!-- Icon changes based on state via JS -->
+                    <svg
+                        id="icon-contact"
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        ></path>
+                    </svg>
+                    <svg
+                        id="icon-chat"
+                        class="w-5 h-5 hidden"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                        ></path>
+                    </svg>
+                </button>
+                <button
+                    id="agent-close"
+                    class="text-slate-400 hover:text-white transition-colors p-1"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path></svg
+                    >
+                </button>
+            </div>
+        </div>
+
+        <!-- View: Chat (Default) -->
+        <div id="view-chat" class="flex flex-col flex-1 overflow-hidden h-full">
+            <!-- Messages Area -->
+            <div
+                id="agent-messages"
+                class="flex-1 p-4 overflow-y-auto overflow-x-hidden space-y-4 scrollbar-thin"
+            >
+                <!-- Dynamic content will be injected here via JS -->
+            </div>
+
+            <!-- Typing Indicator Area -->
+            <div id="agent-typing" class="px-4 pb-2 hidden">
+                <TypingIndicator />
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-3 border-t border-white/10 bg-white/5 rounded-b-2xl">
+                <form
+                    id="agent-form"
+                    class="relative flex items-center gap-2"
+                    onsubmit="return false;"
+                >
+                    <input
+                        type="text"
+                        id="agent-input"
+                        placeholder="Escribe un comando o pregunta..."
+                        class="w-full bg-[#09090b] border border-white/10 rounded-full py-2.5 px-4 text-slate-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-slate-600"
+                        autocomplete="off"
+                    />
+                    <button
+                        type="submit"
+                        class="w-10 h-10 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center text-white transition-all shadow-lg hover:scale-105 disabled:opacity-50"
+                    >
+                        <svg
+                            class="w-4 h-4 translate-x-0.5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            ><path
+                                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                            ></path></svg
+                        >
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- View: Contact Form (Hidden) -->
+        <div
+            id="view-contact"
+            class="hidden flex-1 overflow-hidden h-full bg-white rounded-b-2xl relative"
+        >
+            <iframe
+                id="contact-iframe"
+                src="/contact-form?modal=true"
+                class="w-full h-full border-0"
+                title="Formulario de contacto"></iframe>
+        </div>
+    </div>
+
+    <style>
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Open state class */
+        .agent-open {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            transform: scale(1) !important;
+        }
+    </style>
+
+    <script>
+        import { agent } from "./AgentCore";
+        import type { AgentState, Message } from "./AgentCore";
+
+        console.log("ChatInterface script cargado");
+        console.log("Agent importado:", agent);
+
+        // UI References
+        const root = document.getElementById("agent-root");
+        const windowEl = document.getElementById("agent-window");
+        const toggleBtn = document.getElementById("agent-toggle");
+        const closeBtn = document.getElementById("agent-close");
+        const form = document.getElementById("agent-form");
+        const input = document.getElementById("agent-input");
+        const messagesContainer = document.getElementById("agent-messages");
+        const typingContainer = document.getElementById("agent-typing");
+        const notificationDot = document.getElementById("agent-notification");
+
+        // View Elements
+        const viewChat = document.getElementById("view-chat") as HTMLDivElement;
+        const viewContact = document.getElementById(
+            "view-contact",
+        ) as HTMLDivElement;
+        const viewToggleBtn = document.getElementById(
+            "agent-view-toggle",
+        ) as HTMLButtonElement;
+        const iconContact = document.getElementById(
+            "icon-contact",
+        ) as SVGElement;
+        const iconChat = document.getElementById("icon-chat") as SVGElement;
+
+        console.log("Elementos DOM encontrados:", {
+            root: !!root,
+            windowEl: !!windowEl,
+            toggleBtn: !!toggleBtn,
+            closeBtn: !!closeBtn,
+            form: !!form,
+            input: !!input,
+            messagesContainer: !!messagesContainer,
+            typingContainer: !!typingContainer,
+            notificationDot: !!notificationDot,
+            viewChat: !!viewChat,
+            viewContact: !!viewContact,
+            viewToggleBtn: !!viewToggleBtn,
+        });
+
+        // --- State ---
+        let activeView = "chat"; // 'chat' | 'contact'
+
+        function switchView(view: "chat" | "contact") {
+            activeView = view;
+            if (!viewChat || !viewContact || !iconContact || !iconChat) return;
+
+            if (view === "chat") {
+                viewChat.classList.remove("hidden");
+                viewChat.classList.add("flex");
+                viewContact.classList.add("hidden");
+
+                iconContact.classList.remove("hidden");
+                iconChat.classList.add("hidden");
+
+                // Focus input when switching back to chat
+                setTimeout(() => (input as HTMLInputElement)?.focus(), 100);
+            } else {
+                viewChat.classList.add("hidden");
+                viewChat.classList.remove("flex");
+                viewContact.classList.remove("hidden");
+
+                iconContact.classList.add("hidden");
+                iconChat.classList.remove("hidden");
+            }
+        }
+
+        // --- Render Logic ---
+
+        function renderMessages(messages: Message[]) {
+            if (!messagesContainer) return;
+            messagesContainer.innerHTML = ""; // Clear current
+
+            messages.forEach((msg) => {
+                const wrapper = document.createElement("div");
+                // Re-create styling manually or utilize a robust rendering method.
+                // For simplicity/performance in Vanilla, we inject HTML string similar to component
+
+                const isUser = msg.type === "user";
+                wrapper.className = `flex ${isUser ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom-2 duration-300`;
+
+                let avatarHtml = "";
+                if (!isUser) {
+                    avatarHtml = `
+          <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex-shrink-0 flex items-center justify-center shadow-lg mt-1 mr-2">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path></svg>
+          </div>
+        `;
+                }
+
+                wrapper.innerHTML = `
+        ${avatarHtml}
+        <div class="max-w-[85%] rounded-2xl p-3 text-sm shadow-sm ${isUser ? "bg-blue-600 text-white rounded-tr-none" : "bg-white/10 border border-white/5 text-slate-200 rounded-tl-none"}">
+          <div class="prose prose-invert prose-sm max-w-none leading-relaxed">${msg.content}</div>
+        </div>
+      `;
+
+                messagesContainer.appendChild(wrapper);
+            });
+            scrollToBottom();
+        }
+
+        function updateUI(state: AgentState) {
+            // Toggle Window Visibility
+            if (state.isOpen) {
+                windowEl?.classList.add("agent-open");
+                toggleBtn?.classList.add("scale-0", "opacity-0"); // Hide button when open? Or just style it differently. Let's hide it to avoid clutter
+                setTimeout(() => input?.focus(), 100);
+                notificationDot?.classList.add("hidden");
+            } else {
+                windowEl?.classList.remove("agent-open");
+                toggleBtn?.classList.remove("scale-0", "opacity-0");
+            }
+
+            // Typing Indicator
+            if (state.isTyping) {
+                typingContainer?.classList.remove("hidden");
+                scrollToBottom();
+            } else {
+                typingContainer?.classList.add("hidden");
+            }
+
+            // Render messages if changed (naive check, optimization: diffing)
+            // For now, simple re-render is fine for < 100 messages
+            renderMessages(state.messages);
+        }
+
+        function scrollToBottom() {
+            if (messagesContainer) {
+                messagesContainer.scrollTo({
+                    top: messagesContainer.scrollHeight,
+                    behavior: "smooth",
+                });
+            }
+        }
+
+        // --- Event Listeners ---
+
+        // 1. Core Events
+        agent.addEventListener("state-change", ((e: Event) => {
+            const customEvent = e as CustomEvent;
+            updateUI(customEvent.detail);
+        }) as EventListener);
+
+        agent.addEventListener("agent-action", ((e: Event) => {
+            const customEvent = e as CustomEvent;
+            const { action, data } = customEvent.detail;
+            console.log("[Agent Action]", action, data);
+
+            if (action === "navigate") {
+                if (data.startsWith("#")) {
+                    const el = document.querySelector(data);
+                    el?.scrollIntoView({ behavior: "smooth" });
+                } else {
+                    window.location.href = data;
+                }
+            }
+        }) as EventListener);
+
+        // 2. UI Interaction
+        toggleBtn?.addEventListener("click", () => agent.toggleChat());
+        closeBtn?.addEventListener("click", () => agent.toggleChat(false));
+
+        viewToggleBtn?.addEventListener("click", () => {
+            const newView = activeView === "chat" ? "contact" : "chat";
+            switchView(newView);
+        });
+
+        form?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const inputEl = input as HTMLInputElement;
+            if (!inputEl) return;
+
+            const text = inputEl.value.trim();
+            if (text) {
+                agent.processUserMessage(text);
+                inputEl.value = "";
+            }
+        });
+
+        // 3. Escuchar evento personalizado para abrir chat con contexto
+        console.log("Registrando listener para evento openChatWithContext...");
+        document.addEventListener("openChatWithContext", (e) => {
+            console.log("Evento recibido en ChatInterface:", e);
+            console.log("Detail del evento:", e.detail);
+
+            const { context } = e.detail;
+            console.log("Contexto extraído:", context);
+
+            // Verificar que el agente exista
+            if (!agent) {
+                console.error("Agent no está definido");
+                return;
+            }
+
+            console.log("Agent state actual:", agent.getState());
+
+            // Abrir el chat si está cerrado
+            if (!agent.getState().isOpen) {
+                console.log("Abriendo chat...");
+                agent.toggleChat();
+            }
+
+            // Añadir el contexto al input después de un breve delay
+            setTimeout(() => {
+                console.log("Intentando rellenar input con:", context);
+                const inputEl = input as HTMLInputElement;
+                if (inputEl) {
+                    inputEl.value = context;
+                    inputEl.focus();
+                    console.log("Input rellenado exitosamente");
+
+                    // Opcional: enviar automáticamente el mensaje de contexto
+                    // agent.processUserMessage(context);
+                    // input.value = "";
+                } else {
+                    console.error("Input no encontrado");
+                }
+            }, 300);
+        });
+        console.log("Listener registrado exitosamente");
+
+        // Initial Load
+        updateUI(agent.getState());
+
+        // View Transitions support
+        document.addEventListener("astro:after-swap", () => {
+            // Re-attach or re-init if necessary. simpler to let it re-run script
+            updateUI(agent.getState());
+        });
+    </script>
+</div>
