@@ -39,5 +39,5 @@ export default defineConfig({
   },
   // Configuración de compilación para Netlify
   output: 'server',
-  adapter: process.env.NODE_ENV === 'production' ? netlify() : undefined,
+  adapter: netlify(),
 });
