@@ -20,23 +20,6 @@ export default defineConfig({
     })
   ],
   vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          // Sanitize entry/chunk filenames to remove @ characters that Netlify rejects
-          chunkFileNames(chunkInfo) {
-            const name = chunkInfo.name || 'chunk';
-            const sanitized = name.replace(/@/g, '');
-            return `chunks/${sanitized}.[hash].mjs`;
-          },
-          entryFileNames(chunkInfo) {
-            const name = chunkInfo.name || 'entry';
-            const sanitized = name.replace(/@/g, '');
-            return `${sanitized}.[hash].mjs`;
-          },
-        },
-      },
-    },
     plugins: [tailwindcss()],
     server: {
       watch: {
