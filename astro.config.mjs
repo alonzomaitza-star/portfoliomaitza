@@ -23,9 +23,17 @@ export default defineConfig({
     build: {
       rollupOptions: {
         output: {
-          entryFileNames: 'entry.[hash].mjs',
-          chunkFileNames: 'chunks/chunk.[hash].mjs',
-          assetFileNames: 'assets/asset.[hash][extname]',
+          // Sanitize entry/chunk filenames to remove @ characters that Netlify rejects
+          chunkFileNames(chunkInfo) {
+            const name = chunkInfo.name || 'chunk';
+            const sanitized = name.replace(/@/g, '');
+            return `chunks/${sanitized}.[hash].mjs`;
+          },
+          entryFileNames(chunkInfo) {
+            const name = chunkInfo.name || 'entry';
+            const sanitized = name.replace(/@/g, '');
+            return `${sanitized}.[hash].mjs`;
+          },
         },
       },
     },
