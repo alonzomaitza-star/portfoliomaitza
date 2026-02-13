@@ -1,5 +1,6 @@
 ---
 import Logo from "../assets/Logo.png";
+import WindowShop from "./shop/WindowShop.astro";
 ---
 
 <div class="nav-wrapper">
@@ -178,12 +179,17 @@ import Logo from "../assets/Logo.png";
             <li><a href="/fundaciones">Fundaciones</a></li>
             <li><a href="/herramientas">Herramientas</a></li>
             <li><a href="/blog">Blog</a></li>
-            <li><a href="/beneficios" class="beneficios-link">Beneficios</a></li>
             <li>
-              <a
-                href="#"
+              <a href="/beneficios" class="beneficios-link">Beneficios</a>
+            </li>
+            <li
+              class="bg-yellow-500 text-black hover:bg-yellow-600 hover:text-white py-1 px-2 rounded-[7px]"
+            >
+              <button
+                id="tienda-btn"
                 class="tienda-link inline-flex items-center gap-2"
-                aria-label="Tienda"
+                aria-label="Abrir Tienda"
+                type="button"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
@@ -202,7 +208,7 @@ import Logo from "../assets/Logo.png";
                     d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
                   ></path></svg
                 >Tienda
-              </a>
+              </button>
             </li>
           </ul>
           <div class="nav-actions" aria-label="Acciones de usuario">
@@ -365,6 +371,7 @@ import Logo from "../assets/Logo.png";
   </div>
   <div class="nav-line nav-line-bottom"></div>
 </div>
+<WindowShop />
 <style>
   .navbarmain-card-descripcion {
     font-size: 0.7rem;
@@ -781,6 +788,11 @@ import Logo from "../assets/Logo.png";
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
     }
     .desktop-auth-buttons {
       display: none;
@@ -946,6 +958,15 @@ import Logo from "../assets/Logo.png";
       if (serviciosMenu.classList.contains("hidden")) {
         serviciosLink.setAttribute("aria-expanded", "false");
       }
+    });
+  }
+
+  // Tienda button — dispatch custom event to toggle WindowShop iframe
+  const tiendaBtn = document.getElementById("tienda-btn");
+  if (tiendaBtn) {
+    tiendaBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.dispatchEvent(new CustomEvent("toggle-window-shop"));
     });
   }
 

@@ -1,0 +1,87 @@
+---
+
+---
+
+<!-- WindowShop: Fullscreen iframe dialog for the storefront -->
+<div id="window-shop-overlay" class="window-shop-overlay">
+    <div class="window-shop-container">
+        <iframe
+            id="window-shop-iframe"
+            class="window-shop-iframe"
+            src=""
+            title="Tienda Insano Network"
+            allow="payment; clipboard-write"
+            loading="lazy"></iframe>
+    </div>
+</div>
+
+<style>
+    .window-shop-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 30;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .window-shop-overlay.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .window-shop-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .window-shop-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #0a0a0a;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const overlay = document.getElementById("window-shop-overlay");
+        const iframe = document.getElementById(
+            "window-shop-iframe",
+        ) as HTMLIFrameElement;
+        const STOREFRONT_URL = "http://localhost:8000";
+
+        // Listen for the custom event from NavBarMain
+        document.addEventListener("toggle-window-shop", () => {
+            if (!overlay) return;
+
+            const isActive = overlay.classList.contains("active");
+
+            if (isActive) {
+                // Close
+                overlay.classList.remove("active");
+                iframe.src = "";
+                document.body.style.overflow = "";
+            } else {
+                // Open
+                iframe.src = STOREFRONT_URL;
+                overlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && overlay?.classList.contains("active")) {
+                overlay.classList.remove("active");
+                iframe.src = "";
+                document.body.style.overflow = "";
+            }
+        });
+    });
+</script>
