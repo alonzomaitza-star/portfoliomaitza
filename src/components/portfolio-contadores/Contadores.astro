@@ -1,0 +1,571 @@
+---
+interface Props {
+    pdfUrl?: string;
+    title?: string;
+}
+
+const {
+    pdfUrl = "/cvs/Catalogo-Contadores.pdf",
+    title = "E&V Contadores Públicos Independientes",
+} = Astro.props;
+---
+
+<section
+    id="cv-container"
+    class="py-12 bg-gray-50 dark:bg-gray-900 min-h-screen relative"
+>
+    <!-- Actions Bar (Floating) -->
+    <div class="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
+        <!-- View PDF Button -->
+        <button
+            id="view-pdf-btn"
+            class="flex items-center justify-center w-14 h-14 bg-gray-800 hover:bg-gray-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110"
+            title="Ver PDF"
+        >
+            <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                ></path>
+            </svg>
+        </button>
+
+        <!-- Download PNG Button -->
+        <button
+            id="download-png-btn"
+            class="flex items-center justify-center w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110"
+            title="Descargar como Imagen"
+        >
+            <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+            </svg>
+        </button>
+
+        <!-- Download PDF Button -->
+        <a
+            href={pdfUrl}
+            download
+            class="flex items-center justify-center w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110"
+            title="Descargar PDF"
+        >
+            <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div
+        class="container mx-auto px-4 max-w-7xl bg-white dark:bg-gray-900 shadow-2xl rounded-xl overflow-hidden"
+        id="cv-content"
+    >
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+            <!-- Sidebar (Left visually in grid) -->
+            <div
+                class="lg:col-span-4 bg-[#0f172a] text-white p-8 lg:p-12 space-y-10"
+            >
+                <!-- Logo & Brand -->
+                <div class="text-center">
+                    <div
+                        class="w-48 h-48 mx-auto mb-8 relative flex items-center justify-center bg-white rounded-full border-4 border-blue-500 shadow-xl overflow-hidden"
+                    >
+                        <!-- If there's a real logo image, we would put it here. For now, text representation or placeholder -->
+                        <div
+                            class="flex flex-col items-center justify-center text-[#0f172a]"
+                        >
+                            <span class="text-5xl font-black">E&V</span>
+                            <span
+                                class="text-xs font-bold uppercase mt-1 tracking-widest"
+                                >Contadores</span
+                            >
+                        </div>
+                    </div>
+
+                    <h2
+                        class="text-2xl font-bold text-white mb-6 uppercase tracking-wider border-b border-gray-700 pb-2"
+                    >
+                        Contacto
+                    </h2>
+                    <div class="space-y-4 text-left">
+                        <a
+                            href="tel:5632583666"
+                            class="flex items-center gap-4 text-gray-300 hover:text-blue-400 transition-colors group"
+                        >
+                            <span
+                                class="p-2 bg-gray-800 rounded-lg group-hover:bg-blue-400 group-hover:text-white transition-colors"
+                            >
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                    ></path></svg
+                                >
+                            </span>
+                            <span class="text-sm"
+                                >5632 583 666 / 5548 147 544</span
+                            >
+                        </a>
+                        <a
+                            href="mailto:contadorvictorgomez@gmail.com"
+                            class="flex items-center gap-4 text-gray-300 hover:text-blue-400 transition-colors group"
+                        >
+                            <span
+                                class="p-2 bg-gray-800 rounded-lg group-hover:bg-blue-400 group-hover:text-white transition-colors"
+                            >
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    ></path></svg
+                                >
+                            </span>
+                            <span class="text-sm truncate"
+                                >contadorvictorgomez@gmail.com</span
+                            >
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Advantages -->
+                <div>
+                    <h2
+                        class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b border-gray-700 pb-2"
+                    >
+                        Ventajas
+                    </h2>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        {
+                            [
+                                "Atención personalizada",
+                                "Cumplimiento puntual",
+                                "Profesionalismo y confidencialidad",
+                                "Actualización constante en normativas fiscales",
+                            ].map((item) => (
+                                <li class="flex items-start gap-2">
+                                    <span class="text-blue-500 mt-1">●</span>
+                                    <span>{item}</span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- QR Code or Extra Info Placeholder -->
+                <div class="pt-8 border-t border-gray-800 text-center">
+                    <p class="text-gray-400 text-xs italic">
+                        "Permítanos ser su aliado estratégico, garantizando el
+                        cumplimiento puntual y la optimización de sus recursos
+                        financieros."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Content (Right) -->
+            <div
+                class="lg:col-span-8 p-8 lg:p-12 bg-white dark:bg-gray-100 text-gray-800"
+            >
+                <!-- Header -->
+                <div class="mb-8 border-b-4 border-blue-600 pb-6">
+                    <h2
+                        class="text-lg font-bold text-blue-600 tracking-widest uppercase mb-2"
+                    >
+                        Soluciones Integrales
+                    </h2>
+                    <h1
+                        class="text-4xl lg:text-5xl font-black text-gray-900 leading-tight mb-2"
+                    >
+                        E&V CONTADORES
+                    </h1>
+                    <h1
+                        class="text-3xl lg:text-4xl font-black text-gray-500 leading-tight mb-6"
+                    >
+                        PÚBLICOS INDEPENDIENTES
+                    </h1>
+
+                    <div
+                        class="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500"
+                    >
+                        <p class="text-xl font-semibold text-gray-700 italic">
+                            "Profesionalismo, Confianza y Precisión"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Profile/About -->
+                <div class="mb-10">
+                    <p
+                        class="text-gray-600 text-lg leading-relaxed text-justify"
+                    >
+                        En <strong
+                            >E & V Contadores Públicos Independientes</strong
+                        > nos especializamos en brindar soluciones contables y fiscales
+                        a personas físicas y morales, con un enfoque personalizado
+                        y profesional. Nuestro objetivo es facilitar el cumplimiento
+                        de sus obligaciones fiscales, optimizar sus recursos y generar
+                        información financiera confiable.
+                    </p>
+                </div>
+
+                <!-- Detailed Services Section -->
+                <div class="space-y-8">
+                    <h3
+                        class="text-xl font-bold text-gray-900 mb-6 uppercase tracking-widest flex items-center gap-3"
+                    >
+                        <span class="w-8 h-1 bg-blue-600"></span> Nuestros Servicios
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Declaraciones Fiscales -->
+                        <div
+                            class="group p-6 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all"
+                        >
+                            <h4
+                                class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2 group-hover:text-blue-600 transition-colors"
+                            >
+                                <span
+                                    class="bg-blue-100 p-2 rounded-lg text-blue-600 text-xl"
+                                ></span> Declaraciones Fiscales
+                            </h4>
+                            <ul
+                                class="text-gray-600 text-sm space-y-1 list-disc list-inside"
+                            >
+                                <li>
+                                    Declaraciones mensuales (IVA, ISR,
+                                    retenciones)
+                                </li>
+                                <li>Declaraciones anuales</li>
+                                <li>Declaraciones informativas (DIOT, DIM)</li>
+                                <li>
+                                    Cálculo y emisión de nóminas y seguridad
+                                    social
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Trámites ante el SAT -->
+                        <div
+                            class="group p-6 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all"
+                        >
+                            <h4
+                                class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2 group-hover:text-blue-600 transition-colors"
+                            >
+                                <span
+                                    class="bg-blue-100 p-2 rounded-lg text-blue-600 text-xl"
+                                    >🏛️</span
+                                > Trámites ante el SAT
+                            </h4>
+                            <ul
+                                class="text-gray-600 text-sm space-y-1 list-disc list-inside"
+                            >
+                                <li>Inscripción y actualización en el RFC</li>
+                                <li>Trámites de firma electrónica (e.firma)</li>
+                                <li>Activación y renovación de contraseña</li>
+                                <li>Aclaraciones y solicitudes diversas</li>
+                            </ul>
+                        </div>
+
+                        <!-- Contabilidad e Impuestos -->
+                        <div
+                            class="group p-6 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all"
+                        >
+                            <h4
+                                class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2 group-hover:text-blue-600 transition-colors"
+                            >
+                                <span
+                                    class="bg-blue-100 p-2 rounded-lg text-blue-600 text-xl"
+                                ></span> Contabilidad e Impuestos
+                            </h4>
+                            <ul
+                                class="text-gray-600 text-sm space-y-1 list-disc list-inside"
+                            >
+                                <li>Registro contable mensual</li>
+                                <li>Elaboración de estados financieros</li>
+                                <li>Cálculo y determinación de impuestos</li>
+                                <li>
+                                    Revisión y análisis de obligaciones fiscales
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Asesorías Financieras -->
+                        <div
+                            class="group p-6 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all"
+                        >
+                            <h4
+                                class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2 group-hover:text-blue-600 transition-colors"
+                            >
+                                <span
+                                    class="bg-blue-100 p-2 rounded-lg text-blue-600 text-xl"
+                                    >💼</span
+                                > Asesorías Financieras
+                            </h4>
+                            <ul
+                                class="text-gray-600 text-sm space-y-1 list-disc list-inside"
+                            >
+                                <li>Planeación fiscal</li>
+                                <li>Análisis financiero personalizado</li>
+                                <li>Estrategias de optimización fiscal</li>
+                                <li>Acompañamiento en auditorías</li>
+                            </ul>
+                        </div>
+
+                        <!-- Servicios de Facturación -->
+                        <div
+                            class="group p-6 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all md:col-span-2"
+                        >
+                            <h4
+                                class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2 group-hover:text-blue-600 transition-colors"
+                            >
+                                <span
+                                    class="bg-blue-100 p-2 rounded-lg text-blue-600 text-xl"
+                                    >🧾</span
+                                > Servicios de Facturación
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <span
+                                    class="flex items-center gap-2 text-sm text-gray-600"
+                                    ><span class="text-blue-500">✓</span> Emisión
+                                    de facturas</span
+                                >
+                                <span
+                                    class="flex items-center gap-2 text-sm text-gray-600"
+                                    ><span class="text-blue-500">✓</span> Control
+                                    de CFDI's</span
+                                >
+                                <span
+                                    class="flex items-center gap-2 text-sm text-gray-600"
+                                    ><span class="text-blue-500">✓</span> Gestión
+                                    de catálogos</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div
+                    class="mt-12 p-8 bg-blue-50 rounded-2xl text-center border border-blue-100"
+                >
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                        ¿Listo para optimizar sus finanzas?
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                        Contáctanos hoy mismo para comenzar.
+                    </p>
+                    <a
+                        href="mailto:contadorvictorgomez@gmail.com"
+                        class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all hover:-translate-y-1"
+                    >
+                        Solicitar Asesoría
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CV Modal (PDF Viewer) -->
+    <div
+        id="cv-modal"
+        class="fixed hidden z-[100] pointer-events-none transition-opacity duration-300"
+        style="top: 50px; left: 50px;"
+    >
+        <div
+            class="pointer-events-auto w-[1000px] h-[800px] max-w-[95vw] max-h-[90vh] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 cv-modal-content"
+            style="box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);"
+        >
+            <!-- Toolbar -->
+            <div
+                id="cv-modal-header"
+                class="h-10 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-4 cursor-move select-none"
+            >
+                <div class="flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <span
+                    class="text-sm font-medium text-gray-600 dark:text-gray-300"
+                    >{title} - PDF Preview</span
+                >
+                <button
+                    id="close-cv-modal"
+                    class="text-gray-500 hover:text-red-500 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Iframe Container -->
+            <div class="flex-1 bg-gray-800 relative">
+                <iframe
+                    src={`${pdfUrl}#toolbar=0`}
+                    class="w-full h-full border-0"
+                    title="PDF Viewer"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    console.log("CV-CONTADORES script initializing...");
+
+    // --- PDF Modal Logic ---
+    const viewPdfBtn = document.getElementById("view-pdf-btn");
+    const cvModal = document.getElementById("cv-modal");
+    const cvModalContent = document.querySelector(".cv-modal-content");
+    const cvModalHeader = document.getElementById("cv-modal-header");
+    const closeCvModalBtn = document.getElementById("close-cv-modal");
+
+    if (viewPdfBtn && cvModal && cvModalContent) {
+        viewPdfBtn.addEventListener("click", () => {
+            cvModal.style.top = "50px";
+            cvModal.style.left = "50px";
+            cvModal.classList.remove("hidden");
+
+            // Center modal (calculate but also constrain to window)
+            const x = (window.innerWidth - cvModalContent.offsetWidth) / 2;
+            const y = 50;
+            cvModal.style.left = `${Math.max(0, x)}px`;
+            cvModal.style.top = `${Math.max(0, y)}px`;
+        });
+    }
+
+    if (closeCvModalBtn && cvModal) {
+        closeCvModalBtn.addEventListener("click", () => {
+            cvModal.classList.add("hidden");
+        });
+    }
+
+    // Drag Logic
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+
+    if (cvModalHeader && cvModal) {
+        cvModalHeader.addEventListener("mousedown", dragStart);
+        document.addEventListener("mousemove", drag);
+        document.addEventListener("mouseup", dragEnd);
+    }
+
+    function dragStart(e) {
+        if (cvModal) {
+            const rect = cvModal.getBoundingClientRect();
+            initialX = e.clientX - rect.left;
+            initialY = e.clientY - rect.top;
+
+            if (
+                e.target === cvModalHeader ||
+                (cvModalHeader && cvModalHeader.contains(e.target))
+            ) {
+                isDragging = true;
+            }
+        }
+    }
+
+    function drag(e) {
+        if (isDragging && cvModal && cvModalContent) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+            const maxX = window.innerWidth - cvModalContent.offsetWidth;
+            const maxY = window.innerHeight - cvModalContent.offsetHeight;
+            currentX = Math.min(Math.max(0, currentX), maxX);
+            currentY = Math.min(Math.max(0, currentY), maxY);
+            cvModal.style.left = `${currentX}px`;
+            cvModal.style.top = `${currentY}px`;
+        }
+    }
+
+    function dragEnd() {
+        isDragging = false;
+    }
+
+    // --- PNG Download Logic ---
+    const downloadBtn = document.getElementById("download-png-btn");
+    const cvContent = document.getElementById("cv-content");
+
+    if (downloadBtn && cvContent) {
+        downloadBtn.addEventListener("click", async () => {
+            const originalIcon = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+
+            try {
+                const html2canvas = (await import("html2canvas")).default;
+                const canvas = await html2canvas(cvContent, {
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    backgroundColor: null,
+                });
+
+                const image = canvas.toDataURL("image/png");
+                const link = document.createElement("a");
+                link.href = image;
+                link.download = "CV-Contadores-EV.png";
+                link.click();
+            } catch (err) {
+                console.error("Error generating PNG:", err);
+                alert("Error al generar la imagen.");
+            } finally {
+                downloadBtn.innerHTML = originalIcon;
+            }
+        });
+    }
+</script>
