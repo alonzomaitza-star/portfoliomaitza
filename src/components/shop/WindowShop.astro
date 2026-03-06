@@ -5,6 +5,12 @@
 <!-- WindowShop: Fullscreen iframe dialog for the storefront -->
 <div id="window-shop-overlay" class="window-shop-overlay">
     <div class="window-shop-container">
+        <button id="window-shop-close" class="window-shop-close" aria-label="Cerrar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
         <iframe
             id="window-shop-iframe"
             class="window-shop-iframe"
@@ -38,6 +44,32 @@
         height: 100%;
         display: flex;
         flex-direction: column;
+        position: relative;
+    }
+
+    .window-shop-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 31;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .window-shop-close:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.1);
     }
 
     .window-shop-iframe {
@@ -51,37 +83,54 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const overlay = document.getElementById("window-shop-overlay");
+        const closeBtn = document.getElementById("window-shop-close");
         const iframe = document.getElementById(
             "window-shop-iframe",
         ) as HTMLIFrameElement;
         const STOREFRONT_URL =
             "https://shop.insano.work";
 
+        function closeShop() {
+            if (!overlay) return;
+            overlay.classList.remove("active");
+            iframe.src = "";
+            document.body.style.overflow = "";
+        }
+
+        function openShop() {
+            if (!overlay) return;
+            iframe.src = STOREFRONT_URL;
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
         // Listen for the custom event from NavBarMain
         document.addEventListener("toggle-window-shop", () => {
             if (!overlay) return;
-
             const isActive = overlay.classList.contains("active");
-
             if (isActive) {
-                // Close
-                overlay.classList.remove("active");
-                iframe.src = "";
-                document.body.style.overflow = "";
+                closeShop();
             } else {
-                // Open
-                iframe.src = STOREFRONT_URL;
-                overlay.classList.add("active");
-                document.body.style.overflow = "hidden";
+                openShop();
             }
         });
+
+        // Close button handler
+        if (closeBtn) {
+            closeBtn.addEventListener("click", closeShop);
+        }
+
+        // Close when clicking outside
+        if (overlay) {
+            overlay.addEventListener("click", (e) => {
+                if (e.target === overlay) closeShop();
+            });
+        }
 
         // Close with Escape key
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape" && overlay?.classList.contains("active")) {
-                overlay.classList.remove("active");
-                iframe.src = "";
-                document.body.style.overflow = "";
+                closeShop();
             }
         });
     });

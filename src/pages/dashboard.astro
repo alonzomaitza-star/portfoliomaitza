@@ -283,6 +283,12 @@ import Layout from "../layouts/Layout.astro";
 
     <div id="window-admin-overlay" class="window-admin-overlay">
       <div class="window-admin-container">
+        <button id="window-admin-close" class="window-admin-close" aria-label="Cerrar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
         <iframe
           id="window-admin-iframe"
           class="window-admin-iframe"
@@ -318,6 +324,7 @@ import Layout from "../layouts/Layout.astro";
 
   const adminCard = document.getElementById("admin-panel-card");
   const adminOverlay = document.getElementById("window-admin-overlay");
+  const adminCloseBtn = document.getElementById("window-admin-close");
   const adminIframe = document.getElementById(
     "window-admin-iframe",
   ) as HTMLIFrameElement | null;
@@ -441,6 +448,10 @@ import Layout from "../layouts/Layout.astro";
       closeAdminOverlay();
     }
   });
+
+  if (adminCloseBtn) {
+    adminCloseBtn.addEventListener("click", closeAdminOverlay);
+  }
 
   if (adminOverlay) {
     adminOverlay.addEventListener("click", (e) => {
@@ -737,6 +748,32 @@ import Layout from "../layouts/Layout.astro";
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+  }
+
+  .window-admin-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 31;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .window-admin-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
   }
 
   .window-admin-iframe {
