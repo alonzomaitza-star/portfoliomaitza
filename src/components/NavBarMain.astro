@@ -10,10 +10,39 @@ import WindowShop from "./shop/WindowShop.astro";
     <div class="nav-vertical-content">
       <nav class="main-nav" aria-label="Navegación principal">
         <div class="nav-content">
-          <a href="/" class="logo-area" aria-label="Inicio">
-            <img src={Logo.src} alt="Insano Network Logo" class="logo" />
-            <span class="sr-only">Insano Network</span>
-          </a>
+          <!-- Logo + Hamburger container -->
+          <div class="logo-hamburger-container">
+            <a href="/" class="logo-area" aria-label="Inicio">
+              <img src={Logo.src} alt="Insano Network Logo" class="logo" />
+              <span class="sr-only">Insano Network</span>
+            </a>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button
+              id="mobile-menu-btn"
+              class="mobile-menu-btn"
+              aria-label="Abrir menú"
+              aria-expanded="false"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="hamburger-icon"
+              >
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
+          </div>
           <ul class="nav-links">
             <li><a href="/" class="inicio-link">Inicio</a></li>
             <li class="group relative">
@@ -364,6 +393,56 @@ import WindowShop from "./shop/WindowShop.astro";
               </div>
             </div>
           </div>
+
+          <!-- Modal Close Button (for iframe modals) -->
+          <button
+            id="navbar-modal-close"
+            class="navbar-modal-close"
+            aria-label="Cerrar"
+            type="button"
+            style="display: none;"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- Modal Open New Tab Button -->
+          <a
+            id="navbar-modal-open-new-tab"
+            class="navbar-modal-open-new-tab"
+            aria-label="Abrir en nueva pestaña"
+            style="display: none;"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
         </div>
       </nav>
     </div>
@@ -372,6 +451,122 @@ import WindowShop from "./shop/WindowShop.astro";
   <div class="nav-line nav-line-bottom"></div>
 </div>
 <WindowShop />
+
+<!-- Mobile Slide Menu Overlay -->
+<div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+
+<!-- Mobile Slide Menu Panel -->
+<div id="mobile-menu-panel" class="mobile-menu-panel">
+  <div class="mobile-menu-header">
+    <span class="mobile-menu-title">Menú</span>
+    <button
+      id="mobile-menu-close"
+      class="mobile-menu-close"
+      aria-label="Cerrar menú"
+      type="button"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li>
+      <a href="/" class="mobile-nav-link">Inicio</a>
+    </li>
+    <li class="mobile-nav-item">
+      <button
+        id="mobile-servicios-btn"
+        class="mobile-nav-link mobile-dropdown-btn"
+        aria-expanded="false"
+        type="button"
+      >
+        Servicios
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="dropdown-arrow"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <ul id="mobile-servicios-submenu" class="mobile-submenu">
+        <li><a href="/emprender" class="mobile-submenu-link">Emprender</a></li>
+        <li><a href="/diseno" class="mobile-submenu-link">Diseño</a></li>
+        <li><a href="/desarrollo" class="mobile-submenu-link">Desarrollo</a></li>
+        <li><a href="/marketing" class="mobile-submenu-link">Marketing</a></li>
+        <li><a href="/contable" class="mobile-submenu-link">Contable</a></li>
+        <li><a href="/ecommerce" class="mobile-submenu-link">E-commerce</a></li>
+        <li><a href="/cursos" class="mobile-submenu-link">Cursos</a></li>
+        <li><a href="/capacitacion" class="mobile-submenu-link">Capacitación</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/nosotros" class="mobile-nav-link">Conócenos</a>
+    </li>
+    <li>
+      <a href="/fundaciones" class="mobile-nav-link">Fundaciones</a>
+    </li>
+    <li>
+      <a href="/herramientas" class="mobile-nav-link">Herramientas</a>
+    </li>
+    <li>
+      <a href="/blog" class="mobile-nav-link">Blog</a>
+    </li>
+    <li>
+      <a href="/beneficios" class="mobile-nav-link">Beneficios</a>
+    </li>
+    <li>
+      <button id="mobile-tienda-btn" class="mobile-nav-link mobile-tienda-btn" type="button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        Tienda
+      </button>
+    </li>
+  </ul>
+  <div class="mobile-menu-auth">
+    <button id="mobile-google-login-btn" class="mobile-google-login-btn">
+      <svg class="google-icon" viewBox="0 0 24 24" width="18" height="18">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+      </svg>
+      Iniciar Sesión
+    </button>
+  </div>
+</div>
 <style>
   .navbarmain-card-descripcion {
     font-size: 0.7rem;
@@ -433,6 +628,11 @@ import WindowShop from "./shop/WindowShop.astro";
     height: auto;
     margin-right: 0;
   }
+  .logo-hamburger-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
   .brand-text {
     display: flex;
     flex-direction: column;
@@ -453,6 +653,7 @@ import WindowShop from "./shop/WindowShop.astro";
     gap: 1.5rem;
     margin: 0;
     padding: 0;
+    align-items: center;
   }
   .nav-links a {
     color: #fff;
@@ -473,6 +674,47 @@ import WindowShop from "./shop/WindowShop.astro";
   .nav-actions {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+  }
+
+  .navbar-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .navbar-modal-close:hover {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.4);
+    color: #ff6b6b;
+  }
+
+  .navbar-modal-open-new-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .navbar-modal-open-new-tab:hover {
+    background: rgba(255, 214, 0, 0.2);
+    border-color: rgba(255, 214, 0, 0.4);
+    color: #ffd600;
   }
 
   .desktop-auth-buttons {
@@ -767,32 +1009,32 @@ import WindowShop from "./shop/WindowShop.astro";
       padding: 0.4rem 0.5rem;
       align-items: center;
       border-radius: 15px;
+      justify-content: space-between;
+      padding-right: 3rem;
+    }
+    .logo-hamburger-container {
+      gap: 0.3rem;
     }
     .logo {
       width: 30px;
     }
     .nav-links {
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .herramientas-link {
-      display: none !important;
-    }
-    .inicio-link {
       display: none;
     }
-    .tienda-link {
-      padding: 0 0.3rem;
-      display: inline-flex;
+    .mobile-menu-btn {
+      display: flex;
       align-items: center;
       justify-content: center;
-      background: none;
+      background: transparent;
       border: none;
+      color: #fff;
       cursor: pointer;
-      font: inherit;
-      color: inherit;
+      padding: 0.5rem;
+      margin-left: 0.5rem;
+      transition: color 0.2s;
+    }
+    .mobile-menu-btn:hover {
+      color: #ffd600;
     }
     .desktop-auth-buttons {
       display: none;
@@ -820,6 +1062,178 @@ import WindowShop from "./shop/WindowShop.astro";
     .wrapper-vertical {
       justify-content: center;
     }
+  }
+
+  /* Mobile Slide Menu - Base Styles (hidden on desktop) */
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85vw;
+    max-width: 320px;
+    height: 100vh;
+    background: rgba(22, 50, 51, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .mobile-menu-panel.active {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-menu-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .mobile-menu-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu-close:hover {
+    color: #ffd600;
+  }
+
+  .mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-align: left;
+    font-family: inherit;
+  }
+
+  .mobile-nav-link:hover {
+    background: rgba(255, 214, 0, 0.1);
+    color: #ffd600;
+  }
+
+  .mobile-dropdown-btn {
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .dropdown-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-dropdown-btn[aria-expanded="true"] .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .mobile-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-submenu.open {
+    max-height: 400px;
+  }
+
+  .mobile-submenu-link {
+    display: block;
+    padding: 0.85rem 1.5rem 0.85rem 3rem;
+    color: #b0bfc0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .mobile-submenu-link:hover {
+    background: rgba(255, 214, 0, 0.1);
+    color: #ffd600;
+  }
+
+  .mobile-tienda-btn {
+    gap: 0.5rem;
+  }
+
+  .mobile-menu-auth {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    background: #fff;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .mobile-google-login-btn:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
   }
 
   .nav-line,
@@ -1098,4 +1512,183 @@ import WindowShop from "./shop/WindowShop.astro";
       }
     });
   }
+
+  // Mobile Menu Functionality
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenuPanel = document.getElementById("mobile-menu-panel");
+  const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+  const mobileMenuClose = document.getElementById("mobile-menu-close");
+  const mobileServiciosBtn = document.getElementById("mobile-servicios-btn");
+  const mobileServiciosSubmenu = document.getElementById("mobile-servicios-submenu");
+  const mobileTiendaBtn = document.getElementById("mobile-tienda-btn");
+  const mobileGoogleLoginBtn = document.getElementById("mobile-google-login-btn");
+
+  function openMobileMenu() {
+    if (mobileMenuPanel && mobileMenuOverlay) {
+      mobileMenuPanel.classList.add("active");
+      mobileMenuOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute("aria-expanded", "true");
+      }
+    }
+  }
+
+  function closeMobileMenu() {
+    if (mobileMenuPanel && mobileMenuOverlay) {
+      mobileMenuPanel.classList.remove("active");
+      mobileMenuOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+      }
+    }
+  }
+
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", openMobileMenu);
+  }
+
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener("click", closeMobileMenu);
+  }
+
+  if (mobileMenuOverlay) {
+    mobileMenuOverlay.addEventListener("click", closeMobileMenu);
+  }
+
+  // Mobile Servicios dropdown
+  if (mobileServiciosBtn && mobileServiciosSubmenu) {
+    mobileServiciosBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const isExpanded = mobileServiciosBtn.getAttribute("aria-expanded") === "true";
+      
+      if (isExpanded) {
+        mobileServiciosSubmenu.classList.remove("open");
+        mobileServiciosBtn.setAttribute("aria-expanded", "false");
+      } else {
+        mobileServiciosSubmenu.classList.add("open");
+        mobileServiciosBtn.setAttribute("aria-expanded", "true");
+      }
+    });
+  }
+
+  // Mobile Tienda button
+  if (mobileTiendaBtn) {
+    mobileTiendaBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeMobileMenu();
+      document.dispatchEvent(new CustomEvent("toggle-window-shop"));
+    });
+  }
+
+  // Mobile Google Login
+  if (mobileGoogleLoginBtn) {
+    mobileGoogleLoginBtn.addEventListener("click", () => {
+      closeMobileMenu();
+      handleGoogleSignIn();
+    });
+  }
+
+  // Close mobile menu on link click
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link:not(.mobile-dropdown-btn)");
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", closeMobileMenu);
+  });
+
+  // Navbar Modal Close Button - Connect with WindowShop and Dashboard modals
+  const navbarModalClose = document.getElementById("navbar-modal-close");
+  const navbarModalOpenNewTab = document.getElementById("navbar-modal-open-new-tab");
+
+  // Store current modal URL for opening in new tab
+  let currentModalUrl = "";
+
+  // Listen for WindowShop toggle events
+  document.addEventListener("toggle-window-shop", () => {
+    // Show/hide navbar buttons based on shop state
+    setTimeout(() => {
+      const shopOverlay = document.getElementById("window-shop-overlay");
+      const shopIframe = document.getElementById("window-shop-iframe") as HTMLIFrameElement | null;
+      if (shopOverlay && shopOverlay.classList.contains("active")) {
+        if (navbarModalClose) navbarModalClose.style.display = "flex";
+        if (navbarModalOpenNewTab) {
+          currentModalUrl = shopIframe?.src || "";
+          navbarModalOpenNewTab.style.display = "flex";
+        }
+      } else {
+        if (navbarModalClose) navbarModalClose.style.display = "none";
+        if (navbarModalOpenNewTab) navbarModalOpenNewTab.style.display = "none";
+      }
+    }, 100);
+  });
+
+  // Listen for dashboard admin overlay events
+  const adminOverlay = document.getElementById("window-admin-overlay");
+  const observer = new MutationObserver(() => {
+    if (adminOverlay) {
+      const adminIframe = document.getElementById("window-admin-iframe") as HTMLIFrameElement | null;
+      if (adminOverlay.classList.contains("active")) {
+        if (navbarModalClose) navbarModalClose.style.display = "flex";
+        if (navbarModalOpenNewTab) {
+          currentModalUrl = adminIframe?.src || "";
+          navbarModalOpenNewTab.style.display = "flex";
+        }
+      } else {
+        if (navbarModalClose) navbarModalClose.style.display = "none";
+        if (navbarModalOpenNewTab) navbarModalOpenNewTab.style.display = "none";
+      }
+    }
+  });
+
+  if (adminOverlay) {
+    observer.observe(adminOverlay, { attributes: true, attributeFilter: ["class"] });
+  }
+
+  // Close modals when navbar close button is clicked
+  if (navbarModalClose) {
+    navbarModalClose.addEventListener("click", () => {
+      // Close WindowShop
+      const shopOverlay = document.getElementById("window-shop-overlay");
+      const shopIframe = document.getElementById("window-shop-iframe") as HTMLIFrameElement | null;
+      if (shopOverlay?.classList.contains("active")) {
+        shopOverlay.classList.remove("active");
+        if (shopIframe) shopIframe.src = "";
+        navbarModalClose.style.display = "none";
+      }
+
+      // Close Dashboard Admin
+      const dashAdminOverlay = document.getElementById("window-admin-overlay");
+      const dashAdminIframe = document.getElementById("window-admin-iframe") as HTMLIFrameElement | null;
+      if (dashAdminOverlay?.classList.contains("active")) {
+        dashAdminOverlay.classList.remove("active");
+        if (dashAdminIframe) dashAdminIframe.src = "";
+        navbarModalClose.style.display = "none";
+      }
+
+      // Hide open new tab button
+      if (navbarModalOpenNewTab) navbarModalOpenNewTab.style.display = "none";
+    });
+  }
+
+  // Open in new tab functionality
+  if (navbarModalOpenNewTab) {
+    navbarModalOpenNewTab.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentModalUrl) {
+        window.open(currentModalUrl, "_blank");
+      }
+    });
+  }
+
+  // Also listen for Escape key to hide navbar buttons
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const shopOverlay = document.getElementById("window-shop-overlay");
+      const adminOverlay2 = document.getElementById("window-admin-overlay");
+      if ((!shopOverlay?.classList.contains("active")) && (!adminOverlay2?.classList.contains("active"))) {
+        if (navbarModalClose) navbarModalClose.style.display = "none";
+        if (navbarModalOpenNewTab) navbarModalOpenNewTab.style.display = "none";
+      }
+    }
+  });
 </script>
