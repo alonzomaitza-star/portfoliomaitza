@@ -1,0 +1,95 @@
+---
+interface Desarrollo {
+    title: string;
+    description: string;
+    tags: string[];
+    url: string;
+    repo?: string;
+}
+
+const desarrollos: Desarrollo[] = [
+    {
+        title: "Sistema de Inventario",
+        description: "Plataforma para gestión de inventarios con control de stock, alertas de reabastecimiento y reportes gráficos en tiempo real.",
+        tags: ["Frontend", "Dashboard", "Dummy"],
+        url: "#",
+    },
+    {
+        title: "Punto de Venta (POS)",
+        description: "Interfaz fluida para terminales de punto de venta. Incluye integración con hardware, facturación y control de caja.",
+        tags: ["Frontend", "POS", "Ventas", "Dummy"],
+        url: "#",
+    },
+    {
+        title: "Gestor de Tareas (Kanban)",
+        description: "Herramienta colaborativa estilo Kanban para equipos ágiles. Permite drag & drop, etiquetas y seguimiento de tiempo.",
+        tags: ["Frontend", "Kanban", "Productividad", "Dummy"],
+        url: "#",
+    },
+    {
+        title: "Portal Educativo LMS",
+        description: "Plataforma de aprendizaje en línea con reproducción de video, cuestionarios interactivos y progreso del alumno.",
+        tags: ["Frontend", "LMS", "Educación", "Dummy"],
+        url: "#",
+    },
+    {
+        title: "Panel CRM Inmobiliario",
+        description: "Dashboard especializado para bienes raíces. Muestra listado de propiedades, clientes potenciales y métricas de ventas.",
+        tags: ["Frontend", "CRM", "Bienes Raíces", "Dummy"],
+        url: "#",
+    }
+];
+---
+<section class="py-12 px-4 bg-gray-50 dark:bg-gray-800/10">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+            Desarrollos y Sistemas
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                desarrollos.map((item, index) => (
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 flex flex-col h-full border border-gray-100 dark:border-gray-700">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                                {item.title}
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                                {item.description}
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                {item.tags.map((tag) => (
+                                    <span class="px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 text-xs rounded-full border border-cyan-200 dark:border-cyan-800">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div class="mt-auto flex gap-3">
+                            <button
+                                class="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:from-cyan-700 hover:to-blue-700 transition-all text-sm flex items-center justify-center gap-2"
+                                onclick="alert('Demo de sistema temporalmente en construcción')"
+                            >
+                                <span>Ver Preview Dummy</span>
+                                <svg
+                                    class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

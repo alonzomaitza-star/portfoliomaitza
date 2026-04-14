@@ -1,0 +1,558 @@
+---
+import SEO from "../components/SEO.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Icons -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"
+  />
+  <script is:inline>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-highest": "#e0e3e5",
+            "error-container": "#ffdad6",
+            "on-surface-variant": "#45464d",
+            "primary-container": "#111c2d",
+            primary: "#000000",
+            "surface-bright": "#f7f9fb",
+            "surface-container": "#eceef0",
+            "inverse-primary": "#bcc7de",
+            "on-secondary-fixed-variant": "#38485d",
+            "on-secondary-fixed": "#0b1c30",
+            "secondary-container": "#d0e1fb",
+            "primary-fixed-dim": "#bcc7de",
+            tertiary: "#000000",
+            "surface-dim": "#d8dadc",
+            "outline-variant": "#c6c6cd",
+            background: "#f7f9fb",
+            "on-error-container": "#93000a",
+            error: "#ba1a1a",
+            "on-primary": "#ffffff",
+            "tertiary-container": "#002113",
+            "on-primary-fixed-variant": "#3c475a",
+            "surface-variant": "#e0e3e5",
+            secondary: "#505f76",
+            "surface-container-low": "#f2f4f6",
+            "primary-fixed": "#d8e3fb",
+            "on-secondary-container": "#54647a",
+            "on-primary-container": "#79849a",
+            "on-tertiary-fixed": "#002113",
+            "surface-tint": "#545f73",
+            "on-tertiary-container": "#009668",
+            "on-tertiary-fixed-variant": "#005236",
+            surface: "#f7f9fb",
+            "on-surface": "#191c1e",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#d3e4fe",
+            "tertiary-fixed-dim": "#4edea3",
+            "secondary-fixed-dim": "#b7c8e1",
+            "on-background": "#191c1e",
+            "surface-container-high": "#e6e8ea",
+            "on-primary-fixed": "#111c2d",
+            "inverse-surface": "#2d3133",
+            "inverse-on-surface": "#eff1f3",
+            "tertiary-fixed": "#6ffbbe",
+            outline: "#76777d",
+            "on-tertiary": "#ffffff",
+            "on-error": "#ffffff",
+          },
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "0.75rem",
+          },
+          fontFamily: {
+            headline: ["Manrope"],
+            body: ["Inter"],
+            label: ["Inter"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+      vertical-align: middle;
+    }
+    .blueprint-grid {
+      background-image: radial-gradient(
+        circle at 2px 2px,
+        #e2e8f0 1px,
+        transparent 0
+      );
+      background-size: 24px 24px;
+    }
+    .glass-nav {
+      backdrop-filter: blur(12px);
+    }
+  </style>
+
+  <body
+    class="bg-background font-body text-on-surface antialiased blueprint-grid min-h-screen"
+  >
+    <!-- SideNavBar Component -->
+    <aside
+      class="h-screen w-64 fixed left-0 top-0 bg-slate-100/80 dark:bg-slate-950/80 backdrop-blur-lg flex flex-col p-6 gap-2 z-40 transition-all duration-200 ease-out border-r border-slate-200 dark:border-slate-800"
+    >
+      <!-- Header/Logo Area -->
+      <div class="mb-8 px-3">
+        <div class="flex items-center gap-2 mb-1">
+          <span
+            class="material-symbols-outlined text-primary text-2xl"
+            style="font-variation-settings: 'FILL' 1;">explore</span
+          >
+          <span class="font-manrope font-extrabold text-lg tracking-tight"
+            >Insano.</span
+          >
+        </div>
+        <p
+          class="text-[10px] text-slate-400 font-bold uppercase tracking-widest"
+        >
+          Project Roadmap
+        </p>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex-1 flex flex-col gap-1 overflow-y-auto">
+        <div
+          class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 px-3"
+        >
+          Directorio
+        </div>
+
+        <!-- Active Project -->
+        <div class="mb-4">
+          <a
+            class="bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-lg shadow-sm font-semibold flex items-center gap-3 p-3 transition-all duration-200 ease-out border border-slate-200/50"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-sm">folder_open</span>
+            <span class="font-inter text-sm font-bold">General Roadmap</span>
+          </a>
+
+          <!-- Sub-navigation for active project -->
+          <div
+            class="ml-4 mt-2 flex flex-col gap-1 border-l-2 border-slate-200 dark:border-slate-800 pl-4"
+          >
+            <a
+              class="text-slate-900 dark:text-slate-100 font-medium flex items-center gap-2 p-2 text-xs rounded hover:bg-slate-200/50"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-[16px]">map</span>
+              Roadmap View
+            </a>
+            <a
+              class="text-slate-500 hover:text-slate-700 dark:text-slate-400 flex items-center gap-2 p-2 text-xs rounded hover:bg-slate-200/50 transition-colors"
+              href="/"
+            >
+              <span class="material-symbols-outlined text-[16px]">home</span>
+              Volver al Home
+            </a>
+          </div>
+        </div>
+
+        <!-- Other Projects -->
+        <a
+          class="text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg flex items-center gap-3 p-3 transition-all duration-200 ease-out hover:translate-x-1"
+          href="/desarrollo"
+        >
+          <span class="material-symbols-outlined text-sm">code</span>
+          <span class="font-inter text-sm font-medium">Desarrollo Web</span>
+        </a>
+        <a
+          class="text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg flex items-center gap-3 p-3 transition-all duration-200 ease-out hover:translate-x-1"
+          href="/diseno"
+        >
+          <span class="material-symbols-outlined text-sm">design_services</span>
+          <span class="font-inter text-sm font-medium">Diseño UI/UX</span>
+        </a>
+        <a
+          class="text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg flex items-center gap-3 p-3 transition-all duration-200 ease-out hover:translate-x-1"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-sm">smart_toy</span>
+          <span class="font-inter text-sm font-medium">IA & Bots</span>
+        </a>
+      </nav>
+
+      <!-- Footer -->
+      <div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800">
+        <a
+          class="text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg flex items-center gap-3 p-3 transition-all duration-200 ease-out hover:translate-x-1"
+          href="#"
+        >
+          <span class="material-symbols-outlined">info</span>
+          <span class="font-inter text-sm font-medium">Info del Proyecto</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="ml-64 p-8 min-h-screen">
+      <!-- Simplified Header -->
+      <header class="flex justify-between items-center mb-12">
+        <div>
+          <h1
+            class="font-manrope font-extrabold text-3xl text-primary tracking-tighter"
+          >
+            Insano Network Roadmap
+          </h1>
+          <nav class="flex gap-6 mt-2">
+            <span
+              class="font-manrope font-semibold tracking-tight text-slate-900 border-b-2 border-slate-900 pb-1 cursor-default"
+              >Vista Principal</span
+            >
+            <span
+              class="font-manrope font-semibold tracking-tight text-slate-500 hover:text-slate-700 transition-colors cursor-pointer"
+              >Desglose de Fases</span
+            >
+            <span
+              class="font-manrope font-semibold tracking-tight text-slate-500 hover:text-slate-700 transition-colors cursor-pointer"
+              >Especificaciones</span
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            class="bg-white border border-outline-variant/30 text-primary px-4 py-2 rounded-lg font-manrope font-bold text-sm flex items-center gap-2 hover:bg-surface-container-low transition-all"
+          >
+            <span class="material-symbols-outlined text-sm">download</span>
+            Export PDF
+          </button>
+        </div>
+      </header>
+
+      <!-- Roadmap Content -->
+      <section class="max-w-6xl mx-auto">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12"
+        >
+          <div>
+            <span
+              class="font-inter text-xs font-bold uppercase tracking-widest text-on-tertiary-container bg-tertiary-fixed-dim/20 px-3 py-1 rounded-full"
+              >Fase Activa: Consolidación</span
+            >
+            <h2
+              class="font-manrope font-extrabold text-5xl mt-2 tracking-tight"
+            >
+              Technical Roadmap
+            </h2>
+            <p class="text-secondary mt-2 font-inter max-w-xl">
+              Documentación estructurada de nuevos archivos, proyectos y
+              desarrollos futuros. Descubre hacia dónde nos dirigimos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Visual Flowchart Diagram -->
+        <div
+          class="relative py-12 px-6 bg-surface-container-low rounded-xl mb-12 overflow-hidden border border-outline-variant/10"
+        >
+          <!-- Connective Lines Background (SVG) -->
+          <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+            <svg class="stroke-primary-container" height="100%" width="100%">
+              <path
+                d="M100 200 Q 300 200 500 150 T 900 250"
+                fill="none"
+                stroke-dasharray="8 8"
+                stroke-width="4"></path>
+            </svg>
+          </div>
+
+          <div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Phase 1: Consolidacion -->
+            <div class="flex flex-col gap-4">
+              <div
+                class="p-6 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-lg transition-all border-l-4 border-l-primary group"
+              >
+                <div
+                  class="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center mb-4"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-secondary-fixed"
+                    >layers</span
+                  >
+                </div>
+                <div
+                  class="inline-flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full text-[10px] font-bold uppercase mb-2"
+                >
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-on-secondary-fixed animate-pulse"
+                  ></span>
+                  En Progreso
+                </div>
+                <h3 class="font-manrope font-bold text-lg mb-2">
+                  Fase 01: Consolidación
+                </h3>
+                <p class="text-sm text-secondary font-inter leading-relaxed">
+                  Documentación de la infraestructura central y componentes UI
+                  base para la integración.
+                </p>
+              </div>
+            </div>
+
+            <!-- Phase 2: Nuevos Sistemas -->
+            <div class="flex flex-col gap-4 mt-8 md:mt-16">
+              <div
+                class="p-6 bg-surface-container-lowest/50 backdrop-blur rounded-xl border border-outline-variant/10 group"
+              >
+                <div
+                  class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center mb-4"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-surface-variant"
+                    >dashboard_customize</span
+                  >
+                </div>
+                <div
+                  class="inline-flex items-center gap-2 bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded-full text-[10px] font-bold uppercase mb-2"
+                >
+                  Próximamente
+                </div>
+                <h3 class="font-manrope font-bold text-lg mb-2">
+                  Fase 02: Sistemas
+                </h3>
+                <p class="text-sm text-secondary font-inter leading-relaxed">
+                  Despliegue de plantillas funcionales: CRM Inmobiliario,
+                  Portales LMS y Gestor Kanban.
+                </p>
+              </div>
+            </div>
+
+            <!-- Phase 3: IA & Bots -->
+            <div class="flex flex-col gap-4">
+              <div
+                class="p-6 bg-surface-container-lowest/40 backdrop-blur rounded-xl border border-outline-variant/10 group"
+              >
+                <div
+                  class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center mb-4 opacity-75"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-surface-variant"
+                    >smart_toy</span
+                  >
+                </div>
+                <div
+                  class="inline-flex items-center gap-2 bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded-full text-[10px] font-bold uppercase mb-2"
+                >
+                  Planificado
+                </div>
+                <h3 class="font-manrope font-bold text-lg mb-2">
+                  Fase 03: Inteligencia
+                </h3>
+                <p class="text-sm text-secondary font-inter leading-relaxed">
+                  Agentes virtuales autónomos y microservicios cloud eficientes
+                  e impulsados por IA.
+                </p>
+              </div>
+            </div>
+
+            <!-- Phase 4: Launch -->
+            <div class="flex flex-col gap-4 mt-8 md:mt-24">
+              <div
+                class="p-6 bg-surface-container-lowest/30 backdrop-blur rounded-xl border border-dashed border-outline-variant"
+              >
+                <div
+                  class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center mb-4 opacity-50"
+                >
+                  <span class="material-symbols-outlined">rocket_launch</span>
+                </div>
+                <div
+                  class="inline-flex items-center gap-2 bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded-full text-[10px] font-bold uppercase mb-2"
+                >
+                  Futuro
+                </div>
+                <h3 class="font-manrope font-bold text-lg mb-2 opacity-50">
+                  Fase 04: SaaS
+                </h3>
+                <p
+                  class="text-sm text-secondary font-inter leading-relaxed opacity-50"
+                >
+                  Lanzamiento global de los sistemas como productos
+                  independientes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Phase Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Detailed Card 1 -->
+          <div
+            class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/5 shadow-sm"
+          >
+            <div class="flex justify-between items-start mb-6">
+              <h4 class="font-manrope font-bold text-2xl">
+                Detalles Técnicos: Fase 01
+              </h4>
+              <span class="text-secondary font-inter text-sm"
+                >Target: Diciembre</span
+              >
+            </div>
+
+            <div class="space-y-6">
+              <div class="flex gap-4">
+                <div
+                  class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0"
+                >
+                  <span class="text-xs font-bold">01</span>
+                </div>
+                <div>
+                  <h5 class="font-manrope font-semibold text-sm">
+                    Documentación Core en Frontend
+                  </h5>
+                  <p class="text-sm text-secondary mt-1">
+                    Estructuración y explicación de componentes base, sliders y
+                    diseños responsivos actuales.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div
+                  class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0"
+                >
+                  <span class="text-xs font-bold">02</span>
+                </div>
+                <div>
+                  <h5 class="font-manrope font-semibold text-sm">
+                    Componentes UI y Mockups
+                  </h5>
+                  <p class="text-sm text-secondary mt-1">
+                    Mapeo de elementos dummy y galerías que preparan el camino
+                    para la integración de APIs.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div
+                  class="w-8 h-8 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center shrink-0"
+                >
+                  <span class="text-xs font-bold">03</span>
+                </div>
+                <div>
+                  <h5 class="font-manrope font-semibold text-sm">
+                    Saneamiento y Optimización
+                  </h5>
+                  <p class="text-sm text-secondary mt-1">
+                    Revisión de rendimiento en Landing Pages para mejorar Core
+                    Web Vitals en producción.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-surface-container-highest">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-inter text-sm font-bold"
+                  >Progreso de la Fase</span
+                >
+                <span class="font-manrope font-bold text-primary">64%</span>
+              </div>
+              <div
+                class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden"
+              >
+                <div
+                  class="h-full bg-gradient-to-r from-blue-400 to-indigo-600 w-[64%]"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secondary Data Card -->
+          <div class="space-y-6">
+            <div
+              class="bg-primary-container text-on-primary-container rounded-xl p-8 shadow-xl relative overflow-hidden"
+            >
+              <div class="relative z-10">
+                <h4 class="font-manrope font-bold text-lg mb-4">
+                  Esfuerzo Estimado
+                </h4>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm opacity-70">Arquitectura</span>
+                    <span class="font-manrope font-bold">120 hrs</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm opacity-70">Diseño UI/UX</span>
+                    <span class="font-manrope font-bold">45 hrs</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm opacity-70">Desarrollo</span>
+                    <span class="font-manrope font-bold">380 hrs</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Background graphic -->
+              <div class="absolute -bottom-4 -right-4 opacity-10">
+                <span
+                  class="material-symbols-outlined text-[120px]"
+                  style="font-variation-settings: 'FILL' 1;">analytics</span
+                >
+              </div>
+            </div>
+
+            <div
+              class="bg-surface-container-highest rounded-xl p-6 border border-outline-variant/10"
+            >
+              <h4
+                class="font-manrope font-bold text-sm mb-4 uppercase tracking-wider"
+              >
+                Equipo Insano
+              </h4>
+              <div class="flex -space-x-3 mb-4">
+                <img
+                  alt="Team member"
+                  class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover"
+                  src="https://ui-avatars.com/api/?name=Fer+J&background=0D8ABC&color=fff"
+                />
+                <img
+                  alt="Team member"
+                  class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover"
+                  src="https://ui-avatars.com/api/?name=Mai+Al&background=8A2BE2&color=fff"
+                />
+                <img
+                  alt="Team member"
+                  class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover"
+                  src="https://ui-avatars.com/api/?name=In+Sano&background=FF8C00&color=fff"
+                />
+                <div
+                  class="w-10 h-10 rounded-full bg-surface-container-low border-2 border-surface-container-lowest flex items-center justify-center text-[10px] font-bold"
+                >
+                  +2
+                </div>
+              </div>
+              <p class="text-xs text-secondary leading-relaxed font-inter">
+                Liderado por el equipo central de ingeniería para Insano
+                Network.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</Layout>
