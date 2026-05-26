@@ -1,1 +1,112 @@
-{"products": [{"id": 1, "name": "Paquete Emprendedor", "category": "diseno", "price": 299, "description": "Te ayudamos con logo, estampado y diseño de marca para tu emprendimiento", "stock": true, "features": ["Diseño de logo", "Estampado profesional", "Asesoramiento de marca"]}, {"id": 2, "name": "Automatización de Negocio", "category": "desarrollo", "price": 499, "description": "Software a medida y licencias para optimizar procesos empresariales", "stock": true, "features": ["Software personalizado", "Licencias open source", "Soporte técnico"]}, {"id": 3, "name": "Campaña de Marketing Digital", "category": "marketing", "price": 399, "description": "Estrategia completa para generar ventas y posicionamiento", "stock": true, "features": ["Estrategia digital", "Gestión de redes", "Análisis de mercado"]}, {"id": 4, "name": "Contabilidad Corporativa", "category": "contabilidad", "price": 199, "description": "Pon tus finanzas en orden con servicios contables y asesoría", "stock": true, "features": ["Contabilidad profesional", "Declaración de impuestos", "Servicios personales"]}], "categories": [{"id": "diseno", "name": "Diseño y Branding", "description": "Servicios de diseño para emprendedores", "icon": "brush"}, {"id": "desarrollo", "name": "Desarrollo y Sistemas", "description": "Software y automatización para empresas", "icon": "laptop"}, {"id": "marketing", "name": "Marketing Digital", "description": "Campañas y estrategias para generar ventas", "icon": "megaphone"}, {"id": "contabilidad", "name": "Contabilidad y Servicios", "description": "Gestión financiera y servicios personales", "icon": "calculator"}]}
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Paquete de Marketing Publicitario",
+      "category": "marketing",
+      "price": "4,500/mes",
+      "description": "Estrategia integral y gestión de redes sociales para captar clientes.",
+      "stock": true,
+      "features": [
+        "Contempla 3 redes sociales",
+        "Creación y edición de videos",
+        "Publicaciones semanales constantes",
+        "Community Manager (gestión y respuestas)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Identidad Empresarial o Marca Personal",
+      "category": "diseno",
+      "price": "3,500",
+      "description": "Diseño y branding profesional para posicionar tu negocio o marca personal.",
+      "stock": true,
+      "features": [
+        "Diseño de logotipo (variantes y formatos)",
+        "Manual de identidad visual y tipografía",
+        "Paleta de colores y de marca",
+        "Diseño de papelería básica o perfiles sociales"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Software a la Medida",
+      "category": "desarrollo",
+      "price": "Cotizar",
+      "description": "Desarrollo de sistemas, aplicaciones y automatizaciones adaptadas a tu negocio.",
+      "stock": true,
+      "features": [
+        "Análisis de requerimientos y arquitectura",
+        "Desarrollo frontend y backend moderno",
+        "Base de datos y API personalizadas",
+        "Soporte y mantenimiento post-lanzamiento"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Servicios Contables",
+      "category": "contabilidad",
+      "price": "1,800/mes",
+      "description": "Asesoría fiscal, contabilidad y trámites ante el SAT para PYMEs y emprendedores.",
+      "stock": true,
+      "features": [
+        "Llevamos 3 paquetes especiales activos",
+        "Declaraciones mensuales e impuestos",
+        "Facturación electrónica incluida",
+        "Asesoría fiscal personalizada CDMX"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Servicios Especiales",
+      "category": "especiales",
+      "price": "Varios",
+      "description": "Soluciones tecnológicas avanzadas y producción express a demanda.",
+      "stock": true,
+      "features": [
+        "Mantenimiento y soporte de sistemas",
+        "Flyer rápido y campaña flash",
+        "Trámite de SAT (firma, constancia, etc.)",
+        "Escaneo e impresión 3D",
+        "Grabación de eventos (opción de dron)"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "marketing",
+      "name": "Marketing Digital",
+      "description": "Campañas, redes sociales y posicionamiento de marca",
+      "icon": "megaphone",
+      "link": "/marketing"
+    },
+    {
+      "id": "diseno",
+      "name": "Diseño y Branding",
+      "description": "Identidad visual, modelado 2D/3D y diseño de interfaces",
+      "icon": "brush",
+      "link": "/diseno"
+    },
+    {
+      "id": "desarrollo",
+      "name": "Desarrollo y Sistemas",
+      "description": "Software personalizado, plataformas web y automatización",
+      "icon": "laptop",
+      "link": "/desarrollo"
+    },
+    {
+      "id": "contabilidad",
+      "name": "Contabilidad y Servicios",
+      "description": "Asesoría fiscal, contabilidad mensual y facturación SAT",
+      "icon": "calculator",
+      "link": "/contable"
+    },
+    {
+      "id": "especiales",
+      "name": "Servicios Especiales",
+      "description": "Soporte, impresión 3D, tomas con dron y trámites rápidos",
+      "icon": "tools",
+      "link": "/contact-form"
+    }
+  ]
+}

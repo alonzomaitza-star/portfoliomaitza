@@ -322,13 +322,17 @@ const casosExito = [
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {casosExito.map((caso, i) => (
-            <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-green-500">
-              <h3 class="text-lg font-bold text-gray-800 mb-2">{caso.cliente}</h3>
-              <div class="text-3xl font-bold text-green-600 mb-2">{caso.resultado}</div>
-              <p class="text-gray-600 mb-3">{caso.metrica}</p>
-              <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
-                {caso.plataforma}
-              </span>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-green-500 flex flex-col h-full justify-between">
+              <div>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">{caso.cliente}</h3>
+                <div class="text-3xl font-bold text-green-600 mb-2">{caso.resultado}</div>
+                <p class="text-gray-600 mb-3">{caso.metrica}</p>
+              </div>
+              <div class="mt-auto">
+                <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                  {caso.plataforma}
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -406,14 +410,14 @@ const casosExito = [
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {serviciosMarketing.map(servicio => (
-            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
-              <div class="flex items-start gap-4">
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 flex flex-col h-full">
+              <div class="flex items-start gap-4 flex-1">
                 <div class="text-4xl">{servicio.icono}</div>
-                <div class="flex-1">
+                <div class="flex-1 flex flex-col h-full">
                   <h3 class="text-xl font-bold text-gray-800 mb-2">{servicio.titulo}</h3>
                   <p class="text-gray-600 mb-4">{servicio.descripcion}</p>
                   
-                  <ul class="space-y-2 mb-4">
+                  <ul class="space-y-2 mb-4 flex-grow">
                     {servicio.caracteristicas.map(caracteristica => (
                       <li class="flex items-center text-sm text-gray-700">
                         <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -424,7 +428,7 @@ const casosExito = [
                     ))}
                   </ul>
                   
-                  <div class="flex items-center justify-between">
+                  <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                     <div>
                       <span class="text-2xl font-bold text-purple-600">${servicio.precio}</span>
                       <span class="text-gray-500">/{servicio.periodo}</span>
@@ -526,15 +530,11 @@ const casosExito = [
             <h3 class="text-2xl font-bold text-center mb-8 text-purple-600">{categoria.categoria}</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               {categoria.servicios.map((servicio, j) => (
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 flex flex-col h-full">
                   <h4 class="text-xl font-bold text-gray-800 mb-2">{servicio.nombre}</h4>
                   <p class="text-gray-600 mb-4">{servicio.descripcion}</p>
                   
-                  <div class="mb-4">
-                    <span class="text-2xl font-bold text-purple-600">${servicio.precio}</span>
-                  </div>
-                  
-                  <ul class="space-y-2 mb-4">
+                  <ul class="space-y-2 mb-4 flex-grow">
                     {servicio.incluye.map(item => (
                       <li class="flex items-center text-sm text-gray-700">
                         <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -545,9 +545,14 @@ const casosExito = [
                     ))}
                   </ul>
                   
-                  <button class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors">
-                    Contratar Servicio
-                  </button>
+                  <div class="mt-auto pt-4 border-t border-gray-100">
+                    <div class="mb-4">
+                      <span class="text-2xl font-bold text-purple-600">${servicio.precio}</span>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors">
+                      Contratar Servicio
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -602,11 +607,13 @@ const casosExito = [
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {descuentosMarketingPyme.map((descuento, i) => (
-            <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-orange-500">
-              <div class="text-3xl mb-3">🏷️</div>
-              <h3 class="text-lg font-bold text-gray-800 mb-2">{descuento.tipo}</h3>
-              <div class="text-2xl font-bold text-orange-600 mb-2">{descuento.descuento}</div>
-              <p class="text-gray-600 text-sm">{descuento.condicion}</p>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-orange-500 flex flex-col h-full justify-between">
+              <div>
+                <div class="text-3xl mb-3">🏷️</div>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">{descuento.tipo}</h3>
+                <div class="text-2xl font-bold text-orange-600 mb-2">{descuento.descuento}</div>
+              </div>
+              <p class="text-gray-600 text-sm mt-3">{descuento.condicion}</p>
             </div>
           ))}
         </div>
@@ -629,38 +636,38 @@ const casosExito = [
     <!-- Proceso de Trabajo -->
     <section class="py-16">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Nuestro Proceso de Marketing</h2>
+        <h2 class="text-3xl font-bold text-center mb-12 text-white">Nuestro Proceso de Marketing</h2>
         
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
             <div class="text-center">
               <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">1</div>
-              <h3 class="font-bold text-lg mb-2">Auditoría Gratuita</h3>
-              <p class="text-gray-600 text-sm">Analizamos tu presencia digital actual y competencia</p>
+              <h3 class="font-bold text-lg mb-2 text-white">Auditoría Gratuita</h3>
+              <p class="text-slate-300 text-sm">Analizamos tu presencia digital actual y competencia</p>
             </div>
             
             <div class="text-center">
               <div class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">2</div>
-              <h3 class="font-bold text-lg mb-2">Estrategia Personalizada</h3>
-              <p class="text-gray-600 text-sm">Creamos un plan de marketing específico para tu negocio</p>
+              <h3 class="font-bold text-lg mb-2 text-white">Estrategia Personalizada</h3>
+              <p class="text-slate-300 text-sm">Creamos un plan de marketing específico para tu negocio</p>
             </div>
             
             <div class="text-center">
               <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">3</div>
-              <h3 class="font-bold text-lg mb-2">Creación de Contenido</h3>
-              <p class="text-gray-600 text-sm">Diseñamos y producimos contenido de alta calidad</p>
+              <h3 class="font-bold text-lg mb-2 text-white">Creación de Contenido</h3>
+              <p class="text-slate-300 text-sm">Diseñamos y producimos contenido de alta calidad</p>
             </div>
             
             <div class="text-center">
               <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">4</div>
-              <h3 class="font-bold text-lg mb-2">Implementación</h3>
-              <p class="text-gray-600 text-sm">Ejecutamos campañas y publicamos contenido optimizado</p>
+              <h3 class="font-bold text-lg mb-2 text-white">Implementación</h3>
+              <p class="text-slate-300 text-sm">Ejecutamos campañas y publicamos contenido optimizado</p>
             </div>
             
             <div class="text-center">
               <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">5</div>
-              <h3 class="font-bold text-lg mb-2">Análisis y Optimización</h3>
-              <p class="text-gray-600 text-sm">Medimos resultados y optimizamos para mejor ROI</p>
+              <h3 class="font-bold text-lg mb-2 text-white">Análisis y Optimización</h3>
+              <p class="text-slate-300 text-sm">Medimos resultados y optimizamos para mejor ROI</p>
             </div>
           </div>
         </div>
@@ -721,10 +728,10 @@ const casosExito = [
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-          <a href="tel:+525512345678" class="bg-white text-purple-600 font-bold py-4 px-8 rounded-lg hover:bg-pink-50 transition-colors flex items-center justify-center">
-            📞 Llamar Ahora: (55) 1234-5678
+          <a href="tel:+525516849340" class="bg-white text-purple-600 font-bold py-4 px-8 rounded-lg hover:bg-pink-50 transition-colors flex items-center justify-center">
+            📞 Llamar Ahora: 55 1684 9340
           </a>
-          <a href="https://wa.me/525512345678" target="_blank" class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center">
+          <a href="https://wa.me/525516849340" target="_blank" class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center">
             💬 WhatsApp: Auditoría Gratis
           </a>
         </div>

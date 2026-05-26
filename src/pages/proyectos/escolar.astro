@@ -1,0 +1,532 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Sistema de Control Escolar - Insano Network" description="Plataforma de control escolar y aplicación móvil para alumnos.">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Icons -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+      vertical-align: middle;
+    }
+    .blueprint-grid {
+      background-image: radial-gradient(
+        circle at 2px 2px,
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 0
+      );
+      background-size: 24px 24px;
+    }
+    :global(.nav-wrapper),
+    :global(footer) {
+      display: none !important;
+    }
+  </style>
+
+  <div class="bg-slate-950 font-body text-slate-100 antialiased blueprint-grid min-h-screen relative pb-20">
+    <!-- Background Glows -->
+    <div class="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-3xl top-10 left-10 pointer-events-none"></div>
+    <div class="absolute w-[400px] h-[400px] rounded-full bg-violet-600/10 blur-3xl bottom-10 right-10 pointer-events-none"></div>
+
+    <!-- Navigation Header -->
+    <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-slate-800/80">
+      <div class="flex items-center gap-2">
+        <a href="/proyectos/roadMap" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+          <span class="material-symbols-outlined">arrow_back</span>
+          <span class="font-manrope font-extrabold text-lg tracking-tight text-white">Insano.</span>
+          <span class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full font-bold uppercase">Control Escolar</span>
+        </a>
+      </div>
+      <div class="flex gap-4">
+        <a href="/" class="text-slate-400 hover:text-white text-sm font-medium transition-colors">Home</a>
+        <a href="/proyectos/roadMap" class="text-slate-400 hover:text-white text-sm font-medium transition-colors">Roadmap</a>
+      </div>
+    </div>
+
+    <!-- Hero / Intro -->
+    <main class="max-w-7xl mx-auto px-6 pt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <span class="text-xs px-3 py-1 font-semibold rounded-full uppercase tracking-wider bg-violet-500/10 text-violet-400 border border-violet-500/20">
+          Fase 02: Sistemas & Apps Móviles
+        </span>
+        <h1 class="font-manrope font-extrabold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+          Sistema de Control <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">Escolar Integral</span>
+        </h1>
+        <p class="text-slate-300 text-lg leading-relaxed max-w-2xl">
+          Una solución robusta que conecta la administración del colegio, el portal de profesores y la experiencia de los estudiantes a través de una aplicación móvil nativa desarrollada en **Flutter & Dart**.
+        </p>
+
+        <!-- Tech Badges -->
+        <div class="flex flex-wrap gap-3 pt-2">
+          <span class="px-3 py-1 bg-slate-900 border border-slate-800 text-slate-300 text-xs rounded-full flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Flutter
+          </span>
+          <span class="px-3 py-1 bg-slate-900 border border-slate-800 text-slate-300 text-xs rounded-full flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span> Dart
+          </span>
+          <span class="px-3 py-1 bg-slate-900 border border-slate-800 text-slate-300 text-xs rounded-full flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span> .NET Web API
+          </span>
+          <span class="px-3 py-1 bg-slate-900 border border-slate-800 text-slate-300 text-xs rounded-full flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> SQL Server
+          </span>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
+          <div class="flex gap-3">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-blue-400">dashboard</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-white">Portal Administrativo</h4>
+              <p class="text-slate-400 text-sm">Control de matrículas, boletas, asistencias y cobros escolares.</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-10 h-10 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-violet-400">badge</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-white">Credencial Digital QR</h4>
+              <p class="text-slate-400 text-sm">Acceso seguro mediante código QR dinámico integrado en la app móvil.</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-emerald-400">task_alt</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-white">Gestor de Tareas</h4>
+              <p class="text-slate-400 text-sm">Control de pendientes académicos y tareas con notificaciones al instante.</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-amber-400">trending_up</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-white">Control de Progreso</h4>
+              <p class="text-slate-400 text-sm">Gráficos de avance y boleta de calificaciones consultable al momento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Simulator / Showcase Column -->
+      <div class="lg:col-span-5 flex justify-center">
+        <!-- CSS Simulated Smartphone Container -->
+        <div class="w-[320px] h-[640px] rounded-[40px] border-[10px] border-slate-800 bg-slate-950 shadow-2xl relative overflow-hidden flex flex-col select-none ring-4 ring-slate-800/50">
+          <!-- Notch -->
+          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-30 flex items-center justify-center gap-1.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-900"></div>
+            <div class="w-10 h-1 bg-slate-900 rounded-full"></div>
+          </div>
+
+          <!-- App Status Bar -->
+          <div class="h-10 bg-violet-950/30 flex justify-between items-end px-6 pb-1 text-[10px] font-semibold text-slate-300 z-20">
+            <span>8:42 AM</span>
+            <div class="flex gap-1 items-center">
+              <span class="material-symbols-outlined text-[12px]">wifi</span>
+              <span class="material-symbols-outlined text-[12px]">signal_cellular_alt</span>
+              <span class="material-symbols-outlined text-[12px]">battery_full</span>
+            </div>
+          </div>
+
+          <!-- App Body -->
+          <div class="flex-1 overflow-y-auto px-4 pt-2 pb-6 z-10">
+            <!-- App Header -->
+            <div class="flex justify-between items-center mb-4">
+              <div>
+                <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Mi Escuela</span>
+                <h3 class="text-sm font-bold text-white font-manrope">Instituto Insano</h3>
+              </div>
+              <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 overflow-hidden flex items-center justify-center">
+                <span class="material-symbols-outlined text-sm text-slate-300">person</span>
+              </div>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="tab-contents">
+              <!-- View 1: Credencial (Default Active) -->
+              <div id="view-credencial" class="space-y-4">
+                <div class="bg-gradient-to-br from-violet-600 to-indigo-700 rounded-2xl p-5 border border-violet-500/30 relative overflow-hidden shadow-lg shadow-violet-500/10">
+                  <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-white/5 rounded-full pointer-events-none"></div>
+                  <!-- Credential Header -->
+                  <div class="flex justify-between items-start mb-4">
+                    <span class="font-manrope font-extrabold text-xs tracking-tight text-white">ALUMNO</span>
+                    <span class="text-[9px] bg-white/20 text-white px-2 py-0.5 rounded-full uppercase font-bold">Ciclo 2026</span>
+                  </div>
+                  <!-- Student Bio -->
+                  <div class="flex gap-3 mb-4">
+                    <div class="w-14 h-14 rounded-lg bg-slate-900 border border-white/25 overflow-hidden flex items-center justify-center shrink-0">
+                      <img src="https://ui-avatars.com/api/?name=Fernando+M&background=0b0f19&color=6366f1" class="w-full h-full object-cover" alt="Foto Alumno" />
+                    </div>
+                    <div class="min-w-0">
+                      <h4 class="text-sm font-bold text-white leading-tight truncate">Fernando J. Mtz</h4>
+                      <p class="text-[10px] text-violet-200 mt-0.5">Matrícula: IIS-2026-981</p>
+                      <p class="text-[9px] text-violet-300 uppercase tracking-wider font-semibold mt-1">Ing. en Software</p>
+                    </div>
+                  </div>
+                  <!-- dynamic code bar -->
+                  <div class="bg-white rounded-lg p-2.5 flex flex-col items-center justify-center gap-1.5 shadow-inner">
+                    <!-- Fake barcode lines -->
+                    <div class="w-full h-8 flex justify-center items-center gap-[2px] opacity-90">
+                      <div class="w-1.5 h-full bg-slate-950"></div>
+                      <div class="w-[1px] h-full bg-slate-950"></div>
+                      <div class="w-1 h-full bg-slate-950"></div>
+                      <div class="w-[2px] h-full bg-slate-950"></div>
+                      <div class="w-[1px] h-full bg-slate-950"></div>
+                      <div class="w-1.5 h-full bg-slate-950"></div>
+                      <div class="w-[3px] h-full bg-slate-950"></div>
+                      <div class="w-[1px] h-full bg-slate-950"></div>
+                      <div class="w-[2px] h-full bg-slate-950"></div>
+                      <div class="w-1 h-full bg-slate-950"></div>
+                      <div class="w-1.5 h-full bg-slate-950"></div>
+                      <div class="w-[2px] h-full bg-slate-950"></div>
+                      <div class="w-1 h-full bg-slate-950"></div>
+                      <div class="w-[1px] h-full bg-slate-950"></div>
+                      <div class="w-[3px] h-full bg-slate-950"></div>
+                    </div>
+                    <span class="text-[8px] font-mono text-slate-500 font-bold tracking-widest">IIS2026981L7</span>
+                  </div>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3.5 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-emerald-400 animate-pulse">lock_open</span>
+                  <div class="min-w-0">
+                    <h5 class="text-xs font-semibold text-white">Pase Digital Activo</h5>
+                    <p class="text-[9px] text-slate-400">Escanea la credencial para registrar entrada.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- View 2: Tareas (Hidden by Default) -->
+              <div id="view-tareas" class="space-y-3 hidden">
+                <div class="flex justify-between items-center">
+                  <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Tareas Pendientes</h4>
+                  <span id="pending-counter" class="text-[9px] bg-violet-600/30 text-violet-400 px-2 py-0.5 rounded-full border border-violet-500/20 font-bold">3 Pendientes</span>
+                </div>
+                
+                <!-- Interactive Task List -->
+                <div class="space-y-2" id="task-list-container">
+                  <div class="task-item bg-slate-900 border border-slate-800 rounded-xl p-3 flex gap-3 hover:border-slate-700 transition-colors cursor-pointer" onclick="toggleTask(this)">
+                    <div class="w-4 h-4 rounded border border-slate-700 flex items-center justify-center shrink-0 mt-0.5 task-checkbox text-transparent">
+                      <span class="material-symbols-outlined text-[10px] font-bold">check</span>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <h5 class="text-xs font-bold text-white truncate leading-tight">Proyecto Final de Base de Datos</h5>
+                      <p class="text-[9px] text-slate-400 mt-0.5">Materia: Base de Datos • Hoy, 11:59 PM</p>
+                    </div>
+                  </div>
+
+                  <div class="task-item bg-slate-900 border border-slate-800 rounded-xl p-3 flex gap-3 hover:border-slate-700 transition-colors cursor-pointer" onclick="toggleTask(this)">
+                    <div class="w-4 h-4 rounded border border-slate-700 flex items-center justify-center shrink-0 mt-0.5 task-checkbox text-transparent">
+                      <span class="material-symbols-outlined text-[10px] font-bold">check</span>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <h5 class="text-xs font-bold text-white truncate leading-tight">Práctica 3: Widgets Interactivos Flutter</h5>
+                      <p class="text-[9px] text-slate-400 mt-0.5">Materia: Desarrollo Móvil • Mañana</p>
+                    </div>
+                  </div>
+
+                  <div class="task-item bg-slate-900 border border-slate-800 rounded-xl p-3 flex gap-3 hover:border-slate-700 transition-colors cursor-pointer" onclick="toggleTask(this)">
+                    <div class="w-4 h-4 rounded border border-slate-700 flex items-center justify-center shrink-0 mt-0.5 task-checkbox text-transparent">
+                      <span class="material-symbols-outlined text-[10px] font-bold">check</span>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <h5 class="text-xs font-bold text-white truncate leading-tight">Exposición: Patrones de Arquitectura</h5>
+                      <p class="text-[9px] text-slate-400 mt-0.5">Materia: Ing. de Software • Jueves</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- View 3: Progreso (Hidden by Default) -->
+              <div id="view-progreso" class="space-y-4 hidden">
+                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Desempeño Académico</h4>
+                
+                <!-- Average Circle -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Promedio General</span>
+                    <h3 class="text-2xl font-extrabold text-white mt-1">9.4</h3>
+                    <p class="text-[8px] text-emerald-400 flex items-center gap-0.5 mt-0.5">
+                      <span class="material-symbols-outlined text-[8px] font-bold">trending_up</span> Top 5% de la carrera
+                    </p>
+                  </div>
+                  <div class="w-16 h-16 rounded-full border-4 border-slate-800 flex items-center justify-center relative">
+                    <!-- Progress border simulation -->
+                    <div class="absolute inset-0 rounded-full border-4 border-violet-500 border-r-transparent border-b-transparent"></div>
+                    <span class="text-[10px] font-bold text-slate-200">Semestre 4</span>
+                  </div>
+                </div>
+
+                <!-- Subjects list -->
+                <div class="space-y-2">
+                  <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 flex justify-between items-center">
+                    <div>
+                      <h5 class="text-xs font-semibold text-white">Desarrollo Móvil</h5>
+                      <span class="text-[8px] text-slate-500 font-bold uppercase">92% Asistencias</span>
+                    </div>
+                    <span class="text-xs font-bold text-blue-400">9.8</span>
+                  </div>
+
+                  <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 flex justify-between items-center">
+                    <div>
+                      <h5 class="text-xs font-semibold text-white">Bases de Datos</h5>
+                      <span class="text-[8px] text-slate-500 font-bold uppercase">100% Asistencias</span>
+                    </div>
+                    <span class="text-xs font-bold text-violet-400">9.5</span>
+                  </div>
+
+                  <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 flex justify-between items-center">
+                    <div>
+                      <h5 class="text-xs font-semibold text-white">Ingeniería de Software</h5>
+                      <span class="text-[8px] text-slate-500 font-bold uppercase">88% Asistencias</span>
+                    </div>
+                    <span class="text-xs font-bold text-emerald-400">9.0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Navigation Bar (Flutter Simulator) -->
+          <div class="h-16 border-t border-slate-800/80 bg-slate-900/80 backdrop-blur-md flex justify-around items-center px-2 z-20">
+            <button onclick="changeTab('credencial')" id="btn-tab-credencial" class="flex flex-col items-center gap-1 text-violet-400 focus:outline-none">
+              <span class="material-symbols-outlined text-lg">badge</span>
+              <span class="text-[9px] font-bold">Credencial</span>
+            </button>
+            <button onclick="changeTab('tareas')" id="btn-tab-tareas" class="flex flex-col items-center gap-1 text-slate-500 focus:outline-none hover:text-slate-300 transition-colors">
+              <span class="material-symbols-outlined text-lg">task_alt</span>
+              <span class="text-[9px] font-bold">Tareas</span>
+            </button>
+            <button onclick="changeTab('progreso')" id="btn-tab-progreso" class="flex flex-col items-center gap-1 text-slate-500 focus:outline-none hover:text-slate-300 transition-colors">
+              <span class="material-symbols-outlined text-lg">trending_up</span>
+              <span class="text-[9px] font-bold">Progreso</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Administrative Web Portal Showcase -->
+    <section class="max-w-7xl mx-auto px-6 mt-28">
+      <div class="text-center mb-12">
+        <h2 class="font-manrope font-extrabold text-3xl text-white tracking-tight">
+          Portal Administrativo Escolar (Web Mockup)
+        </h2>
+        <p class="text-slate-400 text-sm mt-2 max-w-xl mx-auto">
+          Panel de control en la nube para el personal administrativo y profesores del colegio.
+        </p>
+      </div>
+
+      <!-- Glass Dashboard Container -->
+      <div class="bg-slate-900/50 backdrop-blur border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+        <!-- Dashboard Top Header Bar -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-4 border-b border-slate-800">
+          <div>
+            <h3 class="text-lg font-bold text-white font-manrope">Panel de Control General</h3>
+            <p class="text-xs text-slate-400">Ciclo Escolar: 2026 - Activo</p>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-xs px-3 py-1.5 bg-slate-800 border border-slate-700/60 rounded-lg text-slate-300 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Conectado a Servidor SQL Server
+            </span>
+          </div>
+        </div>
+
+        <!-- Dashboard Stats Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div class="bg-slate-950/50 border border-slate-850 p-5 rounded-2xl">
+            <span class="text-xs text-slate-400 uppercase font-semibold">Total Alumnos</span>
+            <div class="flex items-end gap-2 mt-1">
+              <span class="text-3xl font-extrabold text-white leading-none">1,240</span>
+              <span class="text-xs text-emerald-400 font-bold mb-1 flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-xs">trending_up</span> +4.2%
+              </span>
+            </div>
+          </div>
+          <div class="bg-slate-950/50 border border-slate-850 p-5 rounded-2xl">
+            <span class="text-xs text-slate-400 uppercase font-semibold">Profesores Activos</span>
+            <div class="flex items-end gap-2 mt-1">
+              <span class="text-3xl font-extrabold text-white leading-none">48</span>
+              <span class="text-xs text-slate-400 mb-1">Materias: 120</span>
+            </div>
+          </div>
+          <div class="bg-slate-950/50 border border-slate-850 p-5 rounded-2xl">
+            <span class="text-xs text-slate-400 uppercase font-semibold">Porcentaje Asistencia</span>
+            <div class="flex items-end gap-2 mt-1">
+              <span class="text-3xl font-extrabold text-white leading-none">94.2%</span>
+              <span class="text-xs text-emerald-400 font-bold mb-1">Promedio</span>
+            </div>
+          </div>
+          <div class="bg-slate-950/50 border border-slate-850 p-5 rounded-2xl">
+            <span class="text-xs text-slate-400 uppercase font-semibold">Tareas Entregadas</span>
+            <div class="flex items-end gap-2 mt-1">
+              <span class="text-3xl font-extrabold text-white leading-none">88.5%</span>
+              <span class="text-xs text-blue-400 font-bold mb-1">Este Mes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Split Columns -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Column 1 & 2: Main list -->
+          <div class="lg:col-span-2 space-y-4">
+            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Últimos Alumnos Registrados (SQL query preview)</h4>
+            <div class="bg-slate-950/30 border border-slate-800 rounded-2xl overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-850 bg-slate-950/60 text-slate-400 font-semibold">
+                    <th class="p-4">Matrícula</th>
+                    <th class="p-4">Nombre</th>
+                    <th class="p-4">Especialidad</th>
+                    <th class="p-4">Estado App</th>
+                    <th class="p-4">Acción</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-850/50 text-slate-200">
+                  <tr>
+                    <td class="p-4 font-mono">IIS-2026-981</td>
+                    <td class="p-4 font-semibold">Fernando J. Mtz</td>
+                    <td class="p-4 text-slate-300">Ing. en Software</td>
+                    <td class="p-4">
+                      <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">Conectado</span>
+                    </td>
+                    <td class="p-4">
+                      <button onclick="alert('Visualizando boleta de Fernando J. Mtz')" class="text-blue-400 hover:text-blue-300 hover:underline">Ver Ficha</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-4 font-mono">IIS-2026-102</td>
+                    <td class="p-4 font-semibold">Maitza Alonzo</td>
+                    <td class="p-4 text-slate-300">Diseño UI/UX</td>
+                    <td class="p-4">
+                      <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">Conectado</span>
+                    </td>
+                    <td class="p-4">
+                      <button onclick="alert('Visualizando boleta de Maitza Alonzo')" class="text-blue-400 hover:text-blue-300 hover:underline">Ver Ficha</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-4 font-mono">IIS-2026-443</td>
+                    <td class="p-4 font-semibold">Eduardo E&V</td>
+                    <td class="p-4 text-slate-300">Administración</td>
+                    <td class="p-4">
+                      <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-750 font-semibold">Invitado</span>
+                    </td>
+                    <td class="p-4">
+                      <button onclick="alert('Visualizando boleta de Eduardo E&V')" class="text-blue-400 hover:text-blue-300 hover:underline">Ver Ficha</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Column 3: Notifications / Alerts -->
+          <div class="space-y-4">
+            <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Avisos Escolares del Portal</h4>
+            <div class="space-y-3">
+              <div class="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
+                <span class="text-[9px] font-bold text-indigo-400 uppercase">Aviso Académico</span>
+                <h5 class="text-xs font-bold text-white mt-0.5">Exámenes Parciales del Segundo Bloque</h5>
+                <p class="text-[11px] text-slate-400 mt-1 leading-normal">
+                  Se informa que la semana de exámenes parciales iniciará el 15 de junio. Profesores deben subir reactivos antes del 10.
+                </p>
+              </div>
+
+              <div class="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
+                <span class="text-[9px] font-bold text-emerald-400 uppercase">Mantenimiento</span>
+                <h5 class="text-xs font-bold text-white mt-0.5">Soporte a la App Escolar (Flutter)</h5>
+                <p class="text-[11px] text-slate-400 mt-1 leading-normal">
+                  Liberada la versión 1.2.0 de la app móvil para alumnos en la Play Store. Se optimiza el refresco del código QR.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<!-- JavaScript to control the simulated smartphone interactive tab changes and checkbox list -->
+<script is:inline>
+  function changeTab(tabName) {
+    // Hide all views
+    document.getElementById('view-credencial').classList.add('hidden');
+    document.getElementById('view-tareas').classList.add('hidden');
+    document.getElementById('view-progreso').classList.add('hidden');
+
+    // Remove active style from tabs
+    document.getElementById('btn-tab-credencial').className = "flex flex-col items-center gap-1 text-slate-500 focus:outline-none hover:text-slate-300 transition-colors";
+    document.getElementById('btn-tab-tareas').className = "flex flex-col items-center gap-1 text-slate-500 focus:outline-none hover:text-slate-300 transition-colors";
+    document.getElementById('btn-tab-progreso').className = "flex flex-col items-center gap-1 text-slate-500 focus:outline-none hover:text-slate-300 transition-colors";
+
+    // Show selected view
+    document.getElementById('view-' + tabName).classList.remove('hidden');
+
+    // Add active style to selected tab
+    document.getElementById('btn-tab-' + tabName).className = "flex flex-col items-center gap-1 text-violet-400 focus:outline-none";
+  }
+
+  // Interactive task checkboxes
+  function toggleTask(element) {
+    const checkbox = element.querySelector('.task-checkbox');
+    const title = element.querySelector('h5');
+    
+    if (checkbox.classList.contains('text-transparent')) {
+      // Mark as done
+      checkbox.classList.remove('text-transparent');
+      checkbox.classList.add('bg-violet-600', 'border-violet-600', 'text-white');
+      title.classList.add('line-through', 'text-slate-500');
+    } else {
+      // Mark as pending
+      checkbox.classList.remove('bg-violet-600', 'border-violet-600', 'text-white');
+      checkbox.classList.add('text-transparent');
+      title.classList.remove('line-through', 'text-slate-500');
+    }
+
+    updateTaskCounter();
+  }
+
+  function updateTaskCounter() {
+    const list = document.getElementById('task-list-container');
+    const items = list.querySelectorAll('.task-item');
+    let pending = 0;
+    
+    items.forEach(item => {
+      const checkbox = item.querySelector('.task-checkbox');
+      if (checkbox.classList.contains('text-transparent')) {
+        pending++;
+      }
+    });
+
+    const counter = document.getElementById('pending-counter');
+    if (pending === 0) {
+      counter.textContent = "¡Todo al día!";
+      counter.className = "text-[9px] bg-emerald-600/30 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/20 font-bold";
+    } else {
+      counter.textContent = pending + " Pendiente" + (pending > 1 ? "s" : "");
+      counter.className = "text-[9px] bg-violet-600/30 text-violet-400 px-2 py-0.5 rounded-full border border-violet-500/20 font-bold";
+    }
+  }
+</script>

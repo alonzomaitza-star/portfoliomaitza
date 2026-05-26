@@ -1,0 +1,489 @@
+---
+import Layout from "./layouts/Layout.astro";
+import Services from "./components/Services.astro";
+---
+
+<Layout title="BarberShop — Tu Barbería">
+	<main class="home">
+		<!-- Hero with Background -->
+		<section class="home__hero">
+			<div class="container home__hero-content">
+				<div class="home__status-badge" id="statusBadge">
+					<span class="home__status-dot" id="statusDot"></span>
+					<span id="statusText">Cargando...</span>
+					<span class="home__hours-text" id="hoursText"
+						>--:-- a --:--</span
+					>
+				</div>
+				<h1 class="home__title">
+					Maestría en <span class="home__highlight">Estilo</span><br
+					/>& Afeitado
+				</h1>
+				<p class="home__desc">
+					Redefinimos el arte de la barbería clásica con un toque
+					moderno. Experimenta el lujo del detalle en manos de
+					nuestros expertos.
+				</p>
+				<div class="home__actions">
+					<a
+						href="/proyectos/barberia/reservar"
+						class="btn-primary home__btn"
+						id="btnReservar"
+					>
+						<svg
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							><rect
+								x="3"
+								y="4"
+								width="18"
+								height="18"
+								rx="2"
+								ry="2"></rect><line
+								x1="16"
+								y1="2"
+								x2="16"
+								y2="6"></line><line x1="8" y1="2" x2="8" y2="6"
+							></line><line x1="3" y1="10" x2="21" y2="10"
+							></line></svg
+						>
+						Reservar Ahora
+					</a>
+					<a href="/proyectos/barberia/estado" class="btn-secondary home__btn">
+						Consultar mi cita
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services Section -->
+		<Services />
+
+		<!-- Gallery / Tipos de Corte -->
+		<section class="home__gallery">
+			<div class="container">
+				<h2 class="section-title">Modelos y Tipos de Corte</h2>
+				<p class="section-subtitle">
+					Inspírate para tu próximo cambio de look con nuestros
+					estilos más populares.
+				</p>
+				<div class="gallery__grid">
+					<div class="gallery__item">
+						<img
+							src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&q=80&w=800"
+							alt="Corte Clásico"
+							loading="lazy"
+						/>
+						<div class="gallery__overlay">
+							<h3>Corte Clásico</h3>
+							<p>Elegancia atemporal</p>
+						</div>
+					</div>
+					<div class="gallery__item">
+						<img
+							src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=800"
+							alt="Fade Moderno"
+							loading="lazy"
+						/>
+						<div class="gallery__overlay">
+							<h3>Fade Moderno</h3>
+							<p>Transiciones perfectas</p>
+						</div>
+					</div>
+					<div class="gallery__item">
+						<img
+							src="https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5?auto=format&fit=crop&q=80&w=800"
+							alt="Arreglo de Barba"
+							loading="lazy"
+						/>
+						<div class="gallery__overlay">
+							<h3>Diseño de Barba</h3>
+							<p>Perfilado impecable</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Location Section -->
+		<section class="home__location">
+			<div class="container">
+				<h2 class="section-title">Ven a Visitarnos</h2>
+				<div class="location__grid">
+					<div class="location__map-wrapper glass-card">
+						<!-- Map Placeholder -->
+						<div class="location__map-placeholder">
+							<svg
+								width="48"
+								height="48"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="var(--gold-500)"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="location__map-icon"
+								><path
+									d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+								></path><circle cx="12" cy="10" r="3"
+								></circle></svg
+							>
+							<p>Mapa de Ubicación</p>
+						</div>
+					</div>
+					<div class="location__info">
+						<div class="location__item">
+							<div class="location__icon">📍</div>
+							<div>
+								<h4>Dirección</h4>
+								<p>
+									Calle de la Elegancia 123, Centro Histórico
+								</p>
+							</div>
+						</div>
+						<div class="location__item">
+							<div class="location__icon">📞</div>
+							<div>
+								<h4>Teléfono</h4>
+								<p>+34 912 345 678</p>
+							</div>
+						</div>
+						<div class="location__item">
+							<div class="location__icon">⌚</div>
+							<div>
+								<h4>Horario Semanal</h4>
+								<p id="locationHoursText">
+									Lun - Sáb: 09:00 AM - 08:00 PM
+								</p>
+								<p class="location__closed">Dom: Cerrado</p>
+							</div>
+						</div>
+						<a href="/proyectos/barberia/reservar" class="btn-secondary location__btn"
+							>Cómo llegar</a
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.home {
+		padding-top: 0; /* Remove top padding to let Hero go under navbar */
+	}
+
+	/* ── Hero ── */
+	.home__hero {
+		position: relative;
+		min-height: 85vh;
+		display: flex;
+		align-items: center;
+		padding: 8rem 1.5rem 4rem;
+		background-image:
+			linear-gradient(
+				to right,
+				rgba(24, 22, 18, 0.95) 0%,
+				rgba(24, 22, 18, 0.7) 50%,
+				rgba(24, 22, 18, 0.4) 100%
+			),
+			url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=2000");
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+	}
+
+	.home__hero::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 150px;
+		background: linear-gradient(to top, var(--bg-primary), transparent);
+		pointer-events: none;
+	}
+
+	.home__hero-content {
+		position: relative;
+		z-index: 2;
+		max-width: 800px;
+		margin: 0; /* Align left */
+	}
+
+	.home__status-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.4rem 1rem;
+		background: rgba(0, 0, 0, 0.5);
+		border: 1px solid var(--border-subtle);
+		backdrop-filter: blur(8px);
+		border-radius: var(--radius-full);
+		margin-bottom: 1.5rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+		animation: fadeIn 0.6s var(--ease-out) both;
+	}
+
+	.home__status-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--accent-green);
+		animation: breathe 2s ease-in-out infinite;
+	}
+
+	.home__status-dot.closed {
+		background: var(--accent-red);
+		animation: none;
+	}
+
+	.home__hours-text {
+		color: var(--text-secondary);
+		border-left: 1px solid var(--border-subtle);
+		padding-left: 0.6rem;
+		font-weight: 500;
+	}
+
+	.home__title {
+		font-family: var(--font-heading);
+		font-size: clamp(3rem, 7vw, 5rem);
+		font-weight: 900;
+		line-height: 1.05;
+		letter-spacing: -0.02em;
+		margin-bottom: 1.5rem;
+		animation: fadeInUp 0.6s var(--ease-out) 0.1s both;
+		text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+	}
+
+	.home__highlight {
+		font-style: italic;
+		background: var(--gold-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		padding-right: 0.1em; /* fix italic clipping */
+	}
+
+	.home__desc {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		max-width: 500px;
+		margin-bottom: 2.5rem;
+		line-height: 1.7;
+		animation: fadeInUp 0.6s var(--ease-out) 0.2s both;
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	}
+
+	.home__actions {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		width: 100%;
+		max-width: 380px;
+		animation: fadeInUp 0.6s var(--ease-out) 0.3s both;
+	}
+
+	.home__btn {
+		justify-content: center;
+		width: 100%;
+		padding: 1rem 2rem;
+	}
+
+	/* ── Gallery ── */
+	.home__gallery {
+		padding: var(--section-padding);
+		background: var(--bg-primary);
+	}
+
+	.gallery__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.5rem;
+		margin-top: 3rem;
+	}
+
+	.gallery__item {
+		position: relative;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		aspect-ratio: 4/5;
+		cursor: pointer;
+	}
+
+	.gallery__item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.6s var(--ease-out);
+	}
+
+	.gallery__item:hover img {
+		transform: scale(1.05);
+	}
+
+	.gallery__overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.9) 0%,
+			rgba(0, 0, 0, 0.2) 50%,
+			transparent 100%
+		);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding: 1.5rem;
+	}
+
+	.gallery__overlay h3 {
+		font-family: var(--font-heading);
+		font-size: 1.3rem;
+		font-weight: 700;
+		margin-bottom: 0.3rem;
+		color: var(--gold-400);
+	}
+
+	.gallery__overlay p {
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+	}
+
+	/* ── Location ── */
+	.home__location {
+		padding: var(--section-padding);
+		background: var(--bg-secondary);
+	}
+
+	.location__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+		margin-top: 3rem;
+	}
+
+	.location__map-wrapper {
+		width: 100%;
+		height: 400px;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--bg-card);
+		border: 1px solid var(--border-subtle);
+	}
+
+	.location__map-placeholder {
+		text-align: center;
+		color: var(--text-muted);
+	}
+
+	.location__map-icon {
+		margin-bottom: 1rem;
+		opacity: 0.5;
+	}
+
+	.location__info {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		justify-content: center;
+	}
+
+	.location__item {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+	.location__icon {
+		font-size: 1.5rem;
+		color: var(--gold-400);
+		background: rgba(234, 179, 8, 0.1);
+		width: 48px;
+		height: 48px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+	}
+
+	.location__item h4 {
+		font-family: var(--font-heading);
+		font-size: 1.1rem;
+		margin-bottom: 0.3rem;
+		color: var(--text-primary);
+	}
+
+	.location__item p {
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+		margin-bottom: 0.2rem;
+	}
+
+	.location__closed {
+		color: var(--accent-red) !important;
+	}
+
+	.location__btn {
+		margin-top: 1rem;
+		align-self: flex-start;
+	}
+
+	@media (min-width: 769px) {
+		.home__actions {
+			flex-direction: row;
+		}
+
+		.location__grid {
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+		}
+	}
+</style>
+
+<script>
+	import { getConfig } from "./lib/store.js";
+
+	function updateHomeConfig() {
+		const config = getConfig();
+
+		// Status Badge
+		const dot = document.getElementById("statusDot");
+		const text = document.getElementById("statusText");
+		const hours = document.getElementById("hoursText");
+		const btn = document.getElementById("btnReservar");
+		const locationHours = document.getElementById("locationHoursText");
+
+		if (config.isOpen) {
+			dot?.classList.remove("closed");
+			if (text) text.textContent = "Abierto Ahora";
+			if (text) text.style.color = "var(--accent-green)";
+		} else {
+			dot?.classList.add("closed");
+			if (text) text.textContent = "Cerrado";
+			if (text) text.style.color = "var(--text-muted)";
+			if (btn) {
+				btn.style.opacity = "0.5";
+				btn.style.pointerEvents = "none";
+			}
+		}
+
+		if (hours)
+			hours.textContent = `Hoy: ${config.openTime} - ${config.closeTime}`;
+		if (locationHours)
+			locationHours.textContent = `Lun - Sáb: ${config.openTime} - ${config.closeTime}`;
+	}
+
+	// Wait for DOM to be ready
+	document.addEventListener("DOMContentLoaded", updateHomeConfig);
+</script>

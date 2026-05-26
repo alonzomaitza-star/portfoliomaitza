@@ -1,56 +1,142 @@
 ---
 import ScrollPrompt from "./ScrollPrompt.astro";
 ---
-    <div
-      id="hero-title"
-      class="bg-black/40 backdrop-blur-sm border-b border-white/20 shadow-2xl fixed bottom-0 left-0 w-full p-2 md:p-6 z-45 text-right pointer-events-none transition-opacity duration-500"
-    >
-      <h1
-        class="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-tight uppercase tracking-tighter drop-shadow-lg"
-        >
-        Insano<br />Network
-      </h1>
-      <h2
-        class="text-2xl md:text-4xl text-[#ffd600] font-bold mt-4 max-w-4xl ml-auto drop-shadow-md"
-      >
-        Diseña, Desarrolla y Vende tus Ideas.
-      </h2>
-      <ScrollPrompt />
-      
-    </div>
-    <script is:inline>
-        function handleHeroScrollInline() {
-        const heroTitle = document.getElementById("hero-title");
-        if (!heroTitle) return;
-        
-        const scrollPosition =
-        window.scrollY ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
-        
-        const windowHeight = window.innerHeight;
-        // Fade out quickly - completely gone by 30% of viewport height scroll
-        const fadeThreshold = windowHeight * 0.45;
-        const opacity = Math.max(0, 1 - scrollPosition / fadeThreshold);
-        
-        heroTitle.style.opacity = opacity.toString();
-        
-        if (opacity <= 0.05) {
-            heroTitle.style.visibility = "hidden";
-        } else {
-            heroTitle.style.visibility = "visible";
-        }
-        }
-        
-        window.addEventListener("scroll", handleHeroScrollInline);
-        window.addEventListener("resize", handleHeroScrollInline);
-        window.addEventListener("DOMContentLoaded", handleHeroScrollInline);
-        
-        // Also interval check for safety in case of layout shifts
-        setInterval(handleHeroScrollInline, 500);
-        
-        // Immediate check
-        handleHeroScrollInline();
-    </script>
 
+<div
+  id="hero-title"
+  class="bg-black/40 backdrop-blur-sm border-t border-white/20 shadow-2xl fixed bottom-0 left-0 w-full p-2 md:p-6 pt-5 md:pt-8 z-45 text-right pointer-events-none transition-opacity duration-500"
+>
+  <!-- Botones divididos por diagonal en el borde superior (línea amarilla de 15px de altura) -->
+  <div
+    class="absolute top-0 -left-[10px] w-[calc(100%+20px)] h-[15px] flex overflow-hidden pointer-events-auto z-50"
+  >
+    <button
+      id="btn-nav-90"
+      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer"
+      title="Navegar"
+    >
+      <span
+        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-950 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap skew-x-[30deg] shadow-lg border border-slate-800 font-bold uppercase tracking-wider"
+      >
+        Navegar
+      </span>
+    </button>
+    <button
+      id="btn-nav-proyectos"
+      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer"
+      title="Proyecto"
+    >
+      <span
+        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-950 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap skew-x-[30deg] shadow-lg border border-slate-800 font-bold uppercase tracking-wider"
+      >
+        Proyecto
+      </span>
+    </button>
+    <button
+      id="btn-nav-equipo"
+      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer"
+      title="Equipo"
+    >
+      <span
+        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-950 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap skew-x-[30deg] shadow-lg border border-slate-800 font-bold uppercase tracking-wider"
+      >
+        Equipo
+      </span>
+    </button>
+    <button
+      id="btn-nav-servicios"
+      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] transition-colors duration-250 cursor-pointer"
+      title="Servicios $"
+    >
+      <span
+        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-950 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap skew-x-[30deg] shadow-lg border border-slate-800 font-bold uppercase tracking-wider"
+      >
+        Servicios $
+      </span>
+    </button>
+  </div>
+
+  <h1
+    class="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-tight uppercase tracking-tighter drop-shadow-lg"
+  >
+    Insano<br />Network
+  </h1>
+  <h2
+    class="text-2xl md:text-4xl text-[#ffd600] font-bold mt-4 max-w-4xl ml-auto drop-shadow-md"
+  >
+    Diseña, Desarrolla y Vende tus Ideas.
+  </h2>
+  <ScrollPrompt />
+</div>
+<script is:inline>
+  function handleHeroScrollInline() {
+    const heroTitle = document.getElementById("hero-title");
+    if (!heroTitle) return;
+
+    const scrollPosition =
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+
+    const windowHeight = window.innerHeight;
+    // Fade out quickly - completely gone by 30% of viewport height scroll
+    const fadeThreshold = windowHeight * 0.45;
+    const opacity = Math.max(0, 1 - scrollPosition / fadeThreshold);
+
+    heroTitle.style.opacity = opacity.toString();
+
+    if (opacity <= 0.05) {
+      heroTitle.style.visibility = "hidden";
+    } else {
+      heroTitle.style.visibility = "visible";
+    }
+  }
+
+  function initHeroNavigation() {
+    const btnNav90 = document.getElementById("btn-nav-90");
+    const btnNavProyectos = document.getElementById("btn-nav-proyectos");
+    const btnNavEquipo = document.getElementById("btn-nav-equipo");
+    const btnNavServicios = document.getElementById("btn-nav-servicios");
+
+    if (btnNav90) {
+      btnNav90.onclick = () => {
+        window.scrollTo({
+          top: window.innerHeight * 0.9,
+          behavior: "smooth"
+        });
+      };
+    }
+
+    const scrollToSection = (id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    if (btnNavProyectos) {
+      btnNavProyectos.onclick = () => scrollToSection("desarrollos-gallery-section");
+    }
+    if (btnNavEquipo) {
+      btnNavEquipo.onclick = () => scrollToSection("equipo-section");
+    }
+    if (btnNavServicios) {
+      btnNavServicios.onclick = () => scrollToSection("shop-minimal-section");
+    }
+  }
+
+  window.addEventListener("scroll", handleHeroScrollInline);
+  window.addEventListener("resize", handleHeroScrollInline);
+  window.addEventListener("DOMContentLoaded", () => {
+    handleHeroScrollInline();
+    initHeroNavigation();
+  });
+
+  // Also interval check for safety in case of layout shifts
+  setInterval(handleHeroScrollInline, 500);
+
+  // Immediate check
+  handleHeroScrollInline();
+  initHeroNavigation();
+</script>

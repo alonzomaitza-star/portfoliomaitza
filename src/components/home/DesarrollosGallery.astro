@@ -1,95 +1,171 @@
 ---
 interface Desarrollo {
     title: string;
+    subtitle: string;
     description: string;
     tags: string[];
     url: string;
+    buttonText: string;
     repo?: string;
 }
 
 const desarrollos: Desarrollo[] = [
     {
-        title: "Sistema de Inventario",
-        description: "Plataforma para gestión de inventarios con control de stock, alertas de reabastecimiento y reportes gráficos en tiempo real.",
-        tags: ["Frontend", "Dashboard", "Dummy"],
-        url: "#",
+        title: "Crea tus invitaciones y gestiona tus eventos",
+        subtitle:
+            "Plataforma interactiva para crear, gestionar y enviar invitaciones digitales con confirmador RSVP en tiempo real por WhatsApp.",
+        description:
+            "Crea y gestiona tus invitaciones digitales, compártelas por WhatsApp y más. Ideal para eventos infantiles, bodas, 15 años y cumpleaños. Con opción de adquirir el portal de gestión de eventos.",
+        tags: ["Infantiles", "Bodas", "15 Años", "Gestión de Eventos"],
+        url: "/proyectos/proy?proyecto=invitaciones",
+        buttonText: "Crear invitaciones",
     },
     {
-        title: "Punto de Venta (POS)",
-        description: "Interfaz fluida para terminales de punto de venta. Incluye integración con hardware, facturación y control de caja.",
-        tags: ["Frontend", "POS", "Ventas", "Dummy"],
-        url: "#",
+        title: "Gestiona tus Citas mediante WhatsApp o Portal Web",
+        subtitle:
+            "Portal de reservación y/o bot de WhatsApp con menús interactivos y respuestas de comunicación automatizadas.",
+        description:
+            "Administra la agenda de tu negocio de forma inteligente. Diseñado para barberías, consultorios médicos, veterinarias y servicios. Permite agendar, confirmar y recordar citas automáticamente.",
+        tags: ["Barberías", "Consultorios", "Veterinarias", "Servicios"],
+        url: "/proyectos/proy?proyecto=citas",
+        buttonText: "Agendar citas",
     },
     {
-        title: "Gestor de Tareas (Kanban)",
-        description: "Herramienta colaborativa estilo Kanban para equipos ágiles. Permite drag & drop, etiquetas y seguimiento de tiempo.",
-        tags: ["Frontend", "Kanban", "Productividad", "Dummy"],
-        url: "#",
+        title: "Lleva tu Instituto Escolar a otro nivel con APP Móvil y Plataforma escolar",
+        subtitle:
+            "Portal administrativo escolar y app móvil para la credencial digital y control de tareas del estudiante.",
+        description:
+            "Digitaliza la gestión del colegio. Los alumnos llevan a la mano su credencial digital QR, lista de tareas y avance escolar, mientras el colegio administra boletas y asistencias.",
+        tags: ["Alumnos", "Tareas", "Credencial QR", "Portal"],
+        url: "/proyectos/escolar",
+        buttonText: "Ver portal escolar",
     },
     {
         title: "Portal Educativo LMS",
-        description: "Plataforma de aprendizaje en línea con reproducción de video, cuestionarios interactivos y progreso del alumno.",
-        tags: ["Frontend", "LMS", "Educación", "Dummy"],
-        url: "#",
+        subtitle:
+            "Plataforma de aprendizaje en línea con reproductor de video interactivo y generación automática de certificados.",
+        description:
+            "Crea y vende tus cursos con facilidad. Ideal para academias y empresas que necesitan capacitar personal o impartir clases virtuales con diplomas con código QR.",
+        tags: ["Cursos", "Vídeos", "Exámenes", "Diplomas"],
+        url: "/proyectos/proy?proyecto=lms",
+        buttonText: "Ver catálogo LMS",
     },
     {
-        title: "Panel CRM Inmobiliario",
-        description: "Dashboard especializado para bienes raíces. Muestra listado de propiedades, clientes potenciales y métricas de ventas.",
-        tags: ["Frontend", "CRM", "Bienes Raíces", "Dummy"],
-        url: "#",
-    }
+        title: "IA & Agentes Virtuales",
+        subtitle:
+            "Chatbots de atención al cliente e IA conversacional entrenados para automatizar respuestas e integrar agendas.",
+        description:
+            "Atiende a tus clientes 24/7 en WhatsApp, Web e Instagram de forma autónoma. Automatiza la resolución de dudas, muestra menús de servicios y agenda citas directamente.",
+        tags: ["Chatbots", "WhatsApp", "Soporte 24/7", "Menús"],
+        url: "/proyectos/proy?proyecto=ia",
+        buttonText: "Ver asistente de IA",
+    },
+    {
+        title: "Desarrollos Especiales, DevOps & QA",
+        subtitle:
+            "Diseño y desarrollo de software a medida con aseguramiento de calidad (QA) y despliegue continuo.",
+        description:
+            "Creamos la solución tecnológica que tu negocio necesita. Ofrecemos desarrollo a la medida con aseguramiento de calidad (QA), hosting cloud administrado de alta disponibilidad o configuración DevOps en tus propios servidores.",
+        tags: ["A Medida", "DevOps & QA", "Hosting Cloud", "Soporte"],
+        url: "/proyectos/proy?proyecto=saas",
+        buttonText: "Cotizar desarrollo",
+    },
 ];
 ---
-<section class="py-12 px-4 bg-gray-50 dark:bg-gray-800/10">
-    <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+
+<div id="desarrollos-gallery-section" class="mb-20">
+    <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
             Desarrollos y Sistemas
         </h2>
+        <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+            Explora las soluciones tecnológicas y plataformas que estamos
+            construyendo.
+        </p>
+    </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {
-                desarrollos.map((item, index) => (
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 flex flex-col h-full border border-gray-100 dark:border-gray-700">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                                {item.title}
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                                {item.description}
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                {item.tags.map((tag) => (
-                                    <span class="px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 text-xs rounded-full border border-cyan-200 dark:border-cyan-800">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div class="mt-auto flex gap-3">
-                            <button
-                                class="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:from-cyan-700 hover:to-blue-700 transition-all text-sm flex items-center justify-center gap-2"
-                                onclick="alert('Demo de sistema temporalmente en construcción')"
-                            >
-                                <span>Ver Preview Dummy</span>
-                                <svg
-                                    class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                                    />
-                                </svg>
-                            </button>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {
+            desarrollos.map((item) => (
+                <div class="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 flex flex-col h-full border border-slate-700/60 hover:border-slate-600 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/5">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-white mb-1">
+                            {item.title}
+                        </h3>
+                        <p class="text-xs text-slate-400 font-semibold mb-3 leading-relaxed border-b border-slate-700/40 pb-2">
+                            {item.subtitle}
+                        </p>
+                        <p class="text-slate-300 text-sm mb-4 leading-relaxed">
+                            {item.description}
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            {item.tags.map((tag) => (
+                                <span class="px-2.5 py-1 bg-slate-700/30 text-slate-300 text-xs rounded border border-slate-700/50">
+                                    {tag}
+                                </span>
+                            ))}
                         </div>
                     </div>
-                ))
-            }
-        </div>
+
+                    <div class="mt-auto pt-4 border-t border-slate-750">
+                        <a
+                            href={item.url}
+                            class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2.5 px-4 rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-indigo-500/10 group/btn"
+                        >
+                            <span>{item.buttonText}</span>
+                            <svg
+                                class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2.5"
+                                    d="M9 5l7 7-7 7"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            ))
+        }
     </div>
-</section>
+
+    <!-- Botón para ver el Roadmap Completo -->
+    <div class="flex justify-center">
+        <a
+            href="/proyectos/roadMap"
+            class="inline-flex items-center gap-2.5 px-6 py-3 bg-slate-900 border border-slate-700 text-white font-bold rounded-xl hover:bg-slate-800 hover:border-slate-600 hover:text-white transition-all text-sm group shadow-lg"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-blue-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                ></path>
+            </svg>
+            <span>Explorar Roadmap Completo</span>
+            <svg
+                class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+        </a>
+    </div>
+</div>

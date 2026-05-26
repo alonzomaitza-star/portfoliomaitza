@@ -1,0 +1,307 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SEO from "../../components/SEO.astro";
+
+// Obtener el proyecto de la query string
+const proyectoParam = Astro.url.searchParams.get("proyecto") || "default";
+
+// Información detallada de los proyectos del Roadmap
+const proyectosInfo = {
+  invitaciones: {
+    id: "invitaciones",
+    nombre: "Plataforma de Invitaciones Digitales",
+    fase: "Fase 02: Sistemas",
+    progreso: 65,
+    estado: "Diseñando plantillas interactivas, integración de backend en .NET y base SQL Server",
+    descripcion: "Una plataforma moderna para crear, personalizar y enviar invitaciones digitales interactivas de forma rápida a través de un flujo conversacional guiado. El sistema aloja las invitaciones de manera temporal (45 días por defecto, extendibles a 60 días gratis y 80 días bajo planes). Incluye servicios de confirmación RSVP automática por WhatsApp y opción de grabación de eventos.",
+    caracteristicas: [
+      "Creación interactiva y ágil mediante un formulario dinámico optimizado",
+      "Hospedaje temporal estructurado (45 días por defecto, extendible a 60 y 80 días)",
+      "Stack de alto rendimiento: Frontend en Astro, Backend en .NET y base de datos SQL Server",
+      "Confirmador de asistencia (RSVP) en tiempo real con notificaciones por WhatsApp",
+      "Servicio integrado de grabación de eventos y galería de recuerdos"
+    ],
+    lanzamiento: "Q3 2026",
+    color: "from-pink-500 to-rose-400",
+    glowColor: "rgba(244, 63, 94, 0.15)",
+    badgeColor: "bg-pink-500/10 text-pink-400 border border-pink-500/20",
+    progresoTexto: "text-pink-400"
+  },
+  lms: {
+    id: "lms",
+    nombre: "Portal Educativo LMS",
+    fase: "Fase 02: Sistemas",
+    progreso: 30,
+    estado: "Estructurando el reproductor de lecciones y módulo de quizzes",
+    descripcion: "Una plataforma ágil y robusta para la gestión del aprendizaje (LMS). Perfecta para academias, colegios y empresas que necesitan capacitar personal o impartir clases. Adicionalmente, el portal permite a profesionales unirse a nuestro equipo de instructores y aprender cómo estructurar, promocionar y ofertar sus propios servicios.",
+    caracteristicas: [
+      "Reproductor de video interactivo libre de distracciones",
+      "Creador de exámenes dinámicos con temporizador y auto-calificación",
+      "Sistema de certificados digitales seguros verificables con código QR",
+      "Programa de formación interna para unirse al equipo de instructores y ofertar servicios",
+      "Panel administrativo de analíticas con porcentaje de avance estudiantil"
+    ],
+    lanzamiento: "Q4 2026",
+    color: "from-purple-500 to-pink-400",
+    glowColor: "rgba(168, 85, 247, 0.15)",
+    badgeColor: "bg-purple-500/10 text-purple-400 border border-purple-500/20",
+    progresoTexto: "text-purple-400"
+  },
+  ia: {
+    id: "ia",
+    nombre: "IA & Agentes Virtuales",
+    fase: "Fase 03: Inteligencia",
+    progreso: 20,
+    estado: "Ajustando embeddings e integrando API de WhatsApp Business",
+    descripcion: "Revoluciona tu negocio con inteligencia artificial. Desarrollamos asistentes conversacionales y chatbots entrenados con tu información para atención 24/7. Además, implementamos herramientas de IA y agentes inteligentes autónomos que optimizan procesos de gestión y validaciones internas de forma automática.",
+    caracteristicas: [
+      "Atención multicanal nativa (WhatsApp, Web, Instagram, Messenger)",
+      "IA conversacional avanzada que comprende contexto y tono de voz",
+      "Agentes autónomos para la automatización de procesos de gestión y validaciones",
+      "Buscador semántico integrado para resolver dudas sobre manuales o catálogos",
+      "Agendamiento automático de citas y pasarela de transferencia a humanos"
+    ],
+    lanzamiento: "Q1 2027",
+    color: "from-amber-500 to-yellow-400",
+    glowColor: "rgba(245, 158, 11, 0.15)",
+    badgeColor: "bg-amber-500/10 text-amber-400 border border-amber-500/20",
+    progresoTexto: "text-amber-400"
+  },
+  saas: {
+    id: "saas",
+    nombre: "Desarrollos Especiales, DevOps & QA",
+    fase: "Servicio de Calidad e Infraestructura",
+    progreso: 90,
+    estado: "Disponible para despliegue y soporte continuo",
+    descripcion: "Ofrecemos diseño y desarrollo de software a medida adaptado 100% a las necesidades de tu empresa, garantizando la calidad con pruebas exhaustivas (QA). Adicionalmente, brindamos servicios de hosting administrado en nuestra infraestructura cloud optimizada o bien implementamos automatización DevOps (CI/CD, monitoreo) directamente en tus propios servidores.",
+    caracteristicas: [
+      "Desarrollo de software a medida con pruebas de calidad (QA) integradas",
+      "Hosting Cloud administrado de alta disponibilidad",
+      "Configuración de servidores y automatización de despliegues (DevOps)",
+      "Monitoreo 24/7 de infraestructura y rendimiento",
+      "Soporte técnico y auditorías de seguridad constantes"
+    ],
+    lanzamiento: "Disponible",
+    color: "from-teal-500 to-emerald-400",
+    glowColor: "rgba(20, 184, 166, 0.15)",
+    badgeColor: "bg-teal-500/10 text-teal-400 border border-teal-500/20",
+    progresoTexto: "text-teal-400"
+  },
+  citas: {
+    id: "citas",
+    nombre: "Gestor de Citas y Consultas",
+    fase: "Fase 02: Sistemas",
+    progreso: 45,
+    estado: "Integrando la API de agendamiento por WhatsApp y diseño del portal web de reserva",
+    descripcion: "Sistema integral para la programación y administración de citas pensado para barberías, consultorios médicos, veterinarias y negocios de servicios. Ofrece un portal web interactivo donde los clientes o pacientes reservan citas según la disponibilidad en tiempo real, sincronizado con un bot de WhatsApp inteligente que utiliza 'IA' para comunicar detalles, mostrar servicios e interactuar con menús dinámicos.",
+    caracteristicas: [
+      "Diseño adaptado para barberías, consultorios, veterinarias y afines",
+      "Portal web interactivo de reservación con sincronización de horarios libres",
+      "Bot de WhatsApp inteligente con respuestas de IA, flujos de comunicación y menús de servicio",
+      "Recordatorios y confirmaciones automáticas por WhatsApp para reducir inasistencias",
+      "Panel de administración para control de consultas, historial y fichas de clientes/pacientes"
+    ],
+    lanzamiento: "Q4 2026",
+    color: "from-emerald-500 to-teal-400",
+    glowColor: "rgba(16, 185, 129, 0.15)",
+    badgeColor: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+    progresoTexto: "text-emerald-400"
+  },
+  default: {
+    id: "default",
+    nombre: "Desarrollo en Proceso",
+    fase: "Planificación General",
+    progreso: 15,
+    estado: "Analizando viabilidad técnica y mapeo de requerimientos",
+    descripcion: "Este módulo forma parte de la visión a largo plazo del roadmap tecnológico de Insano Network. Estamos analizando las necesidades del mercado, diseñando mockups y estructurando el código base para iniciar la fase activa de desarrollo.",
+    caracteristicas: [
+      "Levantamiento de especificaciones técnicas",
+      "Maquetación y diseño de la experiencia de usuario (UX)",
+      "Selección del stack tecnológico óptimo",
+      "Configuración de servidores y entornos de desarrollo",
+      "Fase de pruebas Alpha internas"
+    ],
+    lanzamiento: "Próximamente",
+    color: "from-slate-500 to-slate-400",
+    glowColor: "rgba(100, 116, 139, 0.15)",
+    badgeColor: "bg-slate-500/10 text-slate-400 border border-slate-500/20",
+    progresoTexto: "text-slate-400"
+  }
+};
+
+const info = proyectosInfo[proyectoParam as keyof typeof proyectosInfo] || proyectosInfo.default;
+---
+
+<Layout 
+  title={`${info.nombre} - Próximamente`}
+  description={info.descripcion}
+>
+  <SEO 
+    schemaType="WebPage"
+    serviceName={info.nombre}
+    serviceDescription={info.descripcion}
+  />
+
+  <main class="blueprint-bg relative min-h-screen py-20 px-4 md:px-8 overflow-hidden flex items-center justify-center">
+    <!-- Círculo de brillo dinámico en el fondo -->
+    <div 
+      class="absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-40 pointer-events-none transition-all duration-1000"
+      style={`background: ${info.glowColor}; top: 10%; left: 10%;`}
+    ></div>
+    <div 
+      class="absolute w-[400px] h-[400px] rounded-full blur-3xl opacity-30 pointer-events-none transition-all duration-1000"
+      style={`background: ${info.glowColor}; bottom: 10%; right: 10%;`}
+    ></div>
+
+    <div class="relative z-10 w-full max-w-4xl">
+      <!-- Botón para regresar al Roadmap -->
+      <div class="mb-6 flex justify-start">
+        <a 
+          href="/proyectos/roadMap" 
+          class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm border border-slate-700/50 rounded-full text-slate-300 hover:text-white hover:border-slate-600 hover:bg-slate-800/80 transition-all text-sm group"
+        >
+          <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Volver al Roadmap
+        </a>
+      </div>
+
+      <!-- Contenedor Principal (Glassmorphism) -->
+      <div class="bg-slate-900/75 backdrop-blur-md border border-slate-700/50 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+        
+        <!-- Grid Superior: Encabezado y Fase -->
+        <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-6 pb-6 border-b border-slate-800">
+          <div>
+            <div class="flex items-center gap-3 mb-2 flex-wrap">
+              <span class={`text-xs px-3 py-1 font-semibold rounded-full uppercase tracking-wider ${info.badgeColor}`}>
+                {info.fase}
+              </span>
+              <span class="text-xs px-3 py-1 font-semibold rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                Lanzamiento: {info.lanzamiento}
+              </span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white leading-tight">
+              {info.nombre}
+            </h1>
+          </div>
+          <div class="text-left md:text-right flex flex-col items-start md:items-end">
+            <span class="text-slate-400 text-xs uppercase tracking-wider">Estado Actual</span>
+            <span class="text-emerald-400 font-medium text-sm flex items-center gap-1.5 mt-1">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              En Desarrollo Activo
+            </span>
+          </div>
+        </div>
+
+        <!-- Sección de Progreso -->
+        <div class="mb-10">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-sm font-semibold text-slate-300">Progreso del Proyecto</span>
+            <span class={`text-lg font-bold ${info.progresoTexto}`}>{info.progreso}%</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-3.5 p-0.5 overflow-hidden border border-slate-700/80 shadow-inner">
+            <div 
+              class={`h-full bg-gradient-to-r ${info.color} rounded-full transition-all duration-1000 ease-out shadow-lg`}
+              style={`width: ${info.progreso}%`}
+            ></div>
+          </div>
+          <p class="text-xs text-slate-400 mt-2 italic flex items-center gap-1.5">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Actividad: {info.estado}
+          </p>
+        </div>
+
+        <!-- Descripción y Características -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div>
+            <h2 class="text-lg font-bold text-white mb-3">Sobre el Módulo</h2>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              {info.descripcion}
+            </p>
+            <div class="p-4 bg-slate-950/40 border border-slate-800 rounded-2xl">
+              <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-2">Garantía Insano</h4>
+              <p class="text-xs text-slate-300 leading-normal">
+                Todos nuestros sistemas en el roadmap son construidos con tecnologías serverless, interfaces ultra rápidas, soporte móvil completo y optimización SEO nativa.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-lg font-bold text-white mb-3">Características Clave</h2>
+            <ul class="space-y-3">
+              {info.caracteristicas.map((carac) => (
+                <li class="flex items-start gap-3">
+                  <div class="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <span class="text-slate-300 text-sm leading-snug">{carac}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Formulario e Interacción (CTA) -->
+        <div class="bg-gradient-to-br from-slate-950/80 to-slate-900/80 border border-slate-800/80 rounded-2xl p-6 md:p-8 text-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+          <div class="relative z-10 max-w-xl mx-auto">
+            <h3 class="text-xl font-bold text-white mb-2">¿Quieres acceso anticipado?</h3>
+            <p class="text-slate-300 text-sm mb-6">
+              Regístrate para recibir notificaciones exclusivas de la versión beta cerrada, avances del código y ofertas especiales de lanzamiento.
+            </p>
+            
+            <form onsubmit="alert('¡Gracias! Te hemos registrado en la lista de espera.'); return false;" class="flex flex-col sm:flex-row gap-3 mb-6">
+              <input 
+                type="email" 
+                required 
+                placeholder="Ingresa tu correo electrónico" 
+                class="flex-1 bg-slate-900 border border-slate-700/80 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 text-sm focus:ring-1 focus:ring-purple-500 transition-all"
+              />
+              <button 
+                type="submit"
+                class={`bg-gradient-to-r ${info.color} text-slate-950 font-bold px-6 py-3 rounded-xl hover:shadow-lg transition-all text-sm hover:scale-[1.02] active:scale-[0.98]`}
+              >
+                Unirme a la espera
+              </button>
+            </form>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 text-xs text-slate-400">
+              <span>🔒 Cero spam, cancela en cualquier momento.</span>
+              <span class="hidden sm:inline">|</span>
+              <a 
+                href="https://wa.me/525516849340?text=Hola,%20me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20proyecto%20de%20roadmap" 
+                target="_blank" 
+                class="text-emerald-400 hover:text-emerald-300 transition-colors font-semibold flex items-center gap-1"
+              >
+                💬 O pregunta directo por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Fondo estilo Blueprint técnico */
+  .blueprint-bg {
+    background-color: #0b0f19;
+    background-image: 
+      linear-gradient(rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+      linear-gradient(rgba(30, 41, 59, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 41, 59, 0.15) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+  }
+</style>

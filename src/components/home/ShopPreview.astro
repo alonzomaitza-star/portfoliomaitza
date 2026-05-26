@@ -202,11 +202,11 @@ const hayProductos =
                         {recienAgregados.length > 0 && (
                             <div class="category-section">
                                 <h3 class="category-title">Recién Agregados</h3>
-                                <ul class="products-grid">
+                                <div class="products-grid">
                                     {recienAgregados.map((producto) => (
                                         <CardShop producto={producto} />
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         )}
 
@@ -215,22 +215,22 @@ const hayProductos =
                                 <h3 class="category-title">
                                     Productos de Temporada
                                 </h3>
-                                <ul class="products-grid">
+                                <div class="products-grid">
                                     {temporada.map((producto) => (
                                         <CardShop producto={producto} />
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         )}
 
                         {masVendidos.length > 0 && (
                             <div class="category-section">
                                 <h3 class="category-title">Más Vendidos</h3>
-                                <ul class="products-grid">
+                                <div class="products-grid">
                                     {masVendidos.map((producto) => (
                                         <CardShop producto={producto} />
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         )}
 
@@ -239,11 +239,11 @@ const hayProductos =
                                 <h3 class="category-title">
                                     Kit con Descuento
                                 </h3>
-                                <ul class="products-grid">
+                                <div class="products-grid">
                                     {kitDescuento.map((producto) => (
                                         <CardShop producto={producto} />
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         )}
                     </div>

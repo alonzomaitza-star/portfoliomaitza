@@ -1,6 +1,7 @@
 ---
 import { getTwitchEmbedData } from '../../../lib/twitch';
 import { getYouTubeLiveStatus } from '../../../lib/youtube';
+import DesarrollosGallery from "../DesarrollosGallery.astro";
 
 // Fetch Twitch data (live status or latest VOD)
 const twitchData = await getTwitchEmbedData();
@@ -414,6 +415,9 @@ const COLOR_MAP = {
         })
       }
     </div>
+
+    <!-- proyectos -->
+    <DesarrollosGallery />
 
     <!-- Streaming Unificado Panel (Twitch & Kick) -->
     <div class="mb-20">
