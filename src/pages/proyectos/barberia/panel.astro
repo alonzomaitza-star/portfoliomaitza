@@ -1,8 +1,9 @@
 ---
-import Layout from "./layouts/Layout.astro";
+import DemoLayout from "../../../layouts/DemoLayout.astro";
+import "./styles/global.css";
 ---
 
-<Layout title="Panel Admin — BarberShop">
+<DemoLayout title="Panel Admin — BarberShop">
     <main class="panel">
         <div class="container">
             <a href="/proyectos/barberia" class="panel__back">← Inicio</a>
@@ -53,7 +54,7 @@ import Layout from "./layouts/Layout.astro";
             </div>
         </div>
     </main>
-</Layout>
+</DemoLayout>
 
 <style>
     .panel {

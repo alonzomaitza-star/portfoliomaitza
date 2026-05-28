@@ -6,6 +6,8 @@ interface Desarrollo {
     tags: string[];
     url: string;
     buttonText: string;
+    image: string;
+    imageLeft?: boolean;
     repo?: string;
 }
 
@@ -15,60 +17,72 @@ const desarrollos: Desarrollo[] = [
         subtitle:
             "Plataforma interactiva para crear, gestionar y enviar invitaciones digitales con confirmador RSVP en tiempo real por WhatsApp.",
         description:
-            "Crea y gestiona tus invitaciones digitales, compártelas por WhatsApp y más. Ideal para eventos infantiles, bodas, 15 años y cumpleaños. Con opción de adquirir el portal de gestión de eventos.",
+            "Crea, personaliza y envía invitaciones digitales interactivas para bodas, XV años, cumpleaños y todo tipo de eventos. Incluye música de fondo, mapas de ubicación interactivos, confirmación RSVP en tiempo real enviada directamente a tu WhatsApp, y galería de fotos. Ofrece a tus invitados una experiencia moderna y olvídate de las invitaciones impresas tradicionales.",
         tags: ["Infantiles", "Bodas", "15 Años", "Gestión de Eventos"],
-        url: "/proyectos/proy?proyecto=invitaciones",
+        url: "/proyectos/invitacionRuby",
         buttonText: "Crear invitaciones",
+        image: "https://images.unsplash.com/photo-1549417229-aa67d3263c09?q=80&w=800&auto=format&fit=crop",
+        imageLeft: false,
     },
     {
         title: "Gestiona tus Citas mediante WhatsApp o Portal Web",
         subtitle:
             "Portal de reservación y/o bot de WhatsApp con menús interactivos y respuestas de comunicación automatizadas.",
         description:
-            "Administra la agenda de tu negocio de forma inteligente. Diseñado para barberías, consultorios médicos, veterinarias y servicios. Permite agendar, confirmar y recordar citas automáticamente.",
+            "Automatiza y administra las citas y reservas de tu negocio en tiempo real. Ideal para barberías, salones de belleza, consultorios médicos, veterinarias y servicios profesionales. Permite que tus clientes agenden desde un portal web interactivo o a través de un bot de WhatsApp inteligente que confirma, reagenda y envía recordatorios automáticos de manera autónoma.",
         tags: ["Barberías", "Consultorios", "Veterinarias", "Servicios"],
-        url: "/proyectos/proy?proyecto=citas",
+        url: "/proyectos/barberia",
         buttonText: "Agendar citas",
+        image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop",
+        imageLeft: true,
     },
     {
         title: "Lleva tu Instituto Escolar a otro nivel con APP Móvil y Plataforma escolar",
         subtitle:
             "Portal administrativo escolar y app móvil para la credencial digital y control de tareas del estudiante.",
         description:
-            "Digitaliza la gestión del colegio. Los alumnos llevan a la mano su credencial digital QR, lista de tareas y avance escolar, mientras el colegio administra boletas y asistencias.",
+            "Digitaliza y moderniza la gestión administrativa y académica de tu institución escolar. Cuenta con un completo portal web para directores y profesores, junto con una app móvil nativa para estudiantes y padres. Facilita la generación de credenciales digitales seguras con código QR, control de tareas, publicación de calificaciones y pase de lista automatizado.",
         tags: ["Alumnos", "Tareas", "Credencial QR", "Portal"],
         url: "/proyectos/escolar",
         buttonText: "Ver portal escolar",
+        image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800&auto=format&fit=crop",
+        imageLeft: false,
     },
     {
         title: "Portal Educativo LMS",
         subtitle:
             "Plataforma de aprendizaje en línea con reproductor de video interactivo y generación automática de certificados.",
         description:
-            "Crea y vende tus cursos con facilidad. Ideal para academias y empresas que necesitan capacitar personal o impartir clases virtuales con diplomas con código QR.",
+            "Una solución educativa integral para academias, creadores de contenido y empresas. Permite estructurar cursos en módulos y lecciones, subir videos optimizados con reproductor interactivo y aplicar evaluaciones en línea. Incluye la pasarela de pagos integrada para venta y la generación automática de certificados académicos con validación QR segura.",
         tags: ["Cursos", "Vídeos", "Exámenes", "Diplomas"],
         url: "/proyectos/proy?proyecto=lms",
         buttonText: "Ver catálogo LMS",
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop",
+        imageLeft: true,
     },
     {
         title: "IA & Agentes Virtuales",
         subtitle:
             "Chatbots de atención al cliente e IA conversacional entrenados para automatizar respuestas e integrar agendas.",
         description:
-            "Atiende a tus clientes 24/7 en WhatsApp, Web e Instagram de forma autónoma. Automatiza la resolución de dudas, muestra menús de servicios y agenda citas directamente.",
+            "Automatiza la atención a clientes e interactúa con tus usuarios las 24 horas del día. Entrenamos agentes virtuales avanzados integrados en WhatsApp, Web e Instagram para responder preguntas recurrentes, mostrar catálogos y concretar reservas. Una solución impulsada por inteligencia artificial conversacional que escala tu capacidad de respuesta sin personal adicional.",
         tags: ["Chatbots", "WhatsApp", "Soporte 24/7", "Menús"],
         url: "/proyectos/proy?proyecto=ia",
         buttonText: "Ver asistente de IA",
+        image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=800&auto=format&fit=crop",
+        imageLeft: false,
     },
     {
         title: "Desarrollos Especiales, DevOps & QA",
         subtitle:
             "Diseño y desarrollo de software a medida con aseguramiento de calidad (QA) y despliegue continuo.",
         description:
-            "Creamos la solución tecnológica que tu negocio necesita. Ofrecemos desarrollo a la medida con aseguramiento de calidad (QA), hosting cloud administrado de alta disponibilidad o configuración DevOps en tus propios servidores.",
+            "Soluciones de software personalizadas de alta disponibilidad bajo estándares ágiles. Nos encargamos del diseño de arquitectura, desarrollo a la medida y aseguramiento de calidad (QA) exhaustivo tanto manual como automatizado. Implementamos pipelines de CI/CD (integración y despliegue continuo) y configuramos infraestructuras cloud robustas para optimizar tus servidores.",
         tags: ["A Medida", "DevOps & QA", "Hosting Cloud", "Soporte"],
         url: "/proyectos/proy?proyecto=saas",
         buttonText: "Cotizar desarrollo",
+        image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=800&auto=format&fit=crop",
+        imageLeft: true,
     },
 ];
 ---
@@ -78,55 +92,98 @@ const desarrollos: Desarrollo[] = [
         <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
             Desarrollos y Sistemas
         </h2>
-        <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-            Explora las soluciones tecnológicas y plataformas que estamos
-            construyendo.
-        </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+    <!-- Lista de Tarjetas en Horizontal con Imagen Vertical (Hoja/Página) -->
+    <div class="flex flex-col gap-10 mb-12">
         {
-            desarrollos.map((item) => (
-                <div class="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 flex flex-col h-full border border-slate-700/60 hover:border-slate-600 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/5">
-                    <div class="mb-4">
-                        <h3 class="text-xl font-bold text-white mb-1">
-                            {item.title}
-                        </h3>
-                        <p class="text-xs text-slate-400 font-semibold mb-3 leading-relaxed border-b border-slate-700/40 pb-2">
-                            {item.subtitle}
-                        </p>
-                        <p class="text-slate-300 text-sm mb-4 leading-relaxed">
-                            {item.description}
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            {item.tags.map((tag) => (
-                                <span class="px-2.5 py-1 bg-slate-700/30 text-slate-300 text-xs rounded border border-slate-700/50">
-                                    {tag}
-                                </span>
-                            ))}
+            desarrollos.map((item, index) => (
+                <div 
+                    class={`bg-slate-800/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/60 hover:border-slate-600 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/5 flex flex-col ${item.imageLeft ? 'md:flex-row-reverse' : 'md:flex-row'} gap-6 p-6 md:p-8`}
+                >
+                    <!-- Lado del Texto (60% en desktop) -->
+                    <div class="w-full md:w-3/5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
+                                {item.title}
+                            </h3>
+                            <p class="text-xs text-[#ffd600] font-black mb-4 uppercase tracking-wider leading-relaxed">
+                                {item.subtitle}
+                            </p>
+                            
+                            <!-- Descripción expandible con botón dinámico unificado -->
+                            <div class="relative mb-4">
+                                <p id={`desc-${index}`} class="text-slate-300 text-sm leading-relaxed line-clamp-3 transition-all duration-300">
+                                    {item.description}
+                                </p>
+                                
+                                <button
+                                    id={`toggle-btn-${index}`}
+                                    class="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 cursor-pointer mt-3.5 font-bold uppercase tracking-wider select-none transition-colors"
+                                    onclick={`
+                                        const p = document.getElementById('desc-${index}');
+                                        const btnText = this.querySelector('.btn-text');
+                                        const icon = this.querySelector('.btn-icon');
+                                        if (p.classList.contains('line-clamp-3')) {
+                                            p.classList.remove('line-clamp-3');
+                                            btnText.textContent = 'Mostrar menos';
+                                            icon.innerHTML = '<path stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\' stroke-width=\\'2.5\\' d=\\'M5 15l7-7 7 7\\' />';
+                                        } else {
+                                            p.classList.add('line-clamp-3');
+                                            btnText.textContent = 'Mostrar más...';
+                                            icon.innerHTML = '<path stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\' stroke-width=\\'2.5\\' d=\\'M19 9l-7 7-7-7\\' />';
+                                        }
+                                    `}
+                                >
+                                    <span class="btn-text">Mostrar más...</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <g class="btn-icon">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                {item.tags.map((tag) => (
+                                    <span class="px-3 py-1 bg-slate-800/60 border border-slate-700/40 text-slate-350 text-xs rounded-lg font-medium">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <a
+                                href={item.url}
+                                class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/20 group/btn"
+                            >
+                                <span>{item.buttonText}</span>
+                                <svg
+                                    class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2.5"
+                                        d="M9 5l7 7-7 7"
+                                    />
+                                </svg>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="mt-auto pt-4 border-t border-slate-750">
-                        <a
-                            href={item.url}
-                            class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2.5 px-4 rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-indigo-500/10 group/btn"
-                        >
-                            <span>{item.buttonText}</span>
-                            <svg
-                                class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2.5"
-                                    d="M9 5l7 7-7 7"
-                                />
-                            </svg>
-                        </a>
+                    <!-- Lado de la Imagen (40% en desktop) -->
+                    <div class="w-full md:w-2/5 flex items-center justify-center overflow-hidden rounded-xl">
+                        <img
+                            src={item.image}
+                            alt={item.title}
+                            class="w-full h-full aspect-[3/4] object-cover rounded-xl shadow-2xl transition-transform duration-500 hover:scale-102"
+                            loading="lazy"
+                        />
                     </div>
                 </div>
             ))

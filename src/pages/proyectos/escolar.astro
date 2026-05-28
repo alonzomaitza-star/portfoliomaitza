@@ -1,8 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import DemoLayout from "../../layouts/DemoLayout.astro";
 ---
 
-<Layout title="Sistema de Control Escolar - Insano Network" description="Plataforma de control escolar y aplicación móvil para alumnos.">
+<DemoLayout title="Sistema de Control Escolar" description="Plataforma de control escolar y aplicación móvil para alumnos.">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -33,10 +33,7 @@ import Layout from "../../layouts/Layout.astro";
       );
       background-size: 24px 24px;
     }
-    :global(.nav-wrapper),
-    :global(footer) {
-      display: none !important;
-    }
+    /* Header and footer visibility enabled under DemoLayout */
   </style>
 
   <div class="bg-slate-950 font-body text-slate-100 antialiased blueprint-grid min-h-screen relative pb-20">
@@ -466,7 +463,7 @@ import Layout from "../../layouts/Layout.astro";
       </div>
     </section>
   </div>
-</Layout>
+</DemoLayout>
 
 <!-- JavaScript to control the simulated smartphone interactive tab changes and checkbox list -->
 <script is:inline>

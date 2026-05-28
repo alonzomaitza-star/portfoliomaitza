@@ -1,312 +1,647 @@
 ---
+import DemoLayout from "../../../layouts/DemoLayout.astro";
 ---
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>XV Ruby Alvarado | Una Noche Mágica</title>
-<!-- Tailwind CSS v3 with Plugins -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries" is:inline></script>
-<!-- Google Fonts: Playfair Display for Serifs, Montserrat for Sans -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
-<script is:inline>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            lilac: {
-              50: '#f5f3ff',
-              100: '#ede9fe',
-              200: '#ddd6fe',
-              300: '#c4b5fd',
-              400: '#a78bfa',
-              500: '#8b5cf6',
-            },
-            silver: '#C0C0C0',
-          },
-          fontFamily: {
-            serif: ['"Playfair Display"', 'serif'],
-            sans: ['Montserrat', 'sans-serif'],
-          },
-        }
+
+<DemoLayout title="Creador Interactivo de Invitaciones">
+  <!-- Google Fonts for Creator and Live Preview -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;750&family=Playfair+Display:ital,wght@0,450;0,700;1,400&family=Outfit:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <div class="max-w-7xl mx-auto px-4 py-8 lg:py-12">
+    <!-- Header of the Customizer -->
+    <header class="mb-10 text-center lg:text-left">
+      <span class="text-xs px-3 py-1 font-semibold rounded-full uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+        Demo Interactiva • Módulo de Invitaciones
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mt-3 tracking-tight font-outfit">
+        Creador de <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">Invitaciones Digitales</span>
+      </h1>
+      <p class="text-slate-400 text-sm md:text-base mt-2 max-w-2xl">
+        Completa el formulario en 4 sencillos pasos. Observa cómo cambia el diseño responsivo en tiempo real en el simulador móvil y genera un enlace listo para compartir por WhatsApp.
+      </p>
+    </header>
+
+    <!-- Split view: Form on left, Phone Preview on right -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT COLUMN: The 4-step Form Wizard -->
+      <div class="lg:col-span-7 bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-2xl relative min-h-[580px]">
+        
+        <!-- Wizard Progress Bar -->
+        <div class="mb-8">
+          <div class="flex justify-between text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+            <span class="step-label text-violet-400" data-step="1">1. Datos</span>
+            <span class="step-label" data-step="2">2. Ubicación</span>
+            <span class="step-label" data-step="3">3. Estilo</span>
+            <span class="step-label" data-step="4">4. RSVP</span>
+          </div>
+          <!-- Progress Line -->
+          <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden p-0.5 border border-slate-700/50">
+            <div id="progress-bar" class="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full w-1/4 transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <!-- Wizard Forms container -->
+        <div class="flex-1">
+          <!-- Step 1 Form: Datos Generales -->
+          <div id="form-step-1" class="step-form space-y-5 animate-fade-in">
+            <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 1: Datos Generales</h3>
+            
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Tipo de Evento</label>
+              <select id="input-event-type" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm">
+                <option value="XV Años" selected>Mis XV Años</option>
+                <option value="Boda">Nuestra Boda</option>
+                <option value="Cumpleaños">Mi Cumpleaños</option>
+                <option value="Graduación">Mi Graduación</option>
+              </select>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Nombre del Celebrante</label>
+              <input id="input-name" type="text" value="Ruby Alvarado" placeholder="Ej. Ana & Carlos" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Fecha del Evento</label>
+                <input id="input-date" type="date" value="2026-05-30" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Hora</label>
+                <input id="input-time" type="time" value="18:00" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 Form: Ubicación & Horarios -->
+          <div id="form-step-2" class="step-form space-y-5 hidden animate-fade-in">
+            <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 2: Ubicación & Recinto</h3>
+            
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Nombre del Recinto</label>
+              <input id="input-venue" type="text" value="Hacienda de los Morales" placeholder="Ej. Salón Cristal" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Dirección Completa</label>
+              <input id="input-address" type="text" value="Vázquez de Mella 525, Polanco, CDMX" placeholder="Ej. Av. de la Reforma 123, Juárez, CDMX" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Enlace de Google Maps (Iframe Src / URL)</label>
+              <input id="input-maps-url" type="text" placeholder="URL para ver mapa o enlace de Google Maps" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+              <p class="text-[10px] text-slate-500">Dejar vacío para simular mapa por defecto.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 Form: Estilo & Mesa de Regalos -->
+          <div id="form-step-3" class="step-form space-y-5 hidden animate-fade-in">
+            <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 3: Estilo & Mesa de Regalos</h3>
+            
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Código de Vestimenta</label>
+              <select id="input-dress-code" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm">
+                <option value="Formal / Gala" selected>Formal / Gala</option>
+                <option value="Formal">Formal</option>
+                <option value="Semiformal">Semiformal</option>
+                <option value="Casual">Casual / Playa</option>
+              </select>
+            </div>
+
+            <div class="space-y-3">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Mesas de Regalo Habilitadas</label>
+              <div class="grid grid-cols-3 gap-3">
+                <label class="flex flex-col items-center justify-center p-3 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl cursor-pointer select-none">
+                  <input type="checkbox" id="check-liverpool" checked class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 w-4 h-4 mb-2" />
+                  <span class="text-[10px] font-bold text-slate-300">Liverpool</span>
+                </label>
+                <label class="flex flex-col items-center justify-center p-3 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl cursor-pointer select-none">
+                  <input type="checkbox" id="check-palacio" checked class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 w-4 h-4 mb-2" />
+                  <span class="text-[10px] font-bold text-slate-300">Palacio</span>
+                </label>
+                <label class="flex flex-col items-center justify-center p-3 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl cursor-pointer select-none">
+                  <input type="checkbox" id="check-amazon" checked class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 w-4 h-4 mb-2" />
+                  <span class="text-[10px] font-bold text-slate-300">Amazon</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 Form: WhatsApp & RSVP -->
+          <div id="form-step-4" class="step-form space-y-5 hidden animate-fade-in">
+            <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 4: Confirmación & WhatsApp</h3>
+            
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Número de Celular para Confirmar</label>
+              <div class="flex gap-2">
+                <span class="inline-flex items-center px-3.5 rounded-xl border border-slate-800 bg-slate-950 text-slate-400 text-sm font-semibold select-none">
+                  +52
+                </span>
+                <input id="input-whatsapp" type="tel" value="5512345678" placeholder="55 1234 5678" class="flex-1 bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+              </div>
+              <p class="text-[10px] text-slate-500">Aquí se enviarán las respuestas RSVP con formato preestablecido de WhatsApp.</p>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Fecha Límite de Registro</label>
+              <input id="input-limit-date" type="date" value="2026-05-15" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between items-center pt-6 mt-8 border-t border-slate-800/80">
+          <button id="btn-back" class="px-5 py-2.5 rounded-xl border border-slate-800 hover:border-slate-750 text-slate-400 hover:text-white font-semibold text-sm transition-all invisible">
+            Atrás
+          </button>
+          
+          <button id="btn-next" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:shadow-lg hover:shadow-violet-600/10 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:scale-[1.02] active:scale-[0.98]">
+            Siguiente
+          </button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Smartphone Simulator & Preview -->
+      <div class="lg:col-span-5 flex justify-center sticky top-28">
+        
+        <!-- CSS Simulated Smartphone Outer Body -->
+        <div class="w-[325px] h-[660px] rounded-[45px] border-[11px] border-slate-800 bg-slate-950 shadow-2xl relative flex flex-col select-none ring-4 ring-slate-800/40 shrink-0">
+          
+          <!-- Notch/Camera Island -->
+          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-30 flex items-center justify-center gap-1.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-900"></div>
+            <div class="w-10 h-1 bg-slate-900 rounded-full"></div>
+          </div>
+
+          <!-- App Status Bar -->
+          <div class="h-10 bg-slate-950 flex justify-between items-end px-6 pb-1 text-[9px] font-bold text-slate-400 z-20">
+            <span id="simulator-time">18:00</span>
+            <div class="flex gap-1 items-center opacity-80">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c3.9 3.89 10.21 3.89 14.1 0l-.62-1.78C19.06 16.07 19.8 14.12 19.8 12c0-4.97-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg>
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17 5H3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2zm-1 16H4V9h12v12zm-1-8h-3v-3h-2v3H7v2h3v3h2v-3h3v-2z"/></svg>
+            </div>
+          </div>
+
+          <!-- Smartphone Screen Content (Scrollable Invitation Preview) -->
+          <div id="sim-screen" class="flex-1 overflow-y-auto bg-violet-50 text-gray-800 font-sans relative">
+            
+            <!-- Invitation Hero Banner -->
+            <div class="relative h-[250px] w-full flex items-center justify-center overflow-hidden">
+              <div class="absolute inset-0 z-0">
+                <img alt="Hero Portrait Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDALRebycd-L7Qq4JBRkE4jscmPgepfmgAiPlOB-dQSptAZrxe8EkCXTPZ0c34g_FlEuoVhpgVbLOe67kdkmMPHNMF5ahMNHwZvMm7oQJGrL6TRV6TXw2Pj0qNBKRxBbtpmo4Grxf6xFy8vkjrPQhWl_Kmgz72znwBHIhn7mWPfjtWKWfpnroLMT5dL5IcEzGaJmoKpZmsb0ffCT9lss7khd8gqx7VZrE4QP4ujBPd4252Y_eiEUT02FkxNiJ57GWDMQbZ3dDl0PKa-" />
+                <div class="absolute inset-0 bg-black/40"></div>
+              </div>
+              <div class="relative z-10 text-center text-white px-2">
+                <h2 id="preview-event-type" class="font-serif italic text-xs mb-1 tracking-widest uppercase">Mis XV Años</h2>
+                <h1 id="preview-name" class="font-serif text-2xl drop-shadow-md font-bold">Ruby Alvarado</h1>
+                <div class="w-10 h-[1px] bg-white mx-auto my-2"></div>
+                <p id="preview-date-text" class="text-[10px] tracking-widest uppercase">Sábado, 30 de Mayo de 2026</p>
+              </div>
+            </div>
+
+            <!-- Countdown Preview Section -->
+            <div class="py-6 bg-white text-center border-b border-violet-100">
+              <h3 class="font-serif text-xs text-violet-400 mb-3 font-semibold uppercase tracking-wider">Faltan solo...</h3>
+              <div class="flex justify-center gap-2 text-gray-700">
+                <div class="flex flex-col items-center">
+                  <span class="text-lg font-light leading-none" id="prev-days">12</span>
+                  <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Días</span>
+                </div>
+                <span class="text-sm font-light text-violet-200">:</span>
+                <div class="flex flex-col items-center">
+                  <span class="text-lg font-light leading-none" id="prev-hours">04</span>
+                  <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Hrs</span>
+                </div>
+                <span class="text-sm font-light text-violet-200">:</span>
+                <div class="flex flex-col items-center">
+                  <span class="text-lg font-light leading-none" id="prev-min">23</span>
+                  <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Min</span>
+                </div>
+                <span class="text-sm font-light text-violet-200">:</span>
+                <div class="flex flex-col items-center">
+                  <span class="text-lg font-light leading-none" id="prev-sec">45</span>
+                  <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Seg</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Event Location Section -->
+            <div class="py-8 px-4 text-center bg-violet-50/50">
+              <h2 class="font-serif text-lg text-gray-800 mb-4 font-bold">¿Cuándo y Dónde?</h2>
+              <div class="space-y-4 text-xs text-left max-w-[240px] mx-auto">
+                <div class="flex gap-2">
+                  <span class="text-base">📅</span>
+                  <div>
+                    <h4 class="font-bold">Fecha & Hora</h4>
+                    <p id="preview-full-date" class="text-gray-600">Sábado, 30 de Mayo de 2026</p>
+                    <p id="preview-full-time" class="text-gray-600">6:00 PM</p>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <span class="text-base">📍</span>
+                  <div>
+                    <h4 class="font-bold">Lugar</h4>
+                    <p id="preview-venue" class="text-gray-600 font-serif italic">Hacienda de los Morales</p>
+                    <p id="preview-address" class="text-gray-500 text-[10px]">Vázquez de Mella 525, Polanco, CDMX</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dress Code & Gifts Section -->
+            <div class="py-8 px-4 bg-white border-t border-violet-100 space-y-6">
+              <div class="text-center p-4 bg-violet-50/20 border border-violet-100 rounded-xl">
+                <span class="text-lg">👔</span>
+                <h3 class="font-serif text-sm font-bold mt-1">Código de Vestimenta</h3>
+                <p id="preview-dress-code" class="text-[10px] text-gray-650 uppercase tracking-widest font-semibold mt-1">Formal / Gala</p>
+              </div>
+
+              <!-- Gift Registry Preview -->
+              <div class="text-center p-4 bg-violet-50/20 border border-violet-100 rounded-xl space-y-3">
+                <span class="text-lg">🎁</span>
+                <h3 class="font-serif text-sm font-bold">Mesa de Regalos</h3>
+                <p class="text-[10px] text-gray-500">Puedes encontrar mi lista en las siguientes tiendas:</p>
+                <div class="flex justify-center gap-3" id="preview-registries">
+                  <!-- Liverpool -->
+                  <div id="prev-registry-liverpool" class="flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-gray-600">LP</div>
+                    <span class="text-[8px] uppercase font-bold text-gray-400 mt-1">Liverpool</span>
+                  </div>
+                  <!-- Palacio -->
+                  <div id="prev-registry-palacio" class="flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-gray-600">PH</div>
+                    <span class="text-[8px] uppercase font-bold text-gray-400 mt-1">Palacio</span>
+                  </div>
+                  <!-- Amazon -->
+                  <div id="prev-registry-amazon" class="flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-gray-600">AMZ</div>
+                    <span class="text-[8px] uppercase font-bold text-gray-400 mt-1">Amazon</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simulated RSVP Form -->
+            <div class="py-8 px-4 bg-violet-50/30 text-center">
+              <h2 class="font-serif text-lg text-gray-800 mb-2 font-bold">Registrar Asistencia</h2>
+              <p class="text-[10px] text-gray-500 mb-4">Por favor, confirma tu asistencia antes del <span id="preview-limit-date">15 de Mayo</span>.</p>
+              <div class="space-y-3 max-w-[240px] mx-auto text-left text-xs bg-white p-4 rounded-xl border border-violet-100/50">
+                <div>
+                  <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nombre Completo</label>
+                  <input disabled placeholder="Ej. Familia Alvarado" class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-400" />
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">¿Asistirás?</label>
+                    <select disabled class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-450">
+                      <option>Sí, ahí estaré</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">Personas</label>
+                    <input disabled value="1" class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-450" />
+                  </div>
+                </div>
+                <button disabled class="w-full bg-violet-300 text-white py-2 rounded-md font-bold tracking-widest text-[9px] uppercase shadow-sm mt-1">
+                  Enviar Confirmación
+                </button>
+              </div>
+            </div>
+
+            <!-- Footer of the Preview Invitation -->
+            <footer class="py-6 bg-white border-t border-violet-50 text-center text-xs">
+              <h5 id="preview-footer-name" class="font-serif italic text-sm text-violet-400 font-bold">Ruby Alvarado</h5>
+              <p class="text-gray-400 text-[8px] uppercase tracking-wider mt-1" id="preview-hashtag">#XV_RubyAlvarado2026</p>
+            </footer>
+
+          </div>
+
+          <!-- Smartphone Simulated Bottom Navigation Bar -->
+          <div class="h-12 border-t border-slate-800/80 bg-slate-900 flex justify-center items-center rounded-b-[35px] z-20">
+            <div class="w-28 h-1 bg-slate-750 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL (GENERATE INVITATION) -->
+  <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm hidden animate-fade-in">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 max-w-md w-full mx-4 relative shadow-2xl">
+      <!-- Confetti Effect -->
+      <div class="text-center space-y-4">
+        <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl animate-bounce">
+          🎉
+        </div>
+        <h3 class="text-xl md:text-2xl font-bold text-white font-outfit">¡Invitación Creada!</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Se ha generado la base de datos de tu evento y la plantilla web temporal correspondiente en nuestro servidor demo.
+        </p>
+
+        <!-- The Generated Link Box -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex justify-between items-center text-left mt-4">
+          <span id="generated-link" class="text-xs text-indigo-400 font-mono select-all overflow-x-auto whitespace-nowrap pr-2">
+            https://insano.network/invitacion/ruby-alvarado
+          </span>
+          <button id="btn-copy" class="text-xs bg-slate-900 border border-slate-800 hover:bg-slate-850 text-white font-semibold py-1.5 px-3 rounded-lg flex items-center gap-1 transition-all shrink-0">
+            <span>Copiar</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-3 pt-4">
+          <a
+            href="/proyectos/invitacionRuby/ruby"
+            target="_blank"
+            class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold py-3 rounded-xl hover:shadow-lg transition-all text-sm block"
+          >
+            Ver demo a pantalla completa
+          </a>
+          <button
+            id="btn-close-modal"
+            class="bg-slate-900 border border-slate-850 hover:bg-slate-800 text-slate-300 font-semibold py-2.5 rounded-xl transition-all text-xs"
+          >
+            Seguir Personalizando
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wizard JavaScript Logic -->
+  <script is:inline>
+    // State management for wizard steps
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    const btnBack = document.getElementById("btn-back");
+    const btnNext = document.getElementById("btn-next");
+    const progressBar = document.getElementById("progress-bar");
+    const successModal = document.getElementById("success-modal");
+
+    function updateStepUI() {
+      // Hide all step forms
+      for (let i = 1; i <= totalSteps; i++) {
+        const form = document.getElementById("form-step-" + i);
+        const label = document.querySelector(`.step-label[data-step="${i}"]`);
+        
+        if (form) form.classList.add("hidden");
+        if (label) label.classList.remove("text-violet-400");
+      }
+
+      // Show current step form and color step indicator
+      const activeForm = document.getElementById("form-step-" + currentStep);
+      const activeLabel = document.querySelector(`.step-label[data-step="${currentStep}"]`);
+      
+      if (activeForm) activeForm.classList.remove("hidden");
+      if (activeLabel) activeLabel.classList.add("text-violet-400");
+
+      // Update progress bar width
+      const progressPercentage = (currentStep / totalSteps) * 100;
+      progressBar.style.width = progressPercentage + "%";
+
+      // Hide or show Back button
+      if (currentStep === 1) {
+        btnBack.classList.add("invisible");
+      } else {
+        btnBack.classList.remove("invisible");
+      }
+
+      // Change Siguiente text to Generar on step 4
+      if (currentStep === totalSteps) {
+        btnNext.textContent = "Generar Invitación";
+        btnNext.className = "bg-gradient-to-r from-emerald-600 to-teal-600 hover:shadow-lg hover:shadow-emerald-650/10 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:scale-[1.02] active:scale-[0.98]";
+      } else {
+        btnNext.textContent = "Siguiente";
+        btnNext.className = "bg-gradient-to-r from-violet-600 to-indigo-600 hover:shadow-lg hover:shadow-violet-600/10 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:scale-[1.02] active:scale-[0.98]";
       }
     }
+
+    // Next step navigation
+    btnNext.addEventListener("click", () => {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateStepUI();
+      } else {
+        // Step 4 "Generar" - show modal
+        const nameInput = document.getElementById("input-name").value;
+        const normalized = nameInput.toLowerCase().trim().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-");
+        const customUrl = `https://insano.network/invitacion/${normalized || "ruby-alvarado"}`;
+        document.getElementById("generated-link").textContent = customUrl;
+
+        successModal.classList.remove("hidden");
+      }
+    });
+
+    // Back step navigation
+    btnBack.addEventListener("click", () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepUI();
+      }
+    });
+
+    // Close success modal
+    document.getElementById("btn-close-modal").addEventListener("click", () => {
+      successModal.classList.add("hidden");
+    });
+
+    // Copy to clipboard
+    document.getElementById("btn-copy").addEventListener("click", function() {
+      const linkText = document.getElementById("generated-link").textContent.trim();
+      navigator.clipboard.writeText(linkText).then(() => {
+        const btnSpan = this.querySelector("span");
+        btnSpan.textContent = "¡Copiado!";
+        setTimeout(() => {
+          btnSpan.textContent = "Copiar";
+        }, 2000);
+      });
+    });
+
+    // ---- LIVE UPDATE HANDLERS ----
+    // Simple helper to register live binder
+    function bindInputToText(inputId, previewId, transformer = (val) => val) {
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+      if (!input || !preview) return;
+
+      const update = () => {
+        preview.textContent = transformer(input.value);
+      };
+      input.addEventListener("input", update);
+      input.addEventListener("change", update);
+      update(); // initial
+    }
+
+    // Bind Event Type
+    bindInputToText("input-event-type", "preview-event-type", (val) => val);
+
+    // Bind Name and update Footer Name & Hashtag
+    const inputName = document.getElementById("input-name");
+    const previewName = document.getElementById("preview-name");
+    const previewFooter = document.getElementById("preview-footer-name");
+    const previewHashtag = document.getElementById("preview-hashtag");
+
+    if (inputName) {
+      const updateNames = () => {
+        const val = inputName.value || "Ruby Alvarado";
+        if (previewName) previewName.textContent = val;
+        if (previewFooter) previewFooter.textContent = val;
+        if (previewHashtag) {
+          const hashtags = val.split("&").map(s => s.trim().replace(/\s+/g, ""));
+          previewHashtag.textContent = "#" + (hashtags.join("_") || "Evento");
+        }
+      };
+      inputName.addEventListener("input", updateNames);
+      updateNames();
+    }
+
+    // Helper for formatting date in Spanish
+    function formatDateSpanish(dateStr) {
+      if (!dateStr) return "";
+      const date = new Date(dateStr + "T00:00:00");
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formatted = date.toLocaleDateString('es-MX', options);
+      // Capitalize first letter
+      return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    }
+
+    // Bind Dates and Time
+    const inputDate = document.getElementById("input-date");
+    const inputTime = document.getElementById("input-time");
+    const previewDateText = document.getElementById("preview-date-text");
+    const previewFullDate = document.getElementById("preview-full-date");
+    const previewFullTime = document.getElementById("preview-full-time");
+
+    function updateDateAndCountdown() {
+      const dateVal = inputDate?.value;
+      const timeVal = inputTime?.value || "18:00";
+      
+      if (dateVal) {
+        const formatted = formatDateSpanish(dateVal);
+        if (previewDateText) previewDateText.textContent = formatted;
+        if (previewFullDate) previewFullDate.textContent = formatted;
+      }
+      
+      if (timeVal) {
+        const [hours, minutes] = timeVal.split(":");
+        const isPM = parseInt(hours) >= 12;
+        const formattedTime = `${(parseInt(hours) % 12) || 12}:${minutes} ${isPM ? 'PM' : 'AM'}`;
+        if (previewFullTime) previewFullTime.textContent = formattedTime;
+      }
+    }
+    
+    inputDate?.addEventListener("change", updateDateAndCountdown);
+    inputTime?.addEventListener("input", updateDateAndCountdown);
+    updateDateAndCountdown();
+
+    // Countdown active simulation based on input-date
+    let countdownInterval;
+    function startCountdownSimulation() {
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      const target = () => {
+        const dateVal = inputDate?.value || "2026-05-30";
+        const timeVal = inputTime?.value || "18:00";
+        return new Date(`${dateVal}T${timeVal}:00`).getTime();
+      };
+
+      const update = () => {
+        const distance = target() - new Date().getTime();
+        
+        if (distance < 0) {
+          document.getElementById("prev-days").textContent = "00";
+          document.getElementById("prev-hours").textContent = "00";
+          document.getElementById("prev-min").textContent = "00";
+          document.getElementById("prev-sec").textContent = "00";
+          return;
+        }
+
+        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("prev-days").textContent = d.toString().padStart(2, '0');
+        document.getElementById("prev-hours").textContent = h.toString().padStart(2, '0');
+        document.getElementById("prev-min").textContent = m.toString().padStart(2, '0');
+        document.getElementById("prev-sec").textContent = s.toString().padStart(2, '0');
+      };
+
+      countdownInterval = setInterval(update, 1000);
+      update();
+    }
+    startCountdownSimulation();
+    inputDate?.addEventListener("change", startCountdownSimulation);
+    inputTime?.addEventListener("change", startCountdownSimulation);
+
+    // Bind Venue & Address
+    bindInputToText("input-venue", "preview-venue");
+    bindInputToText("input-address", "preview-address");
+
+    // Bind Dress Code
+    bindInputToText("input-dress-code", "preview-dress-code");
+
+    // Bind Gift Registries (Liverpool, Palacio, Amazon checkboxes)
+    const checkLp = document.getElementById("check-liverpool");
+    const checkPal = document.getElementById("check-palacio");
+    const checkAmz = document.getElementById("check-amazon");
+    
+    const prevLp = document.getElementById("prev-registry-liverpool");
+    const prevPal = document.getElementById("prev-registry-palacio");
+    const prevAmz = document.getElementById("prev-registry-amazon");
+
+    function updateGiftCheckboxes() {
+      if (prevLp) prevLp.style.display = checkLp?.checked ? "flex" : "none";
+      if (prevPal) prevPal.style.display = checkPal?.checked ? "flex" : "none";
+      if (prevAmz) prevAmz.style.display = checkAmz?.checked ? "flex" : "none";
+    }
+
+    checkLp?.addEventListener("change", updateGiftCheckboxes);
+    checkPal?.addEventListener("change", updateGiftCheckboxes);
+    checkAmz?.addEventListener("change", updateGiftCheckboxes);
+    updateGiftCheckboxes();
+
+    // Bind RSVP Limit Date
+    const inputLimitDate = document.getElementById("input-limit-date");
+    const previewLimitDate = document.getElementById("preview-limit-date");
+    if (inputLimitDate && previewLimitDate) {
+      const updateLimit = () => {
+        previewLimitDate.textContent = formatDateSpanish(inputLimitDate.value);
+      };
+      inputLimitDate.addEventListener("change", updateLimit);
+      updateLimit();
+    }
+
+    // Auto-update simulator top bar time from clock
+    setInterval(() => {
+      const d = new Date();
+      document.getElementById("simulator-time").textContent = `${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`;
+    }, 1000);
   </script>
-<style data-purpose="custom-animations">
-@keyframes fadeIn {
+</DemoLayout>
+
+<style>
+  /* Local animations */
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translateY(20px);
-        } to {
-        opacity: 1;
-        transform: translateY(0);
-        }
+      opacity: 0;
+      transform: translateY(12px);
     }
-.animate-fade-in {
-    animation: fadeIn 1.2s ease-out forwards
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-.floral-bg {
-    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBCUVgW0ai71Xi0XQSO6ryvmvGcBNFyy2tNtRGOlL4UzymYqYo7Ud4q49vjweBIVI5FP4CdUnVhr2vglqe4q-twtheJtvjzlAIAWwIjxLSyWyhetPwIxFsL5Fxx1Sy0FC6eSkSCfiejNt01KBjli2SD3-XYBuEswH4pwubDFfcaEHULMe0R_3ODKgO5LZxMKPDKsIEtwtAcJyACMtHjhHqF0_PBWXFqsiTs9kGqwJXqGEYCJRbwhaevwq5zvmYRF02KRNILDHrEH6M8);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed
-    }
-.overlay-gradient {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(245, 243, 255, 0.9) 100%)
-    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
 </style>
-</head>
-<body class="bg-lilac-50 font-sans text-gray-800 antialiased overflow-x-hidden">
-<!-- BEGIN: Hero Section -->
-<header class="relative h-screen w-full flex items-center justify-center overflow-hidden" data-purpose="hero-banner">
-<!-- Background Image with Overlay -->
-<div class="absolute inset-0 z-0">
-<img alt="Ruby Alvarado Portrait Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDALRebycd-L7Qq4JBRkE4jscmPgepfmgAiPlOB-dQSptAZrxe8EkCXTPZ0c34g_FlEuoVhpgVbLOe67kdkmMPHNMF5ahMNHwZvMm7oQJGrL6TRV6TXw2Pj0qNBKRxBbtpmo4Grxf6xFy8vkjrPQhWl_Kmgz72znwBHIhn7mWPfjtWKWfpnroLMT5dL5IcEzGaJmoKpZmsb0ffCT9lss7khd8gqx7VZrE4QP4ujBPd4252Y_eiEUT02FkxNiJ57GWDMQbZ3dDl0PKa-" />
-<div class="absolute inset-0 bg-black/40"></div>
-</div>
-<!-- Hero Content -->
-<div class="relative z-10 text-center text-white px-4 animate-fade-in">
-<h2 class="font-serif italic text-2xl md:text-3xl mb-4 tracking-widest uppercase">Mis XV Años</h2>
-<h1 class="font-serif text-6xl md:text-9xl mb-6 drop-shadow-lg">Ruby Alvarado</h1>
-<div class="w-24 h-px bg-white mx-auto mb-6"></div>
-<p class="text-xl md:text-2xl font-light tracking-widest uppercase mb-8">30 de Mayo, 2026</p>
-<a class="inline-block px-8 py-3 border border-white text-white hover:bg-white hover:text-lilac-500 transition-colors duration-300 font-semibold tracking-wider" href="#rsvp">
-        CONFIRMAR ASISTENCIA
-      </a>
-</div>
-<!-- Elegant Scroll Indicator -->
-<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-</header>
-<!-- END: Hero Section -->
-<!-- BEGIN: Countdown Section -->
-<section class="py-20 bg-white" data-purpose="countdown-container">
-<div class="container mx-auto px-4 text-center">
-<h3 class="font-serif text-3xl text-lilac-400 mb-10">Faltan solo...</h3>
-<div class="flex justify-center gap-4 md:gap-10" id="countdown">
-<div class="flex flex-col items-center">
-<span class="text-4xl md:text-6xl font-light text-gray-700" id="days">00</span>
-<span class="text-xs md:text-sm uppercase tracking-widest text-gray-400 mt-2">Días</span>
-</div>
-<div class="text-4xl md:text-6xl font-light text-lilac-200">:</div>
-<div class="flex flex-col items-center">
-<span class="text-4xl md:text-6xl font-light text-gray-700" id="hours">00</span>
-<span class="text-xs md:text-sm uppercase tracking-widest text-gray-400 mt-2">Horas</span>
-</div>
-<div class="text-4xl md:text-6xl font-light text-lilac-200">:</div>
-<div class="flex flex-col items-center">
-<span class="text-4xl md:text-6xl font-light text-gray-700" id="minutes">00</span>
-<span class="text-xs md:text-sm uppercase tracking-widest text-gray-400 mt-2">Minutos</span>
-</div>
-<div class="text-4xl md:text-6xl font-light text-lilac-200">:</div>
-<div class="flex flex-col items-center">
-<span class="text-4xl md:text-6xl font-light text-gray-700" id="seconds">00</span>
-<span class="text-xs md:text-sm uppercase tracking-widest text-gray-400 mt-2">Segundos</span>
-</div>
-</div>
-</div>
-</section>
-<!-- END: Countdown Section -->
-<!-- BEGIN: Event Details -->
-<section class="py-24 bg-lilac-50 floral-bg relative" data-purpose="event-location">
-<div class="absolute inset-0 bg-white/90"></div>
-<div class="container mx-auto px-4 relative z-10">
-<div class="max-w-4xl mx-auto text-center">
-<h2 class="font-serif text-4xl text-gray-800 mb-16">¿Cuándo y Dónde?</h2>
-<div class="grid md:grid-cols-2 gap-12 items-center">
-<!-- Text Info -->
-<div class="space-y-8 text-left">
-<div class="flex items-start gap-4">
-<div class="p-3 bg-lilac-100 rounded-full">
-<svg class="w-6 h-6 text-lilac-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<div>
-<h4 class="font-bold text-lg">Fecha</h4>
-<p class="text-gray-600">Sábado, 30 de Mayo de 2026</p>
-<p class="text-gray-600">6:00 PM</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<div class="p-3 bg-lilac-100 rounded-full">
-<svg class="w-6 h-6 text-lilac-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<div>
-<h4 class="font-bold text-lg">Lugar</h4>
-<p class="text-gray-600 font-serif italic text-xl">Hacienda de los Morales</p>
-<p class="text-gray-500 text-sm">Vázquez de Mella 525, Polanco, CDMX</p>
-</div>
-</div>
-</div>
-<!-- Google Maps Placeholder -->
-<div class="w-full h-80 bg-gray-200 rounded-lg overflow-hidden shadow-xl border-4 border-white">
-<iframe allowfullscreen="" height="100%" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.46363212818!2d-99.2081734!3d19.4355523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2020268500201%3A0xc3f101297585090!2sHacienda%20De%20Los%20Morales!5e0!3m2!1ses!2smx!4v1710000000000!5m2!1ses!2smx" style="border:0;" width="100%"></iframe>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- END: Event Details -->
-<!-- BEGIN: Itinerary Timeline -->
-<section class="py-24 bg-white" data-purpose="itinerary-section">
-<div class="container mx-auto px-4 max-w-2xl">
-<h2 class="font-serif text-4xl text-center text-gray-800 mb-16 italic">Nuestro Itinerario</h2>
-<div class="relative border-l-2 border-lilac-200 ml-4 md:ml-0 md:mx-auto">
-<!-- Reception -->
-<div class="mb-12 ml-8 relative">
-<div class="absolute -left-[41px] top-0 w-5 h-5 bg-lilac-400 rounded-full border-4 border-white shadow-sm"></div>
-<span class="block text-lilac-500 font-bold mb-1">18:00 hrs</span>
-<h4 class="text-xl font-serif">Recepción</h4>
-<p class="text-gray-500 italic">Bienvenida y cóctel de entrada</p>
-</div>
-<!-- Dinner -->
-<div class="mb-12 ml-8 relative">
-<div class="absolute -left-[41px] top-0 w-5 h-5 bg-lilac-400 rounded-full border-4 border-white shadow-sm"></div>
-<span class="block text-lilac-500 font-bold mb-1">19:30 hrs</span>
-<h4 class="text-xl font-serif">Cena</h4>
-<p class="text-gray-500 italic">Banquete de gala en el salón principal</p>
-</div>
-<!-- Waltz -->
-<div class="mb-12 ml-8 relative">
-<div class="absolute -left-[41px] top-0 w-5 h-5 bg-lilac-400 rounded-full border-4 border-white shadow-sm"></div>
-<span class="block text-lilac-500 font-bold mb-1">21:00 hrs</span>
-<h4 class="text-xl font-serif">El Vals</h4>
-<p class="text-gray-500 italic">Un momento mágico con mi familia</p>
-</div>
-<!-- Party -->
-<div class="ml-8 relative">
-<div class="absolute -left-[41px] top-0 w-5 h-5 bg-lilac-400 rounded-full border-4 border-white shadow-sm"></div>
-<span class="block text-lilac-500 font-bold mb-1">22:00 hrs</span>
-<h4 class="text-xl font-serif">¡A Bailar!</h4>
-<p class="text-gray-500 italic">Inicia la celebración y sorpresas</p>
-</div>
-</div>
-</div>
-</section>
-<!-- END: Itinerary Timeline -->
-<!-- BEGIN: Dress Code & Registry -->
-<section class="py-24 bg-lilac-100/30" data-purpose="dress-code-and-gifts">
-<div class="container mx-auto px-4 grid md:grid-cols-2 gap-12">
-<!-- Dress Code Card -->
-<div class="bg-white p-10 rounded-2xl shadow-sm text-center flex flex-col items-center justify-center">
-<svg class="w-16 h-16 text-lilac-400 mb-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 8l-2-2H5L3 8m18 0l-2 10H5L3 8m18 0h-5m-5 0H3m10 0V4a2 2 0 10-4 0v4m4 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path></svg>
-<h3 class="font-serif text-3xl mb-4">Código de Vestimenta</h3>
-<p class="text-gray-600 uppercase tracking-widest font-semibold">Formal / Gala</p>
-<p class="mt-4 text-gray-500 italic text-sm">Agradecemos su elegancia para esta noche especial.</p>
-</div>
-<!-- Gift Registry Card -->
-<div class="bg-white p-10 rounded-2xl shadow-sm text-center flex flex-col items-center justify-center">
-<svg class="w-16 h-16 text-lilac-400 mb-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path></svg>
-<h3 class="font-serif text-3xl mb-4">Mesa de Regalos</h3>
-<p class="text-gray-600 mb-6">Tu presencia es mi mejor regalo, pero si deseas obsequiarme algo, puedes encontrar mi lista en:</p>
-<div class="flex justify-center gap-6">
-<div class="flex flex-col items-center">
-<div class="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-1">
-<span class="text-xs font-bold text-gray-400">LP</span>
-</div>
-<span class="text-[10px] uppercase font-bold text-gray-400">Liverpool</span>
-</div>
-<div class="flex flex-col items-center">
-<div class="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-1">
-<span class="text-xs font-bold text-gray-400">PH</span>
-</div>
-<span class="text-[10px] uppercase font-bold text-gray-400">Palacio</span>
-</div>
-<div class="flex flex-col items-center">
-<div class="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-1">
-<span class="text-xs font-bold text-gray-400">AMZ</span>
-</div>
-<span class="text-[10px] uppercase font-bold text-gray-400">Amazon</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- END: Dress Code & Registry -->
-<!-- BEGIN: RSVP Registration -->
-<section class="py-24 bg-white" data-purpose="rsvp-form-section" id="rsvp">
-<div class="container mx-auto px-4 max-w-xl">
-<div class="text-center mb-12">
-<h2 class="font-serif text-4xl text-gray-800 mb-4">Fecha de Registro</h2>
-<p class="text-gray-500">Por favor, confirma tu asistencia antes del 15 de Mayo.</p>
-</div>
-<form action="#" class="space-y-6">
-<div>
-<label class="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wider">Nombre Completo</label>
-<input class="w-full border-gray-200 focus:ring-lilac-300 focus:border-lilac-300 rounded-md" placeholder="Ej. Familia Alvarado" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div>
-<label class="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wider">¿Asistirás?</label>
-<select class="w-full border-gray-200 focus:ring-lilac-300 focus:border-lilac-300 rounded-md">
-<option>Sí, ahí estaré</option>
-<option>No podré asistir</option>
-</select>
-</div>
-<div>
-<label class="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wider">Nº Personas</label>
-<input class="w-full border-gray-200 focus:ring-lilac-300 focus:border-lilac-300 rounded-md" max="10" min="1" placeholder="1" type="number"/>
-</div>
-</div>
-<div>
-<label class="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wider">Mensaje para Ruby (Opcional)</label>
-<textarea class="w-full border-gray-200 focus:ring-lilac-300 focus:border-lilac-300 rounded-md" placeholder="Escribe tus buenos deseos..." rows="4"></textarea>
-</div>
-<button class="w-full bg-lilac-500 text-white py-4 rounded-md font-bold tracking-widest hover:bg-lilac-600 transition-colors shadow-lg shadow-lilac-200" type="submit">
-          ENVIAR CONFIRMACIÓN
-        </button>
-</form>
-</div>
-</section>
-<!-- END: RSVP Registration -->
-<!-- BEGIN: Footer -->
-<footer class="py-12 bg-gray-50 border-t border-gray-100" data-purpose="site-footer">
-<div class="container mx-auto px-4 text-center">
-<h5 class="font-serif italic text-2xl text-lilac-400 mb-4">Ruby Alvarado</h5>
-<p class="text-gray-400 text-sm mb-6">#XV_RubyAlvarado2026</p>
-<div class="flex justify-center gap-6 mb-8">
-<a class="text-gray-400 hover:text-lilac-500 transition-colors" href="tel:5512345678">
-<span class="sr-only">Llamar</span>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1zM19 12h2c0-4.8-3.9-8.7-8.7-8.7v2c3.7 0 6.7 3 6.7 6.7z"></path></svg>
-</a>
-<a class="text-gray-400 hover:text-green-500 transition-colors" href="https://wa.me/525512345678">
-<span class="sr-only">WhatsApp</span>
-<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.89 4.44-9.892 9.886-.001 2.15.636 4.143 1.584 5.76l-.947 3.466 3.855-.927z"></path></svg>
-</a>
-</div>
-<p class="text-[10px] text-gray-300 uppercase tracking-widest">© 2026 Diseñado para Ruby Alvarado</p>
-</div>
-</footer>
-<!-- END: Footer -->
-<script data-purpose="countdown-logic" is:inline>
-    // Set the target date (May 30, 2026)
-    const eventDate = new Date('May 30, 2026 18:00:00').getTime();
-
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = eventDate - now;
-
-      // Time calculations
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      // Output to elements
-      document.getElementById('days').innerText = days.toString().padStart(2, '0');
-      document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-      document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
-
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById('countdown').innerHTML = "<span class='text-2xl font-serif italic text-lilac-500'>¡Es hoy! Te esperamos.</span>";
-      }
-    };
-
-    const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
-</body>
-</html>

@@ -1,0 +1,73 @@
+---
+import "../styles/global.css";
+import Nav from "../components/NavBarMain.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Demo" } = Astro.props;
+const fullTitle = `${title} | Demo Insano Network`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <!-- Línea decorativa amarilla de 10px en la parte superior -->
+    <div class="h-[10px] w-full bg-[#ffd600] z-[99] relative"></div>
+    
+    <!-- Navbar principal -->
+    <Nav />
+
+    <!-- Contenido de la Demo -->
+    <main class="min-h-[calc(100vh-220px)] relative">
+      <slot />
+    </main>
+
+    <!-- Footer simplificado para Demos -->
+    <footer class="bg-slate-900 border-t border-[#ffd600]/60 text-white py-8 mt-12 relative z-10">
+      <div class="container mx-auto px-4 text-center space-y-3">
+        <p class="text-sm font-bold text-[#ffd600] tracking-wider uppercase">
+          Demostración Interactiva
+        </p>
+        <p class="text-xs text-slate-300 max-w-lg mx-auto leading-relaxed">
+          Esta página es un demo interactivo del ecosistema de <span class="font-semibold text-white">Insano Network</span>. 
+          Representa un caso de uso real de nuestros servicios de diseño, desarrollo y automatización de procesos.
+        </p>
+        <p class="text-[10px] text-slate-500">
+          &copy; {new Date().getFullYear()} Insano Network. Todos los derechos reservados.
+        </p>
+        <div class="pt-3">
+          <a 
+            href="/proyectos/roadMap" 
+            class="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 font-bold transition-colors"
+          >
+            <span>← Volver al Catálogo de Proyectos</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  html {
+    margin: 0;
+    width: 100%;
+  }
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("../assets/BG-material.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+</style>

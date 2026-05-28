@@ -1,9 +1,10 @@
 ---
-import Layout from "./layouts/Layout.astro";
+import DemoLayout from "../../../layouts/DemoLayout.astro";
 import Services from "./components/Services.astro";
+import "./styles/global.css";
 ---
 
-<Layout title="BarberShop — Tu Barbería">
+<DemoLayout title="BarberShop — Tu Barbería">
 	<main class="home">
 		<!-- Hero with Background -->
 		<section class="home__hero">
@@ -172,7 +173,7 @@ import Services from "./components/Services.astro";
 			</div>
 		</section>
 	</main>
-</Layout>
+</DemoLayout>
 
 <style>
 	.home {

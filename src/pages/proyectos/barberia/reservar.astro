@@ -1,9 +1,10 @@
 ---
-import Layout from "./layouts/Layout.astro";
+import DemoLayout from "../../../layouts/DemoLayout.astro";
 import { SERVICES } from "./lib/store.js";
+import "./styles/global.css";
 ---
 
-<Layout title="Reservar Cita — BarberShop">
+<DemoLayout title="Reservar Cita — BarberShop">
     <main class="booking">
         <div class="container">
             <a href="/proyectos/barberia" class="booking__back">
@@ -187,7 +188,7 @@ import { SERVICES } from "./lib/store.js";
             </div>
         </div>
     </main>
-</Layout>
+</DemoLayout>
 
 <style>
     .booking {

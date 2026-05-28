@@ -4,52 +4,52 @@ import ScrollPrompt from "./ScrollPrompt.astro";
 
 <div
   id="hero-title"
-  class="bg-black/40 backdrop-blur-sm border-t border-white/20 shadow-2xl fixed bottom-0 left-0 w-full p-2 md:p-6 pt-5 md:pt-8 z-45 text-right pointer-events-none transition-opacity duration-500"
+  class="bg-black/40 backdrop-blur-sm border-t border-white/20 shadow-2xl fixed bottom-0 left-0 w-full h-[33vh] min-h-[220px] md:min-h-[320px] lg:min-h-[360px] p-4 md:p-8 pt-12 md:pt-16 z-45 text-right pointer-events-none transition-opacity duration-500 flex flex-col justify-center items-end"
 >
-  <!-- Botones divididos por diagonal en el borde superior (línea amarilla de 15px de altura) -->
+  <!-- Botones divididos por diagonal en el borde superior (línea amarilla de 33px de altura con texto visible) -->
   <div
-    class="absolute top-0 -left-[10px] w-[calc(100%+20px)] h-[15px] flex overflow-hidden pointer-events-auto z-50"
+    class="absolute top-0 -left-[10px] w-[calc(100%+20px)] h-[33px] flex overflow-hidden pointer-events-auto z-50"
   >
     <button
       id="btn-nav-90"
-      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer"
+      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer flex items-center justify-center"
       title="Navegar"
     >
       <span
-        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-950 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap skew-x-[30deg] shadow-lg border border-slate-800 font-bold uppercase tracking-wider"
+        class="skew-x-[30deg] text-slate-950 text-[11px] md:text-xs lg:text-sm font-black uppercase tracking-wider leading-none"
       >
         Navegar
       </span>
     </button>
     <button
       id="btn-nav-proyectos"
-      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer"
+      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer flex items-center justify-center"
       title="Proyecto"
     >
       <span
-        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-950 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap skew-x-[30deg] shadow-lg border border-slate-800 font-bold uppercase tracking-wider"
+        class="skew-x-[30deg] text-slate-950 text-[11px] md:text-xs lg:text-sm font-black uppercase tracking-wider leading-none"
       >
         Proyecto
       </span>
     </button>
     <button
       id="btn-nav-equipo"
-      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer"
+      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] border-r border-black/40 transition-colors duration-250 cursor-pointer flex items-center justify-center"
       title="Equipo"
     >
       <span
-        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-950 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap skew-x-[30deg] shadow-lg border border-slate-800 font-bold uppercase tracking-wider"
+        class="skew-x-[30deg] text-slate-950 text-[11px] md:text-xs lg:text-sm font-black uppercase tracking-wider leading-none"
       >
         Equipo
       </span>
     </button>
     <button
       id="btn-nav-servicios"
-      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] transition-colors duration-250 cursor-pointer"
+      class="group relative flex-1 bg-[#ffd600] hover:bg-white active:bg-yellow-400 -skew-x-[30deg] transition-colors duration-250 cursor-pointer flex items-center justify-center"
       title="Servicios $"
     >
       <span
-        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-950 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap skew-x-[30deg] shadow-lg border border-slate-800 font-bold uppercase tracking-wider"
+        class="skew-x-[30deg] text-slate-950 text-[11px] md:text-xs lg:text-sm font-black uppercase tracking-wider leading-none"
       >
         Servicios $
       </span>
@@ -57,12 +57,12 @@ import ScrollPrompt from "./ScrollPrompt.astro";
   </div>
 
   <h1
-    class="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-tight uppercase tracking-tighter drop-shadow-lg"
+    class="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-none uppercase tracking-tighter drop-shadow-lg"
   >
     Insano<br />Network
   </h1>
   <h2
-    class="text-2xl md:text-4xl text-[#ffd600] font-bold mt-4 max-w-4xl ml-auto drop-shadow-md"
+    class="text-2xl md:text-4xl text-[#ffd600] font-bold mt-2 md:mt-4 max-w-4xl ml-auto drop-shadow-md"
   >
     Diseña, Desarrolla y Vende tus Ideas.
   </h2>
@@ -102,8 +102,8 @@ import ScrollPrompt from "./ScrollPrompt.astro";
     if (btnNav90) {
       btnNav90.onclick = () => {
         window.scrollTo({
-          top: window.innerHeight * 0.9,
-          behavior: "smooth"
+          top: window.innerHeight * 0.8,
+          behavior: "smooth",
         });
       };
     }
@@ -116,7 +116,8 @@ import ScrollPrompt from "./ScrollPrompt.astro";
     };
 
     if (btnNavProyectos) {
-      btnNavProyectos.onclick = () => scrollToSection("desarrollos-gallery-section");
+      btnNavProyectos.onclick = () =>
+        scrollToSection("desarrollos-gallery-section");
     }
     if (btnNavEquipo) {
       btnNavEquipo.onclick = () => scrollToSection("equipo-section");

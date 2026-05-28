@@ -230,15 +230,33 @@ const COLOR_MAP = {
 
   <div class="container mx-auto px-4 relative z-10">
     <!-- Header Question -->
-    <div class="text-center mb-12 md:mb-16">
+    <div class="text-center mb-12 md:mb-16 flex flex-col items-center justify-center gap-4">
       <h2
-        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
       >
-        ¿En qué te ayudamos hoy?
+        ¿Qué haremos hoy?
       </h2>
-      <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-        Selecciona una opción para comenzar tu experiencia personalizada.
-      </p>
+      <a
+        href="#desarrollos-gallery-section"
+        onclick="event.preventDefault(); document.getElementById('desarrollos-gallery-section')?.scrollIntoView({ behavior: 'smooth' });"
+        class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900/80 border border-slate-700/80 hover:border-slate-500 text-white hover:text-[#ffd600] font-bold rounded-xl transition-all duration-300 text-sm shadow-lg backdrop-blur-sm cursor-pointer group mt-2"
+      >
+        <span>Ver Proyectos</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 text-[#ffd600] transform group-hover:translate-y-0.5 transition-transform"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </a>
     </div>
 
     <!-- Cards Gallery -->
