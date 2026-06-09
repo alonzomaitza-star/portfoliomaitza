@@ -15,14 +15,26 @@ const desarrollos: Desarrollo[] = [
     {
         title: "Crea tus invitaciones y gestiona tus eventos",
         subtitle:
-            "Plataforma interactiva para crear, gestionar y enviar invitaciones digitales con confirmador RSVP en tiempo real por WhatsApp.",
+            "LLENA EL FORMULARIO &gt; COPIA EL LINK &gt; COMPARTE <span class='text-slate-400 font-semibold border-l border-slate-700/60 pl-2.5 ml-2.5'>&gt; SERVICIOS ADICIONALES* &gt; GESTIONA TU EVENTO!*</span> <span class='text-[9px] text-indigo-400 font-bold lowercase tracking-normal italic'>(*opcional)</span>",
         description:
-            "Crea, personaliza y envía invitaciones digitales interactivas para bodas, XV años, cumpleaños y todo tipo de eventos. Incluye música de fondo, mapas de ubicación interactivos, confirmación RSVP en tiempo real enviada directamente a tu WhatsApp, y galería de fotos. Ofrece a tus invitados una experiencia moderna y olvídate de las invitaciones impresas tradicionales.",
+            "Crea, personaliza y envía invitaciones digitales interactivas para bodas, XV años y cumpleaños de forma gratuita por 35 días. Aproximadamente 5 días antes del evento, se te enviará un mensaje detallado de cuántas personas vieron y confirmaron su asistencia por WhatsApp. Contamos con módulos extras a partir de $350 MXN para gestionarlas o añadir tiempo extra, gestionar la lista completa, añade complementos como recuerdos o invitaciones fisicas desde $500 MXN* sujeto a disponibilidad.",
         tags: ["Infantiles", "Bodas", "15 Años", "Gestión de Eventos"],
         url: "/proyectos/invitacionRuby",
         buttonText: "Crear invitaciones",
         image: "https://images.unsplash.com/photo-1549417229-aa67d3263c09?q=80&w=800&auto=format&fit=crop",
         imageLeft: false,
+    },
+    {
+        title: "Editor & Personalizador 3D de Artículos Corporativos",
+        subtitle:
+            "ELIGE PRODUCTO &gt; SUBE TU DISEÑO &gt; VISTA 3D <span class='text-slate-400 font-semibold border-l border-slate-700/60 pl-2.5 ml-2.5'>&gt; COTIZA POR VOLUMEN* &gt; COMPRA EN LÍNEA!*</span> <span class='text-[9px] text-indigo-400 font-bold lowercase tracking-normal italic'>(*opcional)</span>",
+        description:
+            "Diseña y personaliza tus propios productos y merchandising en tiempo real. Configura artículos promocionales como tazas, playeras, frazadas, cuadros y papelería corporativa. Sube tu logotipo o imagen y visualiza instantáneamente el resultado final sobre modelos 3D interactivos hiperrealistas. Cotizaciones automáticas por volumen y envíos nacionales directos.",
+        tags: ["Personalizado", "Simulador 3D", "Sublimación", "Merchandising"],
+        url: "/proyectos/personalizador",
+        buttonText: "Personalizar artículos",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=800&auto=format&fit=crop",
+        imageLeft: true,
     },
     {
         title: "Gestiona tus Citas mediante WhatsApp o Portal Web",
@@ -34,7 +46,7 @@ const desarrollos: Desarrollo[] = [
         url: "/proyectos/barberia",
         buttonText: "Agendar citas",
         image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop",
-        imageLeft: true,
+        imageLeft: false,
     },
     {
         title: "Lleva tu Instituto Escolar a otro nivel con APP Móvil y Plataforma escolar",
@@ -46,7 +58,7 @@ const desarrollos: Desarrollo[] = [
         url: "/proyectos/escolar",
         buttonText: "Ver portal escolar",
         image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800&auto=format&fit=crop",
-        imageLeft: false,
+        imageLeft: true,
     },
     {
         title: "Portal Educativo LMS",
@@ -58,7 +70,7 @@ const desarrollos: Desarrollo[] = [
         url: "/proyectos/proy?proyecto=lms",
         buttonText: "Ver catálogo LMS",
         image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop",
-        imageLeft: true,
+        imageLeft: false,
     },
     {
         title: "IA & Agentes Virtuales",
@@ -70,7 +82,7 @@ const desarrollos: Desarrollo[] = [
         url: "/proyectos/proy?proyecto=ia",
         buttonText: "Ver asistente de IA",
         image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=800&auto=format&fit=crop",
-        imageLeft: false,
+        imageLeft: true,
     },
     {
         title: "Desarrollos Especiales, DevOps & QA",
@@ -82,7 +94,7 @@ const desarrollos: Desarrollo[] = [
         url: "/proyectos/proy?proyecto=saas",
         buttonText: "Cotizar desarrollo",
         image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=800&auto=format&fit=crop",
-        imageLeft: true,
+        imageLeft: false,
     },
 ];
 ---
@@ -107,9 +119,7 @@ const desarrollos: Desarrollo[] = [
                             <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
                                 {item.title}
                             </h3>
-                            <p class="text-xs text-[#ffd600] font-black mb-4 uppercase tracking-wider leading-relaxed">
-                                {item.subtitle}
-                            </p>
+                            <p class="text-xs text-[#ffd600] font-black mb-4 uppercase tracking-wider leading-relaxed" set:html={item.subtitle} />
                             
                             <!-- Descripción expandible con botón dinámico unificado -->
                             <div class="relative mb-4">

@@ -180,8 +180,26 @@ import "./styles/global.css";
                     <h2 class="booking__success-title">¡Cita Confirmada!</h2>
                     <div class="booking__success-details" id="successDetails">
                     </div>
+                    <!-- Nota de la Demo / WhatsApp integration -->
+                    <div class="booking__demo-notice" style="margin-top: 1.5rem; margin-bottom: 1.5rem; padding: 1.5rem; border-radius: 8px; background: rgba(0, 107, 255, 0.08); border: 1px solid rgba(0, 107, 255, 0.2); text-align: left; line-height: 1.6;">
+                        <span style="font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; font-family: var(--font-heading); font-size: 0.95rem;">
+                            <span>💬</span> Vincular con WhatsApp (Prueba Real)
+                        </span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                            ¡Vincular tu WhatsApp activa la gestión automática para <strong>Barbería Kalifa</strong>! Al hacer clic en el botón de abajo, se abrirá WhatsApp para enviar un mensaje a nuestro bot oficial en el número <strong>+52 55 1684 9340</strong>. El bot procesará tu solicitud y te enviará un mensaje de confirmación de vuelta, mientras nuestro sistema guarda tus citas y métricas en tu panel de control para que puedas consultarlas después.
+                        </p>
+                        <p style="font-size: 0.78rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 1.25rem; padding-left: 0.75rem; border-left: 2px solid rgba(0, 107, 255, 0.4);">
+                            ℹ️ <strong>Planes de Servicio:</strong> El uso de nuestro número central compartido (+52 55 1684 9340) forma parte de nuestro plan más básico. Si deseas tener un número telefónico exclusivo para tu negocio o un bot 100% personalizado con el tono y marca de tu establecimiento, también está disponible en nuestros planes avanzados.
+                        </p>
+                        
+                        <a id="waLinkBtn" href="https://wa.me/525516849340" target="_blank" class="btn-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%; font-size: 0.9rem; padding: 0.75rem 1.5rem; background-color: #25d366; border-color: #25d366; color: white; font-weight: 700; border-radius: 4px; transition: background-color 0.2s;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.739-1.453L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.97C16.379 1.966 13.904.94 11.997.94c-5.442 0-9.87 4.372-9.874 9.802-.001 1.733.46 3.424 1.332 4.925l-.974 3.56 3.652-.958zm12.19-5.111c-.333-.167-1.972-.974-2.278-1.087-.306-.112-.529-.167-.751.167-.222.334-.861 1.087-1.055 1.309-.195.223-.389.25-.722.083-1.428-.716-2.39-1.229-3.33-2.853-.25-.427.25-.397.716-1.32.074-.153.037-.287-.019-.399-.055-.112-.53-1.278-.725-1.747-.19-.459-.382-.397-.529-.404-.136-.006-.292-.007-.449-.007-.157 0-.411.059-.626.294-.216.235-.824.805-.824 1.964 0 1.159.842 2.278.96 2.436.118.158 1.658 2.532 4.016 3.548.56.242 1.002.387 1.344.496.564.18 1.077.155 1.482.094.453-.068 1.972-.806 2.25-1.584.278-.78.278-1.448.195-1.583-.083-.135-.306-.217-.639-.383z"/></svg>
+                            Activar Gestión en WhatsApp
+                        </a>
+                    </div>
                     <div class="booking__success-actions">
                         <a href="/proyectos/barberia/estado" class="btn-primary">Ver Estado</a>
+                        <a href="/proyectos/barberia/panel" class="btn-secondary" style="border-color: rgba(0, 107, 255, 0.4); color: var(--color-signal-blue);">Ver todas las citas (Admin)</a>
                         <a href="/proyectos/barberia" class="btn-secondary">Inicio</a>
                     </div>
                 </div>
@@ -207,7 +225,7 @@ import "./styles/global.css";
     }
 
     .booking__back:hover {
-        color: var(--gold-400);
+        color: var(--color-signal-blue);
     }
 
     .booking__title {
@@ -228,7 +246,7 @@ import "./styles/global.css";
         position: fixed;
         inset: 0;
         z-index: 50;
-        background: rgba(10, 10, 15, 0.9);
+        background: rgba(5, 12, 20, 0.95);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -289,22 +307,24 @@ import "./styles/global.css";
         justify-content: center;
         border-radius: 50%;
         background: var(--bg-card);
-        border: 1.5px solid var(--border-subtle);
+        border: 1.5px solid var(--color-mist-border);
         font-family: var(--font-heading);
         font-weight: 700;
         font-size: 0.8rem;
         transition: all var(--transition-fast);
+        color: var(--text-secondary);
     }
 
     .booking__step.active .booking__step-num {
-        background: var(--gold-gradient);
-        color: var(--bg-primary);
+        background: var(--color-signal-blue);
+        color: #ffffff;
         border-color: transparent;
+        box-shadow: var(--gold-glow);
     }
 
     .booking__step.done .booking__step-num {
         background: var(--accent-green);
-        color: var(--bg-primary);
+        color: #ffffff;
         border-color: transparent;
     }
 
@@ -318,7 +338,7 @@ import "./styles/global.css";
     .booking__step-line {
         width: 40px;
         height: 2px;
-        background: var(--border-subtle);
+        background: var(--color-mist-border);
         margin: 0 0.5rem;
     }
 
@@ -356,13 +376,13 @@ import "./styles/global.css";
         gap: 0.6rem;
         padding: 0.8rem 1rem;
         background: var(--bg-surface);
-        border: 1.5px solid var(--border-subtle);
+        border: 1.5px solid var(--color-mist-border);
         border-radius: var(--radius-md);
         transition: border-color var(--transition-fast);
     }
 
     .booking__input-wrap:focus-within {
-        border-color: var(--gold-400);
+        border-color: var(--color-signal-blue);
     }
 
     .booking__input {
@@ -407,17 +427,17 @@ import "./styles/global.css";
         padding: 1.2rem;
         text-align: center;
         cursor: pointer;
-        border: 1.5px solid var(--border-subtle);
+        border: 1.5px solid var(--color-mist-border);
         transition: all var(--transition-fast);
     }
 
     .booking__service-card:hover {
-        border-color: var(--border-gold);
+        border-color: rgba(0, 107, 255, 0.4);
     }
 
     .booking__service-card.selected {
-        border-color: var(--gold-400);
-        background: rgba(212, 165, 32, 0.08);
+        border-color: var(--color-signal-blue);
+        background: rgba(0, 107, 255, 0.08);
         box-shadow: var(--gold-glow);
     }
 
@@ -445,10 +465,7 @@ import "./styles/global.css";
 
     .booking__service-price {
         font-weight: 700;
-        background: var(--gold-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--color-signal-blue);
     }
 
     .booking__service-duration {
@@ -472,20 +489,22 @@ import "./styles/global.css";
         font-weight: 600;
         font-size: 0.85rem;
         border-radius: var(--radius-sm);
-        border: 1.5px solid var(--border-subtle);
+        border: 1.5px solid var(--color-mist-border);
         background: var(--bg-surface);
         cursor: pointer;
         transition: all var(--transition-fast);
+        color: var(--text-primary);
     }
 
     .booking__slot:hover:not(.unavailable) {
-        border-color: var(--border-gold);
+        border-color: rgba(0, 107, 255, 0.4);
     }
 
     .booking__slot.selected {
-        background: var(--gold-gradient);
-        color: var(--bg-primary);
+        background: var(--color-signal-blue);
+        color: #ffffff;
         border-color: transparent;
+        box-shadow: var(--gold-glow);
     }
 
     .booking__slot.unavailable {
@@ -504,7 +523,7 @@ import "./styles/global.css";
         position: relative;
         width: 100%;
         height: 120px;
-        border: 2px dashed var(--border-subtle);
+        border: 2px dashed var(--color-mist-border);
         border-radius: var(--radius-md);
         display: flex;
         align-items: center;
@@ -516,7 +535,7 @@ import "./styles/global.css";
     }
 
     .booking__file-wrap:hover {
-        border-color: var(--gold-400);
+        border-color: var(--color-signal-blue);
     }
 
     .booking__file-input {
@@ -554,10 +573,7 @@ import "./styles/global.css";
         font-size: 1.6rem;
         font-weight: 800;
         margin-bottom: 1.5rem;
-        background: var(--gold-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--color-signal-blue);
     }
 
     .booking__success-details {
@@ -568,16 +584,33 @@ import "./styles/global.css";
         margin-bottom: 1.5rem;
         font-size: 0.9rem;
         line-height: 2;
+        border: 1px solid var(--color-mist-border);
+    }
+
+    .booking__success-details strong {
+        color: #ffffff;
     }
 
     .booking__success-actions {
         display: flex;
+        flex-direction: column;
         gap: 0.8rem;
+        width: 100%;
     }
 
     .booking__success-actions a {
-        flex: 1;
+        width: 100%;
         justify-content: center;
+    }
+
+    @media (min-width: 550px) {
+        .booking__success-actions {
+            flex-direction: row;
+        }
+        .booking__success-actions a {
+            flex: 1;
+            width: auto;
+        }
     }
 
     @media (min-width: 520px) {
@@ -764,6 +797,13 @@ import "./styles/global.css";
           <div><strong>💰 Precio:</strong> $${appt.price}</div>
           <div><strong>📅 Fecha:</strong> ${appt.date}</div>
         `;
+            }
+
+            // Generar enlace dinámico de WhatsApp para activar gestión
+            const waLinkBtn = document.getElementById("waLinkBtn");
+            if (waLinkBtn) {
+                const messageText = `Hola, acabo de registrar una cita para ${appt.serviceName} a las ${appt.time} con el número ${appt.phone} en Barbería Kalifa. Deseo activar la gestión automática y recibir las confirmaciones en mi celular.`;
+                waLinkBtn.setAttribute("href", `https://wa.me/525516849340?text=${encodeURIComponent(messageText)}`);
             }
 
             const stepsWrap = document.getElementById("stepsWrap");

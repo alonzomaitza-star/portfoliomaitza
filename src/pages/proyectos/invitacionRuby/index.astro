@@ -2,7 +2,7 @@
 import DemoLayout from "../../../layouts/DemoLayout.astro";
 ---
 
-<DemoLayout title="Creador Interactivo de Invitaciones">
+<DemoLayout title="Creador Interactivo de Invitaciones & Gestor de Eventos">
   <!-- Google Fonts for Creator and Live Preview -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -12,337 +12,925 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
   />
 
   <div class="max-w-7xl mx-auto px-4 py-8 lg:py-12">
-    <!-- Header of the Customizer -->
-    <header class="mb-10 text-center lg:text-left">
-      <span class="text-xs px-3 py-1 font-semibold rounded-full uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-        Demo Interactiva • Módulo de Invitaciones
-      </span>
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white mt-3 tracking-tight font-outfit">
-        Creador de <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">Invitaciones Digitales</span>
-      </h1>
-      <p class="text-slate-400 text-sm md:text-base mt-2 max-w-2xl">
-        Completa el formulario en 4 sencillos pasos. Observa cómo cambia el diseño responsivo en tiempo real en el simulador móvil y genera un enlace listo para compartir por WhatsApp.
-      </p>
-    </header>
+    
+    <!-- CONTAINER 1: INVITATION WIZARD & PHONE PREVIEW -->
+    <div id="invitation-customizer-container" class="space-y-10 animate-fade-in">
+      <!-- Header of the Customizer -->
+      <header class="text-center lg:text-left">
+        <span class="text-xs px-3 py-1 font-semibold rounded-full uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+          Demo Interactiva • Módulo de Invitaciones
+        </span>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white mt-3 tracking-tight font-outfit">
+          Creador de <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">Invitaciones Digitales</span>
+        </h1>
+        <p class="text-slate-400 text-sm md:text-base mt-2 max-w-2xl">
+          Completa el formulario en 5 sencillos pasos. Observa cómo cambia el diseño responsivo en tiempo real en el simulador móvil y agrega servicios premium o gestiona tus invitados.
+        </p>
+      </header>
 
-    <!-- Split view: Form on left, Phone Preview on right -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      
-      <!-- LEFT COLUMN: The 4-step Form Wizard -->
-      <div class="lg:col-span-7 bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-2xl relative min-h-[580px]">
+      <!-- Split view: Form on left, Phone Preview on right -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- Wizard Progress Bar -->
-        <div class="mb-8">
-          <div class="flex justify-between text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
-            <span class="step-label text-violet-400" data-step="1">1. Datos</span>
-            <span class="step-label" data-step="2">2. Ubicación</span>
-            <span class="step-label" data-step="3">3. Estilo</span>
-            <span class="step-label" data-step="4">4. RSVP</span>
-          </div>
-          <!-- Progress Line -->
-          <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden p-0.5 border border-slate-700/50">
-            <div id="progress-bar" class="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full w-1/4 transition-all duration-300"></div>
-          </div>
-        </div>
-
-        <!-- Wizard Forms container -->
-        <div class="flex-1">
-          <!-- Step 1 Form: Datos Generales -->
-          <div id="form-step-1" class="step-form space-y-5 animate-fade-in">
-            <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 1: Datos Generales</h3>
-            
-            <div class="space-y-1.5">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Tipo de Evento</label>
-              <select id="input-event-type" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm">
-                <option value="XV Años" selected>Mis XV Años</option>
-                <option value="Boda">Nuestra Boda</option>
-                <option value="Cumpleaños">Mi Cumpleaños</option>
-                <option value="Graduación">Mi Graduación</option>
-              </select>
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Nombre del Celebrante</label>
-              <input id="input-name" type="text" value="Ruby Alvarado" placeholder="Ej. Ana & Carlos" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="space-y-1.5">
-                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Fecha del Evento</label>
-                <input id="input-date" type="date" value="2026-05-30" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
-              </div>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Hora</label>
-                <input id="input-time" type="time" value="18:00" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 2 Form: Ubicación & Horarios -->
-          <div id="form-step-2" class="step-form space-y-5 hidden animate-fade-in">
-            <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 2: Ubicación & Recinto</h3>
-            
-            <div class="space-y-1.5">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Nombre del Recinto</label>
-              <input id="input-venue" type="text" value="Hacienda de los Morales" placeholder="Ej. Salón Cristal" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Dirección Completa</label>
-              <input id="input-address" type="text" value="Vázquez de Mella 525, Polanco, CDMX" placeholder="Ej. Av. de la Reforma 123, Juárez, CDMX" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Enlace de Google Maps (Iframe Src / URL)</label>
-              <input id="input-maps-url" type="text" placeholder="URL para ver mapa o enlace de Google Maps" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
-              <p class="text-[10px] text-slate-500">Dejar vacío para simular mapa por defecto.</p>
-            </div>
-          </div>
-
-          <!-- Step 3 Form: Estilo & Mesa de Regalos -->
-          <div id="form-step-3" class="step-form space-y-5 hidden animate-fade-in">
-            <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 3: Estilo & Mesa de Regalos</h3>
-            
-            <div class="space-y-1.5">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Código de Vestimenta</label>
-              <select id="input-dress-code" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm">
-                <option value="Formal / Gala" selected>Formal / Gala</option>
-                <option value="Formal">Formal</option>
-                <option value="Semiformal">Semiformal</option>
-                <option value="Casual">Casual / Playa</option>
-              </select>
-            </div>
-
-            <div class="space-y-3">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Mesas de Regalo Habilitadas</label>
-              <div class="grid grid-cols-3 gap-3">
-                <label class="flex flex-col items-center justify-center p-3 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl cursor-pointer select-none">
-                  <input type="checkbox" id="check-liverpool" checked class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 w-4 h-4 mb-2" />
-                  <span class="text-[10px] font-bold text-slate-300">Liverpool</span>
-                </label>
-                <label class="flex flex-col items-center justify-center p-3 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl cursor-pointer select-none">
-                  <input type="checkbox" id="check-palacio" checked class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 w-4 h-4 mb-2" />
-                  <span class="text-[10px] font-bold text-slate-300">Palacio</span>
-                </label>
-                <label class="flex flex-col items-center justify-center p-3 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl cursor-pointer select-none">
-                  <input type="checkbox" id="check-amazon" checked class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 w-4 h-4 mb-2" />
-                  <span class="text-[10px] font-bold text-slate-300">Amazon</span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 4 Form: WhatsApp & RSVP -->
-          <div id="form-step-4" class="step-form space-y-5 hidden animate-fade-in">
-            <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 4: Confirmación & WhatsApp</h3>
-            
-            <div class="space-y-1.5">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Número de Celular para Confirmar</label>
-              <div class="flex gap-2">
-                <span class="inline-flex items-center px-3.5 rounded-xl border border-slate-800 bg-slate-950 text-slate-400 text-sm font-semibold select-none">
-                  +52
-                </span>
-                <input id="input-whatsapp" type="tel" value="5512345678" placeholder="55 1234 5678" class="flex-1 bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
-              </div>
-              <p class="text-[10px] text-slate-500">Aquí se enviarán las respuestas RSVP con formato preestablecido de WhatsApp.</p>
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Fecha Límite de Registro</label>
-              <input id="input-limit-date" type="date" value="2026-05-15" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between items-center pt-6 mt-8 border-t border-slate-800/80">
-          <button id="btn-back" class="px-5 py-2.5 rounded-xl border border-slate-800 hover:border-slate-750 text-slate-400 hover:text-white font-semibold text-sm transition-all invisible">
-            Atrás
-          </button>
+        <!-- LEFT COLUMN: The 5-step Form Wizard -->
+        <div class="lg:col-span-7 bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-2xl relative min-h-[620px]">
           
-          <button id="btn-next" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:shadow-lg hover:shadow-violet-600/10 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:scale-[1.02] active:scale-[0.98]">
-            Siguiente
-          </button>
+          <!-- Wizard Progress Bar -->
+          <div class="mb-8">
+            <div class="flex justify-between text-[9px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+              <span class="step-label text-violet-400" data-step="1">1. Datos</span>
+              <span class="step-label" data-step="2">2. Ubicación</span>
+              <span class="step-label" data-step="3">3. Regalos</span>
+              <span class="step-label" data-step="4">4. Adicionales</span>
+              <span class="step-label" data-step="5">5. Gestión Extra</span>
+            </div>
+            <!-- Progress Line -->
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden p-0.5 border border-slate-700/50">
+              <div id="progress-bar" class="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full w-1/5 transition-all duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Wizard Forms container -->
+          <div class="flex-1">
+            <!-- Step 1 Form: Datos Generales -->
+            <div id="form-step-1" class="step-form space-y-5 animate-fade-in">
+              <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 1: Datos Generales</h3>
+              
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Tipo de Evento</label>
+                <select id="input-event-type" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm">
+                  <option value="XV Años" selected>Mis XV Años</option>
+                  <option value="Boda">Nuestra Boda</option>
+                  <option value="Cumpleaños">Mi Cumpleaños</option>
+                  <option value="Graduación">Mi Graduación</option>
+                  <option value="Posada Mexicana">Posada Mexicana</option>
+                  <option value="Reunión íntima">Reunión íntima (Máx 10 personas)</option>
+                </select>
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Nombre del Celebrante</label>
+                <input id="input-name" type="text" value="Ruby Alvarado" placeholder="Ej. Ana & Carlos" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Fecha del Evento</label>
+                  <input id="input-date" type="date" value="2026-05-30" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
+                </div>
+                <div class="space-y-1.5">
+                  <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Hora</label>
+                  <input id="input-time" type="time" value="18:00" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 Form: Ubicación & Horarios -->
+            <div id="form-step-2" class="step-form space-y-5 hidden animate-fade-in">
+              <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 2: Ubicación & Recinto</h3>
+              
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Nombre del Recinto</label>
+                <input id="input-venue" type="text" value="Hacienda de los Morales" placeholder="Ej. Salón Cristal" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Dirección Completa</label>
+                <input id="input-address" type="text" value="Vázquez de Mella 525, Polanco, CDMX" placeholder="Ej. Av. de la Reforma 123, Juárez, CDMX" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Enlace de Google Maps (Iframe Src / URL)</label>
+                <input id="input-maps-url" type="text" placeholder="URL para ver mapa o enlace de Google Maps" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+                <p class="text-[10px] text-slate-500">Dejar vacío para simular mapa por defecto.</p>
+              </div>
+            </div>
+
+            <!-- Step 3 Form: Estilo & Mesa de Regalos -->
+            <div id="form-step-3" class="step-form space-y-5 hidden animate-fade-in">
+              <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 3: Estilo & Mesa de Regalos</h3>
+              
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Código de Vestimenta</label>
+                <select id="input-dress-code" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm">
+                  <option value="Formal / Gala" selected>Formal / Gala</option>
+                  <option value="Formal">Formal</option>
+                  <option value="Semiformal">Semiformal</option>
+                  <option value="Casual">Casual / Playa</option>
+                </select>
+              </div>
+
+              <!-- Creador de Lista de Deseos (Mesa de Regalos Inteligente) -->
+              <div class="space-y-3.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Mesa de Regalos (Lista de Deseos)</label>
+                
+                <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800/80 space-y-4 shadow-inner">
+                  <span class="block text-xs font-bold text-indigo-300 uppercase tracking-wider">Añadir Producto a la Lista</span>
+                  
+                  <!-- Link Input -->
+                  <div class="space-y-1.5">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Pegar Enlace del Producto (Amazon, Mercado Libre, Liverpool o Palacio de Hierro)</label>
+                    <input type="text" id="wishlist-link-input" placeholder="https://..." class="w-full bg-slate-900 border border-slate-800 focus:border-violet-550 rounded-xl px-3 py-2.5 text-xs text-white placeholder-slate-600 focus:outline-none transition-all" />
+                    
+                    <!-- Detected Store Badge & Scraper Status -->
+                    <div class="flex items-center justify-between gap-2 mt-1">
+                      <div id="detected-store-badge" class="hidden text-[9px] py-0.5 px-2 rounded-md font-bold uppercase tracking-wider border"></div>
+                      <div id="wishlist-loading-msg" class="hidden text-[9px] text-indigo-400 font-semibold animate-pulse flex items-center gap-1">
+                        <span class="animate-spin text-xs">🔄</span> Cargando información del producto...
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Manual details (Visible when clicked "agregar manual" or after link detection) -->
+                  <div id="wishlist-manual-form" class="space-y-3 pt-2 border-t border-slate-900">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div class="space-y-1">
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Nombre del Producto</label>
+                        <input type="text" id="wishlist-product-name" placeholder="Ej. Cafetera Nespresso Vertuo" class="w-full bg-slate-900 border border-slate-800 focus:border-violet-500 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-600 focus:outline-none transition-colors" />
+                      </div>
+                      <div class="space-y-1">
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Tienda de origen</label>
+                        <select id="wishlist-product-store" class="w-full bg-slate-900 border border-slate-800 focus:border-violet-500 rounded-lg px-3 py-2 text-xs text-white focus:outline-none transition-all">
+                          <option value="Amazon">Amazon</option>
+                          <option value="Mercado Libre">Mercado Libre</option>
+                          <option value="Liverpool">Liverpool</option>
+                          <option value="Palacio de Hierro">El Palacio de Hierro</option>
+                          <option value="Otro">Otro / Tienda Física</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Capture/Screenshot Upload -->
+                    <div class="flex items-center gap-3">
+                      <label class="text-[10px] bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-xl cursor-pointer font-bold transition-all shadow-sm">
+                        📸 Cargar Captura del Producto
+                        <input type="file" id="wishlist-product-file" accept="image/*" class="hidden" />
+                      </label>
+                      <span id="wishlist-product-filename" class="text-[10px] text-slate-500 italic max-w-[220px] truncate">Sin captura cargada</span>
+                    </div>
+
+                    <!-- Action Button to Add -->
+                    <button type="button" id="btn-add-wishlist-item" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-xl text-xs transition-all flex items-center justify-center gap-1 shadow-md mt-2">
+                      <span>➕ Añadir a mi Lista de Regalos</span>
+                    </button>
+                  </div>
+
+                  <!-- Button to bypass link and add manually if they just want to type -->
+                  <div class="text-right">
+                    <button type="button" id="btn-toggle-manual-addition" class="text-[10px] text-indigo-400 hover:text-indigo-300 font-bold transition-all underline bg-transparent border-none cursor-pointer">
+                      Agregar producto sin enlace
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Wish List Items Grid/List -->
+                <div class="space-y-2">
+                  <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Productos en tu Lista (<span id="wishlist-items-count">0</span>):</span>
+                  <div id="wishlist-items-container" class="max-h-[160px] overflow-y-auto pr-1 space-y-2 scrollbar-thin">
+                    <div class="text-center py-4 bg-slate-950/40 border border-slate-850 rounded-xl text-xs text-slate-500 italic">
+                      No has añadido ningún producto a tu mesa de regalos.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4 Form: Servicios Premium & Adicionales -->
+            <div id="form-step-4" class="step-form space-y-6 hidden animate-fade-in">
+              <div>
+                <h3 class="text-lg font-bold text-white font-outfit">Paso 4: Servicios Premium & Adicionales</h3>
+                <p class="text-slate-400 text-xs mt-1">Completa la experiencia de tu evento añadiendo servicios profesionales de Insano Network con precios especiales.</p>
+              </div>
+
+              <!-- Persistent Generated Link Box -->
+              <div id="step-4-link-container" class="bg-indigo-950/30 border border-indigo-500/20 rounded-2xl p-4 space-y-2.5">
+                <span class="block text-xs font-bold text-indigo-300 uppercase tracking-wider">🔗 Enlace de tu Invitación</span>
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex justify-between items-center text-left">
+                  <span id="step-4-generated-link" class="text-xs text-indigo-400 font-mono select-all overflow-x-auto whitespace-nowrap pr-2">
+                    https://insano.network/invitacion/ruby-alvarado
+                  </span>
+                  <button id="btn-step-4-copy" class="text-xs bg-slate-900 border border-slate-800 hover:bg-slate-850 text-white font-semibold py-1.5 px-3 rounded-lg flex items-center gap-1 transition-all shrink-0">
+                    <span>Copiar</span>
+                  </button>
+                </div>
+                <p class="text-[10px] text-slate-500">Este enlace está activo y listo para ser compartido con tus invitados.</p>
+              </div>
+
+              <!-- Services list grouped -->
+              <div class="space-y-4 max-h-[260px] overflow-y-auto pr-2 scrollbar-thin">
+                
+                <!-- Category 1: Físicos e Impresión -->
+                <div class="space-y-2.5">
+                  <h4 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest border-b border-slate-800 pb-1">Decoración e Impresos</h4>
+                  
+                  <!-- Option: Aguinaldos (sugar bags) -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-aguinaldos" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-aguinaldos" class="text-xs font-bold text-white cursor-pointer">🍬 Aguinaldos (Fiestas)</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$20 c/u</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Bolsas de dulces personalizadas de alta calidad. Mínimo 15 pz.</p>
+                      
+                      <!-- Qty Input -->
+                      <div id="qty-aguinaldos-wrap" class="mt-2.5 flex items-center gap-2 hidden animate-fade-in">
+                        <span class="text-[10px] text-slate-500 font-semibold">Cantidad:</span>
+                        <input type="number" id="srv-aguinaldos-qty" value="15" min="15" class="w-16 bg-slate-900 border border-slate-800 rounded-lg px-2 py-1 text-xs text-white focus:outline-none" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Option: Printed Invitations -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-printed" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-printed" class="text-xs font-bold text-white cursor-pointer">💌 Invitaciones Físicas</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$25 c/u</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Opalina texturizada premium, corte fino y sobre.</p>
+                      
+                      <!-- Qty Input -->
+                      <div id="qty-printed-wrap" class="mt-2.5 flex items-center gap-2 hidden animate-fade-in">
+                        <span class="text-[10px] text-slate-500 font-semibold">Cantidad:</span>
+                        <input type="number" id="srv-printed-qty" value="50" min="10" class="w-16 bg-slate-900 border border-slate-800 rounded-lg px-2 py-1 text-xs text-white focus:outline-none" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Option: Centerpieces -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-centerpieces" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-centerpieces" class="text-xs font-bold text-white cursor-pointer">🌸 Centros de Mesa</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$150 c/u</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Diseño floral personalizado y base decorativa.</p>
+                      
+                      <!-- Qty Input -->
+                      <div id="qty-centerpieces-wrap" class="mt-2.5 flex items-center gap-2 hidden animate-fade-in">
+                        <span class="text-[10px] text-slate-500 font-semibold">Cantidad:</span>
+                        <input type="number" id="srv-centerpieces-qty" value="10" min="5" class="w-16 bg-slate-900 border border-slate-800 rounded-lg px-2 py-1 text-xs text-white focus:outline-none" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Option: Recuerdos -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-souvenirs" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-souvenirs" class="text-xs font-bold text-white cursor-pointer">🎁 Recuerdos / Souvenirs</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$45 c/u</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Velas aromáticas o botellas miniatura decoradas.</p>
+                      
+                      <!-- Qty Input -->
+                      <div id="qty-souvenirs-wrap" class="mt-2.5 flex items-center gap-2 hidden animate-fade-in">
+                        <span class="text-[10px] text-slate-500 font-semibold">Cantidad:</span>
+                        <input type="number" id="srv-souvenirs-qty" value="50" min="10" class="w-16 bg-slate-900 border border-slate-800 rounded-lg px-2 py-1 text-xs text-white focus:outline-none" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Option: Vinil Espejo Selfie -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-mirror" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-mirror" class="text-xs font-bold text-white cursor-pointer">🪞 Vinil Adhesivo para Espejo</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$650</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Letrero personalizado en vinil blanco/dorado para selfies.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Category 2: Multimedia & Producción -->
+                <div class="space-y-2.5 pt-2">
+                  <h4 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest border-b border-slate-800 pb-1">Multimedia y Producción</h4>
+                  
+                  <!-- Option: Photography -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-photo" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-photo" class="text-xs font-bold text-white cursor-pointer">📸 Fotografía Profesional</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$3,500</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Sesión de fotos y cobertura del evento (entrega digital).</p>
+                    </div>
+                  </div>
+
+                  <!-- Option: Drone Video -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-drone" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-drone" class="text-xs font-bold text-white cursor-pointer">🛸 Grabación de Dron</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$2,200</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Tomas aéreas del recinto y de la ceremonia en alta definición.</p>
+                    </div>
+                  </div>
+
+                  <!-- Option: Video Editing -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-editing" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-editing" class="text-xs font-bold text-white cursor-pointer">🎬 Edición de Video Profesional</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$1,500</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Montaje del video del evento y teaser resumen para redes sociales.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Category 3: Catering & Extras -->
+                <div class="space-y-2.5 pt-2">
+                  <h4 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest border-b border-slate-800 pb-1">Catering & Extras</h4>
+                  
+                  <!-- Option: Snacks and desserts -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-catering" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-catering" class="text-xs font-bold text-white cursor-pointer">🍿 Mesa de Botanas y Postres</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$2,800</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Barra de dulces y repostería fina decorada para invitados.</p>
+                    </div>
+                  </div>
+
+                  <!-- Option: Photo retouching -->
+                  <div class="bg-slate-950 border border-slate-850 p-3.5 rounded-xl flex items-start gap-3 transition-colors hover:border-slate-750">
+                    <input type="checkbox" id="srv-retouch" class="mt-1 rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <label for="srv-retouch" class="text-xs font-bold text-white cursor-pointer">🎨 Retoque Fotográfico & Diseño</label>
+                        <span class="text-xs text-[#ffd600] font-bold">$800</span>
+                      </div>
+                      <p class="text-[10px] text-slate-400 mt-0.5">Corrección de color y retoque de retratos del celebrante.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Category 4: [NUEVO] Próximamente -->
+                <div class="space-y-2.5 pt-2">
+                  <h4 class="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest border-b border-slate-800 pb-1">Otros Servicios (Próximamente)</h4>
+                  
+                  <!-- Option: Renta de Salones -->
+                  <div class="bg-slate-950/40 border border-slate-850/60 p-3.5 rounded-xl flex items-start gap-3 opacity-60">
+                    <span class="text-base select-none mt-0.5">🏰</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-400">Renta de Salones</span>
+                        <span class="text-[8px] px-2 py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded font-bold uppercase tracking-wider scale-90">Fase 2</span>
+                      </div>
+                      <p class="text-[9px] text-slate-500 mt-0.5">Acceso a nuestro catálogo de recintos exclusivos en convenio.</p>
+                    </div>
+                  </div>
+
+                  <!-- Option: Entretenimiento -->
+                  <div class="bg-slate-950/40 border border-slate-850/60 p-3.5 rounded-xl flex items-start gap-3 opacity-60">
+                    <span class="text-base select-none mt-0.5">🎵</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-400">Entretenimiento & DJ</span>
+                        <span class="text-[8px] px-2 py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded font-bold uppercase tracking-wider scale-90">Fase 2</span>
+                      </div>
+                      <p class="text-[9px] text-slate-500 mt-0.5">DJs de alto nivel, audio profesional, shows infantiles y de comedia.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Estimate Budget Card inside Step 4 -->
+              <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-2 mt-4 animate-fade-in shadow-inner">
+                <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-2">Resumen de Cotización</h5>
+                <div class="text-xs text-slate-400 space-y-1">
+                  <div class="flex justify-between">
+                    <span>Invitación Digital Base:</span>
+                    <span class="text-emerald-400 font-semibold">Incluida (Demo)</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Adicionales Seleccionados:</span>
+                    <span class="text-white font-semibold" id="budget-subtotal">$0</span>
+                  </div>
+                  <div class="flex justify-between text-indigo-400">
+                    <span>Descuento de Nuevo Usuario (15%):</span>
+                    <span id="budget-discount">-$0</span>
+                  </div>
+                </div>
+                <div class="border-t border-slate-800 pt-2.5 flex justify-between items-center text-sm font-bold text-white">
+                  <span>Total Estimado:</span>
+                  <span class="text-[#ffd600] text-base" id="budget-total">$0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5 Form: Gestión Extra (Before Step 4) -->
+            <div id="form-step-5" class="step-form space-y-5 hidden animate-fade-in">
+              <h3 class="text-lg font-bold text-white mb-2 font-outfit">Paso 5: Gestión Extra</h3>
+              
+              <!-- Section PLIS -->
+              <div class="p-5 bg-gradient-to-br from-indigo-950/40 to-slate-900/50 border border-indigo-500/20 rounded-2xl space-y-4">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-sm font-bold text-white font-outfit flex items-center gap-2">
+                    <span class="px-2 py-0.5 text-[10px] font-extrabold bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-md tracking-wider">PLIS</span>
+                    <span>Servicios Adicionales & Extras</span>
+                  </h4>
+                  <span class="text-[10px] text-slate-400 font-semibold" id="plis-selected-count">0 seleccionados</span>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-normal">
+                  Visualiza los servicios adicionales requeridos para tu evento. Puedes gestionarlos y agregarlos directamente desde aquí o desde el Paso 4:
+                </p>
+
+                <!-- Mini checkboxes checklist of services for quick access -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs" id="plis-services-checklist">
+                  <div class="bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl flex items-center justify-between hover:border-slate-800 transition-colors">
+                    <label class="flex items-center gap-2 text-white cursor-pointer select-none">
+                      <input type="checkbox" id="plis-srv-aguinaldos" class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 plis-sync-chk" data-target="srv-aguinaldos" />
+                      <span>🍬 Aguinaldos</span>
+                    </label>
+                    <span class="text-[10px] text-[#ffd600] font-bold">$20 c/u</span>
+                  </div>
+
+                  <div class="bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl flex items-center justify-between hover:border-slate-800 transition-colors">
+                    <label class="flex items-center gap-2 text-white cursor-pointer select-none">
+                      <input type="checkbox" id="plis-srv-printed" class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 plis-sync-chk" data-target="srv-printed" />
+                      <span>💌 Invitaciones Físicas</span>
+                    </label>
+                    <span class="text-[10px] text-[#ffd600] font-bold">$25 c/u</span>
+                  </div>
+
+                  <div class="bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl flex items-center justify-between hover:border-slate-800 transition-colors">
+                    <label class="flex items-center gap-2 text-white cursor-pointer select-none">
+                      <input type="checkbox" id="plis-srv-centerpieces" class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 plis-sync-chk" data-target="srv-centerpieces" />
+                      <span>🌸 Centros de Mesa</span>
+                    </label>
+                    <span class="text-[10px] text-[#ffd600] font-bold">$150 c/u</span>
+                  </div>
+
+                  <div class="bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl flex items-center justify-between hover:border-slate-800 transition-colors">
+                    <label class="flex items-center gap-2 text-white cursor-pointer select-none">
+                      <input type="checkbox" id="plis-srv-souvenirs" class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 plis-sync-chk" data-target="srv-souvenirs" />
+                      <span>🎁 Recuerdos</span>
+                    </label>
+                    <span class="text-[10px] text-[#ffd600] font-bold">$45 c/u</span>
+                  </div>
+
+                  <div class="bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl flex items-center justify-between hover:border-slate-800 transition-colors">
+                    <label class="flex items-center gap-2 text-white cursor-pointer select-none">
+                      <input type="checkbox" id="plis-srv-catering" class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 plis-sync-chk" data-target="srv-catering" />
+                      <span>🍿 Botanas y Postres</span>
+                    </label>
+                    <span class="text-[10px] text-[#ffd600] font-bold">$2,800</span>
+                  </div>
+
+                  <div class="bg-slate-950/50 border border-slate-850 p-2.5 rounded-xl flex items-center justify-between hover:border-slate-800 transition-colors">
+                    <label class="flex items-center gap-2 text-white cursor-pointer select-none">
+                      <input type="checkbox" id="plis-srv-photo" class="rounded border-slate-800 bg-slate-950 text-violet-500 focus:ring-violet-500 plis-sync-chk" data-target="srv-photo" />
+                      <span>📸 Foto Profesional</span>
+                    </label>
+                    <span class="text-[10px] text-[#ffd600] font-bold">$3,500</span>
+                  </div>
+                </div>
+
+                <!-- See all link -->
+                <div class="text-right">
+                  <button type="button" id="btn-plis-go-to-step-4" class="text-[10px] text-indigo-400 hover:text-indigo-300 font-bold transition-all underline bg-transparent border-none cursor-pointer">
+                    Ver todos los servicios adicionales &rarr;
+                  </button>
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Número de Celular para Confirmar</label>
+                <div class="flex gap-2">
+                  <span class="inline-flex items-center px-3.5 rounded-xl border border-slate-800 bg-slate-950 text-slate-400 text-sm font-semibold select-none">
+                    +52
+                  </span>
+                  <input id="input-whatsapp" type="tel" value="5512345678" placeholder="55 1234 5678" class="flex-1 bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-all text-sm" />
+                </div>
+                <p class="text-[10px] text-slate-500">Aquí se enviarán las respuestas RSVP con formato preestablecido de WhatsApp.</p>
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-350 uppercase tracking-wider">Fecha Límite de Registro</label>
+                <input id="input-limit-date" type="date" value="2026-05-15" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-violet-500 rounded-xl px-4 py-3 text-white focus:outline-none transition-all text-sm" />
+              </div>
+
+              <!-- Little Budget Recap inside Step 5 if there are extra services selected -->
+              <div id="recap-step-5" class="p-3 bg-indigo-950/20 border border-indigo-900/35 rounded-xl text-[10px] text-indigo-300 hidden">
+                ⚠️ Cuentas con adicionales seleccionados. El presupuesto total estimado es de <span class="font-bold text-white" id="recap-total-val">$0</span>.
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="flex justify-between items-center pt-6 mt-8 border-t border-slate-800/80">
+            <button id="btn-back" class="px-5 py-2.5 rounded-xl border border-slate-800 hover:border-slate-750 text-slate-400 hover:text-white font-semibold text-sm transition-all invisible">
+              Atrás
+            </button>
+            
+            <button id="btn-next" class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:shadow-lg hover:shadow-violet-600/10 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:scale-[1.02] active:scale-[0.98]">
+              Siguiente
+            </button>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Smartphone Simulator & Preview -->
+        <div class="lg:col-span-5 flex justify-center sticky top-28">
+          
+          <!-- CSS Simulated Smartphone Outer Body -->
+          <div class="w-[325px] h-[660px] rounded-[45px] border-[11px] border-slate-800 bg-slate-950 shadow-2xl relative flex flex-col select-none ring-4 ring-slate-800/40 shrink-0">
+            
+            <!-- Notch/Camera Island -->
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-30 flex items-center justify-center gap-1.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-slate-900"></div>
+              <div class="w-10 h-1 bg-slate-900 rounded-full"></div>
+            </div>
+
+            <!-- App Status Bar -->
+            <div class="h-10 bg-slate-950 flex justify-between items-end px-6 pb-1 text-[9px] font-bold text-slate-400 z-20">
+              <span id="simulator-time">18:00</span>
+              <div class="flex gap-1 items-center opacity-80">
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c3.9 3.89 10.21 3.89 14.1 0l-.62-1.78C19.06 16.07 19.8 14.12 19.8 12c0-4.97-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg>
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17 5H3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2zm-1 16H4V9h12v12zm-1-8h-3v-3h-2v3H7v2h3v3h2v-3h3v-2z"/></svg>
+              </div>
+            </div>
+
+            <!-- Smartphone Screen Content (Scrollable Invitation Preview) -->
+            <div id="sim-screen" class="flex-1 overflow-y-auto bg-violet-50 text-gray-800 font-sans relative">
+              
+              <!-- Invitation Hero Banner -->
+              <div class="relative h-[250px] w-full flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                  <img alt="Hero Portrait Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDALRebycd-L7Qq4JBRkE4jscmPgepfmgAiPlOB-dQSptAZrxe8EkCXTPZ0c34g_FlEuoVhpgVbLOe67kdkmMPHNMF5ahMNHwZvMm7oQJGrL6TRV6TXw2Pj0qNBKRxBbtpmo4Grxf6xFy8vkjrPQhWl_Kmgz72znwBHIhn7mWPfjtWKWfpnroLMT5dL5IcEzGaJmoKpZmsb0ffCT9lss7khd8gqx7VZrE4QP4ujBPd4252Y_eiEUT02FkxNiJ57GWDMQbZ3dDl0PKa-" />
+                  <div class="absolute inset-0 bg-black/40"></div>
+                </div>
+                <div class="relative z-10 text-center text-white px-2">
+                  <h2 id="preview-event-type" class="font-serif italic text-xs mb-1 tracking-widest uppercase">Mis XV Años</h2>
+                  <h1 id="preview-name" class="font-serif text-2xl drop-shadow-md font-bold">Ruby Alvarado</h1>
+                  <div class="w-10 h-[1px] bg-white mx-auto my-2"></div>
+                  <p id="preview-date-text" class="text-[10px] tracking-widest uppercase">Sábado, 30 de Mayo de 2026</p>
+                </div>
+              </div>
+
+              <!-- Countdown Preview Section -->
+              <div class="py-6 bg-white text-center border-b border-violet-100">
+                <h3 class="font-serif text-xs text-violet-400 mb-3 font-semibold uppercase tracking-wider">Faltan solo...</h3>
+                <div class="flex justify-center gap-2 text-gray-700">
+                  <div class="flex flex-col items-center">
+                    <span class="text-lg font-light leading-none" id="prev-days">12</span>
+                    <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Días</span>
+                  </div>
+                  <span class="text-sm font-light text-violet-200">:</span>
+                  <div class="flex flex-col items-center">
+                    <span class="text-lg font-light leading-none" id="prev-hours">04</span>
+                    <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Hrs</span>
+                  </div>
+                  <span class="text-sm font-light text-violet-200">:</span>
+                  <div class="flex flex-col items-center">
+                    <span class="text-lg font-light leading-none" id="prev-min">23</span>
+                    <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Min</span>
+                  </div>
+                  <span class="text-sm font-light text-violet-200">:</span>
+                  <div class="flex flex-col items-center">
+                    <span class="text-lg font-light leading-none" id="prev-sec">45</span>
+                    <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Seg</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Event Location Section -->
+              <div class="py-8 px-4 text-center bg-violet-50/50">
+                <h2 class="font-serif text-lg text-gray-800 mb-4 font-bold">¿Cuándo y Dónde?</h2>
+                <div class="space-y-4 text-xs text-left max-w-[240px] mx-auto">
+                  <div class="flex gap-2">
+                    <span class="text-base">📅</span>
+                    <div>
+                      <h4 class="font-bold">Fecha & Hora</h4>
+                      <p id="preview-full-date" class="text-gray-600">Sábado, 30 de Mayo de 2026</p>
+                      <p id="preview-full-time" class="text-gray-600">6:00 PM</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-2">
+                    <span class="text-base">📍</span>
+                    <div>
+                      <h4 class="font-bold">Lugar</h4>
+                      <p id="preview-venue" class="text-gray-600 font-serif italic">Hacienda de los Morales</p>
+                      <p id="preview-address" class="text-gray-500 text-[10px]">Vázquez de Mella 525, Polanco, CDMX</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dress Code & Gifts Section -->
+              <div class="py-8 px-4 bg-white border-t border-violet-100 space-y-6">
+                <div class="text-center p-4 bg-violet-50/20 border border-violet-100 rounded-xl">
+                  <span class="text-lg">👔</span>
+                  <h3 class="font-serif text-sm font-bold mt-1">Código de Vestimenta</h3>
+                  <p id="preview-dress-code" class="text-[10px] text-gray-650 uppercase tracking-widest font-semibold mt-1">Formal / Gala</p>
+                </div>
+
+                <!-- Gift Registry Preview (Wishlist Catalog inside simulated phone) -->
+                <div class="p-4 bg-violet-50/25 border border-violet-100 rounded-xl space-y-3 text-center">
+                   <span class="text-lg">🎁</span>
+                   <h3 class="font-serif text-sm font-bold">Mesa de Regalos</h3>
+                   <p class="text-[9px] text-gray-500 font-medium leading-normal">
+                     Hemos preparado una lista de deseos. Si gustas apoyarnos, puedes apartar el regalo de tu elección:
+                   </p>
+                   
+                   <!-- Container for product cards in phone preview -->
+                   <div id="prev-wishlist-container" class="space-y-2 mt-2 text-left">
+                     <p class="text-[9px] text-gray-400 italic text-center py-2">La mesa de regalos está vacía.</p>
+                   </div>
+                 </div>
+               </div>
+
+               <!-- Simulated Gift Claim Modal Overlay inside Phone -->
+               <div id="phone-claim-modal" class="absolute inset-0 bg-black/60 z-40 flex items-center justify-center p-4 hidden">
+                 <div class="bg-white rounded-2xl p-4 w-full max-w-[240px] text-center space-y-3 shadow-xl animate-fade-in">
+                   <span class="text-2xl">💝</span>
+                   <h4 class="font-bold text-xs text-gray-800 leading-tight">¿Deseas regalar este artículo?</h4>
+                   <p id="phone-claim-product-name" class="text-[10px] text-indigo-600 font-bold truncate"></p>
+                   <p class="text-[9px] text-gray-500 leading-normal">Se marcará como reservado para evitar obsequios duplicados. La confirmación es privada.</p>
+                   
+                   <div class="flex gap-2 pt-1.5">
+                     <button type="button" id="btn-phone-claim-confirm" class="flex-1 bg-violet-500 hover:bg-violet-600 text-white font-bold py-1.5 rounded-lg text-[9px] uppercase tracking-wide">
+                       Sí, Reservar
+                     </button>
+                     <button type="button" id="btn-phone-claim-cancel" class="flex-1 bg-slate-100 hover:bg-slate-205 text-gray-700 font-semibold py-1.5 rounded-lg text-[9px]">
+                       Cancelar
+                     </button>
+                   </div>
+                 </div>
+               </div>
+
+               <!-- Interactive Simulated RSVP Form inside Phone -->
+               <div class="py-8 px-4 bg-violet-50/30 text-center border-t border-violet-100">
+                 <h2 class="font-serif text-lg text-gray-800 mb-2 font-bold">Registrar Asistencia</h2>
+                 <p class="text-[10px] text-gray-500 mb-4">Por favor, confirma tu asistencia antes del <span id="preview-limit-date">15 de Mayo</span>.</p>
+                 <form id="rsvp-simulator-form" class="space-y-3 max-w-[240px] mx-auto text-left text-xs bg-white p-4 rounded-xl border border-violet-100/50 shadow-sm">
+                   <div>
+                     <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nombre Completo</label>
+                     <input id="rsvp-sim-name" required placeholder="Ej. Familia Alvarado" class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-800 focus:outline-none focus:ring-1 focus:ring-violet-400" />
+                   </div>
+                   <div class="grid grid-cols-2 gap-2">
+                     <div>
+                       <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">¿Asistirás?</label>
+                       <select id="rsvp-sim-attending" class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-violet-400">
+                         <option value="Confirmado ✅" selected>Sí, ahí estaré</option>
+                         <option value="No asistirá ❌">No podré</option>
+                       </select>
+                     </div>
+                     <div>
+                       <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">Personas</label>
+                       <input id="rsvp-sim-passes" type="number" min="1" max="10" value="2" class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-800 focus:outline-none focus:ring-1 focus:ring-violet-400" />
+                     </div>
+                   </div>
+
+
+                  <div>
+                    <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">Mensaje (Opcional)</label>
+                    <textarea id="rsvp-sim-message" placeholder="Escribe tus buenos deseos..." class="w-full bg-slate-50 border-gray-205 rounded-md p-1.5 text-xs text-gray-800 focus:outline-none focus:ring-1 focus:ring-violet-400" rows="2"></textarea>
+                  </div>
+                  
+                  <button type="submit" class="w-full bg-violet-500 hover:bg-violet-650 text-white py-2.5 rounded-md font-bold tracking-widest text-[9px] uppercase shadow-md transition-colors mt-2">
+                    Enviar Confirmación
+                  </button>
+                </form>
+              </div>
+
+              <!-- Footer of the Preview Invitation -->
+              <footer class="py-6 bg-white border-t border-violet-50 text-center text-xs">
+                <h5 id="preview-footer-name" class="font-serif italic text-sm text-violet-400 font-bold">Ruby Alvarado</h5>
+                <p class="text-gray-400 text-[8px] uppercase tracking-wider mt-1" id="preview-hashtag">#XV_RubyAlvarado2026</p>
+              </footer>
+
+            </div>
+
+            <!-- Smartphone Simulated Bottom Navigation Bar -->
+            <div class="h-12 border-t border-slate-800/80 bg-slate-900 flex justify-center items-center rounded-b-[35px] z-20">
+              <div class="w-28 h-1 bg-slate-750 rounded-full"></div>
+            </div>
+          </div>
         </div>
 
       </div>
-
-      <!-- RIGHT COLUMN: Smartphone Simulator & Preview -->
-      <div class="lg:col-span-5 flex justify-center sticky top-28">
-        
-        <!-- CSS Simulated Smartphone Outer Body -->
-        <div class="w-[325px] h-[660px] rounded-[45px] border-[11px] border-slate-800 bg-slate-950 shadow-2xl relative flex flex-col select-none ring-4 ring-slate-800/40 shrink-0">
-          
-          <!-- Notch/Camera Island -->
-          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-30 flex items-center justify-center gap-1.5">
-            <div class="w-2.5 h-2.5 rounded-full bg-slate-900"></div>
-            <div class="w-10 h-1 bg-slate-900 rounded-full"></div>
-          </div>
-
-          <!-- App Status Bar -->
-          <div class="h-10 bg-slate-950 flex justify-between items-end px-6 pb-1 text-[9px] font-bold text-slate-400 z-20">
-            <span id="simulator-time">18:00</span>
-            <div class="flex gap-1 items-center opacity-80">
-              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c3.9 3.89 10.21 3.89 14.1 0l-.62-1.78C19.06 16.07 19.8 14.12 19.8 12c0-4.97-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
-              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg>
-              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17 5H3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2zm-1 16H4V9h12v12zm-1-8h-3v-3h-2v3H7v2h3v3h2v-3h3v-2z"/></svg>
-            </div>
-          </div>
-
-          <!-- Smartphone Screen Content (Scrollable Invitation Preview) -->
-          <div id="sim-screen" class="flex-1 overflow-y-auto bg-violet-50 text-gray-800 font-sans relative">
-            
-            <!-- Invitation Hero Banner -->
-            <div class="relative h-[250px] w-full flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 z-0">
-                <img alt="Hero Portrait Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDALRebycd-L7Qq4JBRkE4jscmPgepfmgAiPlOB-dQSptAZrxe8EkCXTPZ0c34g_FlEuoVhpgVbLOe67kdkmMPHNMF5ahMNHwZvMm7oQJGrL6TRV6TXw2Pj0qNBKRxBbtpmo4Grxf6xFy8vkjrPQhWl_Kmgz72znwBHIhn7mWPfjtWKWfpnroLMT5dL5IcEzGaJmoKpZmsb0ffCT9lss7khd8gqx7VZrE4QP4ujBPd4252Y_eiEUT02FkxNiJ57GWDMQbZ3dDl0PKa-" />
-                <div class="absolute inset-0 bg-black/40"></div>
-              </div>
-              <div class="relative z-10 text-center text-white px-2">
-                <h2 id="preview-event-type" class="font-serif italic text-xs mb-1 tracking-widest uppercase">Mis XV Años</h2>
-                <h1 id="preview-name" class="font-serif text-2xl drop-shadow-md font-bold">Ruby Alvarado</h1>
-                <div class="w-10 h-[1px] bg-white mx-auto my-2"></div>
-                <p id="preview-date-text" class="text-[10px] tracking-widest uppercase">Sábado, 30 de Mayo de 2026</p>
-              </div>
-            </div>
-
-            <!-- Countdown Preview Section -->
-            <div class="py-6 bg-white text-center border-b border-violet-100">
-              <h3 class="font-serif text-xs text-violet-400 mb-3 font-semibold uppercase tracking-wider">Faltan solo...</h3>
-              <div class="flex justify-center gap-2 text-gray-700">
-                <div class="flex flex-col items-center">
-                  <span class="text-lg font-light leading-none" id="prev-days">12</span>
-                  <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Días</span>
-                </div>
-                <span class="text-sm font-light text-violet-200">:</span>
-                <div class="flex flex-col items-center">
-                  <span class="text-lg font-light leading-none" id="prev-hours">04</span>
-                  <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Hrs</span>
-                </div>
-                <span class="text-sm font-light text-violet-200">:</span>
-                <div class="flex flex-col items-center">
-                  <span class="text-lg font-light leading-none" id="prev-min">23</span>
-                  <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Min</span>
-                </div>
-                <span class="text-sm font-light text-violet-200">:</span>
-                <div class="flex flex-col items-center">
-                  <span class="text-lg font-light leading-none" id="prev-sec">45</span>
-                  <span class="text-[8px] uppercase tracking-wider text-gray-400 mt-1">Seg</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event Location Section -->
-            <div class="py-8 px-4 text-center bg-violet-50/50">
-              <h2 class="font-serif text-lg text-gray-800 mb-4 font-bold">¿Cuándo y Dónde?</h2>
-              <div class="space-y-4 text-xs text-left max-w-[240px] mx-auto">
-                <div class="flex gap-2">
-                  <span class="text-base">📅</span>
-                  <div>
-                    <h4 class="font-bold">Fecha & Hora</h4>
-                    <p id="preview-full-date" class="text-gray-600">Sábado, 30 de Mayo de 2026</p>
-                    <p id="preview-full-time" class="text-gray-600">6:00 PM</p>
-                  </div>
-                </div>
-                <div class="flex gap-2">
-                  <span class="text-base">📍</span>
-                  <div>
-                    <h4 class="font-bold">Lugar</h4>
-                    <p id="preview-venue" class="text-gray-600 font-serif italic">Hacienda de los Morales</p>
-                    <p id="preview-address" class="text-gray-500 text-[10px]">Vázquez de Mella 525, Polanco, CDMX</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Dress Code & Gifts Section -->
-            <div class="py-8 px-4 bg-white border-t border-violet-100 space-y-6">
-              <div class="text-center p-4 bg-violet-50/20 border border-violet-100 rounded-xl">
-                <span class="text-lg">👔</span>
-                <h3 class="font-serif text-sm font-bold mt-1">Código de Vestimenta</h3>
-                <p id="preview-dress-code" class="text-[10px] text-gray-650 uppercase tracking-widest font-semibold mt-1">Formal / Gala</p>
-              </div>
-
-              <!-- Gift Registry Preview -->
-              <div class="text-center p-4 bg-violet-50/20 border border-violet-100 rounded-xl space-y-3">
-                <span class="text-lg">🎁</span>
-                <h3 class="font-serif text-sm font-bold">Mesa de Regalos</h3>
-                <p class="text-[10px] text-gray-500">Puedes encontrar mi lista en las siguientes tiendas:</p>
-                <div class="flex justify-center gap-3" id="preview-registries">
-                  <!-- Liverpool -->
-                  <div id="prev-registry-liverpool" class="flex flex-col items-center">
-                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-gray-600">LP</div>
-                    <span class="text-[8px] uppercase font-bold text-gray-400 mt-1">Liverpool</span>
-                  </div>
-                  <!-- Palacio -->
-                  <div id="prev-registry-palacio" class="flex flex-col items-center">
-                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-gray-600">PH</div>
-                    <span class="text-[8px] uppercase font-bold text-gray-400 mt-1">Palacio</span>
-                  </div>
-                  <!-- Amazon -->
-                  <div id="prev-registry-amazon" class="flex flex-col items-center">
-                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-gray-600">AMZ</div>
-                    <span class="text-[8px] uppercase font-bold text-gray-400 mt-1">Amazon</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Simulated RSVP Form -->
-            <div class="py-8 px-4 bg-violet-50/30 text-center">
-              <h2 class="font-serif text-lg text-gray-800 mb-2 font-bold">Registrar Asistencia</h2>
-              <p class="text-[10px] text-gray-500 mb-4">Por favor, confirma tu asistencia antes del <span id="preview-limit-date">15 de Mayo</span>.</p>
-              <div class="space-y-3 max-w-[240px] mx-auto text-left text-xs bg-white p-4 rounded-xl border border-violet-100/50">
-                <div>
-                  <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nombre Completo</label>
-                  <input disabled placeholder="Ej. Familia Alvarado" class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-400" />
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                  <div>
-                    <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">¿Asistirás?</label>
-                    <select disabled class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-450">
-                      <option>Sí, ahí estaré</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1">Personas</label>
-                    <input disabled value="1" class="w-full bg-slate-50 border-gray-200 rounded-md p-1.5 text-xs text-gray-450" />
-                  </div>
-                </div>
-                <button disabled class="w-full bg-violet-300 text-white py-2 rounded-md font-bold tracking-widest text-[9px] uppercase shadow-sm mt-1">
-                  Enviar Confirmación
-                </button>
-              </div>
-            </div>
-
-            <!-- Footer of the Preview Invitation -->
-            <footer class="py-6 bg-white border-t border-violet-50 text-center text-xs">
-              <h5 id="preview-footer-name" class="font-serif italic text-sm text-violet-400 font-bold">Ruby Alvarado</h5>
-              <p class="text-gray-400 text-[8px] uppercase tracking-wider mt-1" id="preview-hashtag">#XV_RubyAlvarado2026</p>
-            </footer>
-
-          </div>
-
-          <!-- Smartphone Simulated Bottom Navigation Bar -->
-          <div class="h-12 border-t border-slate-800/80 bg-slate-900 flex justify-center items-center rounded-b-[35px] z-20">
-            <div class="w-28 h-1 bg-slate-750 rounded-full"></div>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- CONTAINER 2: EVENT MANAGER PANEL (GUEST LIST SPREADSHEET) -->
+    <div id="event-manager-panel" class="space-y-8 hidden animate-fade-in">
+      <!-- Header of the Manager -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <button id="btn-back-to-customizer" class="inline-flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-bold transition-colors mb-2">
+            <span>← Volver al Creador de Invitación</span>
+          </button>
+          <h2 class="text-3xl font-extrabold text-white tracking-tight font-outfit">
+            Gestión de Eventos y <span class="bg-gradient-to-r from-[#ffd600] to-amber-400 bg-clip-text text-transparent">Lista de Invitados</span>
+          </h2>
+          <p class="text-slate-400 text-sm mt-1">
+            Administra las confirmaciones RSVP, consulta los regalos aportados por métricas de privacidad, y carga listas mediante Excel.
+          </p>
+        </div>
+        
+        <!-- Badge statistics -->
+        <div class="flex items-center gap-3 bg-slate-900/60 border border-slate-800 px-4 py-2.5 rounded-2xl">
+          <div class="text-left">
+            <span class="block text-[8px] font-extrabold text-slate-500 uppercase tracking-widest">Invitados Totales</span>
+            <span id="stats-total" class="text-lg font-bold text-white">0 / 100</span>
+          </div>
+          <div class="border-l border-slate-800 h-8 mx-1"></div>
+          <div class="text-left">
+            <span class="block text-[8px] font-extrabold text-slate-500 uppercase tracking-wid      <!-- Tabs Navigation -->
+      <div class="flex border-b border-slate-800 gap-1.5 mt-2">
+        <button id="tab-guests" class="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-t-xl bg-slate-900 border-t border-x border-slate-800 text-violet-400 focus:outline-none transition-all">
+          📋 Lista de Invitados (RSVP)
+        </button>
+        <button id="tab-wishlist" class="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-t-xl bg-transparent border-t border-x border-transparent text-slate-400 hover:text-white focus:outline-none transition-all">
+          🎁 Mesa de Regalos Recibidos
+        </button>
+      </div>
+
+      <!-- Main Layout of the Manager -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- LEFT COLUMN: SPREADSHEET TABLE OR WISHLIST VIEW -->
+        <div class="lg:col-span-8 space-y-4">
+          
+          <!-- VIEW 1: GUESTS TAB -->
+          <div id="view-guests" class="space-y-4">
+            <!-- Actions & Upload Bar -->
+            <div class="bg-slate-900/40 border border-slate-850 p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 shadow-md">
+              <!-- Add Manual Guest trigger -->
+              <h3 class="text-sm font-bold text-white font-outfit flex items-center gap-1.5">
+                <span>📋 Hoja de Control RSVP</span>
+              </h3>
+
+              <!-- Excel actions -->
+              <div class="flex flex-wrap gap-2.5">
+                <!-- Download Template -->
+                <button id="btn-download-template" class="text-xs bg-slate-950 border border-slate-800 hover:bg-slate-900 text-slate-300 font-semibold py-2 px-3.5 rounded-xl flex items-center gap-1.5 transition-all">
+                  📥 Descargar Plantilla
+                </button>
+                
+                <!-- Upload CSV input styled -->
+                <label class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-3.5 rounded-xl flex items-center gap-1.5 transition-all cursor-pointer">
+                  📤 Cargar Excel (CSV)
+                  <input type="file" id="input-upload-csv" accept=".csv" class="hidden" />
+                </label>
+              </div>
+            </div>
+
+            <!-- The Table Card -->
+            <div class="bg-slate-900/30 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs border-collapse" id="guests-table">
+                  <thead>
+                    <tr class="border-b border-slate-800 bg-slate-950/60 text-slate-400 font-semibold">
+                      <th class="p-4 w-12 text-center">#</th>
+                      <th class="p-4">Nombre de Pila</th>
+                      <th class="p-4">Teléfono</th>
+                      <th class="p-4 w-16 text-center">Pases</th>
+                      <th class="p-4">Estado RSVP</th>
+                      <th class="p-4">Mensaje</th>
+                      <th class="p-4 w-24 text-center">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-850/50 text-slate-200" id="guests-table-body">
+                    <!-- Injected via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Add Single Guest Inline Form -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-3xl p-5 shadow-lg">
+              <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Agregar Invitado Manualmente</h4>
+              <form id="form-add-guest" class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+                <div class="sm:col-span-4 space-y-1">
+                  <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Nombre del Invitado</span>
+                  <input type="text" id="add-guest-name" required placeholder="Ej. Tía Mercedes" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-605 focus:outline-none focus:border-violet-500 transition-colors" />
+                </div>
+                
+                <div class="sm:col-span-3 space-y-1">
+                  <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Número de Celular</span>
+                  <input type="tel" id="add-guest-phone" required placeholder="10 dígitos" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-605 focus:outline-none focus:border-violet-500 transition-colors" />
+                </div>
+
+                <div class="sm:col-span-2 space-y-1">
+                  <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Pases Asignados</span>
+                  <input type="number" id="add-guest-passes" value="2" min="1" max="10" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-violet-500 transition-colors" />
+                </div>
+
+                <div class="sm:col-span-3">
+                  <button type="submit" class="w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold py-2.5 rounded-xl hover:shadow-lg transition-all text-xs">
+                    ➕ Añadir Fila
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- VIEW 2: WISHLIST TAB -->
+          <div id="view-wishlist" class="hidden space-y-4 animate-fade-in">
+            <div class="bg-slate-900/40 border border-slate-800 rounded-3xl p-5 shadow-lg space-y-4">
+              <div>
+                <h3 class="text-base font-bold text-white font-outfit">🎁 Mesa de Regalos Recibidos</h3>
+                <p class="text-slate-400 text-xs mt-1">
+                  Consulta de manera privada los productos de tu lista de deseos que ya han sido reservados o aportados por tus invitados. Por privacidad, no se vinculan nombres específicos a cada regalo.
+                </p>
+              </div>
+
+              <!-- Host Wishlist received gifts grid -->
+              <div id="host-wishlist-status-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- MANAGER SIDEBAR: Premium Plan Ad -->
+        <div class="lg:col-span-4 space-y-6">
+          <!-- WhatsApp RSVP Simulator info -->
+          <div class="bg-gradient-to-br from-indigo-950/20 to-slate-900/60 border border-indigo-900/35 rounded-3xl p-5 shadow-md relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-indigo-500/5 rounded-full pointer-events-none"></div>
+            <h4 class="text-sm font-bold text-white font-outfit flex items-center gap-1.5 mb-2">
+              <span>📲 Privacidad de Datos y Métricas</span>
+            </h4>
+            <p class="text-[11px] text-slate-350 leading-relaxed">
+              El regalo seleccionado por cada invitado es un dato de uso privado del anfitrión para evitar filtraciones y resguardar la privacidad. Los invitados no verán esta información, solo el anfitrión a través de este panel de métricas.
+            </p>
+          </div>
+
+          <!-- Promotional Premium Banner -->
+          <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 shadow-xl relative overflow-hidden">
+            <!-- Glow graphics -->
+            <div class="absolute w-[200px] h-[200px] rounded-full bg-violet-600/10 blur-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+            
+            <div class="relative z-10 space-y-4">
+              <span class="text-[9px] px-2.5 py-0.5 font-bold rounded-full uppercase tracking-wider bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+                🌟 Plan Premium Eventos
+              </span>
+              <h3 class="text-lg font-bold text-white font-outfit leading-snug">
+                Sincronización Cloud y RSVP Automático Ilimitado
+              </h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed">
+                El servicio demo está limitado a 100 invitados cargados localmente en caché. Adquiere el panel de administración central de eventos para desbloquear:
+              </p>
+              
+              <ul class="space-y-2 text-[10px] text-slate-300">
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-400">✔</span> Confirmación automatizada con chatbot de WhatsApp.
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-400">✔</span> Base de datos en tiempo real (SQL Server y APIs .NET).
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-400">✔</span> Pase de acceso QR digital dinámico e integrado.
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-400">✔</span> Exportación avanzada de XLS sin límites de filas.
+                </li>
+              </ul>
+
+              <div class="pt-3 border-t border-slate-800 flex justify-between items-center">
+                <div>
+                  <span class="block text-[8px] text-slate-500 line-through leading-none">$590 MXN</span>
+                  <span class="text-sm font-extrabold text-[#ffd600]">$499 MXN</span>
+                </div>
+                <a href="https://wa.me/525516849340?text=Hola,%20me%20interesa%20contratar%20el%20Plan%20Premium%20de%20Invitaciones%20y%20Gestionador%20de%2520Eventos" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-xl text-[10px] transition-all">
+                  Adquirir Plan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <!-- SUCCESS MODAL (GENERATE INVITATION) -->
   <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm hidden animate-fade-in">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 max-w-md w-full mx-4 relative shadow-2xl">
-      <!-- Confetti Effect -->
       <div class="text-center space-y-4">
         <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl animate-bounce">
           🎉
         </div>
         <h3 class="text-xl md:text-2xl font-bold text-white font-outfit">¡Invitación Creada!</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">
+        <p class="text-slate-400 text-xs leading-relaxed">
           Se ha generado la base de datos de tu evento y la plantilla web temporal correspondiente en nuestro servidor demo.
         </p>
 
@@ -357,16 +945,32 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
         </div>
 
         <div class="flex flex-col gap-3 pt-4">
+          <!-- WIZARD STEP 4 REDIRECT BUTTON -->
+          <button
+            id="btn-add-premium-services"
+            class="w-full bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold py-3 rounded-xl hover:shadow-lg transition-all text-sm font-outfit flex items-center justify-center gap-1.5"
+          >
+            <span>💲 Añadir servicios / Ver enlace</span>
+          </button>
+
+          <!-- GUEST LIST MANAGER ENTRY BUTTON -->
+          <button
+            id="btn-go-to-manager"
+            class="w-full bg-[#ffd600] hover:bg-[#ffe23b] text-slate-950 font-bold py-3 rounded-xl hover:shadow-lg transition-all text-sm font-outfit"
+          >
+            📋 Gestionar Lista de Invitados (Demo)
+          </button>
+
           <a
             href="/proyectos/invitacionRuby/ruby"
             target="_blank"
-            class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold py-3 rounded-xl hover:shadow-lg transition-all text-sm block"
+            class="bg-slate-800 hover:bg-slate-750 border border-slate-700 text-white font-bold py-3 rounded-xl transition-all text-sm block text-center"
           >
             Ver demo a pantalla completa
           </a>
           <button
             id="btn-close-modal"
-            class="bg-slate-900 border border-slate-850 hover:bg-slate-800 text-slate-300 font-semibold py-2.5 rounded-xl transition-all text-xs"
+            class="bg-slate-950 border border-slate-850 hover:bg-slate-900 text-slate-350 font-semibold py-2.5 rounded-xl transition-all text-xs"
           >
             Seguir Personalizando
           </button>
@@ -375,11 +979,11 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
     </div>
   </div>
 
-  <!-- Wizard JavaScript Logic -->
+  <!-- Wizard & Customizer JavaScript Logic -->
   <script is:inline>
     // State management for wizard steps
     let currentStep = 1;
-    const totalSteps = 4;
+    const totalSteps = 5;
 
     const btnBack = document.getElementById("btn-back");
     const btnNext = document.getElementById("btn-next");
@@ -414,8 +1018,11 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
         btnBack.classList.remove("invisible");
       }
 
-      // Change Siguiente text to Generar on step 4
-      if (currentStep === totalSteps) {
+      // Change next button styling/text on step 3 (Generation trigger)
+      if (currentStep === 3) {
+        btnNext.textContent = "Generar Invitación";
+        btnNext.className = "bg-gradient-to-r from-emerald-600 to-teal-600 hover:shadow-lg hover:shadow-emerald-650/10 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:scale-[1.02] active:scale-[0.98]";
+      } else if (currentStep === totalSteps) {
         btnNext.textContent = "Generar Invitación";
         btnNext.className = "bg-gradient-to-r from-emerald-600 to-teal-600 hover:shadow-lg hover:shadow-emerald-650/10 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:scale-[1.02] active:scale-[0.98]";
       } else {
@@ -424,19 +1031,28 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
       }
     }
 
-    // Next step navigation
+    // Next step / Generation trigger
     btnNext.addEventListener("click", () => {
-      if (currentStep < totalSteps) {
-        currentStep++;
-        updateStepUI();
-      } else {
-        // Step 4 "Generar" - show modal
+      if (currentStep === 3 || currentStep === totalSteps) {
+        // Trigger modal pop out at Step 3 or Step 5
         const nameInput = document.getElementById("input-name").value;
         const normalized = nameInput.toLowerCase().trim().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-");
         const customUrl = `https://insano.network/invitacion/${normalized || "ruby-alvarado"}`;
         document.getElementById("generated-link").textContent = customUrl;
+        
+        const step4Link = document.getElementById("step-4-generated-link");
+        if (step4Link) step4Link.textContent = customUrl;
 
         successModal.classList.remove("hidden");
+
+        // Automatically advance the customizer to Step 4 (Adicionales) in the background
+        if (currentStep === 3) {
+          currentStep = 4;
+          updateStepUI();
+        }
+      } else if (currentStep < totalSteps) {
+        currentStep++;
+        updateStepUI();
       }
     });
 
@@ -448,12 +1064,19 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
       }
     });
 
-    // Close success modal
+    // Success Modal Close
     document.getElementById("btn-close-modal").addEventListener("click", () => {
       successModal.classList.add("hidden");
     });
 
-    // Copy to clipboard
+    // Success Modal Redirect to Step 4 (Adicionales)
+    document.getElementById("btn-add-premium-services").addEventListener("click", () => {
+      successModal.classList.add("hidden");
+      currentStep = 4;
+      updateStepUI();
+    });
+
+    // Copy URL to clipboard
     document.getElementById("btn-copy").addEventListener("click", function() {
       const linkText = document.getElementById("generated-link").textContent.trim();
       navigator.clipboard.writeText(linkText).then(() => {
@@ -462,6 +1085,29 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
         setTimeout(() => {
           btnSpan.textContent = "Copiar";
         }, 2000);
+      });
+    });
+
+    // Copy URL from Step 4 persistent link box
+    document.getElementById("btn-step-4-copy")?.addEventListener("click", function() {
+      const linkText = document.getElementById("step-4-generated-link").textContent.trim();
+      navigator.clipboard.writeText(linkText).then(() => {
+        const btnSpan = this.querySelector("span");
+        btnSpan.textContent = "¡Copiado!";
+        setTimeout(() => {
+          btnSpan.textContent = "Copiar";
+        }, 2000);
+      });
+    });
+
+    // Make step labels clickable to navigate freely
+    document.querySelectorAll(".step-label").forEach(label => {
+      label.addEventListener("click", () => {
+        const targetStep = parseInt(label.dataset.step);
+        if (targetStep >= 1 && targetStep <= totalSteps) {
+          currentStep = targetStep;
+          updateStepUI();
+        }
       });
     });
 
@@ -581,33 +1227,276 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
     startCountdownSimulation();
     inputDate?.addEventListener("change", startCountdownSimulation);
     inputTime?.addEventListener("change", startCountdownSimulation);
-
-    // Bind Venue & Address
-    bindInputToText("input-venue", "preview-venue");
-    bindInputToText("input-address", "preview-address");
-
-    // Bind Dress Code
-    bindInputToText("input-dress-code", "preview-dress-code");
-
-    // Bind Gift Registries (Liverpool, Palacio, Amazon checkboxes)
-    const checkLp = document.getElementById("check-liverpool");
-    const checkPal = document.getElementById("check-palacio");
-    const checkAmz = document.getElementById("check-amazon");
     
-    const prevLp = document.getElementById("prev-registry-liverpool");
-    const prevPal = document.getElementById("prev-registry-palacio");
-    const prevAmz = document.getElementById("prev-registry-amazon");
+    // Wishlist initial state
+    let wishList = [
+      { id: 1, name: "Cafetera Nespresso Vertuo", store: "Amazon", link: "https://www.amazon.com.mx/dp/B08DFG", image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=150&auto=format&fit=crop", reserved: false },
+      { id: 2, name: "Licuadora Ninja Professional", store: "Mercado Libre", link: "https://articulo.mercadolibre.com.mx/MLM-12345", image: "https://images.unsplash.com/photo-1578643463396-0997cb5328c1?q=80&w=150&auto=format&fit=crop", reserved: true },
+      { id: 3, name: "Juego de Sábanas Algodón Egipcio", store: "Liverpool", link: "", image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=150&auto=format&fit=crop", reserved: false }
+    ];
 
-    function updateGiftCheckboxes() {
-      if (prevLp) prevLp.style.display = checkLp?.checked ? "flex" : "none";
-      if (prevPal) prevPal.style.display = checkPal?.checked ? "flex" : "none";
-      if (prevAmz) prevAmz.style.display = checkAmz?.checked ? "flex" : "none";
+    // Dom elements for Wishlist
+    const wishlistLinkInput = document.getElementById("wishlist-link-input");
+    const detectedStoreBadge = document.getElementById("detected-store-badge");
+    const wishlistLoadingMsg = document.getElementById("wishlist-loading-msg");
+    const wishlistManualForm = document.getElementById("wishlist-manual-form");
+    const wishlistProductName = document.getElementById("wishlist-product-name");
+    const wishlistProductStore = document.getElementById("wishlist-product-store");
+    const wishlistProductFile = document.getElementById("wishlist-product-file");
+    const wishlistProductFilename = document.getElementById("wishlist-product-filename");
+    const btnAddWishlistItem = document.getElementById("btn-add-wishlist-item");
+    const btnToggleManualAddition = document.getElementById("btn-toggle-manual-addition");
+    const wishlistItemsContainer = document.getElementById("wishlist-items-container");
+    const wishlistItemsCount = document.getElementById("wishlist-items-count");
+    
+    // Store detected image URL/Blob state
+    let uploadedImageBlob = null;
+    let storeThemes = {
+      "Amazon": { bg: "bg-orange-500/10 text-orange-400 border-orange-500/20", img: "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?q=80&w=150&auto=format&fit=crop" },
+      "Mercado Libre": { bg: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20", img: "https://images.unsplash.com/photo-1563013544-824ae1d704d3?q=80&w=150&auto=format&fit=crop" },
+      "Liverpool": { bg: "bg-pink-500/10 text-pink-400 border-pink-500/20", img: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=150&auto=format&fit=crop" },
+      "Palacio de Hierro": { bg: "bg-amber-500/10 text-amber-400 border-amber-500/20", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=150&auto=format&fit=crop" },
+      "Otro": { bg: "bg-slate-500/10 text-slate-400 border-slate-500/20", img: "https://images.unsplash.com/photo-1549417229-aa67d3263c09?q=80&w=150&auto=format&fit=crop" }
+    };
+
+    // Auto-detect store from URL input
+    wishlistLinkInput?.addEventListener("input", function() {
+      const url = this.value.trim();
+      if (!url) {
+        detectedStoreBadge.classList.add("hidden");
+        return;
+      }
+      
+      let detectedStore = null;
+      if (/amazon|amzn/i.test(url)) {
+        detectedStore = "Amazon";
+      } else if (/mercadolibre|ml\.com|meli/i.test(url)) {
+        detectedStore = "Mercado Libre";
+      } else if (/liverpool/i.test(url)) {
+        detectedStore = "Liverpool";
+      } else if (/palaciodehierro|elpalacio/i.test(url)) {
+        detectedStore = "Palacio de Hierro";
+      }
+      
+      if (detectedStore) {
+        // Show detected badge
+        detectedStoreBadge.className = `text-[9px] py-0.5 px-2 rounded-md font-bold uppercase tracking-wider border ${storeThemes[detectedStore].bg}`;
+        detectedStoreBadge.textContent = detectedStore;
+        detectedStoreBadge.classList.remove("hidden");
+        
+        // Select it in store dropdown
+        wishlistProductStore.value = detectedStore;
+        
+        // Trigger simulated scraping loading animation
+        wishlistLoadingMsg.classList.remove("hidden");
+        wishlistLinkInput.disabled = true;
+        btnAddWishlistItem.disabled = true;
+        
+        setTimeout(() => {
+          wishlistLoadingMsg.classList.add("hidden");
+          wishlistLinkInput.disabled = false;
+          btnAddWishlistItem.disabled = false;
+          
+          // Autofill a mock name based on store
+          wishlistProductName.value = `Regalo desde ${detectedStore}`;
+          wishlistManualForm.classList.remove("hidden");
+        }, 1200);
+      } else {
+        detectedStoreBadge.classList.add("hidden");
+      }
+    });
+
+    // Toggle manual addition
+    btnToggleManualAddition?.addEventListener("click", () => {
+      wishlistProductName.value = "";
+      wishlistProductStore.value = "Otro";
+      wishlistProductFilename.textContent = "Sin captura cargada";
+      uploadedImageBlob = null;
+      wishlistManualForm.classList.toggle("hidden");
+    });
+
+    // File upload
+    wishlistProductFile?.addEventListener("change", function(e) {
+      const file = this.files?.[0];
+      if (file) {
+        wishlistProductFilename.textContent = file.name;
+        uploadedImageBlob = URL.createObjectURL(file);
+      }
+    });
+
+    // Add to wishlist
+    btnAddWishlistItem?.addEventListener("click", () => {
+      const name = wishlistProductName.value.trim();
+      const store = wishlistProductStore.value;
+      const link = wishlistLinkInput.value.trim();
+      
+      if (!name) {
+        alert("Por favor ingresa un nombre para el producto.");
+        return;
+      }
+      
+      // Image fallback
+      const img = uploadedImageBlob || storeThemes[store]?.img || storeThemes["Otro"].img;
+      
+      wishList.push({
+        id: Date.now(),
+        name,
+        store,
+        link,
+        image: img,
+        reserved: false
+      });
+      
+      // Reset form
+      wishlistLinkInput.value = "";
+      wishlistProductName.value = "";
+      wishlistProductStore.value = "Amazon";
+      wishlistProductFilename.textContent = "Sin captura cargada";
+      uploadedImageBlob = null;
+      detectedStoreBadge.classList.add("hidden");
+      
+      // Render
+      renderHostWishList();
+      renderPhoneWishList();
+      renderHostReceivedGifts();
+    });
+
+    // Render Host Wishlist in Step 3
+    function renderHostWishList() {
+      if (!wishlistItemsContainer) return;
+      wishlistItemsCount.textContent = wishList.length;
+      
+      if (wishList.length === 0) {
+        wishlistItemsContainer.innerHTML = `
+          <div class="text-center py-4 bg-slate-950/40 border border-slate-850 rounded-xl text-xs text-slate-500 italic">
+            No has añadido ningún producto a tu mesa de regalos.
+          </div>
+        `;
+        return;
+      }
+      
+      wishlistItemsContainer.innerHTML = "";
+      wishList.forEach((item, index) => {
+        const itemEl = document.createElement("div");
+        itemEl.className = "flex items-center justify-between p-2.5 bg-slate-950/80 border border-slate-850 rounded-xl gap-3 text-xs";
+        
+        const badgeColor = storeThemes[item.store]?.bg || storeThemes["Otro"].bg;
+        
+        itemEl.innerHTML = `
+          <div class="flex items-center gap-2.5 min-w-0">
+            <img src="${item.image}" class="w-8 h-8 object-cover rounded-lg border border-slate-800 bg-slate-900 shrink-0" />
+            <div class="min-w-0">
+              <p class="font-bold text-white truncate">${item.name}</p>
+              <span class="inline-block text-[8px] px-1.5 py-0.2 rounded border font-semibold scale-90 origin-left ${badgeColor}">${item.store}</span>
+            </div>
+          </div>
+          <button type="button" class="btn-delete-wishlist text-rose-400 hover:text-rose-300 p-1.5 font-bold" data-id="${item.id}">
+            🗑️
+          </button>
+        `;
+        wishlistItemsContainer.appendChild(itemEl);
+      });
+      
+      // Attach delete listeners
+      document.querySelectorAll(".btn-delete-wishlist").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = parseInt(this.dataset.id);
+          wishList = wishList.filter(item => item.id !== id);
+          renderHostWishList();
+          renderPhoneWishList();
+          renderHostReceivedGifts();
+        });
+      });
     }
 
-    checkLp?.addEventListener("change", updateGiftCheckboxes);
-    checkPal?.addEventListener("change", updateGiftCheckboxes);
-    checkAmz?.addEventListener("change", updateGiftCheckboxes);
-    updateGiftCheckboxes();
+    // Phone Claim dialog state
+    let activeClaimItemId = null;
+    const phoneClaimModal = document.getElementById("phone-claim-modal");
+    const phoneClaimProductName = document.getElementById("phone-claim-product-name");
+    const btnPhoneClaimConfirm = document.getElementById("btn-phone-claim-confirm");
+    const btnPhoneClaimCancel = document.getElementById("btn-phone-claim-cancel");
+
+    // Render Phone wishlist preview (smartphone side)
+    function renderPhoneWishList() {
+      const container = document.getElementById("prev-wishlist-container");
+      if (!container) return;
+      
+      if (wishList.length === 0) {
+        container.innerHTML = `<p class="text-[9px] text-gray-400 italic text-center py-2">La mesa de regalos está vacía.</p>`;
+        return;
+      }
+      
+      container.innerHTML = "";
+      wishList.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "p-2 bg-white rounded-xl border border-violet-100/50 shadow-sm flex items-center gap-2.5 text-xs relative";
+        
+        let storeLabel = item.store;
+        let storeColor = "bg-slate-100 text-slate-700 border-slate-200";
+        if (item.store === "Amazon") storeColor = "bg-orange-50 text-orange-700 border-orange-200";
+        else if (item.store === "Mercado Libre") storeColor = "bg-yellow-50 text-yellow-700 border-yellow-250";
+        else if (item.store === "Liverpool") storeColor = "bg-pink-50 text-pink-700 border-pink-200";
+        else if (item.store === "Palacio de Hierro") storeColor = "bg-amber-50 text-amber-800 border-amber-250";
+        
+        const actionBtn = item.reserved 
+          ? `<span class="px-2 py-1 rounded bg-emerald-50 text-emerald-600 font-bold border border-emerald-100 text-[8px] uppercase tracking-wider">Reservado 🔒</span>`
+          : `<button type="button" class="btn-claim-gift bg-violet-100 hover:bg-violet-200 text-violet-600 font-bold px-2.5 py-1 rounded text-[8px] uppercase tracking-wide transition-all" data-id="${item.id}">Regalar</button>`;
+          
+        const storeBadge = `<span class="inline-block text-[8px] px-1.5 py-0.2 rounded border font-semibold mt-0.5 ${storeColor}">${storeLabel}</span>`;
+        
+        const linkBtn = item.link 
+          ? `<a href="${item.link}" target="_blank" class="text-[8px] text-blue-500 hover:underline font-bold mt-1 block">🔗 Comprar</a>`
+          : "";
+          
+        card.innerHTML = `
+          <img src="${item.image}" class="w-10 h-10 object-cover rounded-lg border border-violet-100 bg-slate-50 shrink-0" />
+          <div class="min-w-0 flex-1">
+            <p class="font-bold text-gray-800 truncate">${item.name}</p>
+            <div class="flex items-center gap-2">
+              ${storeBadge}
+              ${linkBtn}
+            </div>
+          </div>
+          <div class="shrink-0">
+            ${actionBtn}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Attach claim listeners
+      document.querySelectorAll(".btn-claim-gift").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = parseInt(this.dataset.id);
+          const item = wishList.find(w => w.id === id);
+          if (item) {
+            activeClaimItemId = id;
+            phoneClaimProductName.textContent = item.name;
+            phoneClaimModal.classList.remove("hidden");
+          }
+        });
+      });
+    }
+
+    // Modal Confirmation click listeners
+    btnPhoneClaimConfirm?.addEventListener("click", () => {
+      if (activeClaimItemId !== null) {
+        const item = wishList.find(w => w.id === activeClaimItemId);
+        if (item) {
+          item.reserved = true;
+          alert(`¡Muchas gracias! Has reservado "${item.name}" para el evento. Este regalo ya no se mostrará disponible para otros invitados.`);
+          renderPhoneWishList();
+          renderHostReceivedGifts();
+        }
+        activeClaimItemId = null;
+        phoneClaimModal.classList.add("hidden");
+      }
+    });
+
+    btnPhoneClaimCancel?.addEventListener("click", () => {
+      activeClaimItemId = null;
+      phoneClaimModal.classList.add("hidden");
+    });
 
     // Bind RSVP Limit Date
     const inputLimitDate = document.getElementById("input-limit-date");
@@ -623,8 +1512,463 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
     // Auto-update simulator top bar time from clock
     setInterval(() => {
       const d = new Date();
-      document.getElementById("simulator-time").textContent = `${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`;
+      const simTimeEl = document.getElementById("simulator-time");
+      if (simTimeEl) {
+        simTimeEl.textContent = `${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`;
+      }
     }, 1000);
+
+    // ---- PREMIUM SERVICES & COTIZADOR LOGIC ----
+    const addOnList = [
+      { id: "srv-aguinaldos", type: "qty", price: 20, wrapId: "qty-aguinaldos-wrap", qtyId: "srv-aguinaldos-qty" },
+      { id: "srv-printed", type: "qty", price: 25, wrapId: "qty-printed-wrap", qtyId: "srv-printed-qty" },
+      { id: "srv-centerpieces", type: "qty", price: 150, wrapId: "qty-centerpieces-wrap", qtyId: "srv-centerpieces-qty" },
+      { id: "srv-souvenirs", type: "qty", price: 45, wrapId: "qty-souvenirs-wrap", qtyId: "srv-souvenirs-qty" },
+      { id: "srv-mirror", type: "flat", price: 650 },
+      { id: "srv-photo", type: "flat", price: 3500 },
+      { id: "srv-drone", type: "flat", price: 2200 },
+      { id: "srv-editing", type: "flat", price: 1500 },
+      { id: "srv-catering", type: "flat", price: 2800 },
+      { id: "srv-retouch", type: "flat", price: 800 }
+    ];
+
+    function calculateBudget() {
+      let subtotal = 0;
+      
+      addOnList.forEach(srv => {
+        const checkbox = document.getElementById(srv.id);
+        const qtyWrap = srv.wrapId ? document.getElementById(srv.wrapId) : null;
+        
+        if (checkbox && checkbox.checked) {
+          if (qtyWrap) qtyWrap.classList.remove("hidden");
+          
+          if (srv.type === "qty") {
+            const qtyInput = document.getElementById(srv.qtyId);
+            const qty = qtyInput ? Math.max(0, parseInt(qtyInput.value) || 0) : 0;
+            subtotal += srv.price * qty;
+          } else {
+            subtotal += srv.price;
+          }
+        } else {
+          if (qtyWrap) qtyWrap.classList.add("hidden");
+        }
+      });
+
+      const discount = Math.round(subtotal * 0.15);
+      const total = subtotal - discount;
+
+      // Update UI elements
+      document.getElementById("budget-subtotal").textContent = `$${subtotal.toLocaleString("es-MX")}`;
+      document.getElementById("budget-discount").textContent = `-$${discount.toLocaleString("es-MX")}`;
+      document.getElementById("budget-total").textContent = `$${total.toLocaleString("es-MX")}`;
+      
+      // Update Step 5 recap
+      const recapDiv = document.getElementById("recap-step-5");
+      const recapVal = document.getElementById("recap-total-val");
+      if (recapDiv && recapVal) {
+        if (subtotal > 0) {
+          recapDiv.classList.remove("hidden");
+          recapVal.textContent = `$${total.toLocaleString("es-MX")} MXN`;
+        } else {
+          recapDiv.classList.add("hidden");
+        }
+      }
+    }
+
+    // Attach listeners to all inputs
+    addOnList.forEach(srv => {
+      const checkbox = document.getElementById(srv.id);
+      checkbox?.addEventListener("change", calculateBudget);
+      
+      if (srv.type === "qty") {
+        const qtyInput = document.getElementById(srv.qtyId);
+        qtyInput?.addEventListener("input", calculateBudget);
+        qtyInput?.addEventListener("change", calculateBudget);
+      }
+    });
+
+    // PLIS Checkboxes Synchronization
+    const plisSyncCheckboxes = document.querySelectorAll(".plis-sync-chk");
+    
+    plisSyncCheckboxes.forEach(plisChk => {
+      const targetId = plisChk.dataset.target;
+      const targetChk = document.getElementById(targetId);
+      
+      if (targetChk) {
+        // Sync initial state
+        plisChk.checked = targetChk.checked;
+        
+        // Sync changes from PLIS to main checkboxes
+        plisChk.addEventListener("change", () => {
+          targetChk.checked = plisChk.checked;
+          // Trigger change event to fire calculateBudget
+          targetChk.dispatchEvent(new Event("change"));
+          updatePlisBadge();
+        });
+        
+        // Sync changes from main checkboxes back to PLIS
+        targetChk.addEventListener("change", () => {
+          plisChk.checked = targetChk.checked;
+          updatePlisBadge();
+        });
+      }
+    });
+
+    function updatePlisBadge() {
+      const selectedCount = Array.from(plisSyncCheckboxes).filter(chk => chk.checked).length;
+      const badge = document.getElementById("plis-selected-count");
+      if (badge) {
+        badge.textContent = `${selectedCount} seleccionado${selectedCount !== 1 ? 's' : ''}`;
+      }
+    }
+    
+    updatePlisBadge();
+
+    // Link "Ver todos los servicios adicionales" button to Step 4
+    document.getElementById("btn-plis-go-to-step-4")?.addEventListener("click", () => {
+      currentStep = 4;
+      updateStepUI();
+    });
+
+    calculateBudget(); // initial call
+  </script>
+
+  <!-- Guest List Manager & RSVP Submission JavaScript Logic -->
+  <script is:inline>
+    // State management for Guest List (RSVP Confirmations)
+    let guests = [
+      { name: "Mamá", phone: "5512345670", passes: 2, status: "Confirmado ✅", message: "¡No puedo faltar!" },
+      { name: "Tío Juan", phone: "5598765432", passes: 4, status: "Confirmado ✅", message: "Ahí estaremos con toda la familia." },
+      { name: "Sofía Amiga", phone: "5544332211", passes: 1, status: "Pendiente ⏳", message: "" },
+      { name: "Carlos Primo", phone: "5566778899", passes: 2, status: "Rechazado ❌", message: "Lo siento, tengo un viaje ese día." },
+      { name: "Laura Compañera", phone: "5555112233", passes: 2, status: "Confirmado ✅", message: "Muchas felicidades." },
+      { name: "Vecina María", phone: "5522889900", passes: 3, status: "Pendiente ⏳", message: "" }
+    ];
+
+    const customizerContainer = document.getElementById("invitation-customizer-container");
+    const managerPanel = document.getElementById("event-manager-panel");
+    const modal = document.getElementById("success-modal");
+
+    // Modal navigation button to transition to Event Manager
+    document.getElementById("btn-go-to-manager").addEventListener("click", () => {
+      modal.classList.add("hidden");
+      customizerContainer.classList.add("hidden");
+      managerPanel.classList.remove("hidden");
+      renderGuestsTable();
+      renderHostReceivedGifts();
+    });
+
+    // Go back from manager to customizer
+    document.getElementById("btn-back-to-customizer").addEventListener("click", () => {
+      managerPanel.classList.add("hidden");
+      customizerContainer.classList.remove("hidden");
+    });
+
+    // Event Manager Tabs switching
+    const tabGuests = document.getElementById("tab-guests");
+    const tabWishlist = document.getElementById("tab-wishlist");
+    const viewGuests = document.getElementById("view-guests");
+    const viewWishlist = document.getElementById("view-wishlist");
+
+    tabGuests?.addEventListener("click", () => {
+      tabGuests.className = "px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-t-xl bg-slate-900 border-t border-x border-slate-800 text-violet-400 focus:outline-none transition-all";
+      tabWishlist.className = "px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-t-xl bg-transparent border-t border-x border-transparent text-slate-400 hover:text-white focus:outline-none transition-all";
+      viewGuests.classList.remove("hidden");
+      viewWishlist.classList.add("hidden");
+      renderGuestsTable();
+    });
+
+    tabWishlist?.addEventListener("click", () => {
+      tabWishlist.className = "px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-t-xl bg-slate-900 border-t border-x border-slate-800 text-violet-400 focus:outline-none transition-all";
+      tabGuests.className = "px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-t-xl bg-transparent border-t border-x border-transparent text-slate-400 hover:text-white focus:outline-none transition-all";
+      viewGuests.classList.add("hidden");
+      viewWishlist.classList.remove("hidden");
+      renderHostReceivedGifts();
+    });
+
+    // Render table rows and statistics
+    function renderGuestsTable() {
+      const tbody = document.getElementById("guests-table-body");
+      if (!tbody) return;
+
+      tbody.innerHTML = "";
+
+      guests.forEach((guest, index) => {
+        const tr = document.createElement("tr");
+        tr.className = "border-b border-slate-850 hover:bg-slate-900/35 transition-colors";
+
+        // RSVP status select
+        let statusSelectHtml = `
+          <select class="select-status bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-xs text-white focus:outline-none" data-index="${index}">
+            <option value="Confirmado ✅" ${guest.status.includes("Confirmado") ? "selected" : ""}>Confirmado ✅</option>
+            <option value="Pendiente ⏳" ${guest.status.includes("Pendiente") ? "selected" : ""}>Pendiente ⏳</option>
+            <option value="Rechazado ❌" ${guest.status.includes("Rechazado") ? "selected" : ""}>Rechazado ❌</option>
+          </select>
+        `;
+
+        // Simulate WhatsApp messaging link
+        const celebranteName = document.getElementById("input-name")?.value || "Ruby Alvarado";
+        const limitDateText = document.getElementById("preview-limit-date")?.textContent || "15 de Mayo";
+        const waMsg = `Hola *${guest.name}*, te recordamos registrar tu asistencia para el evento de *${celebranteName}* antes del *${limitDateText}* en el siguiente link oficial: https://insano.network/invitacion/ruby-alvarado`;
+        const waLink = `https://wa.me/${guest.phone.startsWith("52") ? guest.phone : "52" + guest.phone}?text=${encodeURIComponent(waMsg)}`;
+
+        tr.innerHTML = `
+          <td class="p-4 text-center text-slate-500 font-mono">${index + 1}</td>
+          <td class="p-4 font-semibold text-white">${guest.name}</td>
+          <td class="p-4 text-slate-300 font-mono">${guest.phone}</td>
+          <td class="p-4 text-center text-slate-300 font-semibold">${guest.passes}</td>
+          <td class="p-4">${statusSelectHtml}</td>
+          <td class="p-4 text-slate-400 italic truncate max-w-[200px]" title="${guest.message || "Sin mensaje"}">${guest.message || "-"}</td>
+          <td class="p-4 flex items-center justify-center gap-2">
+            <a href="${waLink}" target="_blank" class="p-1.5 bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/25 text-emerald-400 rounded-lg transition-all" title="Simular recordatorio por WhatsApp">
+              💬
+            </a>
+            <button class="btn-delete p-1.5 bg-rose-500/10 hover:bg-rose-500/25 border border-rose-500/25 text-rose-400 rounded-lg transition-all" data-index="${index}" title="Eliminar Invitado">
+              🗑️
+            </button>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+
+      // Add status change listeners
+      document.querySelectorAll(".select-status").forEach(select => {
+        select.addEventListener("change", (e) => {
+          const idx = parseInt(e.target.dataset.index);
+          guests[idx].status = e.target.value;
+          updateStats();
+        });
+      });
+
+      // Add delete guest listeners
+      document.querySelectorAll(".btn-delete").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const idx = parseInt(e.currentTarget.dataset.index);
+          guests.splice(idx, 1);
+          renderGuestsTable();
+        });
+      });
+
+      updateStats();
+    }
+
+    // Render Host Received Gifts status grid
+    function renderHostReceivedGifts() {
+      const grid = document.getElementById("host-wishlist-status-grid");
+      if (!grid) return;
+      
+      if (wishList.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-8 bg-slate-950/40 border border-slate-850 rounded-2xl text-xs text-slate-500 italic">
+            Aún no has añadido regalos a tu mesa. Vuelve al Paso 3 para configurar tu lista de deseos.
+          </div>
+        `;
+        return;
+      }
+      
+      grid.innerHTML = "";
+      wishList.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "p-4 bg-slate-950/60 border border-slate-850 rounded-2xl flex items-center gap-3.5 text-xs shadow-inner";
+        
+        const statusBadge = item.reserved
+          ? `<span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold uppercase tracking-wider text-[9px]">Aportado / Reservado 🔒</span>`
+          : `<span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700 font-semibold text-[9px]">Disponible 🟢</span>`;
+          
+        const badgeColor = storeThemes[item.store]?.bg || storeThemes["Otro"].bg;
+        
+        const linkHtml = item.link 
+          ? `<a href="${item.link}" target="_blank" class="text-[9px] text-indigo-400 hover:text-indigo-300 hover:underline font-bold mt-1 inline-block">🔗 Ver Enlace de Tienda</a>`
+          : `<span class="text-[9px] text-slate-500 italic mt-1 block">Sin enlace de compra</span>`;
+          
+        card.innerHTML = `
+          <img src="${item.image}" class="w-12 h-12 object-cover rounded-xl border border-slate-800 bg-slate-900 shrink-0" />
+          <div class="min-w-0 flex-1 space-y-1">
+            <div class="flex justify-between items-start gap-1">
+              <p class="font-bold text-white truncate leading-tight">${item.name}</p>
+              <span class="inline-block text-[8px] px-1.5 py-0.2 rounded border font-semibold shrink-0 scale-90 ${badgeColor}">${item.store}</span>
+            </div>
+            ${linkHtml}
+            <div class="pt-1.5 border-t border-slate-900/60 flex items-center justify-between">
+              <span class="text-[9px] text-slate-400 font-semibold">Estado:</span>
+              ${statusBadge}
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Update guest list statistics
+    function updateStats() {
+      const statsTotal = document.getElementById("stats-total");
+      const statsConfirmed = document.getElementById("stats-confirmed");
+
+      const totalCount = guests.length;
+      const confirmedCount = guests.filter(g => g.status.includes("Confirmado")).length;
+
+      if (statsTotal) statsTotal.textContent = `${totalCount} / 100`;
+      if (statsConfirmed) statsConfirmed.textContent = String(confirmedCount);
+    }
+
+    // Add manual guest (from host panel)
+    const formAdd = document.getElementById("form-add-guest");
+    formAdd?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      
+      if (guests.length >= 100) {
+        alert("⚠️ Has alcanzado el límite de 100 invitados en la versión demo. Por favor contrata el Plan Premium para añadir más.");
+        return;
+      }
+
+      const name = document.getElementById("add-guest-name").value.trim();
+      const phone = document.getElementById("add-guest-phone").value.trim().replace(/\D/g, "");
+      const passes = parseInt(document.getElementById("add-guest-passes").value) || 1;
+
+      if (phone.length < 10) {
+        alert("Por favor ingresa un número de teléfono válido de 10 dígitos.");
+        return;
+      }
+
+      guests.push({
+        name,
+        phone,
+        passes,
+        status: "Pendiente ⏳",
+        message: ""
+      });
+
+      // Reset fields
+      document.getElementById("add-guest-name").value = "";
+      document.getElementById("add-guest-phone").value = "";
+      document.getElementById("add-guest-passes").value = "2";
+
+      renderGuestsTable();
+    });
+
+    // RSVP simulator submission inside phone
+    const rsvpSimForm = document.getElementById("rsvp-simulator-form");
+    rsvpSimForm?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      
+      if (guests.length >= 100) {
+        alert("⚠️ El evento ha alcanzado el límite de 100 invitados. No se pueden procesar más confirmaciones.");
+        return;
+      }
+
+      const rName = document.getElementById("rsvp-sim-name").value.trim();
+      const rAttending = document.getElementById("rsvp-sim-attending").value;
+      const rPasses = parseInt(document.getElementById("rsvp-sim-passes").value) || 1;
+      const rMsg = document.getElementById("rsvp-sim-message").value.trim();
+
+      if (!rName) {
+        alert("Por favor ingresa tu nombre completo.");
+        return;
+      }
+
+      // Add simulated user submission
+      guests.push({
+        name: rName,
+        phone: "Simulado 📱",
+        passes: rPasses,
+        status: rAttending,
+        message: rMsg
+      });
+
+      // Reset simulated inputs
+      document.getElementById("rsvp-sim-name").value = "";
+      document.getElementById("rsvp-sim-message").value = "";
+
+      alert(`¡Gracias ${rName}! Tu confirmación de asistencia se ha registrado correctamente en el panel RSVP del anfitrión.`);
+      
+      // Update table if they are in the manager view
+      renderGuestsTable();
+    });
+
+    // Download CSV template (Without gift column)
+    document.getElementById("btn-download-template")?.addEventListener("click", () => {
+      const headers = "Nombre,Telefono,Asistencia(Confirmado/Pendiente/Rechazado),Pases,Mensaje\n";
+      const sample = "Tia Carmen,5588334411,Confirmado,3,Muchas felicidades!\nJuan Amigo,5512341234,Pendiente,1,\n";
+      const csvContent = "data:text/csv;charset=utf-8," + encodeURIComponent(headers + sample);
+      
+      const dlAnchor = document.createElement('a');
+      dlAnchor.setAttribute("href", csvContent);
+      dlAnchor.setAttribute("download", "plantilla_invitados_insano.csv");
+      document.body.appendChild(dlAnchor);
+      dlAnchor.click();
+      document.body.removeChild(dlAnchor);
+    });
+
+    // Upload & parse CSV file (Without gift column)
+    document.getElementById("input-upload-csv")?.addEventListener("change", function(e) {
+      const file = this.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const text = evt.target?.result;
+        if (!text) return;
+
+        const lines = text.split("\n");
+        let addedCount = 0;
+        
+        // Skip header at index 0
+        for (let i = 1; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (!line) continue;
+
+          const cols = line.split(",");
+          if (cols.length < 2) continue;
+
+          if (guests.length >= 100) {
+            alert("⚠️ Límite de 100 invitados alcanzado durante la carga. Algunas filas no fueron importadas.");
+            break;
+          }
+
+          const name = cols[0]?.trim();
+          const phone = cols[1]?.trim().replace(/\D/g, "");
+          let statusText = "Pendiente ⏳";
+          
+          if (cols[2]) {
+            const rawStatus = cols[2].toLowerCase();
+            if (rawStatus.includes("confirmado") || rawStatus.includes("si") || rawStatus.includes("sí")) {
+              statusText = "Confirmado ✅";
+            } else if (rawStatus.includes("rechazado") || rawStatus.includes("no")) {
+              statusText = "Rechazado ❌";
+            }
+          }
+
+          const passes = parseInt(cols[3]) || 2;
+          const message = cols[4]?.trim() || "";
+
+          if (name && phone.length >= 10) {
+            guests.push({
+              name,
+              phone,
+              passes,
+              status: statusText,
+              message
+            });
+            addedCount++;
+          }
+        }
+
+        alert(`¡Carga completada! Se importaron ${addedCount} invitados con éxito.`);
+        renderGuestsTable();
+      };
+
+      reader.readAsText(file);
+      this.value = ""; // Reset value
+    });
+
+    // Initialize customizer elements and wishlist previews
+    renderHostWishList();
+    renderPhoneWishList();
+    renderHostReceivedGifts();
+    
+    // Initialize customizer steps UI
+    updateStepUI();
   </script>
 </DemoLayout>
 
@@ -643,5 +1987,26 @@ import DemoLayout from "../../../layouts/DemoLayout.astro";
 
   .animate-fade-in {
     animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Clickable step labels */
+  .step-label {
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .step-label:hover {
+    color: #a78bfa !important; /* violet-400 */
+  }
+
+  /* Custom scrollbar rules */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 999px;
   }
 </style>

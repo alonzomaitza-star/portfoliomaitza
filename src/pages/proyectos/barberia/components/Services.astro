@@ -104,9 +104,8 @@ const services = [
         left: 50%;
         transform: translateX(-50%);
         width: 120px;
-        height: 2px;
-        background: var(--gold-gradient);
-        border-radius: 2px;
+        height: 1px;
+        background: var(--color-mist-border);
     }
 
     .services__grid {
@@ -125,7 +124,7 @@ const services = [
     .services__card-icon {
         font-size: 2.2rem;
         margin-bottom: 1rem;
-        filter: drop-shadow(0 0 6px rgba(212, 165, 32, 0.3));
+        filter: drop-shadow(0 0 6px rgba(0, 107, 255, 0.25));
     }
 
     .services__card-name {
@@ -148,17 +147,14 @@ const services = [
         align-items: center;
         justify-content: space-between;
         padding-top: 1rem;
-        border-top: 1px solid var(--border-subtle);
+        border-top: 1px solid var(--color-mist-border);
     }
 
     .services__card-price {
         font-family: var(--font-heading);
         font-size: 1.3rem;
         font-weight: 800;
-        background: var(--gold-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--color-signal-blue);
     }
 
     .services__card-duration {

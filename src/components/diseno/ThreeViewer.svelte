@@ -17,6 +17,7 @@
     let renderer: THREE.WebGLRenderer;
     let controls: OrbitControls;
     let mesh: THREE.Mesh | THREE.Group | THREE.Object3D | null = null; // [UPDATED]
+    let pivot: THREE.Group;
     let textureLoader: THREE.TextureLoader;
     let gltfLoader: GLTFLoader;
     let fbxLoader: FBXLoader;
@@ -97,6 +98,10 @@
         const axesHelper = new THREE.AxesHelper(5);
         scene.add(axesHelper);
 
+        // Pivot Group
+        pivot = new THREE.Group();
+        scene.add(pivot);
+
         // Controls
         controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
@@ -117,8 +122,8 @@
         isLoading = true;
 
         // Clean up previous model
-        if (mesh) {
-            scene.remove(mesh);
+        if (mesh && pivot) {
+            pivot.remove(mesh);
             disposeModel(mesh);
             mesh = null;
         }
@@ -136,7 +141,7 @@
                     modelUrl,
                     (gltf) => {
                         mesh = gltf.scene;
-                        scene.add(mesh);
+                        pivot.add(mesh);
                         centerModel();
                         updateTexture();
                         isLoading = false;
@@ -154,7 +159,7 @@
                     modelUrl,
                     (fbx) => {
                         mesh = fbx;
-                        scene.add(mesh);
+                        pivot.add(mesh);
                         centerModel();
                         updateTexture();
                         isLoading = false;
@@ -172,7 +177,7 @@
                     modelUrl,
                     (obj) => {
                         mesh = obj;
-                        scene.add(mesh);
+                        pivot.add(mesh);
                         centerModel();
                         updateTexture();
                         isLoading = false;
@@ -205,7 +210,7 @@
             metalness: 0.7,
         });
         mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
+        pivot.add(mesh);
         updateTexture();
     }
 
@@ -238,23 +243,48 @@
     }
 
     function centerModel() {
-        if (!mesh) return;
+        if (!mesh || !pivot) return;
+
+        // Reset pivot rotation and position to defaults to compute bounds correctly
+        const originalPivotRotation = pivot.rotation.y;
+        pivot.rotation.set(0, 0, 0);
+        pivot.position.set(0, 0, 0);
+
+        // Reset mesh position and scale
+        mesh.position.set(0, 0, 0);
+        mesh.scale.set(1, 1, 1);
+        mesh.updateMatrixWorld(true);
 
         const box = new THREE.Box3().setFromObject(mesh);
-        const center = box.getCenter(new THREE.Vector3());
-        mesh.position.sub(center);
-
         const size = box.getSize(new THREE.Vector3());
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 2 / maxDim;
-        mesh.scale.multiplyScalar(scale);
+        
+        let scale = 1.0;
+        if (maxDim > 0) {
+            // A scale factor of 1.3 fits nicely within the viewport with a camera z=2
+            scale = 1.3 / maxDim;
+            mesh.scale.set(scale, scale, scale);
+        }
+        mesh.updateMatrixWorld(true);
 
-        console.log("Model Centered:", {
+        // Recalculate bounding box of scaled model to center it relative to pivot origin
+        const scaledBox = new THREE.Box3().setFromObject(mesh);
+        const center = scaledBox.getCenter(new THREE.Vector3());
+        
+        // Offset the mesh position inside the pivot group so its geometric center is at (0, 0, 0)
+        mesh.position.copy(center).multiplyScalar(-1);
+        mesh.updateMatrixWorld(true);
+
+        // Restore pivot rotation
+        pivot.rotation.y = originalPivotRotation;
+        pivot.updateMatrixWorld(true);
+
+        console.log("Model Centered in Pivot:", {
             center,
             size,
             scale,
-            position: mesh.position,
-            scaleVec: mesh.scale,
+            meshPosition: mesh.position,
+            pivotPosition: pivot.position,
         });
     }
 
@@ -342,8 +372,8 @@
     function animate() {
         animationId = requestAnimationFrame(animate);
 
-        if (mesh) {
-            mesh.rotation.y += 0.005; // Slower rotation
+        if (pivot) {
+            pivot.rotation.y += 0.005; // Rotate pivot group to rotate model in-place
         }
 
         if (controls) controls.update();

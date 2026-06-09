@@ -16,7 +16,7 @@ const {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={description} />
-        <meta name="theme-color" content="#0a0a0f" />
+        <meta name="theme-color" content="#050c14" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <title>{title}</title>
     </head>
@@ -24,18 +24,18 @@ const {
         <!-- Navbar -->
         <nav class="navbar" id="navbar">
             <div class="navbar__inner container">
-                <a href="#" class="navbar__brand">
+                <a href="/proyectos/barberia" class="navbar__brand">
                     <span class="navbar__icon">✂</span>
                     <span class="navbar__name"
                         >BARBER<span class="gold">SHOP</span></span
                     >
                 </a>
                 <div class="navbar__links" id="navLinks">
-                    <a href="#servicios" class="navbar__link">Servicios</a>
-                    <a href="#citas" class="navbar__link">Reservar</a>
-                    <a href="#aforo" class="navbar__link">Aforo</a>
+                    <a href="/proyectos/barberia#servicios" class="navbar__link">Servicios</a>
+                    <a href="/proyectos/barberia/reservar" class="navbar__link">Reservar</a>
+                    <a href="/proyectos/barberia/estado" class="navbar__link">Mi Cita</a>
                 </div>
-                <a href="#citas" class="btn-primary navbar__cta">Agendar Cita</a
+                <a href="/proyectos/barberia/reservar" class="btn-primary navbar__cta">Agendar Cita</a
                 >
                 <button class="navbar__toggle" id="navToggle" aria-label="Menú">
                     <span></span><span></span><span></span>
@@ -96,15 +96,15 @@ const {
         width: 100%;
         z-index: 100;
         padding: 1rem 0;
-        background: rgba(10, 10, 15, 0.7);
+        background: rgba(5, 12, 20, 0.75);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--color-mist-border);
         transition: all var(--transition-med);
     }
 
     .navbar.scrolled {
         padding: 0.6rem 0;
-        background: rgba(10, 10, 15, 0.92);
+        background: rgba(5, 12, 20, 0.92);
     }
 
     .navbar__inner {
@@ -126,14 +126,12 @@ const {
 
     .navbar__icon {
         font-size: 1.5rem;
-        filter: drop-shadow(0 0 8px rgba(212, 165, 32, 0.5));
+        filter: drop-shadow(0 0 8px rgba(0, 107, 255, 0.4));
     }
 
     .gold {
-        background: var(--gold-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--color-signal-blue);
+        font-weight: 800;
     }
 
     .navbar__links {
@@ -156,13 +154,13 @@ const {
         left: 0;
         width: 0;
         height: 2px;
-        background: var(--gold-gradient);
+        background: var(--color-signal-blue);
         border-radius: 2px;
         transition: width var(--transition-fast);
     }
 
     .navbar__link:hover {
-        color: var(--gold-400);
+        color: var(--color-signal-blue);
     }
 
     .navbar__link:hover::after {
@@ -170,7 +168,7 @@ const {
     }
 
     .navbar__cta {
-        padding: 0.6rem 1.3rem;
+        padding: 0.5rem 1.25rem;
         font-size: 0.85rem;
     }
 
@@ -180,6 +178,7 @@ const {
         gap: 5px;
         padding: 0.5rem;
     }
+
 
     .navbar__toggle span {
         display: block;
@@ -225,10 +224,10 @@ const {
             left: 0;
             width: 100%;
             flex-direction: column;
-            background: rgba(10, 10, 15, 0.97);
+            background: rgba(5, 12, 20, 0.98);
             padding: 1.5rem;
             gap: 1rem;
-            border-bottom: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--color-mist-border);
         }
 
         .navbar__links.open {

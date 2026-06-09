@@ -6,59 +6,103 @@ import "./styles/global.css";
 
 <DemoLayout title="BarberShop — Tu Barbería">
 	<main class="home">
-		<!-- Hero with Background -->
+		<!-- Hero Section in Calendly split layout -->
 		<section class="home__hero">
-			<div class="container home__hero-content">
-				<div class="home__status-badge" id="statusBadge">
-					<span class="home__status-dot" id="statusDot"></span>
-					<span id="statusText">Cargando...</span>
-					<span class="home__hours-text" id="hoursText"
-						>--:-- a --:--</span
-					>
-				</div>
-				<h1 class="home__title">
-					Maestría en <span class="home__highlight">Estilo</span><br
-					/>& Afeitado
-				</h1>
-				<p class="home__desc">
-					Redefinimos el arte de la barbería clásica con un toque
-					moderno. Experimenta el lujo del detalle en manos de
-					nuestros expertos.
-				</p>
-				<div class="home__actions">
-					<a
-						href="/proyectos/barberia/reservar"
-						class="btn-primary home__btn"
-						id="btnReservar"
-					>
-						<svg
-							width="18"
-							height="18"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							><rect
-								x="3"
-								y="4"
+			<div class="container home__hero-inner">
+				<div class="home__hero-left animate-fade-in-up">
+					<div class="home__status-badge" id="statusBadge">
+						<span class="home__status-dot" id="statusDot"></span>
+						<span id="statusText">Cargando...</span>
+						<span class="home__hours-text" id="hoursText">--:-- a --:--</span>
+					</div>
+					<h1 class="home__title">
+						Maestría en <span class="home__highlight">Estilo</span><br />& Afeitado
+					</h1>
+					<p class="home__desc">
+						Redefinimos el arte de la barbería clásica con un toque moderno. Agenda tus citas de forma automática e interactiva en segundos.
+					</p>
+					<div class="home__actions">
+						<a
+							href="/proyectos/barberia/reservar"
+							class="btn-primary home__btn"
+							id="btnReservar"
+						>
+							<svg
 								width="18"
 								height="18"
-								rx="2"
-								ry="2"></rect><line
-								x1="16"
-								y1="2"
-								x2="16"
-								y2="6"></line><line x1="8" y1="2" x2="8" y2="6"
-							></line><line x1="3" y1="10" x2="21" y2="10"
-							></line></svg
-						>
-						Reservar Ahora
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								><rect
+									x="3"
+									y="4"
+									width="18"
+									height="18"
+									rx="2"
+									ry="2"></rect><line
+									x1="16"
+									y1="2"
+									x2="16"
+									y2="6"></line><line x1="8" y1="2" x2="8" y2="6"
+								></line><line x1="3" y1="10" x2="21" y2="10"
+								></line></svg
+							>
+							Reservar Ahora
+						</a>
+						<a href="/proyectos/barberia/estado" class="btn-secondary home__btn">
+							Consultar mi cita
+						</a>
+					</div>
+					<a href="/proyectos/barberia/panel" class="home__admin-link animate-fade-in-up" style="animation-delay: 0.2s;">
+						📅 Ver todas las citas (vista admin demo)
 					</a>
-					<a href="/proyectos/barberia/estado" class="btn-secondary home__btn">
-						Consultar mi cita
-					</a>
+				</div>
+
+				<div class="home__hero-right">
+					<!-- Atmospheric Gradient Blobs (Calendly Visual Signature) -->
+					<div class="hero-blob hero-blob--magenta"></div>
+					<div class="hero-blob hero-blob--cyan"></div>
+					<div class="hero-blob hero-blob--ultraviolet"></div>
+					<div class="hero-blob hero-blob--amber"></div>
+
+					<!-- Product UI Mockup Card representing scheduling interface -->
+					<div class="mockup-card glass-card">
+						<div class="mockup-card__header">
+							<span class="mockup-card__icon">✂</span>
+							<div>
+								<h4 class="mockup-card__title">Barbería Kalifa</h4>
+								<p class="mockup-card__sub">Selecciona un servicio</p>
+							</div>
+						</div>
+						<div class="mockup-card__body">
+							<div class="mockup-card__services">
+								<div class="mockup-card__item active">
+									<div>
+										<span class="mockup-card__item-name">Corte Clásico + Barba</span>
+										<span class="mockup-card__item-time">⏱ 50 min</span>
+									</div>
+									<span class="mockup-card__item-price">$250</span>
+								</div>
+								<div class="mockup-card__item">
+									<div>
+										<span class="mockup-card__item-name">Afeitado Navaja Express</span>
+										<span class="mockup-card__item-time">⏱ 25 min</span>
+									</div>
+									<span class="mockup-card__item-price">$120</span>
+								</div>
+							</div>
+							<div class="mockup-card__slots-label">Horarios disponibles para hoy</div>
+							<div class="mockup-card__slots">
+								<span class="mockup-card__slot">09:30 AM</span>
+								<span class="mockup-card__slot selected">11:00 AM</span>
+								<span class="mockup-card__slot">01:30 PM</span>
+								<span class="mockup-card__slot">04:00 PM</span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -66,13 +110,84 @@ import "./styles/global.css";
 		<!-- Services Section -->
 		<Services />
 
+		<!-- WhatsApp Integration Section -->
+		<section class="home__whatsapp">
+			<div class="container">
+				<h2 class="section-title">Notificaciones y Chatbot de WhatsApp</h2>
+				<p class="section-subtitle">
+					El sistema se vincula con un bot inteligente de WhatsApp para simplificar la gestión.
+				</p>
+				<div class="whatsapp__grid">
+					<!-- Left Info -->
+					<div class="whatsapp__info-cards">
+						<div class="whatsapp__info-card glass-card">
+							<span class="whatsapp__info-icon">🔔</span>
+							<h4>Alertas Instantáneas</h4>
+							<p>Confirmaciones automáticas y alertas en tiempo real al programar o cambiar una cita.</p>
+						</div>
+						<div class="whatsapp__info-card glass-card">
+							<span class="whatsapp__info-icon">⏳</span>
+							<h4>Recordatorios de Citas</h4>
+							<p>Envío de avisos automáticos previos para reducir el ausentismo de clientes.</p>
+						</div>
+						<div class="whatsapp__info-card glass-card">
+							<span class="whatsapp__info-icon">💬</span>
+							<h4>Consulta por Chat</h4>
+							<p>El bot reconoce el número del cliente al recibir un mensaje y busca sus citas activas al instante.</p>
+						</div>
+					</div>
+
+					<!-- Right Mock Chat -->
+					<div class="whatsapp__chat glass-card">
+						<div class="chat__header">
+							<div class="chat__avatar">🤖</div>
+							<div>
+								<h5 class="chat__name">Asistente Barbería Kalifa</h5>
+								<span class="chat__status">En línea (Bot de WhatsApp)</span>
+							</div>
+						</div>
+						<div class="chat__body">
+							<div class="chat__message chat__message--user">
+								Hola, ¿tengo alguna cita pendiente hoy?
+							</div>
+							<div class="chat__message chat__message--bot">
+								¡Hola! Buscando con tu número de teléfono... 🔍
+							</div>
+							<div class="chat__message chat__message--bot">
+								Sí, tienes una cita hoy:
+								<br />✂️ <strong>Corte + Barba</strong>
+								<br />🕐 <strong>11:00 AM</strong>
+								<br />💰 <strong>$250 MXN</strong>
+								<br /><br />
+								¿Deseas confirmar tu asistencia?
+							</div>
+							<div class="chat__message chat__message--user">
+								Sí, confirmar por favor
+							</div>
+							<div class="chat__message chat__message--bot">
+								¡Excelente! Tu asistencia está confirmada. Te esperamos a las 11:00 AM. 💈
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Demo CTA Banner -->
+				<div class="whatsapp__cta-banner glass-card">
+					<div class="cta-banner__content">
+						<h3>¿Quieres automatizar las citas de tu negocio?</h3>
+						<p>Este sistema es una demo interactiva. Desarrollamos y configuramos tu propio software de reservaciones con bot de WhatsApp a la medida de tu marca.</p>
+					</div>
+					<a href="/contact-form?ref=barberia-demo" class="btn-primary">Cotizar mi Sistema</a>
+				</div>
+			</div>
+		</section>
+
 		<!-- Gallery / Tipos de Corte -->
 		<section class="home__gallery">
 			<div class="container">
 				<h2 class="section-title">Modelos y Tipos de Corte</h2>
 				<p class="section-subtitle">
-					Inspírate para tu próximo cambio de look con nuestros
-					estilos más populares.
+					Inspírate para tu próximo cambio de look con nuestros estilos más populares.
 				</p>
 				<div class="gallery__grid">
 					<div class="gallery__item">
@@ -118,14 +233,14 @@ import "./styles/global.css";
 				<h2 class="section-title">Ven a Visitarnos</h2>
 				<div class="location__grid">
 					<div class="location__map-wrapper glass-card">
-						<!-- Map Placeholder -->
+						<!-- Map Placeholder with blue icon theme -->
 						<div class="location__map-placeholder">
 							<svg
 								width="48"
 								height="48"
 								viewBox="0 0 24 24"
 								fill="none"
-								stroke="var(--gold-500)"
+								stroke="var(--color-signal-blue)"
 								stroke-width="2"
 								stroke-linecap="round"
 								stroke-linejoin="round"
@@ -135,7 +250,7 @@ import "./styles/global.css";
 								></path><circle cx="12" cy="10" r="3"
 								></circle></svg
 							>
-							<p>Mapa de Ubicación</p>
+							<p style="color: var(--text-secondary); margin-top: 0.5rem;">Mapa de Ubicación</p>
 						</div>
 					</div>
 					<div class="location__info">
@@ -177,45 +292,41 @@ import "./styles/global.css";
 
 <style>
 	.home {
-		padding-top: 0; /* Remove top padding to let Hero go under navbar */
+		padding-top: 0;
 	}
 
-	/* ── Hero ── */
+	/* ── Hero Split Layout ── */
 	.home__hero {
 		position: relative;
-		min-height: 85vh;
+		min-height: 90vh;
 		display: flex;
 		align-items: center;
-		padding: 8rem 1.5rem 4rem;
-		background-image:
-			linear-gradient(
-				to right,
-				rgba(24, 22, 18, 0.95) 0%,
-				rgba(24, 22, 18, 0.7) 50%,
-				rgba(24, 22, 18, 0.4) 100%
-			),
-			url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=2000");
-		background-size: cover;
-		background-position: center;
-		background-attachment: fixed;
+		padding: 7rem 1.5rem 4rem;
+		background: radial-gradient(circle at 10% 20%, rgba(13, 27, 42, 0.4) 0%, transparent 80%);
+		overflow: hidden;
 	}
 
-	.home__hero::after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 150px;
-		background: linear-gradient(to top, var(--bg-primary), transparent);
-		pointer-events: none;
-	}
-
-	.home__hero-content {
+	.home__hero-inner {
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		gap: 4rem;
+		align-items: center;
 		position: relative;
 		z-index: 2;
-		max-width: 800px;
-		margin: 0; /* Align left */
+	}
+
+	.home__hero-left {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.home__hero-right {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 400px;
 	}
 
 	.home__status-badge {
@@ -223,14 +334,13 @@ import "./styles/global.css";
 		align-items: center;
 		gap: 0.6rem;
 		padding: 0.4rem 1rem;
-		background: rgba(0, 0, 0, 0.5);
-		border: 1px solid var(--border-subtle);
+		background: rgba(13, 27, 42, 0.6);
+		border: 1px solid var(--color-mist-border);
 		backdrop-filter: blur(8px);
 		border-radius: var(--radius-full);
 		margin-bottom: 1.5rem;
 		font-size: 0.85rem;
 		font-weight: 600;
-		animation: fadeIn 0.6s var(--ease-out) both;
 	}
 
 	.home__status-dot {
@@ -248,39 +358,32 @@ import "./styles/global.css";
 
 	.home__hours-text {
 		color: var(--text-secondary);
-		border-left: 1px solid var(--border-subtle);
+		border-left: 1px solid var(--color-mist-border);
 		padding-left: 0.6rem;
 		font-weight: 500;
 	}
 
 	.home__title {
 		font-family: var(--font-heading);
-		font-size: clamp(3rem, 7vw, 5rem);
-		font-weight: 900;
-		line-height: 1.05;
+		font-size: clamp(2.5rem, 6vw, 4rem);
+		font-weight: 800;
+		line-height: 1.1;
 		letter-spacing: -0.02em;
 		margin-bottom: 1.5rem;
-		animation: fadeInUp 0.6s var(--ease-out) 0.1s both;
-		text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+		color: #ffffff;
 	}
 
 	.home__highlight {
-		font-style: italic;
-		background: var(--gold-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		padding-right: 0.1em; /* fix italic clipping */
+		color: var(--color-signal-blue);
+		font-weight: 900;
 	}
 
 	.home__desc {
-		font-size: 1.1rem;
+		font-size: 1.05rem;
 		color: var(--text-secondary);
-		max-width: 500px;
+		max-width: 520px;
 		margin-bottom: 2.5rem;
-		line-height: 1.7;
-		animation: fadeInUp 0.6s var(--ease-out) 0.2s both;
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+		line-height: 1.65;
 	}
 
 	.home__actions {
@@ -288,17 +391,214 @@ import "./styles/global.css";
 		flex-direction: column;
 		gap: 1rem;
 		width: 100%;
-		max-width: 380px;
-		animation: fadeInUp 0.6s var(--ease-out) 0.3s both;
+		max-width: 400px;
 	}
 
 	.home__btn {
 		justify-content: center;
 		width: 100%;
-		padding: 1rem 2rem;
 	}
 
-	/* ── Gallery ── */
+	.home__admin-link {
+		margin-top: 1.25rem;
+		font-size: 0.88rem;
+		color: var(--color-slate-blue);
+		text-decoration: none;
+		font-weight: 600;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+		border: 1px solid var(--color-mist-border);
+		padding: 0.6rem 1.2rem;
+		border-radius: var(--radius-sm);
+		background: rgba(13, 27, 42, 0.4);
+		backdrop-filter: blur(4px);
+	}
+
+	.home__admin-link:hover {
+		color: var(--color-signal-blue);
+		border-color: rgba(0, 107, 255, 0.4);
+		background: rgba(13, 27, 42, 0.6);
+	}
+
+	/* ── Ambient Gradient Blobs (Watercolor effect) ── */
+	.hero-blob {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.25;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.hero-blob--magenta {
+		width: 250px;
+		height: 250px;
+		background: var(--color-magenta-bloom);
+		top: -10%;
+		left: 10%;
+		animation: float 8s ease-in-out infinite alternate;
+	}
+
+	.hero-blob--cyan {
+		width: 300px;
+		height: 300px;
+		background: var(--color-cyan-pop);
+		bottom: 5%;
+		right: 15%;
+		animation: float 12s ease-in-out infinite alternate-reverse;
+	}
+
+	.hero-blob--ultraviolet {
+		width: 220px;
+		height: 220px;
+		background: var(--color-ultraviolet);
+		top: 30%;
+		right: 5%;
+		animation: float 10s ease-in-out infinite alternate;
+	}
+
+	.hero-blob--amber {
+		width: 150px;
+		height: 150px;
+		background: var(--color-amber-spark);
+		bottom: 40%;
+		left: 0%;
+		opacity: 0.15;
+		animation: float 7s ease-in-out infinite alternate;
+	}
+
+	/* ── Product UI Scheduling Mockup ── */
+	.mockup-card {
+		width: 100%;
+		max-width: 360px;
+		position: relative;
+		z-index: 2;
+		border-radius: var(--radius-2xl); /* 16px radius */
+		overflow: hidden;
+		animation: float 6s ease-in-out infinite;
+	}
+
+	.mockup-card__header {
+		padding: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid var(--color-mist-border);
+		background: rgba(11, 24, 36, 0.4);
+	}
+
+	.mockup-card__icon {
+		font-size: 1.75rem;
+		background: rgba(0, 107, 255, 0.1);
+		width: 48px;
+		height: 48px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		color: var(--color-signal-blue);
+	}
+
+	.mockup-card__title {
+		font-family: var(--font-heading);
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #ffffff;
+	}
+
+	.mockup-card__sub {
+		font-size: 0.75rem;
+		color: var(--text-secondary);
+		margin-top: 0.1rem;
+	}
+
+	.mockup-card__price {
+		font-family: var(--font-heading);
+		font-size: 1.2rem;
+		font-weight: 800;
+		color: var(--color-signal-blue);
+	}
+
+	.mockup-card__body {
+		padding: 1.5rem;
+	}
+
+	.mockup-card__services {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.mockup-card__item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.75rem 1rem;
+		background: rgba(11, 24, 36, 0.5);
+		border: 1px solid var(--color-mist-border);
+		border-radius: var(--radius-lg);
+	}
+
+	.mockup-card__item.active {
+		border-color: var(--color-signal-blue);
+		background: rgba(0, 107, 255, 0.05);
+	}
+
+	.mockup-card__item-name {
+		font-size: 0.8rem;
+		font-weight: 600;
+		display: block;
+		color: #ffffff;
+	}
+
+	.mockup-card__item-time {
+		font-size: 0.7rem;
+		color: var(--text-secondary);
+		display: block;
+		margin-top: 0.1rem;
+	}
+
+	.mockup-card__item-price {
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: var(--text-primary);
+	}
+
+	.mockup-card__slots-label {
+		font-size: 0.75rem;
+		color: var(--text-secondary);
+		margin-bottom: 0.6rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.mockup-card__slots {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+	}
+
+	.mockup-card__slot {
+		padding: 0.5rem;
+		text-align: center;
+		font-size: 0.75rem;
+		font-weight: 600;
+		border: 1px solid var(--color-mist-border);
+		background: rgba(11, 24, 36, 0.3);
+		border-radius: var(--radius-sm);
+	}
+
+	.mockup-card__slot.selected {
+		background: var(--color-signal-blue);
+		color: #ffffff;
+		border-color: transparent;
+	}
+
+	/* ── Gallery Section ── */
 	.home__gallery {
 		padding: var(--section-padding);
 		background: var(--bg-primary);
@@ -317,6 +617,7 @@ import "./styles/global.css";
 		overflow: hidden;
 		aspect-ratio: 4/5;
 		cursor: pointer;
+		border: 1px solid var(--color-mist-border);
 	}
 
 	.gallery__item img {
@@ -327,7 +628,7 @@ import "./styles/global.css";
 	}
 
 	.gallery__item:hover img {
-		transform: scale(1.05);
+		transform: scale(1.04);
 	}
 
 	.gallery__overlay {
@@ -335,8 +636,8 @@ import "./styles/global.css";
 		inset: 0;
 		background: linear-gradient(
 			to top,
-			rgba(0, 0, 0, 0.9) 0%,
-			rgba(0, 0, 0, 0.2) 50%,
+			rgba(5, 12, 20, 0.95) 0%,
+			rgba(5, 12, 20, 0.3) 50%,
 			transparent 100%
 		);
 		display: flex;
@@ -347,21 +648,22 @@ import "./styles/global.css";
 
 	.gallery__overlay h3 {
 		font-family: var(--font-heading);
-		font-size: 1.3rem;
+		font-size: 1.25rem;
 		font-weight: 700;
 		margin-bottom: 0.3rem;
-		color: var(--gold-400);
+		color: #ffffff;
 	}
 
 	.gallery__overlay p {
-		font-size: 0.9rem;
+		font-size: 0.85rem;
 		color: var(--text-secondary);
 	}
 
-	/* ── Location ── */
+	/* ── Location Section ── */
 	.home__location {
 		padding: var(--section-padding);
 		background: var(--bg-secondary);
+		border-top: 1px solid var(--color-mist-border);
 	}
 
 	.location__grid {
@@ -379,18 +681,15 @@ import "./styles/global.css";
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: var(--bg-card);
-		border: 1px solid var(--border-subtle);
 	}
 
 	.location__map-placeholder {
 		text-align: center;
-		color: var(--text-muted);
 	}
 
 	.location__map-icon {
 		margin-bottom: 1rem;
-		opacity: 0.5;
+		opacity: 0.8;
 	}
 
 	.location__info {
@@ -407,28 +706,27 @@ import "./styles/global.css";
 	}
 
 	.location__icon {
-		font-size: 1.5rem;
-		color: var(--gold-400);
-		background: rgba(234, 179, 8, 0.1);
+		font-size: 1.4rem;
+		color: var(--color-signal-blue);
+		background: rgba(0, 107, 255, 0.1);
 		width: 48px;
 		height: 48px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: 50%;
+		border-radius: var(--radius-full);
 	}
 
 	.location__item h4 {
 		font-family: var(--font-heading);
-		font-size: 1.1rem;
+		font-size: 1.05rem;
 		margin-bottom: 0.3rem;
-		color: var(--text-primary);
+		color: #ffffff;
 	}
 
 	.location__item p {
 		color: var(--text-secondary);
-		font-size: 0.95rem;
-		margin-bottom: 0.2rem;
+		font-size: 0.9rem;
 	}
 
 	.location__closed {
@@ -440,11 +738,199 @@ import "./styles/global.css";
 		align-self: flex-start;
 	}
 
+	/* ── WhatsApp Integration ── */
+	.home__whatsapp {
+		padding: var(--section-padding);
+		background: var(--bg-primary);
+		border-top: 1px solid var(--color-mist-border);
+	}
+
+	.whatsapp__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		margin-top: 3rem;
+		align-items: center;
+	}
+
+	.whatsapp__info-cards {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.whatsapp__info-card {
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		border-radius: var(--radius-lg);
+	}
+
+	.whatsapp__info-icon {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+		background: rgba(0, 107, 255, 0.1);
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		color: var(--color-signal-blue);
+	}
+
+	.whatsapp__info-card h4 {
+		font-family: var(--font-heading);
+		font-size: 1.05rem;
+		font-weight: 700;
+		color: #ffffff;
+		margin-bottom: 0.25rem;
+	}
+
+	.whatsapp__info-card p {
+		font-size: 0.88rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	/* Mockup Chat Box */
+	.whatsapp__chat {
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		height: 400px;
+	}
+
+	.chat__header {
+		padding: 1rem 1.25rem;
+		background: rgba(11, 24, 36, 0.5);
+		border-bottom: 1px solid var(--color-mist-border);
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.chat__avatar {
+		font-size: 1.5rem;
+		background: var(--color-midnight-navy);
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+	}
+
+	.chat__name {
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: #ffffff;
+	}
+
+	.chat__status {
+		font-size: 0.7rem;
+		color: var(--accent-green);
+		display: block;
+	}
+
+	.chat__body {
+		padding: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		overflow-y: auto;
+		flex: 1;
+		background: rgba(5, 12, 20, 0.4);
+	}
+
+	.chat__message {
+		max-width: 80%;
+		padding: 0.75rem 1rem;
+		font-size: 0.82rem;
+		line-height: 1.4;
+	}
+
+	.chat__message--user {
+		align-self: flex-end;
+		background: var(--color-midnight-navy);
+		color: #ffffff;
+		border-radius: 12px 12px 2px 12px;
+	}
+
+	.chat__message--bot {
+		align-self: flex-start;
+		background: rgba(13, 27, 42, 0.8);
+		color: #ffffff;
+		border-radius: 12px 12px 12px 2px;
+		border: 1px solid var(--color-mist-border);
+	}
+
+	/* CTA Banner */
+	.whatsapp__cta-banner {
+		margin-top: 4rem;
+		padding: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		border-radius: var(--radius-xl);
+		background: radial-gradient(circle at top right, rgba(0, 107, 255, 0.1), transparent);
+	}
+
+	.cta-banner__content h3 {
+		font-family: var(--font-heading);
+		font-size: 1.4rem;
+		font-weight: 800;
+		color: #ffffff;
+		margin-bottom: 0.5rem;
+	}
+
+	.cta-banner__content p {
+		font-size: 0.95rem;
+		color: var(--text-secondary);
+		max-width: 750px;
+		line-height: 1.5;
+	}
+
+	/* ---------- Responsive ---------- */
+	@media (max-width: 1024px) {
+		.whatsapp__grid {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+
+		.whatsapp__cta-banner {
+			flex-direction: column;
+			text-align: center;
+			padding: 2rem 1.5rem;
+		}
+
+		.home__hero-inner {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+			text-align: center;
+		}
+
+		.home__hero-left {
+			align-items: center;
+		}
+
+		.home__hero {
+			padding: 6rem 1.5rem 3rem;
+		}
+
+		.home__desc {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
 	@media (min-width: 769px) {
 		.home__actions {
 			flex-direction: row;
 		}
-
 		.location__grid {
 			grid-template-columns: 1fr 1fr;
 			align-items: center;

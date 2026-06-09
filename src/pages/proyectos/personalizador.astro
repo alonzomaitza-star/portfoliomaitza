@@ -1,0 +1,76 @@
+---
+import DemoLayout from "../../layouts/DemoLayout.astro";
+import ProductCustomizer from "../../components/personalizador/ProductCustomizer.svelte";
+import "../../styles/global.css";
+---
+
+<DemoLayout 
+  title="Personalizador de Artículos en 3D | Insano Network" 
+  description="Simula tus diseños y logotipos en tiempo real sobre tazas, playeras, frazadas, cuadros y papelería corporativa con modelos interactivos 3D."
+>
+  <!-- Google Fonts & Custom Icons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;750&family=Outfit:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    .blueprint-grid {
+      background-image: radial-gradient(
+        circle at 2px 2px,
+        rgba(59, 130, 246, 0.05) 1px,
+        transparent 0
+      );
+      background-size: 24px 24px;
+    }
+  </style>
+
+  <div class="bg-slate-950 text-slate-100 antialiased blueprint-grid min-h-screen relative pb-20 pt-10">
+    <!-- Header/Introduction -->
+    <div class="max-w-7xl mx-auto px-4 mb-12 text-center lg:text-left">
+      <span class="text-xs px-3 py-1 font-semibold rounded-full uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20">
+        Demo Interactiva • Simulador de Merchandising 3D
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mt-3 tracking-tight font-outfit">
+        Diseño & Personalización <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">3D de Artículos</span>
+      </h1>
+      <p class="text-slate-400 text-sm md:text-base mt-2 max-w-3xl">
+        Experimenta nuestro editor en tiempo real. Selecciona un producto, elige su color base, carga tu logotipo en formato PNG o JPG y manipula el modelo 3D para ver el acabado final. Realiza tu cotización por volumen al instante.
+      </p>
+    </div>
+
+    <!-- Svelte Component Customizer Container -->
+    <div class="max-w-7xl mx-auto px-4">
+      <ProductCustomizer client:load />
+    </div>
+
+    <!-- Features & Benefits Info Section -->
+    <div class="max-w-7xl mx-auto px-4 mt-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-900 pt-12">
+        <div class="space-y-2">
+          <div class="text-2xl text-blue-500">⚡</div>
+          <h4 class="text-white font-bold text-base font-outfit">Modelado de Alta Fidelidad</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Utiliza tecnología WebGL/Three.js de última generación para renderizar cada producto y simular las dimensiones, texturas y reflejos del material real.
+          </p>
+        </div>
+        <div class="space-y-2">
+          <div class="text-2xl text-indigo-500">🎯</div>
+          <h4 class="text-white font-bold text-base font-outfit">Cotizador Integrado por Volumen</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Calcula el presupuesto estimado de producción con descuentos progresivos de hasta el 25% según la cantidad. Solicita la cotización con un solo clic a través de WhatsApp.
+          </p>
+        </div>
+        <div class="space-y-2">
+          <div class="text-2xl text-purple-500">📦</div>
+          <h4 class="text-white font-bold text-base font-outfit">Envíos y Calidad Garantizada</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Procesamos lotes corporativos con técnicas de sublimación e impresión digital premium. Envíos nacionales 100% asegurados con seguimiento logístico paso a paso.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DemoLayout>

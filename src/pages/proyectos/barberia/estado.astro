@@ -58,7 +58,7 @@ import "./styles/global.css";
         margin-bottom: 1.5rem;
     }
     .sp__back:hover {
-        color: var(--gold-400);
+        color: var(--color-signal-blue);
     }
     .sp__title {
         font-family: var(--font-heading);
@@ -82,12 +82,12 @@ import "./styles/global.css";
         gap: 0.6rem;
         padding: 0.8rem 1rem;
         background: var(--bg-surface);
-        border: 1.5px solid var(--border-subtle);
+        border: 1.5px solid var(--color-mist-border);
         border-radius: var(--radius-md);
         transition: border-color var(--transition-fast);
     }
     .sp__input-wrap:focus-within {
-        border-color: var(--gold-400);
+        border-color: var(--color-signal-blue);
     }
     .sp__input {
         flex: 1;
@@ -178,13 +178,13 @@ import "./styles/global.css";
                     const wait = getEstimatedWait(a);
                     const waitHtml =
                         wait !== null && wait > 0
-                            ? `<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border-subtle);font-size:0.85rem;color:var(--accent-amber);font-weight:600;">⏳ Tu cita es en ~${wait} min</div>`
+                            ? `<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-mist-border);font-size:0.85rem;color:var(--color-signal-blue);font-weight:600;">⏳ Tu cita es en ~${wait} min</div>`
                             : "";
 
                     const photoHtml = a.referencePhoto
-                        ? `<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border-subtle);">
+                        ? `<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-mist-border);">
                             <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.5rem;font-family:var(--font-heading);font-weight:600;">Foto de Referencia:</p>
-                            <img src="${a.referencePhoto}" alt="Referencia" style="max-width:120px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);" />
+                            <img src="${a.referencePhoto}" alt="Referencia" style="max-width:120px;border-radius:var(--radius-sm);border:1px solid var(--color-mist-border);" />
                         </div>`
                         : "";
 

@@ -11,15 +11,15 @@ const proyectosInfo = {
     id: "invitaciones",
     nombre: "Plataforma de Invitaciones Digitales",
     fase: "Fase 02: Sistemas",
-    progreso: 65,
-    estado: "Diseñando plantillas interactivas, integración de backend en .NET y base SQL Server",
-    descripcion: "Una plataforma moderna para crear, personalizar y enviar invitaciones digitales interactivas de forma rápida a través de un flujo conversacional guiado. El sistema aloja las invitaciones de manera temporal (45 días por defecto, extendibles a 60 días gratis y 80 días bajo planes). Incluye servicios de confirmación RSVP automática por WhatsApp y opción de grabación de eventos.",
+    progreso: 85,
+    estado: "Módulo creador interactivo completo, mesa de regalos inteligente con detección automática de tiendas y cargador RSVP local",
+    descripcion: "Una plataforma avanzada para diseñar invitaciones web interactivas mediante un wizard dinámico en tiempo real. Soporta la creación de listas de deseos inteligentes (con detección automática de enlaces de Amazon, Mercado Libre, Liverpool y El Palacio de Hierro), cotizador integrado de adiciones premium (como recuerditos y catering), y un gestor RSVP privado para control de asistencia de invitados y métricas de regalos.",
     caracteristicas: [
-      "Creación interactiva y ágil mediante un formulario dinámico optimizado",
-      "Hospedaje temporal estructurado (45 días por defecto, extendible a 60 y 80 días)",
-      "Stack de alto rendimiento: Frontend en Astro, Backend en .NET y base de datos SQL Server",
-      "Confirmador de asistencia (RSVP) en tiempo real con notificaciones por WhatsApp",
-      "Servicio integrado de grabación de eventos y galería de recuerdos"
+      "Creador interactivo de invitaciones con wizard guiado de 5 pasos y preview responsive",
+      "Mesa de regalos inteligente con autodetección de enlaces (Amazon, Mercado Libre, Liverpool, Palacio de Hierro) y carga de capturas",
+      "RSVP privado interactivo: los invitados eligen y reservan su regalo sin asociarlo públicamente en la lista",
+      "Gestor de Eventos con carga de listas Excel/CSV y simulación de recordatorios por WhatsApp",
+      "Cotizador dinámico de servicios adicionales premium (Aguinaldos, Centros de mesa, Fotografía)"
     ],
     lanzamiento: "Q3 2026",
     color: "from-pink-500 to-rose-400",
@@ -247,7 +247,69 @@ const info = proyectosInfo[proyectoParam as keyof typeof proyectosInfo] || proye
               ))}
             </ul>
           </div>
-        </div>
+        {info.id === 'invitaciones' && (
+          <div class="mb-10 p-6 bg-slate-950/60 border border-slate-800 rounded-3xl space-y-6">
+            <h2 class="text-xl font-bold text-white font-manrope flex items-center gap-2">
+              <span>📊</span> Flujo de Detección & Mesa de Regalos
+            </h2>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              El siguiente diagrama técnico ilustra el flujo de negocio del sistema, desde la entrada de enlaces/capturas por el anfitrión, la clasificación dinámica por tienda, hasta la interacción anónima de reservación RSVP por parte del invitado.
+            </p>
+            
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 overflow-x-auto flex justify-center shadow-inner">
+              <pre class="mermaid text-xs font-mono text-indigo-300 bg-transparent select-none">{`
+                graph TD
+                  A[Usuario pega Enlace / Link] --> B{¿Contiene dominio conocido?}
+                  B -- Sí --> C{¿Qué tienda es?}
+                  C -- amazon.com/amzn --> D[Asignar Tienda: Amazon]
+                  C -- mercadolibre.com/ml --> E[Asignar Tienda: Mercado Libre]
+                  C -- liverpool.com.mx --> F[Asignar Tienda: Liverpool]
+                  C -- palaciodehierro.com --> G[Asignar Tienda: Palacio de Hierro]
+                  
+                  D --> H[Simular Scraping de Datos]
+                  E --> H
+                  F --> H
+                  G --> H
+                  
+                  H --> I{¿Éxito en Scraping?}
+                  I -- Sí --> J[Autocompletar Nombre, Imagen y Tienda]
+                  I -- No / Falla --> K[Habilitar Formulario Manual]
+                  
+                  B -- No / Sin Enlace --> L[Agregar Producto Manual]
+                  L --> M[Solicitar Nombre, Imagen y Tienda]
+                  K --> M
+                  
+                  J --> N[Añadir a la Lista de Deseos]
+                  M --> N
+                  
+                  N --> O[Visualizar en Invitación Móvil]
+                  O --> P[Invitado hace clic en 'Regalar']
+                  P --> Q[Confirmar en Smartphone]
+                  Q --> R[Marcar como 'Reservado 🔒' de forma anónima]
+                  R --> S[Actualizar Estado en Panel de Regalos Recibidos del Anfitrión]
+              `}</pre>
+            </div>
+            
+            <script is:inline src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+            <script is:inline>
+              document.addEventListener("DOMContentLoaded", () => {
+                if (window.mermaid) {
+                  window.mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'dark',
+                    themeVariables: {
+                      background: '#0f172a',
+                      primaryColor: '#6366f1',
+                      primaryTextColor: '#fff',
+                      lineColor: '#475569',
+                      arrowheadColor: '#475569'
+                    }
+                  });
+                }
+              });
+            </script>
+          </div>
+        )}
 
         <!-- Formulario e Interacción (CTA) -->
         <div class="bg-gradient-to-br from-slate-950/80 to-slate-900/80 border border-slate-800/80 rounded-2xl p-6 md:p-8 text-center relative overflow-hidden">

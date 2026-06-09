@@ -12,6 +12,19 @@ import "./styles/global.css";
                 Gestiona tu barbería: estado, horarios y citas del día.
             </p>
 
+            <!-- Nota informativa de la Demo en Panel Admin -->
+            <div class="panel__demo-notice glass-card" style="margin-bottom: 2rem; padding: 1.25rem; border-radius: 8px; border: 1px solid rgba(0, 107, 255, 0.2); background: rgba(0, 107, 255, 0.05); font-size: 0.88rem; line-height: 1.6;">
+                <span style="font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-family: var(--font-heading);">
+                    💡 Información de la Demo:
+                </span>
+                <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    Este panel te permite monitorear tu agenda y actualizar los estados de las citas del día. En producción, al registrar el número de teléfono del cliente, la gestión inicia de forma 100% automática. Cuando un cliente abre el chat de WhatsApp del bot oficial (**+52 55 1684 9340**) y confirma o reagenda su cita de <strong>Barbería Kalifa</strong>, la información se procesa y se refleja de inmediato en esta vista de administración, almacenando métricas y citas clave para el control de tu negocio.
+                </p>
+                <p style="font-size: 0.78rem; color: rgba(255, 255, 255, 0.5); margin: 0; padding-top: 0.5rem; border-top: 1px solid var(--color-mist-border);">
+                    ℹ️ <strong>Flexibilidad de Canales:</strong> En el plan básico, los clientes interactúan a través de nuestro número central compartido. En planes avanzados, puedes vincular tu propio número telefónico exclusivo de tu negocio o contar con un bot personalizado adaptado a la identidad de tu marca.
+                </p>
+            </div>
+
             <!-- Config -->
             <div class="glass-card panel__section">
                 <h2 class="panel__h2">Estado de la Barbería</h2>
@@ -70,7 +83,7 @@ import "./styles/global.css";
         margin-bottom: 1.5rem;
     }
     .panel__back:hover {
-        color: var(--gold-400);
+        color: var(--color-signal-blue);
     }
     .panel__title {
         font-family: var(--font-heading);
@@ -102,7 +115,7 @@ import "./styles/global.css";
         justify-content: space-between;
         margin-bottom: 1.5rem;
         padding-bottom: 1.5rem;
-        border-bottom: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--color-mist-border);
     }
     .panel__toggle-label {
         font-family: var(--font-heading);
@@ -164,7 +177,7 @@ import "./styles/global.css";
     }
     .panel__time {
         background: var(--bg-surface);
-        border: 1.5px solid var(--border-subtle);
+        border: 1.5px solid var(--color-mist-border);
         border-radius: var(--radius-sm);
         padding: 0.6rem 0.8rem;
         color: var(--text-primary);
@@ -174,7 +187,7 @@ import "./styles/global.css";
         transition: border-color var(--transition-fast);
     }
     .panel__time:focus {
-        border-color: var(--gold-400);
+        border-color: var(--color-signal-blue);
     }
     .panel__save-hrs {
         padding: 0.6rem 1.3rem;
@@ -278,18 +291,18 @@ import "./styles/global.css";
                 const btns = statuses
                     .map(
                         (s) =>
-                            `<button class="panel__status-btn ${a.status === s ? "active" : ""}" data-id="${a.id}" data-status="${s}" style="padding:0.3rem 0.6rem;border-radius:var(--radius-sm);font-size:0.7rem;font-weight:600;border:1px solid var(--border-subtle);background:${a.status === s ? "var(--gold-gradient)" : "var(--bg-surface)"};color:${a.status === s ? "var(--bg-primary)" : "var(--text-secondary)"};cursor:pointer;">${(STATUS_LABELS as Record<string, string>)[s]}</button>`,
+                            `<button class="panel__status-btn ${a.status === s ? "active" : ""}" data-id="${a.id}" data-status="${s}" style="padding:0.3rem 0.6rem;border-radius:var(--radius-sm);font-size:0.7rem;font-weight:600;border:1px solid var(--color-mist-border);background:${a.status === s ? "var(--color-signal-blue)" : "var(--bg-surface)"};color:${a.status === s ? "#ffffff" : "var(--text-secondary)"};cursor:pointer;">${(STATUS_LABELS as Record<string, string>)[s]}</button>`,
                     )
                     .join("");
 
                 const photoHtml = a.referencePhoto
-                    ? `<div style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border-subtle);">
+                    ? `<div style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--color-mist-border);">
                          <p style="font-size:0.75rem;color:var(--text-secondary);margin-bottom:0.4rem;font-weight:600;">Foto de Referencia (Cliente):</p>
-                         <img src="${a.referencePhoto}" alt="Referencia" style="max-width:100px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);" />
+                         <img src="${a.referencePhoto}" alt="Referencia" style="max-width:100px;border-radius:var(--radius-sm);border:1px solid var(--color-mist-border);" />
                        </div>`
                     : "";
 
-                return `<div style="padding:1rem;background:var(--bg-surface);border-radius:var(--radius-md);border:1px solid var(--border-subtle);">
+                return `<div style="padding:1rem;background:var(--bg-surface);border-radius:var(--radius-md);border:1px solid var(--color-mist-border);">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
           <div><strong style="font-family:var(--font-heading);">${a.time}</strong> — ${a.serviceName}</div>
           <span class="badge badge--${(STATUS_COLORS as Record<string, string>)[a.status] || "green"}" style="font-size:0.65rem;">${(STATUS_LABELS as Record<string, string>)[a.status]}</span>
