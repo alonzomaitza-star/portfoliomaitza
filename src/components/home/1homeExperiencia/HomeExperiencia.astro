@@ -160,6 +160,23 @@ const EXPERIENCE_CARDS: ExperienceCard[] = [
         "Programas Híbridos"
     ]
   },
+  {
+    id: "impresion-3d",
+    title: "¿Impresión 3D?",
+    description: "Llevamos tus ideas digitales al plano físico. Prototipado rápido y fabricación de piezas tridimensionales con tecnología FDM y resina. Próximamente.",
+    color: "purple",
+    iconPath: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
+    services: [
+        "Prototipado FDM & Resina",
+        "Diseño y Modelado CAD",
+        "Servicio de Maquila 3D",
+        "Próximamente"
+    ],
+    storeProducts: [
+        "Modelos a Medida",
+        "Cotizaciones Especiales"
+    ]
+  }
 ];
 
 const COLOR_MAP = {
@@ -259,179 +276,228 @@ const COLOR_MAP = {
       </a>
     </div>
 
-    <!-- Cards Gallery -->
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 mb-20"
-    >
-      {
-        EXPERIENCE_CARDS.map((card) => {
-          const colors = COLOR_MAP[card.color];
-          return (
-            <div
-              data-card-id={card.id}
-              class:list={[
-                "experience-card group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-lg flex flex-col h-full cursor-pointer md:cursor-default",
-                colors.borderHover,
-                colors.shadowHover,
-              ]}
-            >
-              <div
-                class:list={[
-                  "absolute inset-0 bg-gradient-to-br to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none",
-                  colors.bgGradient,
-                ]}
-              />
-              <div class="relative z-10 flex flex-col h-full">
-                <!-- Header (Icon + Title + toggle indicator) -->
-                <div class="flex items-start justify-between">
-                    <div
-                      class:list={[
-                        "w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors flex-shrink-0",
-                        colors.iconBg,
-                        colors.iconText,
-                        colors.iconGroupHoverText,
-                        colors.iconGroupHoverBg,
-                      ]}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-6 h-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d={card.iconPath}
-                        />
-                      </svg>
-                    </div>
-                    
-                    <!-- Mobile Chevron -->
-                    <div class="md:hidden text-slate-500 transition-transform duration-300 chevron-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Title (Always visible) -->
-                <h3 class="text-2xl font-bold mb-3 select-none">{card.title}</h3>
-
-                <!-- Content Body (Collapsible on mobile) -->
-                <div class="card-content flex-col flex-grow">
-                    <!-- Content -->
-                    <p class="text-base text-slate-400 mb-6 flex-grow">
-                      {card.description}
-                    </p>
-
-                    <!-- Services List (Optional) -->
-                    {card.services && card.services.length > 0 && (
-                      <div class="mb-5">
-                        <p class="text-sm font-semibold uppercase text-slate-500 mb-3 tracking-wider">
-                          Servicios
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                           {card.services.slice(0, 4).map(service => (
-                               <span class="text-xs bg-slate-700/50 px-2.5 py-1.5 rounded text-slate-300 border border-slate-600/50">
-                                   {service}
-                               </span>
-                           ))}
-                           {card.services.length > 4 && (
-                               <span class="text-xs text-slate-500 px-2 py-1">...</span>
-                           )}
-                        </div>
-                      </div>
-                    )}
-
-                    <!-- Store Products (Tienda) Section -->
-                    {card.storeProducts && card.storeProducts.length > 0 && (
-                      <div class="mt-auto pt-5 border-t border-slate-700/50 mb-4">
-                        <div class="flex items-center gap-2 mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
-                               <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 001-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
-                            </svg>
-                            <span class="text-base font-semibold text-slate-400">Tienda</span>
-                        </div>
-                        <ul class="grid grid-cols-2 gap-x-2 gap-y-1.5">
-                          {card.storeProducts.slice(0, 6).map((product) => (
-                            <li class="text-sm text-slate-500 flex items-start gap-2 leading-tight">
-                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mt-1.5 flex-shrink-0"></span>
-                                <span>{product}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <div class="text-xs text-slate-500 mt-3 italic flex items-center gap-1 opacity-70">
-                            <span>+ Cursos y servicios...</span>
-                        </div>
-                      </div>
-                    )}
-                    
-                    <!-- Category-specific Action Button -->
-                    {card.id === 'diseno' && (
-                        <a href="/diseno" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                            <span>Mira nuestra galería y proyectos</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    )}
-                    {card.id === 'desarrollo' && (
-                        <a href="/desarrollo" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                            <span>Stack tech, herramientas open source</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    )}
-                    {card.id === 'contabilidad' && (
-                        <a href="/contable" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                            <span>Servicios fiscales y contables</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    )}
-                    {card.id === 'comprar-vender' && (
-                        <a href="/ecommerce" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                            <span>Tienda y productos personalizados</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    )}
-                    {card.id === 'emprender' && (
-                        <a href="/marketing" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                            <span>Marketing y estrategia de negocio</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    )}
-                    {card.id === 'cursos' && (
-                        <a href="/cursos" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                            <span>Certificaciones y cursos profesionales</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    )}
-                    {card.id === 'capacitacion' && (
-                        <a href="/capacitacion" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
-                            <span>Capacitación empresarial y de equipos</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    )}
-                </div>
+    <!-- Cards Gallery Container with Left Octopus Core -->
+    <div class="flex flex-col lg:flex-row gap-8 items-start mb-20 relative h-[1500px] lg:h-[1100px] overflow-hidden">
+      <!-- Left Column: Octopus Core (Decorative circle with circular timer) -->
+      <div class="w-full lg:w-1/4 flex flex-col items-center justify-center relative py-6 shrink-0 lg:sticky lg:top-28 z-20 octopus-core-container">
+          <!-- Central Octopus Core (Discreet sizing: w-20 h-20 md:w-24 md:h-24) -->
+          <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-slate-900/95 border border-slate-700/80 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.15)] relative overflow-hidden group">
+              <!-- Radial Glow -->
+              <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent pointer-events-none"></div>
+              
+              <!-- Circular Timer SVG -->
+              <svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                  <!-- Background Circle -->
+                  <circle cx="50" cy="50" r="42" stroke="rgba(51, 65, 85, 0.3)" stroke-width="4" fill="transparent" />
+                  <!-- Progress Circle -->
+                  <circle id="core-timer-progress" cx="50" cy="50" r="42" stroke="url(#timer-gradient)" stroke-width="4" fill="transparent" stroke-dasharray="264" stroke-dashoffset="264" stroke-linecap="round" class="transition-all duration-100 ease-linear" />
+                  
+                  <defs>
+                      <linearGradient id="timer-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#3b82f6" />
+                          <stop offset="50%" stop-color="#6366f1" />
+                          <stop offset="100%" stop-color="#ec4899" />
+                      </linearGradient>
+                  </defs>
+              </svg>
+              
+              <!-- Core Content (Icon + Timer seconds only - title omitted for discreet styling) -->
+              <div class="relative z-10 text-center flex flex-col items-center justify-center p-2">
+                  <div id="core-icon-container" class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue-50/20 text-blue-400 flex items-center justify-center transition-all duration-300">
+                      <!-- Active icon will be injected here -->
+                  </div>
+                  <span id="core-seconds" class="text-[9px] text-slate-400 font-extrabold tracking-wider mt-0.5">
+                      10s
+                  </span>
               </div>
-            </div>
-          );
-        })
-      }
+          </div>
+          
+          <!-- Octopus Arms (Decorative concentric circles waves) -->
+          <div class="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block">
+              <div class="absolute w-20 h-20 border border-blue-500/20 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[ping_3s_infinite] opacity-50"></div>
+              <div class="absolute w-28 h-28 border border-indigo-500/10 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[ping_4s_infinite_1s] opacity-30"></div>
+          </div>
+      </div>
+
+      <!-- Right Column: Cards Grid (Minimum 2 per row) -->
+      <div class="w-full lg:w-3/4">
+        <div class="grid grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+          {
+            EXPERIENCE_CARDS.map((card) => {
+              const colors = COLOR_MAP[card.color];
+              return (
+                <div
+                  data-card-id={card.id}
+                  data-card-title={card.title}
+                  class:list={[
+                    "experience-card group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl transition-all duration-500 hover:-translate-y-0.5 hover:shadow-lg flex flex-col h-full cursor-pointer",
+                    colors.borderHover,
+                    colors.shadowHover,
+                  ]}
+                >
+                  <div
+                    class:list={[
+                      "absolute inset-0 bg-gradient-to-br to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none",
+                      colors.bgGradient,
+                    ]}
+                  />
+                  <div class="relative z-10 flex flex-col h-full">
+                    <!-- Header (Icon + Title) -->
+                    <div class="flex items-start justify-between">
+                        <div
+                          class:list={[
+                            "w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors flex-shrink-0 card-icon-wrapper",
+                            colors.iconBg,
+                            colors.iconText,
+                            colors.iconGroupHoverText,
+                            colors.iconGroupHoverBg,
+                          ]}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-6 h-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d={card.iconPath}
+                            />
+                          </svg>
+                        </div>
+                        
+                        <!-- Pulse dot indicator inside the card -->
+                        <div class="active-dot w-2 h-2 rounded-full bg-slate-650 transition-all duration-300"></div>
+                    </div>
+
+                    <!-- Title (Always visible) -->
+                    <h3 class="text-2xl font-bold mb-1 select-none">{card.title}</h3>
+
+                    <!-- Content Body -->
+                    <div class="card-content flex-col flex-grow">
+                        <!-- Content -->
+                        <p class="text-sm text-slate-400 mb-6 flex-grow">
+                          {card.description}
+                        </p>
+
+                        <!-- Services List (Optional) -->
+                        {card.services && card.services.length > 0 && (
+                          <div class="mb-5">
+                            <p class="text-[10px] font-bold uppercase text-slate-500 mb-3 tracking-wider">
+                              Servicios
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                               {card.services.slice(0, 4).map(service => (
+                                   <span class="text-[11px] bg-slate-700/50 px-2.5 py-1.5 rounded text-slate-350 border border-slate-600/50">
+                                       {service}
+                                   </span>
+                               ))}
+                               {card.services.length > 4 && (
+                                   <span class="text-[11px] text-slate-500 px-2 py-1">...</span>
+                               )}
+                            </div>
+                          </div>
+                        )}
+
+                        <!-- Store Products (Tienda) Section -->
+                        {card.storeProducts && card.storeProducts.length > 0 && (
+                          <div class="mt-auto pt-5 border-t border-slate-700/50 mb-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
+                                   <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 001-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm font-semibold text-slate-400">Tienda</span>
+                            </div>
+                            <ul class="grid grid-cols-2 gap-x-2 gap-y-1.5">
+                              {card.storeProducts.slice(0, 6).map((product) => (
+                                <li class="text-xs text-slate-500 flex items-start gap-2 leading-tight">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mt-1.5 flex-shrink-0"></span>
+                                    <span>{product}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <div class="text-[10px] text-slate-550 mt-3 italic flex items-center gap-1 opacity-70">
+                                <span>+ Cursos y servicios...</span>
+                            </div>
+                          </div>
+                        )}
+                        
+                        <!-- Category-specific Action Button -->
+                        {card.id === 'diseno' && (
+                            <a href="/diseno" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-350 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                                <span>Mira nuestra galería y proyectos</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        )}
+                        {card.id === 'desarrollo' && (
+                            <a href="/desarrollo" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-350 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                                <span>Stack tech, herramientas open source</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        )}
+                        {card.id === 'contabilidad' && (
+                            <a href="/contable" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-350 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                                <span>Servicios fiscales y contables</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        )}
+                        {card.id === 'comprar-vender' && (
+                            <a href="/ecommerce" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-350 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                                <span>Tienda y productos personalizados</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        )}
+                        {card.id === 'emprender' && (
+                            <a href="/marketing" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-350 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                                <span>Marketing y estrategia de negocio</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        )}
+                        {card.id === 'cursos' && (
+                            <a href="/cursos" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-350 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                                <span>Certificaciones y cursos profesionales</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        )}
+                        {card.id === 'capacitacion' && (
+                            <a href="/capacitacion" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-350 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                                <span>Capacitación empresarial y de equipos</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        )}
+                        {card.id === 'impresion-3d' && (
+                            <a href="/" class="w-full mt-2 py-2.5 px-4 bg-slate-700/50 hover:bg-slate-700 text-slate-350 hover:text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                                <span>Próximamente • Volver al Inicio</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
     </div>
 
     <!-- proyectos -->
@@ -558,58 +624,69 @@ const COLOR_MAP = {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-
-  </div>
-</section>
-
-<style>
-  /* Mobile Expandable Cards Styles */
-  
+   <style>
   /* Prevent browser scroll anchoring */
   .experience-card {
     overflow-anchor: none;
   }
 
-  /* Default: collapsed on mobile */
-  @media (max-width: 767px) {
-    .card-content {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.35s ease-out, opacity 0.25s ease-out;
-      display: flex;
-    }
-    
-    .experience-card.expanded .card-content {
-      max-height: 800px; /* Large enough to fit content */
-      opacity: 1;
-      transition: max-height 0.4s ease-in, opacity 0.3s ease-in 0.1s;
-    }
-    
-    .experience-card.expanded .chevron-icon {
-      transform: rotate(180deg);
-    }
+  /* Default: collapsed on all devices, expanded only when active */
+  .card-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin-top 0.4s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .experience-card.active-card .card-content {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1.25rem;
+  }
 
-    .chevron-icon {
-      transition: transform 0.3s ease;
+  .experience-card.active-card {
+    border-color: rgba(99, 102, 241, 0.6) !important;
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.25) !important;
+    background-color: rgba(15, 23, 42, 0.75) !important;
+    transform: translateY(-2px);
+  }
+
+  /* On mobile/tablet, active card spans both columns (covers full width) */
+  @media (max-width: 1023px) {
+    .experience-card.active-card {
+      grid-column: span 2 / span 2;
     }
   }
 
-  /* Desktop: always visible */
-  @media (min-width: 768px) {
-    .card-content {
-      display: flex;
-      max-height: none;
-      opacity: 1;
-      overflow: visible;
+  /* Pulse line for desktop "pulpo" tentacle connection */
+  @media (min-width: 1024px) {
+    .experience-card.active-card::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      width: 20px;
+      height: 2px;
+      background: linear-gradient(to right, rgba(99, 102, 241, 0.4), rgba(99, 102, 241, 0));
+      z-index: -1;
+      animation: pulse-line 2s infinite;
     }
+  }
+
+  @keyframes pulse-line {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
   }
 </style>
 
 <script>
+  let activeIndex = 0;
+  let progress = 0;
+  let timerInterval: any = null;
+  let isHovered = false;
+
   document.addEventListener('astro:page-load', () => {
      initCards();
   });
@@ -618,22 +695,119 @@ const COLOR_MAP = {
 
   function initCards() {
     const cards = document.querySelectorAll('.experience-card');
-    cards.forEach(card => {
-        card.onclick = (e) => {
-            // Only apply toggle on mobile/tablet (below md breakpoint)
-            if (window.innerWidth >= 768) return; 
-            
-            // Prevent toggle if clicking on a link or button inside the expanded content
-            if (e.target.closest('a') || e.target.closest('button')) return;
+    const coreCircle = document.querySelector('.octopus-core-container');
+    
+    if (cards.length === 0) return;
 
-            // Toggle the expanded state
-            card.classList.toggle('expanded');
-        };
+    // Clear any existing timer when re-initializing
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    cards.forEach((card, idx) => {
+      // Set the index in click handler
+      card.addEventListener('click', (e) => {
+        // Prevent toggle if clicking on a link or button
+        if ((e.target as HTMLElement).closest('a') || (e.target as HTMLElement).closest('button')) return;
+        
+        activeIndex = idx;
+        progress = 0;
+        updateActiveCard(cards);
+        updateProgressUI();
+      });
+
+      // Hover controls to pause timer
+      card.addEventListener('mouseenter', () => { isHovered = true; });
+      card.addEventListener('mouseleave', () => { isHovered = false; });
+    });
+
+    if (coreCircle) {
+      coreCircle.addEventListener('mouseenter', () => { isHovered = true; });
+      coreCircle.addEventListener('mouseleave', () => { isHovered = false; });
+    }
+
+    // Set first card as active initially
+    activeIndex = 0;
+    progress = 0;
+    updateActiveCard(cards);
+    updateProgressUI();
+    startTimer(cards);
+  }
+
+  function startTimer(cards: NodeListOf<Element>) {
+    timerInterval = setInterval(() => {
+      if (isHovered) return;
+
+      progress += 1; // Increment 1% every 100ms (100 * 100ms = 10,000ms = 10s)
+
+      if (progress >= 100) {
+        progress = 0;
+        activeIndex = (activeIndex + 1) % cards.length;
+        updateActiveCard(cards);
+      }
+
+      updateProgressUI();
+    }, 100);
+  }
+
+  function updateProgressUI() {
+    const progressBar = document.getElementById('core-timer-progress');
+    const secondsLabel = document.getElementById('core-seconds');
+
+    if (progressBar) {
+      // Circumference is 263.89 ~ 264
+      const offset = 264 - (progress / 100) * 264;
+      progressBar.style.strokeDashoffset = offset.toString();
+    }
+
+    if (secondsLabel) {
+      const remainingSeconds = Math.ceil((100 - progress) / 10);
+      secondsLabel.textContent = remainingSeconds + 's';
+    }
+  }
+
+  function updateActiveCard(cards: NodeListOf<Element>) {
+    cards.forEach((card, idx) => {
+      const activeDot = card.querySelector('.active-dot');
+      if (idx === activeIndex) {
+        card.classList.add('active-card');
+        if (activeDot) {
+          activeDot.classList.remove('bg-slate-650');
+          activeDot.classList.add('bg-blue-500', 'shadow-[0_0_8px_#3b82f6]');
+        }
+
+        // Update core content
+        const coreTitle = document.getElementById('core-title');
+        const coreIconContainer = document.getElementById('core-icon-container');
+
+        if (coreTitle) {
+          coreTitle.textContent = card.getAttribute('data-card-title') || '';
+        }
+
+        if (coreIconContainer) {
+          const cardIcon = card.querySelector('.card-icon-wrapper');
+          if (cardIcon) {
+            const svg = cardIcon.querySelector('svg');
+            if (svg) {
+              coreIconContainer.innerHTML = svg.outerHTML;
+            }
+            // Sync background/text classes from the active card's icon wrapper
+            coreIconContainer.className = cardIcon.className.replace('card-icon-wrapper', 'w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300');
+          }
+        }
+      } else {
+        card.classList.remove('active-card');
+        if (activeDot) {
+          activeDot.classList.remove('bg-blue-500', 'shadow-[0_0_8px_#3b82f6]');
+          activeDot.classList.add('bg-slate-650');
+        }
+      }
     });
   }
 
   // Platform switching functionality (Twitch & Kick only)
-  function showPlatform(platform) {
+  function showPlatform(platform: string) {
     // Hide all content
     document.querySelectorAll('.stream-content').forEach(content => {
       content.classList.add('hidden');
@@ -664,5 +838,5 @@ const COLOR_MAP = {
   }
   
   // Make functions globally available
-  window.showPlatform = showPlatform;
+  (window as any).showPlatform = showPlatform;
 </script>
