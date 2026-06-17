@@ -39,12 +39,12 @@ const desarrollos: Desarrollo[] = [
     {
         title: "Gestiona tus Citas mediante WhatsApp o Portal Web",
         subtitle:
-            "Portal de reservación y/o bot de WhatsApp con menús interactivos y respuestas de comunicación automatizadas.",
+            "INGRESA TU NÚMERO &gt; NOMBRE DE EMPRESA &gt; SE CREA TU PÁGINA <span class='text-slate-400 font-semibold border-l border-slate-700/60 pl-2.5 ml-2.5'>&gt; VE EL DEMO* &gt; GESTIONA TUS CITAS!*</span> <span class='text-[9px] text-indigo-400 font-bold lowercase tracking-normal italic'>(*opcional)</span>",
         description:
-            "Automatiza y administra las citas y reservas de tu negocio en tiempo real. Ideal para barberías, salones de belleza, consultorios médicos, veterinarias y servicios profesionales. Permite que tus clientes agenden desde un portal web interactivo o a través de un bot de WhatsApp inteligente que confirma, reagenda y envía recordatorios automáticos de manera autónoma.",
+            "Ingresa tu número de teléfono y el nombre de tu empresa; en segundos se genera una página personalizada con tu agenda y enlace de reserva. Puedes ver el demo en tiempo real, observar el flujo de registro, confirmación y recordatorios, y consultar ejemplos de citas creadas. Ideal para barberías, salones de belleza, consultorios médicos, veterinarias y otros servicios profesionales.",
         tags: ["Barberías", "Consultorios", "Veterinarias", "Servicios"],
         url: "/proyectos/barberia",
-        buttonText: "Agendar citas",
+        buttonText: "Ver demo",
         image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop",
         imageLeft: false,
     },
@@ -106,27 +106,35 @@ const desarrollos: Desarrollo[] = [
         </h2>
     </div>
 
-    <!-- Lista de Tarjetas en Horizontal con Imagen Vertical (Hoja/Página) -->
-    <div class="flex flex-col gap-10 mb-12">
+    <!-- Grid de Tarjetas: 1 columna en móvil, 2 en md+ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         {
             desarrollos.map((item, index) => (
-                <div 
-                    class={`bg-slate-800/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/60 hover:border-slate-600 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/5 flex flex-col ${item.imageLeft ? 'md:flex-row-reverse' : 'md:flex-row'} gap-6 p-6 md:p-8`}
-                >
-                    <!-- Lado del Texto (60% en desktop) -->
-                    <div class="w-full md:w-3/5 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
+                <div class="bg-slate-800/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/60 hover:border-slate-600 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/5 flex flex-col">
+                    <!-- Imagen superior -->
+                    <div class="w-full overflow-hidden">
+                        <img
+                            src={item.image}
+                            alt={item.title}
+                            class="w-full aspect-video object-cover transition-transform duration-500 hover:scale-105"
+                            loading="lazy"
+                        />
+                    </div>
+
+                    <!-- Contenido inferior -->
+                    <div class="flex flex-col flex-1 p-6">
+                        <div class="flex-1">
+                            <h3 class="text-lg md:text-xl font-bold text-white mb-2 leading-tight">
                                 {item.title}
                             </h3>
                             <p class="text-xs text-[#ffd600] font-black mb-4 uppercase tracking-wider leading-relaxed" set:html={item.subtitle} />
-                            
-                            <!-- Descripción expandible con botón dinámico unificado -->
+
+                            <!-- Descripción expandible -->
                             <div class="relative mb-4">
                                 <p id={`desc-${index}`} class="text-slate-300 text-sm leading-relaxed line-clamp-3 transition-all duration-300">
                                     {item.description}
                                 </p>
-                                
+
                                 <button
                                     id={`toggle-btn-${index}`}
                                     class="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 cursor-pointer mt-3.5 font-bold uppercase tracking-wider select-none transition-colors"
@@ -184,16 +192,6 @@ const desarrollos: Desarrollo[] = [
                                 </svg>
                             </a>
                         </div>
-                    </div>
-
-                    <!-- Lado de la Imagen (40% en desktop) -->
-                    <div class="w-full md:w-2/5 flex items-center justify-center overflow-hidden rounded-xl">
-                        <img
-                            src={item.image}
-                            alt={item.title}
-                            class="w-full h-full aspect-[3/4] object-cover rounded-xl shadow-2xl transition-transform duration-500 hover:scale-102"
-                            loading="lazy"
-                        />
                     </div>
                 </div>
             ))

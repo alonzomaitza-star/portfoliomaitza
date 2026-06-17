@@ -1,7 +1,7 @@
 // Configuración del sitio
 export const SITE_TITLE = 'Insano Network Landing';
 export const SITE_DESCRIPTION = 'Diseña, Desarrolla y Vende.';
-export const SITE_URL = 'https://InsanoNetwork.com';
+export const SITE_URL = 'https://insanonetwork.com';
 export const SITE_AUTHOR = 'Equipo Insano';
 
 // Redes sociales

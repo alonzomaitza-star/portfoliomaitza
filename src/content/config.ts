@@ -4,7 +4,7 @@ const blog = defineCollection({
   // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string().max(100, 'El título no debe exceder los 100 caracteres'),
-    description: z.string().max(200, 'La descripción no debe exceder los 200 caracteres'),
+    description: z.string().max(300, 'La descripción no debe exceder los 300 caracteres'),
     // Transform string to Date object
     pubDate: z
       .string()

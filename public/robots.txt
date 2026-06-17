@@ -8,7 +8,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /api/
-Disallow: /_astro/
+# /_astro/ contiene CSS/JS necesarios para el renderizado — no bloquear
 
 # Permitir acceso a recursos estáticos importantes
 Allow: /assets/
@@ -16,7 +16,7 @@ Allow: /images/
 Allow: /favicon.svg
 
 # Sitemap
-Sitemap: https://tudominio.com/sitemap-index.xml
+Sitemap: https://insanonetwork.com/sitemap-index.xml
 
 # Crawl-delay para bots específicos (opcional)
 # User-agent: Googlebot
