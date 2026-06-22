@@ -17,6 +17,8 @@
   const products = [
     { id: "taza", name: "Taza Premium (Porcelana)", modelType: "fbx" as const, modelUrl: coffeeCupModelUrl, basePrice: 85, icon: "☕" },
     { id: "playera", name: "Playera Corporativa (Algodón)", modelType: "gltf" as const, modelUrl: tshirtModelUrl, basePrice: 165, icon: "👕" },
+    { id: "termo", name: "Termo Deportivo (Acero Inox)", modelType: "cylinder" as const, modelUrl: null, basePrice: 135, icon: "🥤" },
+    { id: "lapicero", name: "Bolígrafo / Lapicero Corporativo", modelType: "cylinder" as const, modelUrl: null, basePrice: 15, icon: "🖊️" },
     { id: "frazada", name: "Frazada Confort (Frazada/Cylinder)", modelType: "sphere" as const, modelUrl: null, basePrice: 280, icon: "🛌" },
     { id: "cuadro", name: "Cuadro Canvas Personalizado", modelType: "cube" as const, modelUrl: null, basePrice: 195, icon: "🖼️" },
     { id: "libreta", name: "Libreta / Papelería Institucional", modelType: "cube" as const, modelUrl: null, basePrice: 55, icon: "📓" }
@@ -67,7 +69,43 @@
     activeTextureUrl = null;
     customTextureName = "";
     if (fileInput) fileInput.value = "";
+    resetTextureTransform();
   }
+
+  // Texture transform controls
+  let texOffsetX = 0;
+  let texOffsetY = 0;
+  let texScale = 1;
+  let texRotation = 0;
+
+  function resetTextureTransform() {
+    texOffsetX = 0;
+    texOffsetY = 0;
+    texScale = 1;
+    texRotation = 0;
+  }
+
+  // Technique selection
+  const techniques = [
+    { id: "sublimacion", name: "Sublimación", desc: "Impresión por calor de alta definición", icon: "🔥" },
+    { id: "dtf", name: "DTF (Direct to Film)", desc: "Transfer digital flexible sobre cualquier superficie", icon: "🎞️" },
+    { id: "uv", name: "Impresión UV", desc: "Tinta UV curada por luz, relieve y textura", icon: "💎" }
+  ];
+  let selectedTechnique = "sublimacion";
+
+  // 3D Viewer interaction controls
+  let autoRotate = true;
+  let cameraPreset: "free" | "front" | "back" = "free";
+
+  function setView(preset: "free" | "front" | "back") {
+    cameraPreset = preset;
+    if (preset !== "free") {
+      autoRotate = false;
+    }
+  }
+
+  // User location
+  let userLocation = "";
 
   // Cotizador state
   let quantity = 50;
@@ -85,13 +123,16 @@
   }
 
   // Prefilled WhatsApp message
+  $: selectedTechName = techniques.find(t => t.id === selectedTechnique)?.name || selectedTechnique;
   $: waMessage = encodeURIComponent(
     `Hola Insano Network, me interesa cotizar una orden personalizada de:\n` +
     `- Producto: *${selectedProduct.name}*\n` +
     `- Cantidad: *${quantity} unidades*\n` +
     `- Color base: *${selectedColor}*\n` +
+    `- Técnica: *${selectedTechName}*\n` +
     `- Diseño: *${activeTextureUrl ? (customTextureName || "Textura personalizada aplicada") : "Color base sin logotipo"}*\n` +
     `- Cotización estimada: *${formatMoney(total)} MXN* (${discountPercent}% de descuento aplicado).\n` +
+    (userLocation ? `- Ubicación de entrega: *${userLocation}*\n` : "") +
     `¿Me podrían dar detalles para el envío y facturación?`
   );
 
@@ -144,9 +185,32 @@
       </div>
     </div>
 
-    <!-- Step 3: Logo / Design Upload -->
+    <!-- Step 3: Technique -->
     <div class="space-y-3">
-      <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">3. Añadir Logo o Estampado</h3>
+      <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">3. Técnica de Aplicación</h3>
+      <div class="grid grid-cols-1 gap-2">
+        {#each techniques as tech}
+          <button
+            type="button"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl border-2 text-left transition-all {selectedTechnique === tech.id ? 'border-indigo-500 bg-indigo-500/10 text-white' : 'border-slate-800 bg-slate-950/40 text-slate-400 hover:border-slate-700 hover:text-white'}"
+            on:click={() => selectedTechnique = tech.id}
+          >
+            <span class="text-lg">{tech.icon}</span>
+            <div class="min-w-0">
+              <p class="text-xs font-bold">{tech.name}</p>
+              <p class="text-[10px] text-slate-500">{tech.desc}</p>
+            </div>
+            {#if selectedTechnique === tech.id}
+              <span class="ml-auto text-indigo-400 text-xs">✓</span>
+            {/if}
+          </button>
+        {/each}
+      </div>
+    </div>
+
+    <!-- Step 4: Logo / Design Upload -->
+    <div class="space-y-3">
+      <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">4. Añadir Logo o Estampado</h3>
       
       <!-- Preset Designs -->
       <div class="space-y-2">
@@ -195,10 +259,10 @@
       </div>
     </div>
 
-    <!-- Step 4: Calculator -->
+    <!-- Step 5: Calculator -->
     <div class="pt-5 border-t border-slate-800/80 space-y-4">
       <div class="flex justify-between items-center">
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">4. Cantidad & Cotización</h3>
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">5. Cantidad & Cotización</h3>
         <span class="px-2 py-0.5 text-[9px] font-extrabold bg-[#ffd600]/10 border border-[#ffd600]/20 text-[#ffd600] rounded">
           {discountPercent > 0 ? `${discountPercent}% Descuento` : "Precio Base"}
         </span>
@@ -258,6 +322,37 @@
       </a>
     </div>
 
+    <!-- Step 6: Location -->
+    <div class="pt-5 border-t border-slate-800/80 space-y-3">
+      <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">6. Ubicación de Entrega</h3>
+      <div class="space-y-2">
+        <div class="relative">
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm">📍</span>
+          <input
+            type="text"
+            placeholder="Ingresa tu dirección o ciudad de entrega..."
+            bind:value={userLocation}
+            class="w-full bg-slate-950 border border-slate-800 text-white text-xs rounded-xl py-3 pl-9 pr-4 placeholder-slate-600 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500/30 transition-all"
+          />
+        </div>
+        {#if userLocation.length > 3}
+          <div class="rounded-xl overflow-hidden border border-slate-800 shadow-lg">
+            <iframe
+              title="Mapa de ubicación"
+              width="100%"
+              height="200"
+              style="border:0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q={encodeURIComponent(userLocation)}&output=embed"
+            ></iframe>
+          </div>
+        {:else}
+          <p class="text-[9px] text-slate-600 italic">Escribe tu ubicación para visualizar el mapa y calcular envío.</p>
+        {/if}
+      </div>
+    </div>
+
   </div>
 
   <!-- RIGHT: Interactive 3D Canvas -->
@@ -274,13 +369,29 @@
           </span>
           <h4 class="text-white font-bold text-sm font-outfit mt-1">{selectedProduct.name}</h4>
         </div>
-        <button
-          type="button"
-          class="text-xs bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 font-semibold py-1.5 px-3 rounded-lg flex items-center gap-1.5 transition-all"
-          on:click={() => selectedColor = "#ffffff"}
-        >
-          🔄 Centrar / Reset
-        </button>
+        <div class="flex gap-1.5">
+          <button
+            type="button"
+            class="text-[10px] py-1.5 px-2.5 rounded-lg border font-bold transition-all flex items-center gap-1 {cameraPreset === 'front' ? 'bg-blue-600/20 border-blue-500/40 text-blue-300' : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white'}"
+            on:click={() => setView('front')}
+          >
+            👁️ Frontal
+          </button>
+          <button
+            type="button"
+            class="text-[10px] py-1.5 px-2.5 rounded-lg border font-bold transition-all flex items-center gap-1 {cameraPreset === 'back' ? 'bg-blue-600/20 border-blue-500/40 text-blue-300' : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white'}"
+            on:click={() => setView('back')}
+          >
+            🔄 Trasera
+          </button>
+          <button
+            type="button"
+            class="text-[10px] py-1.5 px-2.5 rounded-lg border font-bold transition-all flex items-center gap-1 {autoRotate ? 'bg-emerald-600/20 border-emerald-500/40 text-emerald-300' : 'bg-amber-600/20 border-amber-500/40 text-amber-300'}"
+            on:click={() => { autoRotate = !autoRotate; if (autoRotate) cameraPreset = 'free'; }}
+          >
+            {autoRotate ? '⏸ Detener' : '▶ Girar'}
+          </button>
+        </div>
       </div>
 
       <!-- Svelte Three.js Viewer -->
@@ -292,6 +403,12 @@
               modelUrl={selectedProduct.modelUrl}
               modelColor={selectedColor}
               textureUrl={activeTextureUrl}
+              textureOffsetX={texOffsetX}
+              textureOffsetY={texOffsetY}
+              textureScale={texScale}
+              textureRotation={texRotation}
+              {autoRotate}
+              {cameraPreset}
             />
           {/key}
         {:else}
@@ -305,5 +422,94 @@
         <span>Arrastra para girar • Rueda para hacer zoom • Sube tu logo a la izquierda para estamparlo</span>
       </div>
     </div>
+
+    <!-- Texture Position Editor (only visible when a texture/logo is applied) -->
+    {#if activeTextureUrl}
+      <div class="bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-2xl p-5 shadow-xl">
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-sm">🎯</span>
+            <h3 class="text-xs font-bold text-slate-300 uppercase tracking-widest">Editor de Posición del Logo</h3>
+          </div>
+          <button
+            type="button"
+            class="text-[10px] bg-slate-950 hover:bg-slate-900 border border-slate-800 text-slate-400 hover:text-white font-bold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1"
+            on:click={resetTextureTransform}
+          >
+            ↺ Restablecer
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+          <!-- Offset X -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Posición X</label>
+              <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded">{texOffsetX.toFixed(2)}</span>
+            </div>
+            <input
+              type="range"
+              min="-1"
+              max="1"
+              step="0.01"
+              bind:value={texOffsetX}
+              class="w-full h-1 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-blue-500"
+            />
+          </div>
+
+          <!-- Offset Y -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Posición Y</label>
+              <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded">{texOffsetY.toFixed(2)}</span>
+            </div>
+            <input
+              type="range"
+              min="-1"
+              max="1"
+              step="0.01"
+              bind:value={texOffsetY}
+              class="w-full h-1 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-blue-500"
+            />
+          </div>
+
+          <!-- Scale / Zoom -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Zoom del Logo</label>
+              <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-1.5 py-0.5 rounded">×{texScale.toFixed(2)}</span>
+            </div>
+            <input
+              type="range"
+              min="0.2"
+              max="5"
+              step="0.05"
+              bind:value={texScale}
+              class="w-full h-1 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+            />
+          </div>
+
+          <!-- Rotation -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Rotación</label>
+              <span class="text-[10px] font-mono text-purple-400 bg-purple-500/10 px-1.5 py-0.5 rounded">{Math.round(texRotation * (180 / Math.PI))}°</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="{2 * Math.PI}"
+              step="0.01"
+              bind:value={texRotation}
+              class="w-full h-1 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-purple-500"
+            />
+          </div>
+        </div>
+
+        <p class="text-[9px] text-slate-600 mt-3 text-center italic">
+          Ajusta la posición, tamaño y ángulo del logo sobre la superficie del producto.
+        </p>
+      </div>
+    {/if}
   </div>
 </div>

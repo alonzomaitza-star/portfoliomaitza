@@ -7,9 +7,19 @@
     import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
     export let modelColor: string = "#00ff00";
-    export let modelType: "cube" | "sphere" | "gltf" | "fbx" | "obj" = "cube";
+    export let modelType: "cube" | "sphere" | "cylinder" | "gltf" | "fbx" | "obj" = "cube";
     export let textureUrl: string | null = null;
     export let modelUrl: string | null = null; // [NEW] For external models
+
+    // Texture transform props
+    export let textureOffsetX: number = 0;
+    export let textureOffsetY: number = 0;
+    export let textureScale: number = 1;
+    export let textureRotation: number = 0;
+
+    // Interaction control props
+    export let autoRotate: boolean = true;
+    export let cameraPreset: "free" | "front" | "back" = "free";
 
     let container: HTMLDivElement;
     let scene: THREE.Scene;
@@ -129,7 +139,7 @@
         }
 
         // For basic geometry types or when no model URL is provided
-        if (!modelUrl || modelType === "cube" || modelType === "sphere") {
+        if (!modelUrl || modelType === "cube" || modelType === "sphere" || modelType === "cylinder") {
             loadBasicGeometry();
             isLoading = false;
             return;
@@ -200,6 +210,8 @@
         let geometry;
         if (modelType === "sphere") {
             geometry = new THREE.SphereGeometry(0.7, 32, 32);
+        } else if (modelType === "cylinder") {
+            geometry = new THREE.CylinderGeometry(0.4, 0.4, 1.2, 32);
         } else {
             geometry = new THREE.BoxGeometry();
         }
@@ -304,6 +316,38 @@
         updateTexture();
     }
 
+    // Reactivity: Update texture transforms when offset/scale/rotation change
+    $: if (currentTexture && mesh) {
+        applyTextureTransforms(textureOffsetX, textureOffsetY, textureScale, textureRotation);
+    }
+
+    function applyTextureTransforms(offX: number, offY: number, scale: number, rot: number) {
+        if (!currentTexture) return;
+        currentTexture.wrapS = THREE.RepeatWrapping;
+        currentTexture.wrapT = THREE.RepeatWrapping;
+        currentTexture.offset.set(offX, offY);
+        const s = scale > 0 ? scale : 0.01;
+        currentTexture.repeat.set(1 / s, 1 / s);
+        currentTexture.center.set(0.5, 0.5);
+        currentTexture.rotation = rot;
+        currentTexture.needsUpdate = true;
+
+        // Flag materials as needing update
+        if (mesh instanceof THREE.Group) {
+            mesh.traverse((child) => {
+                if (child instanceof THREE.Mesh) {
+                    if (Array.isArray(child.material)) {
+                        child.material.forEach((m) => { m.needsUpdate = true; });
+                    } else {
+                        child.material.needsUpdate = true;
+                    }
+                }
+            });
+        } else if (mesh instanceof THREE.Mesh) {
+            (mesh.material as THREE.MeshStandardMaterial).needsUpdate = true;
+        }
+    }
+
     function updateTexture() {
         if (!mesh || !textureLoader) return;
 
@@ -311,6 +355,7 @@
             textureLoader.load(textureUrl, (texture) => {
                 if (currentTexture) currentTexture.dispose();
                 currentTexture = texture;
+                applyTextureTransforms(textureOffsetX, textureOffsetY, textureScale, textureRotation);
 
                 // Apply texture to all meshes in the model
                 if (mesh instanceof THREE.Group) {
@@ -369,11 +414,30 @@
         }
     }
 
+    // Reactivity: Snap camera to front/back when cameraPreset changes
+    $: if (camera && pivot && cameraPreset !== "free") {
+        snapCameraToPreset(cameraPreset);
+    }
+
+    function snapCameraToPreset(preset: "front" | "back") {
+        if (!camera || !pivot) return;
+        // Reset pivot rotation so "front" and "back" are predictable
+        pivot.rotation.y = 0;
+        const distance = camera.position.length() || 2;
+        if (preset === "front") {
+            camera.position.set(0, 0, distance);
+        } else {
+            camera.position.set(0, 0, -distance);
+        }
+        camera.lookAt(0, 0, 0);
+        if (controls) controls.update();
+    }
+
     function animate() {
         animationId = requestAnimationFrame(animate);
 
-        if (pivot) {
-            pivot.rotation.y += 0.005; // Rotate pivot group to rotate model in-place
+        if (pivot && autoRotate) {
+            pivot.rotation.y += 0.005;
         }
 
         if (controls) controls.update();
