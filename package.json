@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "node scripts/sanitize-netlify-functions.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "compress": "node scripts/compress-media.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -34,7 +34,10 @@
     "@types/html2canvas": "^0.5.35",
     "@types/three": "^0.182.0",
     "autoprefixer": "^10.4.21",
+    "ffmpeg-static": "^5.3.0",
+    "fluent-ffmpeg": "^2.1.3",
     "postcss": "^8.5.6",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4.1.11",
     "three": "^0.182.0"
   }

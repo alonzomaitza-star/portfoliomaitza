@@ -1,2 +1,0 @@
-##Este es un archivo de inicio para el portafolio.
-## La idea de este documento es determinara el fichero donde se usara y se guardan las paginas, la documentacion, y lo referente para logica para llevar un conteo de portafolios. 
